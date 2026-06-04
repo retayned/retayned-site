@@ -1,0 +1,21 @@
+{
+  "rewrites": [
+    { "source": "/((?!api|assets|favicon|robots|sitemap).*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(privacy|terms)",
+      "headers": [
+        { "key": "X-Robots-Tag", "value": "index, follow" },
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
+}
