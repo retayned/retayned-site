@@ -513,32 +513,32 @@ function Footer({ setPage }) {
         </div>
         <div className="v2-footer-col">
           <h5>Product</h5>
-          <a onClick={() => setPage("platform")}>Platform</a>
-          <a onClick={() => setPage("feature-today")}>Today</a>
-          <a onClick={() => setPage("feature-scoring")}>Retention Score</a>
-          <a onClick={() => setPage("feature-health")}>Health Checks</a>
-          <a onClick={() => setPage("feature-rai")}>Talk to Rai</a>
-          <a onClick={() => setPage("feature-rolodex")}>Rolodex</a>
-          <a onClick={() => setPage("feature-referrals")}>Referrals</a>
+          <a href="/platform" onClick={(e) => { e.preventDefault(); setPage("platform"); }}>Platform</a>
+          <a href="/features/today" onClick={(e) => { e.preventDefault(); setPage("feature-today"); }}>Today</a>
+          <a href="/features/retention-score" onClick={(e) => { e.preventDefault(); setPage("feature-scoring"); }}>Retention Score</a>
+          <a href="/features/health-checks" onClick={(e) => { e.preventDefault(); setPage("feature-health"); }}>Health Checks</a>
+          <a href="/features/talk-to-rai" onClick={(e) => { e.preventDefault(); setPage("feature-rai"); }}>Talk to Rai</a>
+          <a href="/features/rolodex" onClick={(e) => { e.preventDefault(); setPage("feature-rolodex"); }}>Rolodex</a>
+          <a href="/features/referrals" onClick={(e) => { e.preventDefault(); setPage("feature-referrals"); }}>Referrals</a>
         </div>
         <div className="v2-footer-col">
           <h5>Who it's for</h5>
-          <a onClick={() => setPage("freelancers")}>Freelancers</a>
-          <a onClick={() => setPage("agencies")}>Agencies</a>
-          <a onClick={() => setPage("enterprise")}>Enterprise</a>
-          <a onClick={() => setPage("pricing")}>Pricing</a>
+          <a href="/freelancers" onClick={(e) => { e.preventDefault(); setPage("freelancers"); }}>Freelancers</a>
+          <a href="/agencies" onClick={(e) => { e.preventDefault(); setPage("agencies"); }}>Agencies</a>
+          <a href="/enterprise" onClick={(e) => { e.preventDefault(); setPage("enterprise"); }}>Enterprise</a>
+          <a href="/pricing" onClick={(e) => { e.preventDefault(); setPage("pricing"); }}>Pricing</a>
         </div>
         <div className="v2-footer-col">
           <h5>Company</h5>
-          <a onClick={() => setPage("about")}>About</a>
-          <a onClick={() => setPage("blog")}>Blog</a>
-          <a onClick={() => setPage("contact")}>Contact</a>
-          <a onClick={() => setPage("faq")}>FAQ</a>
+          <a href="/about" onClick={(e) => { e.preventDefault(); setPage("about"); }}>About</a>
+          <a href="/blog" onClick={(e) => { e.preventDefault(); setPage("blog"); }}>Blog</a>
+          <a href="/contact" onClick={(e) => { e.preventDefault(); setPage("contact"); }}>Contact</a>
+          <a href="/faq" onClick={(e) => { e.preventDefault(); setPage("faq"); }}>FAQ</a>
         </div>
         <div className="v2-footer-col">
           <h5>Legal</h5>
-          <a onClick={() => setPage("privacy")}>Privacy</a>
-          <a onClick={() => setPage("terms")}>Terms</a>
+          <a href="/privacy" onClick={(e) => { e.preventDefault(); setPage("privacy"); }}>Privacy</a>
+          <a href="/terms" onClick={(e) => { e.preventDefault(); setPage("terms"); }}>Terms</a>
         </div>
       </div>
       <div className="v2-footer-citation">
@@ -1491,9 +1491,7 @@ function ROICalculator() {
   const [clients, setClients] = useState(20);
   const [avgValue, setAvgValue] = useState(2500);
   const [savedRate, setSavedRate] = useState(15);
-  const baseFee = 19.99;
-  const perClient = 1.0;
-  const monthlyCost = baseFee + clients * perClient;
+  const monthlyCost = 29;
   const clientsSaved = clients * (savedRate / 100);
   const revenueSaved = clientsSaved * avgValue;
   const roi = monthlyCost > 0 ? Math.round(revenueSaved / monthlyCost) : 0;
@@ -1532,7 +1530,7 @@ function ROICalculator() {
       <div style={{ marginTop: 28, padding: "22px 24px", background: C.primaryGhost, borderRadius: 14, display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }} className="pricing-roi-result">
         <div>
           <div style={labelStyle}>Retayned cost / mo</div>
-          <div style={valueStyle}>${monthlyCost.toFixed(2)}</div>
+          <div style={valueStyle}>${monthlyCost}<span style={{ fontSize: 13, fontWeight: 600, color: C.textMuted }}> flat</span></div>
         </div>
         <div>
           <div style={labelStyle}>Revenue saved / mo</div>
@@ -1555,14 +1553,59 @@ function Pricing({ setPage }) {
     "Talk to Rai · unlimited, calibrated scripts",
     "Rolodex of former clients, ready to re-engage",
     "Referrals · readiness scoring, right-time asks",
-    "Unlimited team seats · no per-seat fees",
+    "5 team seats included · +$19 per extra seat",
     "Daily exports + CSV",
   ];
 
-  const addons = [
-    { name: "Managed Rai sweeps", sub: "Daily autonomous triage across your book.", price: "+$2", unit: "/client/mo" },
-    { name: "Salesforce / HubSpot sync", sub: "Two-way connector with field mapping.", price: "+$49", unit: "/mo" },
-    { name: "Custom playbooks", sub: "White-glove archetype training for your book.", price: "$499", unit: "one-time" },
+  const tiers = [
+    {
+      name: "Solo",
+      tagline: "For freelancers and consultants running their own book.",
+      price: "$29",
+      priceSub: "25 managed clients · unlimited advisory clients",
+      points: [
+        "Everything in Retayned, every feature",
+        "Today, Retention Score, Health Checks",
+        "Unlimited Talk to Rai",
+        "Rolodex + Referrals",
+        "Daily exports + CSV",
+      ],
+      cta: "Start Free Trial",
+      action: "signup",
+      featured: false,
+    },
+    {
+      name: "Agency",
+      tagline: "For human teams sharing a book of business.",
+      price: "$99",
+      priceSub: "5 seats included · +$19 / extra seat / mo · no client cap",
+      points: [
+        "Everything in Solo, no client cap",
+        "Owner's Brief across every AM's book",
+        "Handoff briefs when an AM leaves",
+        "Per-AM coverage + assignment",
+        "Role-based access",
+      ],
+      cta: "Start Free Trial",
+      action: "signup",
+      featured: true,
+    },
+    {
+      name: "Enterprise",
+      tagline: "For autonomous agents and books at massive scale.",
+      price: null,
+      priceSub: "Custom · managed Rai, API, SSO, white-glove",
+      points: [
+        "Rai as an autonomous managed service",
+        "MCP + REST API for your agents",
+        "SOC 2, SAML/SSO, audit log",
+        "Dedicated CS + custom playbooks",
+        "Volume pricing",
+      ],
+      cta: "Contact Us",
+      action: "contact",
+      featured: false,
+    },
   ];
 
   const enterpriseCards = [
@@ -1580,59 +1623,32 @@ function Pricing({ setPage }) {
           .pricing-roi-grid { grid-template-columns: 1fr !important; }
           .pricing-roi-result { grid-template-columns: 1fr !important; }
           .pricing-ent-grid { grid-template-columns: 1fr !important; }
-          .pricing-addons-grid { grid-template-columns: 1fr !important; }
+          .pricing-tier-grid { grid-template-columns: 1fr !important; }
           .pricing-ent-cta { flex-direction: column; align-items: stretch !important; }
-          .pricing-price-num { font-size: 88px !important; }
         }
       `}</style>
 
       {/* ─── HERO (forest dark) ─── */}
-      <section className="r-full-bleed" style={{ background: C.primaryDeep, color: "#fff", padding: "72px 48px 96px", textAlign: "center" }}>
+      <section className="r-full-bleed" style={{ background: C.primaryDeep, color: "#fff", padding: "84px 48px 96px", textAlign: "center" }}>
         <div className="ret-eyebrow ret-eyebrow-light">Pricing</div>
-        <h1 className="ret-h1" style={{ color: "#fff", maxWidth: 980, margin: "16px auto 0" }}>
-          Solve your business's most consequential problem for <span className="ret-strike-wrap"><span className="ret-strike">the cost of</span><span className="ret-caveat" style={{ color: C.primaryLight }}>less than</span></span> a Netflix subscription.
+        <h1 className="ret-h1" style={{ color: "#fff", maxWidth: 760, margin: "16px auto 0" }}>
+          One price. Every feature. No surprises.
         </h1>
+        <p style={{ fontSize: 17, lineHeight: 1.55, color: "rgba(255,255,255,0.65)", maxWidth: 540, margin: "20px auto 0" }}>
+          Every plan unlocks the entire platform — including advanced AI built on frontier models. No feature gates, nothing held back for a higher tier.
+        </p>
 
-        <div style={{ marginTop: 44, display: "flex", justifyContent: "center", alignItems: "baseline", gap: 16, flexWrap: "wrap" }}>
-          <span className="pricing-price-num" style={{ fontSize: 124, fontWeight: 900, letterSpacing: "-0.04em", lineHeight: 1, color: "#fff" }}>
-            $19<span style={{ fontSize: 64 }}>.99</span>
-          </span>
-          <span style={{ fontSize: 16, color: "rgba(255,255,255,0.65)" }}>/mo · + $1 per client</span>
+        <div style={{ marginTop: 36 }}>
+          <button className="cta-btn" onClick={() => setPage("signup")} style={{ padding: "16px 36px", fontSize: 16, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
+          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginTop: 14 }}>14-day free trial · cancel anytime</div>
         </div>
 
-        <button className="cta-btn" onClick={() => setPage("signup")} style={{ marginTop: 32, padding: "16px 36px", fontSize: 16, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
-        <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginTop: 12 }}>14-day free trial. Cancel anytime. No card.</div>
-
-        {/* Mixed-typography vocab row */}
-        <div style={{ marginTop: 48, display: "flex", justifyContent: "center", gap: 32, flexWrap: "wrap", alignItems: "baseline", fontSize: 22 }}>
-          <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 800, color: "#fff" }}>One Plan</span>
-          <span style={{ fontFamily: "'Caveat', cursive", fontWeight: 600, fontSize: "1.15em", color: C.primaryLight }}>No tiers</span>
-          <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.06em", color: C.warning, fontSize: 18 }}>NO SEAT FEES</span>
-          <span style={{ fontFamily: "'Caveat', cursive", fontWeight: 600, fontSize: "1.15em", color: "#fff" }}>Cancel any time</span>
-          <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 800, color: C.primaryLight }}>Every feature</span>
-        </div>
-
-        {/* Feature pills (subtle, under vocab row) */}
-        <div style={{ marginTop: 28, display: "flex", justifyContent: "center", gap: 8, flexWrap: "wrap", maxWidth: 880, marginLeft: "auto", marginRight: "auto" }}>
-          {[
-            "Today",
-            "Retention Score",
-            "Health Checks",
-            "Talk to Rai",
-            "Rolodex",
-            "Referrals",
-          ].map(f => (
-            <span key={f} style={{
-              display: "inline-flex", alignItems: "center", gap: 7,
-              padding: "7px 14px", borderRadius: 999,
-              background: "rgba(255,255,255,0.06)",
-              border: "1px solid rgba(255,255,255,0.1)",
-              fontSize: 12.5, fontWeight: 600,
-              color: "rgba(255,255,255,0.78)",
-              letterSpacing: "0.01em",
-            }}>
-              <span style={{ color: C.primaryLight, fontWeight: 800, fontSize: 11 }}>✓</span>
-              {f}
+        {/* Single restrained proof row */}
+        <div style={{ marginTop: 44, paddingTop: 32, borderTop: "0.5px solid rgba(255,255,255,0.12)", maxWidth: 560, marginLeft: "auto", marginRight: "auto", display: "flex", justifyContent: "center", gap: 28, flexWrap: "wrap" }}>
+          {["Flat pricing", "No per-client fees", "Every feature included"].map(item => (
+            <span key={item} style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 14, color: "rgba(255,255,255,0.82)" }}>
+              <span style={{ color: C.primaryLight, fontWeight: 800, fontSize: 13 }}>✓</span>
+              {item}
             </span>
           ))}
         </div>
@@ -1640,8 +1656,75 @@ function Pricing({ setPage }) {
 
       <RetCurve from={C.primaryDeep} to="#F2EEE8" variant="leftCrest" />
 
-      {/* ─── ROI CALCULATOR ─── */}
+      {/* ─── THREE TIERS ─── */}
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", paddingTop: 80 }}>
+        <div className="ret-section-inner">
+          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+            <div className="ret-section-head">
+              <div className="ret-eyebrow">Plans</div>
+              <h2 className="ret-h2" style={{ marginTop: 12, fontSize: "clamp(24px, 3.5vw, 36px)" }}>One flat price. Pick your scale.</h2>
+              <p style={{ marginTop: 14, fontSize: 17, color: C.textSec, lineHeight: 1.5, maxWidth: 620, margin: "14px auto 0" }}>
+                Solve your business's most consequential problem for the cost of a Netflix subscription.
+              </p>
+            </div>
+            <div className="pricing-tier-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 18, alignItems: "stretch" }}>
+              {tiers.map(t => (
+                <div key={t.name} className="ret-card" style={{
+                  padding: "30px 30px 32px",
+                  display: "flex", flexDirection: "column",
+                  border: t.featured ? "1.5px solid " + C.btn : "1px solid " + C.borderLight,
+                  position: "relative",
+                  boxShadow: t.featured ? "0 14px 44px rgba(124,92,243,0.14)" : undefined,
+                }}>
+                  {t.featured && (
+                    <span style={{ position: "absolute", top: -12, left: "50%", transform: "translateX(-50%)", background: C.btn, color: "#fff", fontSize: 11, fontWeight: 800, letterSpacing: "0.08em", textTransform: "uppercase", padding: "5px 14px", borderRadius: 999 }}>Most popular</span>
+                  )}
+                  <div style={{ fontSize: 12, fontWeight: 800, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em" }}>{t.name}</div>
+                  <div style={{ fontSize: 13.5, color: C.textSec, marginTop: 8, lineHeight: 1.5, minHeight: 40 }}>{t.tagline}</div>
+                  <div style={{ marginTop: 18, display: "flex", alignItems: "baseline", gap: 6 }}>
+                    {t.price ? (
+                      <>
+                        <span style={{ fontSize: 48, fontWeight: 900, letterSpacing: "-0.03em", color: C.text, lineHeight: 1 }}>{t.price}</span>
+                        <span style={{ fontSize: 15, color: C.textMuted, fontWeight: 600 }}>/mo</span>
+                      </>
+                    ) : (
+                      <span style={{ fontSize: 36, fontWeight: 900, letterSpacing: "-0.02em", color: C.text, lineHeight: 1 }}>Let's talk</span>
+                    )}
+                  </div>
+                  {t.priceSub && <div style={{ fontSize: 13, color: C.textSec, marginTop: 8 }}>{t.priceSub}</div>}
+                  <ul style={{ listStyle: "none", margin: "22px 0 0", padding: 0, display: "flex", flexDirection: "column", gap: 11 }}>
+                    {t.points.map(p => (
+                      <li key={p} style={{ display: "flex", gap: 10, fontSize: 14, color: C.textSec, lineHeight: 1.5 }}>
+                        <span style={{ color: C.primary, fontWeight: 800, flexShrink: 0 }}>✓</span>{p}
+                      </li>
+                    ))}
+                  </ul>
+                  <div style={{ flex: 1 }} />
+                  <button
+                    className="cta-btn"
+                    onClick={() => setPage(t.action)}
+                    style={{
+                      marginTop: 26, width: "100%", padding: "13px 20px", fontSize: 15, fontWeight: 700,
+                      background: t.featured ? C.btn : "transparent",
+                      color: t.featured ? "#fff" : C.text,
+                      border: t.featured ? "none" : "1px solid " + C.border,
+                      borderRadius: 12, cursor: "pointer", fontFamily: "inherit",
+                    }}
+                  >{t.cta}</button>
+                </div>
+              ))}
+            </div>
+            <div style={{ textAlign: "center", marginTop: 18, fontSize: 13, color: C.textSec }}>
+              Every plan includes a 14-day free trial. Card required. Cancel anytime.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <RetCurve from="#F2EEE8" to={C.bg} variant="rightRise" />
+
+      {/* ─── ROI CALCULATOR ─── */}
+      <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">Run the math</div>
@@ -1662,40 +1745,13 @@ function Pricing({ setPage }) {
             <div className="ret-card" style={{ padding: "28px 32px" }}>
               {[
                 ["You charge", "$2,500 / mo"],
-                ["Retayned base", "$19.99"],
-                ["Per-client fee (×1)", "$1.00"],
+                ["Retayned (Solo)", "$29.00"],
                 ["—", "—"],
-                ["Net per saved client", "$2,479.01"],
-                ["One save covers", "125 months"],
+                ["Net per saved client", "$2,471.00"],
+                ["One save covers", "85 months"],
               ].map(([k, v], i) => (
-                <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "12px 0", borderBottom: i < 5 ? "1px dashed " + C.borderLight : "none", fontSize: 14.5, fontWeight: i >= 4 ? 800 : 500, color: i >= 4 ? C.text : C.textSec }}>
+                <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "12px 0", borderBottom: i < 4 ? "1px dashed " + C.borderLight : "none", fontSize: 14.5, fontWeight: i >= 3 ? 800 : 500, color: i >= 3 ? C.text : C.textSec }}>
                   <span>{k}</span><span>{v}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <RetCurve from="#F2EEE8" to={C.bg} variant="rightRise" />
-
-      {/* ─── À LA CARTE ─── */}
-      <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
-        <div className="ret-section-inner">
-          <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-            <div className="ret-section-head">
-              <div className="ret-eyebrow">À la carte</div>
-              <h2 className="ret-h2" style={{ marginTop: 12, fontSize: "clamp(24px, 3.5vw, 36px)" }}>Optional add-ons. Most never need them.</h2>
-            </div>
-            <div className="pricing-addons-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
-              {addons.map(a => (
-                <div key={a.name} className="ret-card" style={{ padding: "24px 26px" }}>
-                  <div style={{ fontWeight: 800, fontSize: 16, color: C.text }}>{a.name}</div>
-                  <div style={{ fontSize: 13.5, color: C.textSec, marginTop: 6, lineHeight: 1.55 }}>{a.sub}</div>
-                  <div style={{ marginTop: 16, display: "flex", alignItems: "baseline", gap: 6 }}>
-                    <span style={{ fontWeight: 900, fontSize: 24, color: C.btn, letterSpacing: "-0.02em" }}>{a.price}</span>
-                    <span style={{ fontSize: 12.5, color: C.textSec }}>{a.unit}</span>
-                  </div>
                 </div>
               ))}
             </div>
@@ -1750,7 +1806,6 @@ function Pricing({ setPage }) {
               <div style={{ fontSize: 14, color: "rgba(255,255,255,0.65)", marginTop: 6, lineHeight: 1.55 }}>30-minute call with Adam. Bring your book size, your stack, and one tough account.</div>
             </div>
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-              <a href="mailto:adam@retayned.com" className="cta-btn" style={{ padding: "14px 22px", fontSize: 15, fontWeight: 700, background: "transparent", color: "#fff", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 12, cursor: "pointer", textDecoration: "none", display: "inline-flex", alignItems: "center" }}>adam@retayned.com</a>
               <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 22px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Request Early Access</button>
             </div>
           </div>
@@ -1763,7 +1818,7 @@ function Pricing({ setPage }) {
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", padding: "72px 48px" }}>
         <div className="ret-section-inner" style={{ maxWidth: 880 }}>
           <h3 style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 800, color: C.text, lineHeight: 1.3, letterSpacing: "-0.02em" }}>
-            Saving just <span style={{ color: C.btn }}>ONE</span> relationship for even just <span style={{ color: C.btn }}>ONE</span> month could pay for Retayned for a <span style={{ color: C.btn }}>DECADE</span>.
+            Saving just <span style={{ color: C.primary }}>ONE</span> relationship for even just <span style={{ color: C.primary }}>ONE</span> month could pay for Retayned for a <span style={{ color: C.primary }}>DECADE</span>.
           </h3>
           <button className="cta-btn" onClick={() => setPage("signup")} style={{ marginTop: 24, padding: "16px 36px", fontSize: 16, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
           <div style={{ fontSize: 13, color: C.textSec, marginTop: 12 }}>14-day free trial. Cancel anytime.</div>
@@ -1781,7 +1836,7 @@ function About({ setPage }) {
     { n: "01", t: "Vague positivity is a churn signal.", b: "When clients go quiet, the silence is the warning. We name it out loud." },
     { n: "02", t: "The script has to be yours.", b: "No template carries a relationship. Rai writes scripts in your voice, not ours." },
     { n: "03", t: "A 5% lift in retention beats every growth hack.", b: "Run the math. We do, every time we ship a feature." },
-    { n: "04", t: "Tools should be cheap. Relationships are not.", b: "$19.99/mo is a deliberate price." },
+    { n: "04", t: "Tools should be cheap. Relationships are not.", b: "$29/mo flat is a deliberate price." },
   ];
 
   const timeline = [
@@ -2744,7 +2799,7 @@ const FAQ_DATA = [
   {
     label: "Pricing & Plans",
     questions: [
-      { q: "What does it cost?", a: "It couldn't be simpler. $19.99/mo plus $1 per client. One plan, every feature, no tiers. Whether you have 3 clients or 300, you get the full platform — unlimited Rai chats, dynamic scoring, health checks, integrations, team members, everything. Enterprise pricing is available for teams building AI agents. Every plan includes a 14-day free trial." },
+      { q: "What does it cost?", a: "Flat, predictable pricing — no per-client fees. Solo is $29/mo for freelancers and consultants (25 managed clients, unlimited advisory). Agency is $99/mo for human teams: 5 seats included, $19 per extra seat, no client cap. Both include every feature — unlimited Rai chats, dynamic scoring, health checks, integrations — and a 14-day free trial. Enterprise (for autonomous agents and books at massive scale) is custom; contact us." },
     ],
   },
   {
@@ -3002,9 +3057,9 @@ function Terms({ setPage }) {
 
               <h3>5. Payment and Billing</h3>
               <p><strong>Subscription Plans.</strong> The Service is offered on a subscription basis. Current pricing is displayed on our pricing page. Prices are subject to change with 30 days' notice. Subscription fees are non-refundable except as described below.</p>
-              <p><strong>Metered pricing.</strong> Retayned pricing includes a flat base fee plus a usage-based per-client fee. Usage is measured by the number of active client records in your portfolio during the billing period, and charges are calculated and billed in accordance with the pricing page in effect at the start of each billing period.</p>
+              <p><strong>Subscription pricing.</strong> Retayned is offered on a flat monthly subscription basis across the plans described on our pricing page. The Agency plan includes a set number of team seats; additional seats beyond the included allotment are charged at the per-seat rate shown on the pricing page in effect at the start of each billing period.</p>
               <p><strong>Free Trial.</strong> We may offer a free trial period. At the end of the trial, your subscription will begin automatically unless you cancel before the trial ends. We will notify you before charging.</p>
-              <p><strong>Billing.</strong> Fees are billed on a recurring basis (monthly or annual, depending on your plan) through Stripe. You authorize us to charge your payment method on file for all applicable fees, including metered usage.</p>
+              <p><strong>Billing.</strong> Fees are billed on a recurring basis (monthly or annual, depending on your plan) through Stripe. You authorize us to charge your payment method on file for all applicable fees, including any additional seat charges on the Agency plan.</p>
               <p><strong>Cancellation.</strong> You may cancel your subscription at any time. Cancellation takes effect at the end of your current billing period. You will retain access to the Service until then. We do not provide prorated refunds for partial billing periods.</p>
               <p><strong>Refunds.</strong> If you are dissatisfied with the Service, you may request a refund within 14 days of your first paid subscription charge. Refund requests after 14 days are handled at our discretion.</p>
 
@@ -3440,7 +3495,7 @@ function Platform({ setPage }) {
 
       <RetFinalCTA
         h2="Every feature, every relationship."
-        sub="One plan. $19.99/month plus $1 per active client."
+        sub="Flat pricing. $29/mo Solo, $99/mo Agency. No per-client fees."
         setPage={setPage}
       />
 
@@ -3497,12 +3552,12 @@ function AudiencePage({ data, setPage }) {
       <RetCurve from={C.bg} to="#F2EEE8" variant="default" />
       <section className="ret-section ret-bg-cream r-full-bleed">
         <div className="ret-section-inner" style={{ maxWidth: 640, textAlign: "center" }}>
-          <div className="ret-eyebrow">One plan. Every feature.</div>
+          <div className="ret-eyebrow">Solo plan. Every feature.</div>
           <div style={{ display: "flex", alignItems: "baseline", justifyContent: "center", gap: 6, marginBottom: 8, marginTop: 8 }}>
-            <span style={{ fontSize: 64, fontWeight: 900, letterSpacing: "-0.04em", color: C.text, lineHeight: 1 }}>$19.99</span>
-            <span style={{ fontSize: 17, color: C.textMuted, fontWeight: 600 }}>/mo</span>
+            <span style={{ fontSize: 64, fontWeight: 900, letterSpacing: "-0.04em", color: C.text, lineHeight: 1 }}>$29</span>
+            <span style={{ fontSize: 17, color: C.textMuted, fontWeight: 600 }}>/mo flat</span>
           </div>
-          <div style={{ fontSize: 16, color: C.textSec, marginBottom: 20 }}>+ <span style={{ fontWeight: 700, color: C.text }}>$1 per client</span></div>
+          <div style={{ fontSize: 16, color: C.textSec, marginBottom: 20 }}>No per-client fees · <span style={{ fontWeight: 700, color: C.text }}>25 managed, unlimited advisory</span></div>
           <p style={{ fontSize: 15, color: C.textSec, marginBottom: 28, lineHeight: 1.5, maxWidth: 460, margin: "0 auto 28px" }}>Solve your business's most consequential problem for less than a Netflix subscription.</p>
           <div className="ret-cta-row">
             <button className="ret-btn-primary" onClick={() => setPage("signup")}>Start Free Trial</button>
@@ -3601,9 +3656,8 @@ function Freelancers({ setPage }) {
           </p>
           <div style={{ marginTop: 28, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <button className="cta-btn" onClick={() => setPage("signup")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
-            <button className="cta-btn" style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: "transparent", color: C.text, border: "1px solid " + C.border, borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>See a sample Monday</button>
           </div>
-          <div style={{ fontSize: 13, color: C.textSec, marginTop: 12 }}>$19.99/mo + $1 per client · 14-day free trial</div>
+          <div style={{ fontSize: 13, color: C.textSec, marginTop: 12 }}>$29/mo flat · no per-client fees · 14-day free trial</div>
         </div>
       </section>
 
@@ -3701,9 +3755,9 @@ function Freelancers({ setPage }) {
           </div>
           <div className="ret-card" style={{ maxWidth: 620, margin: "0 auto", padding: "30px 36px" }}>
             <div style={{ textAlign: "center", fontSize: 11, letterSpacing: "0.18em", color: C.textSec, textTransform: "uppercase", fontWeight: 700 }}>
-              One client at $2,500/mo · 34 clients on Retayned
+              One client at $2,500/mo · any book size on Solo
             </div>
-            {[["Retayned base", "$19.99"], ["Per-client fee (34)", "$34.00"], ["Your monthly cost", "$53.99"]].map(([k, v], i, a) => (
+            {[["Retayned Solo", "$29.00"], ["Per-client fees", "$0.00"], ["Your monthly cost", "$29.00"]].map(([k, v], i, a) => (
               <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "14px 0", borderBottom: i < a.length - 1 ? "1px dashed " + C.borderLight : "none", fontSize: 14.5 }}>
                 <span style={{ color: C.textSec }}>{k}</span>
                 <span style={{ fontWeight: i === a.length - 1 ? 800 : 500, color: C.text }}>{v}</span>
@@ -3711,7 +3765,7 @@ function Freelancers({ setPage }) {
             ))}
             <div style={{ background: C.primarySoft, borderRadius: 10, padding: "16px 18px", marginTop: 18, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10 }}>
               <div style={{ fontSize: 11.5, color: C.primary, fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase" }}>Save one client</div>
-              <div style={{ fontWeight: 900, fontSize: 18, color: C.primary, letterSpacing: "-0.01em" }}>= 46 months of Retayned</div>
+              <div style={{ fontWeight: 900, fontSize: 18, color: C.primary, letterSpacing: "-0.01em" }}>= over 7 years of Retayned</div>
             </div>
           </div>
         </div>
@@ -3734,7 +3788,7 @@ function Freelancers({ setPage }) {
             {[
               ["Is this just a CRM?", "No. A CRM is a place to store data. Retayned tells you what to do with it. You won't feed it. It feeds you."],
               ["How long does setup take?", "About 12 minutes. Connect email, calendar, and your existing client list. Retayned scores everyone overnight."],
-              ["What if I have one client?", "Then your math is even easier. $19.99 + $1.00 = $20.99/mo. Save them once, you're covered for life."],
+              ["What if I have one client?", "Then the math is even easier. Solo is $29/mo flat no matter how many clients you manage. Save that one client once, and you're covered for years."],
               ["Will my client know I'm using it?", "No. Retayned reads signals from your side of the relationship. Your clients see you, not the system."],
             ].map(([q, a]) => (
               <div key={q} style={{ padding: "18px 0", borderBottom: "1px solid " + C.borderLight }}>
@@ -3830,9 +3884,8 @@ function Agencies({ setPage }) {
           </p>
           <div style={{ marginTop: 28, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <button className="cta-btn" onClick={() => setPage("signup")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
-            <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: "transparent", color: C.text, border: "1px solid " + C.border, borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Book a portfolio review</button>
           </div>
-          <div style={{ fontSize: 13, color: C.textSec, marginTop: 12 }}>$19.99/mo + $1 per client · unlimited team members · no per-seat fees</div>
+          <div style={{ fontSize: 13, color: C.textSec, marginTop: 12 }}>$99/mo · 5 seats included · +$19 per extra seat · no client cap</div>
         </div>
       </section>
 
@@ -3970,14 +4023,14 @@ function Agencies({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">Agency math</div>
             <h2 className="ret-h2" style={{ marginTop: 12 }}>
-              120 clients. <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>$139.99/mo.</span>
+              8 AMs. <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>$156/mo.</span>
             </h2>
           </div>
           <div className="ret-card" style={{ maxWidth: 620, margin: "0 auto", padding: "30px 36px" }}>
             <div style={{ textAlign: "center", fontSize: 11, letterSpacing: "0.18em", color: C.textSec, textTransform: "uppercase", fontWeight: 700 }}>
-              Mid-size agency · 8 AMs · 120 active accounts
+              Mid-size agency · 8 AMs · 120 active accounts · no client cap
             </div>
-            {[["Retayned base", "$19.99"], ["Per-client fee (120)", "$120.00"], ["Team seats (unlimited)", "$0.00"], ["Total monthly cost", "$139.99"]].map(([k, v], i, a) => (
+            {[["Retayned Agency", "$99.00"], ["5 seats included", "$0.00"], ["3 extra seats × $19", "$57.00"], ["Per-client fees", "$0.00"], ["Total monthly cost", "$156.00"]].map(([k, v], i, a) => (
               <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "14px 0", borderBottom: i < a.length - 1 ? "1px dashed " + C.borderLight : "none", fontSize: 14.5 }}>
                 <span style={{ color: C.textSec }}>{k}</span>
                 <span style={{ fontWeight: i === a.length - 1 ? 800 : 500, color: C.text }}>{v}</span>
@@ -3985,7 +4038,7 @@ function Agencies({ setPage }) {
             ))}
             <div style={{ background: C.primarySoft, borderRadius: 10, padding: "16px 18px", marginTop: 18, display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: 10 }}>
               <div style={{ fontSize: 11.5, color: C.primary, fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase" }}>Save one $4k/mo account</div>
-              <div style={{ fontWeight: 900, fontSize: 18, color: C.primary, letterSpacing: "-0.01em" }}>= 28 months covered</div>
+              <div style={{ fontWeight: 900, fontSize: 18, color: C.primary, letterSpacing: "-0.01em" }}>= 25 months covered</div>
             </div>
           </div>
         </div>
@@ -4008,7 +4061,7 @@ function Agencies({ setPage }) {
             {[
               ["How does AM-level permissioning work?", "AMs see their own book by default. Managers see the full portfolio. Owners see the financials. Granular roles available on Enterprise."],
               ["Can we white-label client-facing artifacts?", "Yes — health-check exports and QBR briefs ship with your agency mark on Enterprise. Retayned itself stays internal-only."],
-              ["What about per-seat pricing?", "There isn't any. Every AM, manager, ops person, and freelancer you contract with is included. You pay per client, not per chair."],
+              ["How does seat pricing work?", "Agency is $99/mo and includes 5 seats. Each additional seat is $19/mo — add or remove them as your team changes. There's no per-client fee and no client cap, so your book can grow without your bill tracking it."],
               ["How does this fit alongside our existing CRM?", "Most agencies keep their CRM as the system of record for deals. Retayned plugs into it as the relationship-intelligence layer above. Two-way sync with HubSpot, Salesforce, Pipedrive, and Folk."],
             ].map(([q, a]) => (
               <div key={q} style={{ padding: "18px 0", borderBottom: "1px solid " + C.borderLight }}>
@@ -4028,9 +4081,8 @@ function Agencies({ setPage }) {
           </h2>
           <div style={{ marginTop: 24, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <button className="cta-btn" onClick={() => setPage("signup")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
-            <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: "transparent", color: C.text, border: "1px solid " + C.border, borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Book a portfolio review</button>
           </div>
-          <div style={{ fontSize: 13, color: C.textSec, marginTop: 12 }}>14-day free trial · unlimited team members</div>
+          <div style={{ fontSize: 13, color: C.textSec, marginTop: 12 }}>14-day free trial · 5 seats included, +$19 each after</div>
         </div>
       </section>
 
@@ -4093,7 +4145,6 @@ function Enterprise({ setPage }) {
 
         <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 40, flexWrap: "wrap" }}>
           <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Request Early Access</button>
-          <button className="cta-btn" style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: "transparent", color: "#fff", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Read the architecture brief</button>
         </div>
       </section>
 
@@ -5144,6 +5195,14 @@ const PAGE_TO_PATH = {
   freelancers: "/freelancers",
   agencies: "/agencies",
   enterprise: "/enterprise",
+  platform: "/platform",
+  faq: "/faq",
+  "feature-today": "/features/today",
+  "feature-scoring": "/features/retention-score",
+  "feature-health": "/features/health-checks",
+  "feature-rai": "/features/talk-to-rai",
+  "feature-rolodex": "/features/rolodex",
+  "feature-referrals": "/features/referrals",
   privacy: "/privacy",
   terms: "/terms",
   signup: "/signup",
@@ -5151,6 +5210,33 @@ const PAGE_TO_PATH = {
   contact: "/contact",
 };
 const PATH_TO_PAGE = Object.fromEntries(Object.entries(PAGE_TO_PATH).map(([k, v]) => [v, k]));
+
+// Per-page SEO metadata. Title shows in the tab + search results; description
+// is the snippet under the result. Keep titles ~60 chars, descriptions ~155.
+const SITE_NAME = "Retayned";
+const DEFAULT_DESC = "Retayned tracks the health of relationships to predict churn before it happens — giving you precise, client-specific solutions to keep and grow the business you've earned.";
+const PAGE_META = {
+  home: { title: "Retayned — Client Relationship Management", desc: DEFAULT_DESC },
+  pricing: { title: "Pricing — Retayned", desc: "Flat, predictable pricing with every feature included. Solo $29/mo, Agency $99/mo. No per-client fees, no feature gates. 14-day free trial." },
+  about: { title: "About — Retayned", desc: "Built by a performance marketer who spent ten years keeping the clients other people lost. Retayned is the system that came out of it." },
+  blog: { title: "Blog — Retayned", desc: "Field notes on client retention, relationship health, and running a book of business that compounds instead of churns." },
+  freelancers: { title: "Retayned for Freelancers", desc: "For freelancers and consultants: track every client relationship, catch churn early, and keep the business you worked to win. $29/mo flat." },
+  agencies: { title: "Retayned for Agencies", desc: "For agencies and human teams: shared client visibility, handoff briefs, and per-AM coverage so knowledge stays when people move. $99/mo." },
+  enterprise: { title: "Retayned Enterprise", desc: "Relationship intelligence at scale — for autonomous agents and books of business managing thousands of accounts. Managed Rai, API, and SSO." },
+  platform: { title: "Platform — Retayned", desc: "One brain for your entire book: retention scoring, health checks, and advanced AI built on frontier models. Every feature, every plan." },
+  faq: { title: "FAQ — Retayned", desc: "Answers on pricing, features, data, and how Retayned predicts and prevents client churn." },
+  "feature-today": { title: "Today — Retayned", desc: "Your daily operating view: the few client relationships that need attention right now, surfaced before they become problems." },
+  "feature-scoring": { title: "Retention Score — Retayned", desc: "A dynamic, twelve-dimension score for every client relationship, so you can see where you stand before the client tells you." },
+  "feature-health": { title: "Health Checks — Retayned", desc: "Structured relationship health checks that force the honest questions — and turn what you already sense into something you can act on." },
+  "feature-rai": { title: "Talk to Rai — Retayned", desc: "Rai is your senior advisor for every account: ranked priorities, the exact words for a hard conversation, and context that carries across sessions." },
+  "feature-rolodex": { title: "Rolodex — Retayned", desc: "Every contact, relationship, and piece of history in one place — so nothing about a client lives only in your head." },
+  "feature-referrals": { title: "Referrals — Retayned", desc: "Track and grow the referrals your best relationships generate, instead of leaving them to chance." },
+  privacy: { title: "Privacy Policy — Retayned", desc: "How Retayned collects, uses, and protects your data." },
+  terms: { title: "Terms of Service — Retayned", desc: "The terms governing your use of Retayned." },
+  signup: { title: "Start your free trial — Retayned", desc: "Start a 14-day free trial of Retayned. Every feature included." },
+  login: { title: "Log in — Retayned", desc: "Log in to your Retayned account." },
+  contact: { title: "Contact — Retayned", desc: "Get in touch with the Retayned team." },
+};
 
 function pageFromPath(pathname) {
   // Trim trailing slash (except root), then lookup. Fallback to "home".
@@ -5185,6 +5271,26 @@ export default function RetaynedSite() {
   }, []);
 
   useEffect(() => { window.scrollTo(0, 0); }, [page]);
+
+  // Keep the document title + meta description in sync with the current page.
+  useEffect(() => {
+    if (typeof document === "undefined") return;
+    const meta = PAGE_META[page] || PAGE_META.home;
+    document.title = meta.title;
+    const setMeta = (selector, attr, value) => {
+      const el = document.querySelector(selector);
+      if (el) el.setAttribute(attr, value);
+    };
+    setMeta('meta[name="description"]', "content", meta.desc);
+    setMeta('meta[property="og:title"]', "content", meta.title);
+    setMeta('meta[property="og:description"]', "content", meta.desc);
+    setMeta('meta[name="twitter:title"]', "content", meta.title);
+    setMeta('meta[name="twitter:description"]', "content", meta.desc);
+    const path = PAGE_TO_PATH[page] || "/";
+    setMeta('meta[property="og:url"]', "content", "https://www.retayned.com" + (path === "/" ? "/" : path));
+    let canonical = document.querySelector('link[rel="canonical"]');
+    if (canonical) canonical.setAttribute("href", "https://www.retayned.com" + (path === "/" ? "/" : path));
+  }, [page]);
 
   return (
     <div style={{ minHeight: "100vh", background: C.bg, fontFamily: "'Manrope', system-ui, sans-serif", color: C.text }}>
@@ -6017,6 +6123,7 @@ export default function RetaynedSite() {
           gap: 40px;
         }
         .v2-footer-wordmark {
+          font-family: system-ui, -apple-system, sans-serif;
           font-size: 26px; font-weight: 900;
           letter-spacing: -0.04em; color: #fff;
           margin-bottom: 14px; cursor: pointer;
