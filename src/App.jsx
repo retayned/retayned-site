@@ -141,10 +141,24 @@ const NAV_ICONS = {
   freelancers: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="25" rx="9" ry="2" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.4"/><path d="M8 14 L9.5 23 Q10 25 12 25 L20 25 Q22 25 22.5 23 L24 14 Z" fill="#558B68" stroke="#2F2F31" strokeWidth="1.6" strokeLinejoin="round"/><ellipse cx="16" cy="14" rx="8" ry="1.6" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.4"/><path d="M24 16 Q28 17 27 21 Q26 23 23 22.5" fill="none" stroke="#2F2F31" strokeWidth="1.6" strokeLinecap="round"/><path d="M14 11 Q12 8 14 6 Q16 4 15 2" fill="none" stroke="#2F2F31" strokeWidth="1.4" strokeLinecap="round"/><path d="M19 11 L20 9 L21 12 L22 8 L23 11" fill="none" stroke="#558B68" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>,
   agencies: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><path d="M19 5 Q26 5 26 11 Q26 16 21 17 L19 20 L19 17 Q14 16 14 11 Q14 5 19 5 Z" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6" strokeLinejoin="round"/><path d="M11 11 Q18 11 18 17 Q18 22 13 23 L11 26 L11 23 Q6 22 6 17 Q6 11 11 11 Z" fill="#558B68" stroke="#2F2F31" strokeWidth="1.6" strokeLinejoin="round"/><circle cx="9" cy="17" r="1" fill="#FCFCFE"/><circle cx="12" cy="17" r="1" fill="#FCFCFE"/><circle cx="15" cy="17" r="1" fill="#FCFCFE"/></svg>,
   workers: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><circle cx="11" cy="11" r="4" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6"/><path d="M4 25 Q4 17 11 17 Q15 17 17 19" fill="#558B68" stroke="#2F2F31" strokeWidth="1.6" strokeLinejoin="round"/><path d="M17 13 L27 13 Q29 13 29 15 L29 21 Q29 23 27 23 L21 23 L18 26 L19 23 Q17 23 17 21 Z" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6" strokeLinejoin="round"/><path d="M20 18 L22.5 20.5 L27 15.5" fill="none" stroke="#558B68" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  enterprise: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><rect x="4" y="14" width="11" height="14" rx="1" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6"/><line x1="9.5" y1="14" x2="9.5" y2="28" stroke="#2F2F31" strokeWidth="1"/><line x1="4" y1="20" x2="15" y2="20" stroke="#2F2F31" strokeWidth="1" opacity="0.6"/><rect x="14" y="10" width="9" height="18" rx="1" fill="#558B68" stroke="#2F2F31" strokeWidth="1.6"/><line x1="14" y1="18" x2="23" y2="18" stroke="#FCFCFE" strokeWidth="1" opacity="0.7"/><line x1="18.5" y1="10" x2="18.5" y2="28" stroke="#FCFCFE" strokeWidth="1" opacity="0.7"/><rect x="22" y="16" width="7" height="12" rx="1" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6"/><line x1="22" y1="22" x2="29" y2="22" stroke="#2F2F31" strokeWidth="1" opacity="0.6"/><line x1="25.5" y1="16" x2="25.5" y2="11" stroke="#2F2F31" strokeWidth="1.4"/><path d="M25.5 11 L29 12 L25.5 13.5 Z" fill="#558B68" stroke="#2F2F31" strokeWidth="1.2" strokeLinejoin="round"/></svg>,
 };
 
 function NavIcon({ name, size = 20 }) {
   const icon = NAV_ICONS[name];
+  if (!icon) return null;
+  return <span style={{ width: size, height: size, display: "inline-flex" }}>{React.cloneElement(icon, { width: size, height: size })}</span>;
+}
+
+// Hand-drawn iso-style icons for the interactive tools (match NAV_ICONS language).
+const TOOL_ICONS = {
+  health: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><path d="M16 27 C 9 22, 4 17.5, 4 12 C 4 8.4, 6.8 6, 10 6 C 12.4 6, 14.4 7.4, 16 9.6 C 17.6 7.4, 19.6 6, 22 6 C 25.2 6, 28 8.4, 28 12 C 28 17.5, 23 22, 16 27 Z" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6" strokeLinejoin="round"/><path d="M6 16 L11 16 L13 11 L16 21 L19 13 L21 16 L26 16" fill="none" stroke="#558B68" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  calculator: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><rect x="7" y="4" width="18" height="24" rx="2.5" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6"/><rect x="10" y="7" width="12" height="5" rx="1" fill="#558B68" stroke="#2F2F31" strokeWidth="1.4"/><g fill="#2F2F31"><circle cx="11.5" cy="17" r="1.3"/><circle cx="16" cy="17" r="1.3"/><circle cx="20.5" cy="17" r="1.3"/><circle cx="11.5" cy="21.5" r="1.3"/><circle cx="16" cy="21.5" r="1.3"/></g><rect x="19" y="20" width="3" height="5.5" rx="1.2" fill="#558B68" stroke="#2F2F31" strokeWidth="1.2"/></svg>,
+  profile: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="11" r="5" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6"/><path d="M6 27 Q6 18 16 18 Q26 18 26 27" fill="#558B68" stroke="#2F2F31" strokeWidth="1.6" strokeLinejoin="round"/><path d="M11 24 L14 24 L15.5 21 L17 27 L18.5 23 L21 24" fill="none" stroke="#FCFCFE" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+  simulator: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><path d="M4 8 Q4 6 6 6 L19 6 Q21 6 21 8 L21 15 Q21 17 19 17 L11 17 L7 21 L8 17 Q4 17 4 15 Z" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6" strokeLinejoin="round"/><path d="M14 14 Q14 12 16 12 L26 12 Q28 12 28 14 L28 20 Q28 22 26 22 L26 26 L22 22 L16 22 Q14 22 14 20 Z" fill="#558B68" stroke="#2F2F31" strokeWidth="1.6" strokeLinejoin="round"/></svg>,
+};
+function ToolIcon({ name, size = 30 }) {
+  const icon = TOOL_ICONS[name];
   if (!icon) return null;
   return <span style={{ width: size, height: size, display: "inline-flex" }}>{React.cloneElement(icon, { width: size, height: size })}</span>;
 }
@@ -905,19 +919,19 @@ function HomeV2({ setPage }) {
   const audiencePanels = {
     freelancers: {
       h: "The CRM that catches what you miss.",
-      p: "You're a team of one. You can't be on every Slack thread, every email, every hint of drift. Retayned watches the whole book while you focus on the work.",
-      cta: "See the platform",
+      p: "You're a team of one. You can't be laser-focused on every Slack thread and hint of drift. Retayned watches the whole book while you do the work.",
+      cta: "See Platform",
       ctaTarget: "freelancers",
     },
     agencies: {
       h: "Your team's memory, on one system.",
-      p: "When an account manager leaves, they take 40 client relationships with them. Retayned holds the institutional knowledge — so your team doesn't have to.",
-      cta: "See for agencies",
+      p: "When an account manager leaves, they take 40 client relationships with them. Retayned holds that institutional knowledge for the next rep (and you).",
+      cta: "See Agencies",
       ctaTarget: "agencies",
     },
     enterprise: {
-      h: "Account management as a service.",
-      p: "Your top 50 accounts get a human account manager. The other 950 get triaged by agents, reviewed by your team, and actioned through a single surface.",
+      h: "A managed agent for your whole book.",
+      p: "Retayned scores every account and surfaces the next right action. You choose who acts on it — your account managers, your AI agents, or both.",
       cta: "See Enterprise",
       ctaTarget: "enterprise",
     },
@@ -930,8 +944,8 @@ function HomeV2({ setPage }) {
       <section className="v2-hero r-full-bleed">
         <div className="v2-hero-inner">
           <div className="v2-trust-pill">
-            <span className="v2-trust-dot" />
-            For freelancers, agencies, large orgs and mobsters
+            <svg className="v2-trust-dot" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 4.2 C8.5 2.8 3.4 6 3.1 11.5 C2.8 17.2 7.6 21.4 13 21 C18.4 20.6 21.8 16.2 20.7 11 C19.9 7.1 16.4 4.2 11.6 4.6 C9.9 4.7 8.3 5.4 7.4 6.6" fill="none" stroke={C.primary} strokeWidth="2" strokeLinecap="round" /></svg>
+            For solo operators, agencies, and mobsters.
           </div>
           <h1 className="v2-hero-h1">
             The CRM that{" "}
@@ -980,13 +994,13 @@ function HomeV2({ setPage }) {
                 num: "02",
                 h: <>She decides.</>,
                 p: "Most signals are really just noise. Rai cuts the day's intel down to the small handful of things you'd actually act on if you had the time to read every email twice.",
-                bg: `url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20360%20300%22%3E%0A%20%20%0A%0A%20%20%0A%20%20%3Cg%20transform%3D%22translate%2850%20220%29%20rotate%28-3%29%22%3E%0A%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22240%22%20height%3D%2244%22%20rx%3D%226%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%3E%3C/rect%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2222%22%20cy%3D%2222%22%20r%3D%2212%22%20fill%3D%22%23FAF0E4%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/circle%3E%0A%20%20%20%20%3Ctext%20x%3D%2222%22%20y%3D%2227%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2215%22%20font-weight%3D%22600%22%20fill%3D%22%232F2F31%22%20text-anchor%3D%22middle%22%3E4%3C/text%3E%0A%20%20%20%20%3Cline%20x1%3D%2244%22%20y1%3D%2216%22%20x2%3D%22160%22%20y2%3D%2216%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3Cline%20x1%3D%2244%22%20y1%3D%2226%22%20x2%3D%22120%22%20y2%3D%2226%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3Crect%20x%3D%22180%22%20y%3D%2216%22%20width%3D%2244%22%20height%3D%226%22%20rx%3D%223%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%22180%22%20y%3D%2216%22%20width%3D%2212%22%20height%3D%226%22%20rx%3D%223%22%20fill%3D%22%232F2F31%22%20opacity%3D%220.6%22%3E%3C/rect%3E%0A%20%20%20%20%3Cline%20x1%3D%22180%22%20y1%3D%2230%22%20x2%3D%22212%22%20y2%3D%2230%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%3C/g%3E%0A%0A%20%20%0A%20%20%3Cg%20transform%3D%22translate%2856%20170%29%20rotate%28-1%29%22%3E%0A%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22240%22%20height%3D%2244%22%20rx%3D%226%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%3E%3C/rect%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2222%22%20cy%3D%2222%22%20r%3D%2212%22%20fill%3D%22%23FAF0E4%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/circle%3E%0A%20%20%20%20%3Ctext%20x%3D%2222%22%20y%3D%2227%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2215%22%20font-weight%3D%22600%22%20fill%3D%22%232F2F31%22%20text-anchor%3D%22middle%22%3E3%3C/text%3E%0A%20%20%20%20%3Cline%20x1%3D%2244%22%20y1%3D%2216%22%20x2%3D%22168%22%20y2%3D%2216%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3Cline%20x1%3D%2244%22%20y1%3D%2226%22%20x2%3D%22132%22%20y2%3D%2226%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3Crect%20x%3D%22180%22%20y%3D%2216%22%20width%3D%2244%22%20height%3D%226%22%20rx%3D%223%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%22180%22%20y%3D%2216%22%20width%3D%2222%22%20height%3D%226%22%20rx%3D%223%22%20fill%3D%22%232F2F31%22%20opacity%3D%220.6%22%3E%3C/rect%3E%0A%20%20%20%20%3Cline%20x1%3D%22180%22%20y1%3D%2230%22%20x2%3D%22212%22%20y2%3D%2230%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%3C/g%3E%0A%0A%20%20%0A%20%20%3Cg%20transform%3D%22translate%2852%20120%29%20rotate%28-2%29%22%3E%0A%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22240%22%20height%3D%2244%22%20rx%3D%226%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%3E%3C/rect%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2222%22%20cy%3D%2222%22%20r%3D%2212%22%20fill%3D%22%23FAF0E4%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/circle%3E%0A%20%20%20%20%3Ctext%20x%3D%2222%22%20y%3D%2227%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2215%22%20font-weight%3D%22600%22%20fill%3D%22%232F2F31%22%20text-anchor%3D%22middle%22%3E1%3C/text%3E%0A%20%20%20%20%3Cline%20x1%3D%2244%22%20y1%3D%2216%22%20x2%3D%22172%22%20y2%3D%2216%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3Cline%20x1%3D%2244%22%20y1%3D%2226%22%20x2%3D%22140%22%20y2%3D%2226%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3Crect%20x%3D%22180%22%20y%3D%2216%22%20width%3D%2244%22%20height%3D%226%22%20rx%3D%223%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%22180%22%20y%3D%2216%22%20width%3D%2232%22%20height%3D%226%22%20rx%3D%223%22%20fill%3D%22%232F2F31%22%20opacity%3D%220.65%22%3E%3C/rect%3E%0A%20%20%20%20%3Cline%20x1%3D%22180%22%20y1%3D%2230%22%20x2%3D%22212%22%20y2%3D%2230%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%3C/g%3E%0A%0A%20%20%0A%20%20%3Cg%20transform%3D%22translate%2848%2038%29%20rotate%28-2%29%22%3E%0A%20%20%20%20%3Crect%20x%3D%223%22%20y%3D%225%22%20width%3D%22264%22%20height%3D%2258%22%20rx%3D%228%22%20fill%3D%22%232F2F31%22%20opacity%3D%220.12%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22264%22%20height%3D%2258%22%20rx%3D%228%22%20fill%3D%22%23558B68%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22264%22%20height%3D%2258%22%20rx%3D%228%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222.4%22%20stroke-linejoin%3D%22round%22%3E%3C/rect%3E%0A%0A%20%20%20%20%3Ccircle%20cx%3D%2228%22%20cy%3D%2229%22%20r%3D%2216%22%20fill%3D%22%23FCFCFE%22%3E%3C/circle%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2228%22%20cy%3D%2229%22%20r%3D%2216%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%3E%3C/circle%3E%0A%20%20%20%20%3Ctext%20x%3D%2228%22%20y%3D%2235%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20fill%3D%22%232F2F31%22%20text-anchor%3D%22middle%22%3E2%3C/text%3E%0A%0A%20%20%20%20%3Cline%20x1%3D%2254%22%20y1%3D%2220%22%20x2%3D%22176%22%20y2%3D%2220%22%20stroke%3D%22%23FCFCFE%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3Cline%20x1%3D%2254%22%20y1%3D%2232%22%20x2%3D%22148%22%20y2%3D%2232%22%20stroke%3D%22%23FCFCFE%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.9%22%3E%3C/line%3E%0A%0A%20%20%20%20%3Crect%20x%3D%22190%22%20y%3D%2220%22%20width%3D%2260%22%20height%3D%228%22%20rx%3D%224%22%20fill%3D%22%23FCFCFE%22%20opacity%3D%220.55%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%22190%22%20y%3D%2220%22%20width%3D%2260%22%20height%3D%228%22%20rx%3D%224%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.2%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%22192%22%20y%3D%2222%22%20width%3D%2250%22%20height%3D%224%22%20rx%3D%222%22%20fill%3D%22%23FCFCFE%22%3E%3C/rect%3E%0A%0A%20%20%20%20%3Cg%20transform%3D%22translate%28190%2036%29%22%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2260%22%20height%3D%2212%22%20rx%3D%226%22%20fill%3D%22%23FCFCFE%22%3E%3C/rect%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2260%22%20height%3D%2212%22%20rx%3D%226%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/rect%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%228%22%20y1%3D%226%22%20x2%3D%2252%22%20y2%3D%226%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3C/g%3E%0A%0A%20%20%20%20%3Cg%20transform%3D%22translate%28252%20-6%29%20rotate%2815%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M0%20-8%20L2.4%20-2.4%20L8%20-2%20L3.6%202%20L5%208%20L0%204.6%20L-5%208%20L-3.6%202%20L-8%20-2%20L-2.4%20-2.4%20Z%22%20fill%3D%22%23FCFCFE%22%3E%3C/path%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M0%20-8%20L2.4%20-2.4%20L8%20-2%20L3.6%202%20L5%208%20L0%204.6%20L-5%208%20L-3.6%202%20L-8%20-2%20L-2.4%20-2.4%20Z%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linejoin%3D%22round%22%3E%3C/path%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%20opacity%3D%220.9%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M320%20180%20Q332%20140%20320%2096%22%3E%3C/path%3E%0A%20%20%20%20%3Cpath%20d%3D%22M316%20100%20L320%2092%20L326%2098%22%3E%3C/path%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20transform%3D%22translate%28322%20226%29%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%220%22%20cy%3D%220%22%20r%3D%2212%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/circle%3E%0A%20%20%20%20%3Ccircle%20cx%3D%220%22%20cy%3D%220%22%20r%3D%224%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/circle%3E%0A%20%20%20%20%3Cg%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22-12%22%20x2%3D%220%22%20y2%3D%22-16%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%2212%22%20x2%3D%220%22%20y2%3D%2216%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%22-12%22%20y1%3D%220%22%20x2%3D%22-16%22%20y2%3D%220%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%2212%22%20y1%3D%220%22%20x2%3D%2216%22%20y2%3D%220%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%22-8.5%22%20y1%3D%22-8.5%22%20x2%3D%22-11.3%22%20y2%3D%22-11.3%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%228.5%22%20y1%3D%228.5%22%20x2%3D%2211.3%22%20y2%3D%2211.3%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%22-8.5%22%20y1%3D%228.5%22%20x2%3D%22-11.3%22%20y2%3D%2211.3%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%228.5%22%20y1%3D%22-8.5%22%20x2%3D%2211.3%22%20y2%3D%22-11.3%22%3E%3C/line%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E")`,
+                bg: `url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20360%20300%22%3E%0A%20%20%0A%0A%20%20%0A%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M150%2058%20Q144%2044%20154%2034%20Q162%2024%20154%2012%22%3E%3C/path%3E%0A%20%20%20%20%3Cpath%20d%3D%22M178%2054%20Q172%2038%20182%2028%20Q188%2020%20182%208%22%3E%3C/path%3E%0A%20%20%20%20%3Cpath%20d%3D%22M204%2060%20Q198%2046%20208%2036%20Q216%2026%20208%2014%22%3E%3C/path%3E%0A%20%20%3C/g%3E%0A%0A%20%20%0A%20%20%3Cg%20transform%3D%22translate%28110%2070%29%22%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%20d%3D%22M130%2050%20Q170%2050%20170%2090%20Q170%20130%20130%20130%22%3E%3C/path%3E%0A%20%20%20%20%3Cpath%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20d%3D%22M130%2062%20Q158%2062%20158%2090%20Q158%20118%20130%20118%22%3E%3C/path%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%20d%3D%22M6%2044%20Q4%2038%2012%2038%20L134%2038%20Q142%2038%20140%2044%20L132%20174%20Q130%20184%20120%20184%20L26%20184%20Q16%20184%2014%20174%20Z%22%3E%3C/path%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2273%22%20cy%3D%2245%22%20rx%3D%2262%22%20ry%3D%229%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/ellipse%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2273%22%20cy%3D%2245%22%20rx%3D%2254%22%20ry%3D%226%22%20fill%3D%22%233F434B%22%20opacity%3D%220.9%22%3E%3C/ellipse%3E%0A%20%20%20%20%3Cpath%20d%3D%22M40%2042%20Q52%2038%2070%2039%22%20stroke%3D%22%23FCFCFE%22%20stroke-width%3D%221.4%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.8%22%3E%3C/path%3E%0A%20%20%20%20%3Cg%20stroke%3D%22%232F2F31%22%20stroke-width%3D%220.9%22%20opacity%3D%220.35%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%22118%22%20y1%3D%2270%22%20x2%3D%22122%22%20y2%3D%22164%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%22124%22%20y1%3D%2270%22%20x2%3D%22127%22%20y2%3D%22160%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%22112%22%20y1%3D%2272%22%20x2%3D%22115%22%20y2%3D%22166%22%3E%3C/line%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%0A%20%20%0A%20%20%3Cg%20transform%3D%22translate%28220%20130%29%20rotate%2810%29%22%3E%0A%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2292%22%20height%3D%22140%22%20rx%3D%2212%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2214%22%20width%3D%2280%22%20height%3D%22118%22%20rx%3D%226%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%2236%22%20y%3D%226%22%20width%3D%2220%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%232F2F31%22%3E%3C/rect%3E%0A%0A%20%20%20%20%0A%20%20%20%20%3Cg%20transform%3D%22translate%2810%2022%29%22%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2272%22%20height%3D%2244%22%20rx%3D%226%22%20fill%3D%22%23558B68%22%3E%3C/rect%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2272%22%20height%3D%2244%22%20rx%3D%226%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.8%22%20stroke-linejoin%3D%22round%22%3E%3C/rect%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%2210%22%20cy%3D%2210%22%20r%3D%224%22%20fill%3D%22%23FCFCFE%22%3E%3C/circle%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%2210%22%20cy%3D%2210%22%20r%3D%224%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.2%22%3E%3C/circle%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%2220%22%20y1%3D%228%22%20x2%3D%2258%22%20y2%3D%228%22%20stroke%3D%22%23FCFCFE%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%2220%22%20y1%3D%2214%22%20x2%3D%2248%22%20y2%3D%2214%22%20stroke%3D%22%23FCFCFE%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.85%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%226%22%20y1%3D%2226%22%20x2%3D%2266%22%20y2%3D%2226%22%20stroke%3D%22%23FCFCFE%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%226%22%20y1%3D%2232%22%20x2%3D%2258%22%20y2%3D%2232%22%20stroke%3D%22%23FCFCFE%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%226%22%20y1%3D%2238%22%20x2%3D%2242%22%20y2%3D%2238%22%20stroke%3D%22%23FCFCFE%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3C/g%3E%0A%0A%20%20%20%20%3Cg%20transform%3D%22translate%2810%2074%29%22%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2272%22%20height%3D%2222%22%20rx%3D%225%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/rect%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%229%22%20cy%3D%2211%22%20r%3D%223%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/circle%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%2218%22%20y1%3D%229%22%20x2%3D%2258%22%20y2%3D%229%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%2218%22%20y1%3D%2215%22%20x2%3D%2244%22%20y2%3D%2215%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%2810%20102%29%22%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2272%22%20height%3D%2222%22%20rx%3D%225%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/rect%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%229%22%20cy%3D%2211%22%20r%3D%223%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/circle%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%2218%22%20y1%3D%229%22%20x2%3D%2254%22%20y2%3D%229%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%2218%22%20y1%3D%2215%22%20x2%3D%2240%22%20y2%3D%2215%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3C/g%3E%0A%0A%20%20%20%20%3Cline%20x1%3D%2292%22%20y1%3D%2230%22%20x2%3D%2292%22%20y2%3D%2248%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M232%20108%20L228%20100%22%3E%3C/path%3E%0A%20%20%20%20%3Cpath%20d%3D%22M246%20102%20L244%2092%22%3E%3C/path%3E%0A%20%20%20%20%3Cpath%20d%3D%22M260%20100%20L262%2090%22%3E%3C/path%3E%0A%20%20%20%20%3Cpath%20d%3D%22M274%20104%20L280%2096%22%3E%3C/path%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20transform%3D%22translate%28300%20100%29%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%220%22%20cy%3D%220%22%20r%3D%2210%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%3E%3C/circle%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22-4%22%20x2%3D%220%22%20y2%3D%222%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3Ccircle%20cx%3D%220%22%20cy%3D%226%22%20r%3D%221.4%22%20fill%3D%22%232F2F31%22%3E%3C/circle%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E")`,
               },
               {
                 num: "03",
-                h: <>She hands it to you.</>,
+                h: <>She ranks.</>,
                 p: "Open Today at 8:47am. Ranked by what costs you most to ignore; the most expensive move is at the top. With a script in your voice if it's the kind of thing that needs a script.",
-                bg: `url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20360%20300%22%3E%0A%20%20%0A%0A%20%20%0A%20%20%3Cg%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M150%2058%20Q144%2044%20154%2034%20Q162%2024%20154%2012%22%3E%3C/path%3E%0A%20%20%20%20%3Cpath%20d%3D%22M178%2054%20Q172%2038%20182%2028%20Q188%2020%20182%208%22%3E%3C/path%3E%0A%20%20%20%20%3Cpath%20d%3D%22M204%2060%20Q198%2046%20208%2036%20Q216%2026%20208%2014%22%3E%3C/path%3E%0A%20%20%3C/g%3E%0A%0A%20%20%0A%20%20%3Cg%20transform%3D%22translate%28110%2070%29%22%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%20d%3D%22M130%2050%20Q170%2050%20170%2090%20Q170%20130%20130%20130%22%3E%3C/path%3E%0A%20%20%20%20%3Cpath%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20d%3D%22M130%2062%20Q158%2062%20158%2090%20Q158%20118%20130%20118%22%3E%3C/path%3E%0A%20%20%20%20%3Cpath%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%20d%3D%22M6%2044%20Q4%2038%2012%2038%20L134%2038%20Q142%2038%20140%2044%20L132%20174%20Q130%20184%20120%20184%20L26%20184%20Q16%20184%2014%20174%20Z%22%3E%3C/path%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2273%22%20cy%3D%2245%22%20rx%3D%2262%22%20ry%3D%229%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/ellipse%3E%0A%20%20%20%20%3Cellipse%20cx%3D%2273%22%20cy%3D%2245%22%20rx%3D%2254%22%20ry%3D%226%22%20fill%3D%22%233F434B%22%20opacity%3D%220.9%22%3E%3C/ellipse%3E%0A%20%20%20%20%3Cpath%20d%3D%22M40%2042%20Q52%2038%2070%2039%22%20stroke%3D%22%23FCFCFE%22%20stroke-width%3D%221.4%22%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.8%22%3E%3C/path%3E%0A%20%20%20%20%3Cg%20stroke%3D%22%232F2F31%22%20stroke-width%3D%220.9%22%20opacity%3D%220.35%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%22118%22%20y1%3D%2270%22%20x2%3D%22122%22%20y2%3D%22164%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%22124%22%20y1%3D%2270%22%20x2%3D%22127%22%20y2%3D%22160%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%22112%22%20y1%3D%2272%22%20x2%3D%22115%22%20y2%3D%22166%22%3E%3C/line%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%0A%20%20%0A%20%20%3Cg%20transform%3D%22translate%28220%20130%29%20rotate%2810%29%22%3E%0A%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2292%22%20height%3D%22140%22%20rx%3D%2212%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%226%22%20y%3D%2214%22%20width%3D%2280%22%20height%3D%22118%22%20rx%3D%226%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%2236%22%20y%3D%226%22%20width%3D%2220%22%20height%3D%223%22%20rx%3D%221.5%22%20fill%3D%22%232F2F31%22%3E%3C/rect%3E%0A%0A%20%20%20%20%0A%20%20%20%20%3Cg%20transform%3D%22translate%2810%2022%29%22%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2272%22%20height%3D%2244%22%20rx%3D%226%22%20fill%3D%22%23558B68%22%3E%3C/rect%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2272%22%20height%3D%2244%22%20rx%3D%226%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.8%22%20stroke-linejoin%3D%22round%22%3E%3C/rect%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%2210%22%20cy%3D%2210%22%20r%3D%224%22%20fill%3D%22%23FCFCFE%22%3E%3C/circle%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%2210%22%20cy%3D%2210%22%20r%3D%224%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.2%22%3E%3C/circle%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%2220%22%20y1%3D%228%22%20x2%3D%2258%22%20y2%3D%228%22%20stroke%3D%22%23FCFCFE%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%2220%22%20y1%3D%2214%22%20x2%3D%2248%22%20y2%3D%2214%22%20stroke%3D%22%23FCFCFE%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.85%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%226%22%20y1%3D%2226%22%20x2%3D%2266%22%20y2%3D%2226%22%20stroke%3D%22%23FCFCFE%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%226%22%20y1%3D%2232%22%20x2%3D%2258%22%20y2%3D%2232%22%20stroke%3D%22%23FCFCFE%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%226%22%20y1%3D%2238%22%20x2%3D%2242%22%20y2%3D%2238%22%20stroke%3D%22%23FCFCFE%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3C/g%3E%0A%0A%20%20%20%20%3Cg%20transform%3D%22translate%2810%2074%29%22%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2272%22%20height%3D%2222%22%20rx%3D%225%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/rect%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%229%22%20cy%3D%2211%22%20r%3D%223%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/circle%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%2218%22%20y1%3D%229%22%20x2%3D%2258%22%20y2%3D%229%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%2218%22%20y1%3D%2215%22%20x2%3D%2244%22%20y2%3D%2215%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%20%20%3Cg%20transform%3D%22translate%2810%20102%29%22%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2272%22%20height%3D%2222%22%20rx%3D%225%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/rect%3E%0A%20%20%20%20%20%20%3Ccircle%20cx%3D%229%22%20cy%3D%2211%22%20r%3D%223%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/circle%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%2218%22%20y1%3D%229%22%20x2%3D%2254%22%20y2%3D%229%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%2218%22%20y1%3D%2215%22%20x2%3D%2240%22%20y2%3D%2215%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3C/g%3E%0A%0A%20%20%20%20%3Cline%20x1%3D%2292%22%20y1%3D%2230%22%20x2%3D%2292%22%20y2%3D%2248%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.8%22%20stroke-linecap%3D%22round%22%20fill%3D%22none%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M232%20108%20L228%20100%22%3E%3C/path%3E%0A%20%20%20%20%3Cpath%20d%3D%22M246%20102%20L244%2092%22%3E%3C/path%3E%0A%20%20%20%20%3Cpath%20d%3D%22M260%20100%20L262%2090%22%3E%3C/path%3E%0A%20%20%20%20%3Cpath%20d%3D%22M274%20104%20L280%2096%22%3E%3C/path%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20transform%3D%22translate%28300%20100%29%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%220%22%20cy%3D%220%22%20r%3D%2210%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%3E%3C/circle%3E%0A%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22-4%22%20x2%3D%220%22%20y2%3D%222%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3Ccircle%20cx%3D%220%22%20cy%3D%226%22%20r%3D%221.4%22%20fill%3D%22%232F2F31%22%3E%3C/circle%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E")`,
+                bg: `url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20360%20300%22%3E%0A%20%20%0A%0A%20%20%0A%20%20%3Cg%20transform%3D%22translate%2850%20220%29%20rotate%28-3%29%22%3E%0A%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22240%22%20height%3D%2244%22%20rx%3D%226%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%3E%3C/rect%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2222%22%20cy%3D%2222%22%20r%3D%2212%22%20fill%3D%22%23FAF0E4%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/circle%3E%0A%20%20%20%20%3Ctext%20x%3D%2222%22%20y%3D%2227%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2215%22%20font-weight%3D%22600%22%20fill%3D%22%232F2F31%22%20text-anchor%3D%22middle%22%3E4%3C/text%3E%0A%20%20%20%20%3Cline%20x1%3D%2244%22%20y1%3D%2216%22%20x2%3D%22160%22%20y2%3D%2216%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3Cline%20x1%3D%2244%22%20y1%3D%2226%22%20x2%3D%22120%22%20y2%3D%2226%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3Crect%20x%3D%22180%22%20y%3D%2216%22%20width%3D%2244%22%20height%3D%226%22%20rx%3D%223%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%22180%22%20y%3D%2216%22%20width%3D%2212%22%20height%3D%226%22%20rx%3D%223%22%20fill%3D%22%232F2F31%22%20opacity%3D%220.6%22%3E%3C/rect%3E%0A%20%20%20%20%3Cline%20x1%3D%22180%22%20y1%3D%2230%22%20x2%3D%22212%22%20y2%3D%2230%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%3C/g%3E%0A%0A%20%20%0A%20%20%3Cg%20transform%3D%22translate%2856%20170%29%20rotate%28-1%29%22%3E%0A%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22240%22%20height%3D%2244%22%20rx%3D%226%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%3E%3C/rect%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2222%22%20cy%3D%2222%22%20r%3D%2212%22%20fill%3D%22%23FAF0E4%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/circle%3E%0A%20%20%20%20%3Ctext%20x%3D%2222%22%20y%3D%2227%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2215%22%20font-weight%3D%22600%22%20fill%3D%22%232F2F31%22%20text-anchor%3D%22middle%22%3E3%3C/text%3E%0A%20%20%20%20%3Cline%20x1%3D%2244%22%20y1%3D%2216%22%20x2%3D%22168%22%20y2%3D%2216%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3Cline%20x1%3D%2244%22%20y1%3D%2226%22%20x2%3D%22132%22%20y2%3D%2226%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3Crect%20x%3D%22180%22%20y%3D%2216%22%20width%3D%2244%22%20height%3D%226%22%20rx%3D%223%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%22180%22%20y%3D%2216%22%20width%3D%2222%22%20height%3D%226%22%20rx%3D%223%22%20fill%3D%22%232F2F31%22%20opacity%3D%220.6%22%3E%3C/rect%3E%0A%20%20%20%20%3Cline%20x1%3D%22180%22%20y1%3D%2230%22%20x2%3D%22212%22%20y2%3D%2230%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%3C/g%3E%0A%0A%20%20%0A%20%20%3Cg%20transform%3D%22translate%2852%20120%29%20rotate%28-2%29%22%3E%0A%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22240%22%20height%3D%2244%22%20rx%3D%226%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%20stroke-linejoin%3D%22round%22%3E%3C/rect%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2222%22%20cy%3D%2222%22%20r%3D%2212%22%20fill%3D%22%23FAF0E4%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/circle%3E%0A%20%20%20%20%3Ctext%20x%3D%2222%22%20y%3D%2227%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2215%22%20font-weight%3D%22600%22%20fill%3D%22%232F2F31%22%20text-anchor%3D%22middle%22%3E1%3C/text%3E%0A%20%20%20%20%3Cline%20x1%3D%2244%22%20y1%3D%2216%22%20x2%3D%22172%22%20y2%3D%2216%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3Cline%20x1%3D%2244%22%20y1%3D%2226%22%20x2%3D%22140%22%20y2%3D%2226%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3Crect%20x%3D%22180%22%20y%3D%2216%22%20width%3D%2244%22%20height%3D%226%22%20rx%3D%223%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%22180%22%20y%3D%2216%22%20width%3D%2232%22%20height%3D%226%22%20rx%3D%223%22%20fill%3D%22%232F2F31%22%20opacity%3D%220.65%22%3E%3C/rect%3E%0A%20%20%20%20%3Cline%20x1%3D%22180%22%20y1%3D%2230%22%20x2%3D%22212%22%20y2%3D%2230%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%3C/g%3E%0A%0A%20%20%0A%20%20%3Cg%20transform%3D%22translate%2848%2038%29%20rotate%28-2%29%22%3E%0A%20%20%20%20%3Crect%20x%3D%223%22%20y%3D%225%22%20width%3D%22264%22%20height%3D%2258%22%20rx%3D%228%22%20fill%3D%22%232F2F31%22%20opacity%3D%220.12%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22264%22%20height%3D%2258%22%20rx%3D%228%22%20fill%3D%22%23558B68%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%22264%22%20height%3D%2258%22%20rx%3D%228%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222.4%22%20stroke-linejoin%3D%22round%22%3E%3C/rect%3E%0A%0A%20%20%20%20%3Ccircle%20cx%3D%2228%22%20cy%3D%2229%22%20r%3D%2216%22%20fill%3D%22%23FCFCFE%22%3E%3C/circle%3E%0A%20%20%20%20%3Ccircle%20cx%3D%2228%22%20cy%3D%2229%22%20r%3D%2216%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%222%22%3E%3C/circle%3E%0A%20%20%20%20%3Ctext%20x%3D%2228%22%20y%3D%2235%22%20font-family%3D%22Georgia%2C%20serif%22%20font-size%3D%2220%22%20font-weight%3D%22700%22%20fill%3D%22%232F2F31%22%20text-anchor%3D%22middle%22%3E2%3C/text%3E%0A%0A%20%20%20%20%3Cline%20x1%3D%2254%22%20y1%3D%2220%22%20x2%3D%22176%22%20y2%3D%2220%22%20stroke%3D%22%23FCFCFE%22%20stroke-width%3D%222.6%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3Cline%20x1%3D%2254%22%20y1%3D%2232%22%20x2%3D%22148%22%20y2%3D%2232%22%20stroke%3D%22%23FCFCFE%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20opacity%3D%220.9%22%3E%3C/line%3E%0A%0A%20%20%20%20%3Crect%20x%3D%22190%22%20y%3D%2220%22%20width%3D%2260%22%20height%3D%228%22%20rx%3D%224%22%20fill%3D%22%23FCFCFE%22%20opacity%3D%220.55%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%22190%22%20y%3D%2220%22%20width%3D%2260%22%20height%3D%228%22%20rx%3D%224%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.2%22%3E%3C/rect%3E%0A%20%20%20%20%3Crect%20x%3D%22192%22%20y%3D%2222%22%20width%3D%2250%22%20height%3D%224%22%20rx%3D%222%22%20fill%3D%22%23FCFCFE%22%3E%3C/rect%3E%0A%0A%20%20%20%20%3Cg%20transform%3D%22translate%28190%2036%29%22%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2260%22%20height%3D%2212%22%20rx%3D%226%22%20fill%3D%22%23FCFCFE%22%3E%3C/rect%3E%0A%20%20%20%20%20%20%3Crect%20x%3D%220%22%20y%3D%220%22%20width%3D%2260%22%20height%3D%2212%22%20rx%3D%226%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/rect%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%228%22%20y1%3D%226%22%20x2%3D%2252%22%20y2%3D%226%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%3C/line%3E%0A%20%20%20%20%3C/g%3E%0A%0A%20%20%20%20%3Cg%20transform%3D%22translate%28252%20-6%29%20rotate%2815%29%22%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M0%20-8%20L2.4%20-2.4%20L8%20-2%20L3.6%202%20L5%208%20L0%204.6%20L-5%208%20L-3.6%202%20L-8%20-2%20L-2.4%20-2.4%20Z%22%20fill%3D%22%23FCFCFE%22%3E%3C/path%3E%0A%20%20%20%20%20%20%3Cpath%20d%3D%22M0%20-8%20L2.4%20-2.4%20L8%20-2%20L3.6%202%20L5%208%20L0%204.6%20L-5%208%20L-3.6%202%20L-8%20-2%20L-2.4%20-2.4%20Z%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linejoin%3D%22round%22%3E%3C/path%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20fill%3D%22none%22%20opacity%3D%220.9%22%3E%0A%20%20%20%20%3Cpath%20d%3D%22M320%20180%20Q332%20140%20320%2096%22%3E%3C/path%3E%0A%20%20%20%20%3Cpath%20d%3D%22M316%20100%20L320%2092%20L326%2098%22%3E%3C/path%3E%0A%20%20%3C/g%3E%0A%0A%20%20%3Cg%20transform%3D%22translate%28322%20226%29%22%3E%0A%20%20%20%20%3Ccircle%20cx%3D%220%22%20cy%3D%220%22%20r%3D%2212%22%20fill%3D%22%23FCFCFE%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/circle%3E%0A%20%20%20%20%3Ccircle%20cx%3D%220%22%20cy%3D%220%22%20r%3D%224%22%20fill%3D%22none%22%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%3E%3C/circle%3E%0A%20%20%20%20%3Cg%20stroke%3D%22%232F2F31%22%20stroke-width%3D%221.4%22%20stroke-linecap%3D%22round%22%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%22-12%22%20x2%3D%220%22%20y2%3D%22-16%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%220%22%20y1%3D%2212%22%20x2%3D%220%22%20y2%3D%2216%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%22-12%22%20y1%3D%220%22%20x2%3D%22-16%22%20y2%3D%220%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%2212%22%20y1%3D%220%22%20x2%3D%2216%22%20y2%3D%220%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%22-8.5%22%20y1%3D%22-8.5%22%20x2%3D%22-11.3%22%20y2%3D%22-11.3%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%228.5%22%20y1%3D%228.5%22%20x2%3D%2211.3%22%20y2%3D%2211.3%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%22-8.5%22%20y1%3D%228.5%22%20x2%3D%22-11.3%22%20y2%3D%2211.3%22%3E%3C/line%3E%0A%20%20%20%20%20%20%3Cline%20x1%3D%228.5%22%20y1%3D%22-8.5%22%20x2%3D%2211.3%22%20y2%3D%22-11.3%22%3E%3C/line%3E%0A%20%20%20%20%3C/g%3E%0A%20%20%3C/g%3E%0A%3C/svg%3E")`,
               },
             ].map((s, i) => (
               <div key={i} className="v2-rai-step">
@@ -1013,12 +1027,12 @@ function HomeV2({ setPage }) {
             <div>
               <div className="v2-eyebrow">The platform</div>
               <h2 className="v2-section-h2">CRMs track deals. Retayned tracks relationships.</h2>
-              <p className="v2-section-sub">Your pipeline is forward-looking. Your clients aren't in it. They're the business you've already earned — and most CRMs treat them like they're already safe.</p>
+              <p className="v2-section-sub">Your pipeline only looks ahead. Your clients aren't in it — they're the revenue you already earned, and most CRMs treat them like they're safe. They're not.</p>
               <div className="v2-bullets">
-                <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>12-dimension retention scoring</strong> that measures relationship health, not transaction volume.</div></div>
-                <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>Health checks that surface the truth</strong> — structured questions that name the drift you already sense, so you keep the profile current and the score honest.</div></div>
-                <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>Rai writes the words you need</strong> when it matters most — calibrated to your specific relationships.</div></div>
-                <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>Your Rolodex is future revenue</strong> — former clients become re-engagement opportunities, not dead weight.</div></div>
+                <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>12-dimension retention scoring.</strong> Relationship health, not transaction volume — one number that tells you who's drifting before they say a word.</div></div>
+                <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>Observations and health checks.</strong> Business-level insights that separate the forest from the trees on a weekly basis. With no client left behind.</div></div>
+                <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>Rai writes the words that save the account.</strong> The exact message for the exact relationship, the moment it matters most, straight from today's tasks.</div></div>
+                <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>Your Rolodex is future revenue.</strong> Every client you've lost is a re-engagement waiting to happen — not dead weight. This pipeline runs both directions.</div></div>
               </div>
             </div>
             <div className="v2-platform-portfolio">
@@ -1224,9 +1238,9 @@ function HomeV2({ setPage }) {
       <section className="v2-section-enterprise r-full-bleed">
         <div className="v2-section-inner">
           <div className="v2-section-head" style={{ textAlign: "center", margin: "0 auto 32px", maxWidth: 880 }}>
-            <div className="v2-eyebrow v2-eyebrow-enterprise">Retayned Enterprise · Early access</div>
-            <h2 className="v2-section-h2 v2-h2-enterprise">Two surfaces,<br /><span className="v2-accent-ent">one brain.</span></h2>
-            <p className="v2-section-sub v2-sub-enterprise" style={{ margin: "0 auto" }}>Your top 50 accounts get a human account manager. The other 950 get triaged by agents, reviewed by your team, and actioned through a single surface — with the same retention intelligence powering both.</p>
+            <div className="v2-eyebrow v2-eyebrow-enterprise">Retayned Enterprise · Coming Soon</div>
+            <h2 className="v2-section-h2 v2-h2-enterprise">A managed agent for<br /><span className="v2-accent-ent">your whole book.</span></h2>
+            <p className="v2-section-sub v2-sub-enterprise" style={{ margin: "0 auto" }}>Retayned scores every account and surfaces the next right action for each one. You choose who acts on it — your account managers, your AI agents, or both — all powered by the same retention intelligence.</p>
           </div>
 
           {/* CTA moved above the dashboard */}
@@ -1354,17 +1368,17 @@ function HomeV2({ setPage }) {
             <div className="v2-mix-stat-label">Of churn is predictable</div>
           </div>
 
-          {/* Cell 2 — testimonial */}
+          {/* Cell 2 — founder note */}
           <div className="v2-mix-cell v2-mix-testimonial">
-            <div style={{ display: "flex", gap: 2, marginBottom: 18 }}>
-              {Array(5).fill(0).map((_, j) => <span key={j} style={{ fontSize: 16, color: "#E6A817" }}>★</span>)}
+            <div style={{ marginBottom: 6 }}>
+              <span style={{ fontFamily: "Georgia, 'Times New Roman', serif", fontSize: 56, lineHeight: 1, color: C.btn, fontWeight: 700, display: "block", height: 34, overflow: "hidden" }}>&ldquo;</span>
             </div>
-            <p className="v2-mix-quote">"I used to lose 2-3 clients a year and just accept it as cost of doing business. Retayned showed me an actual pattern. It was the same signs every time and we just ignored them. Not anymore!"</p>
+            <p className="v2-mix-quote">"I built Retayned as an agency owner to keep more of the business I worked so hard to win. I'm happy to say I still use it every day for my own projects and clients."</p>
             <div className="v2-mix-footer">
-              <div style={{ width: 44, height: 44, borderRadius: "50%", background: C.primaryLight, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 14, fontWeight: 700, color: "#fff" }}>MK</div>
+              <div style={{ width: 44, height: 44, borderRadius: "50%", background: C.primary, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 14, fontWeight: 700, color: "#fff" }}>AL</div>
               <div>
-                <div style={{ fontSize: 15, fontWeight: 700, color: C.text }}>Agency Owner</div>
-                <div style={{ fontSize: 13, color: C.textMuted, marginTop: 2 }}>50+ Clients</div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: C.text }}>Adam</div>
+                <div style={{ fontSize: 13, color: C.textMuted, marginTop: 2 }}>Founder, Retayned</div>
               </div>
             </div>
           </div>
@@ -1395,12 +1409,12 @@ function HomeV2({ setPage }) {
             <div style={{ display: "flex", gap: 2, marginBottom: 18 }}>
               {Array(5).fill(0).map((_, j) => <span key={j} style={{ fontSize: 16, color: "#E6A817" }}>★</span>)}
             </div>
-            <p className="v2-mix-quote">"It gave me the exact words to say to a client I was about to lose. I had the conversation that afternoon. They're still with me 8 months later. I'm still with Retayned."</p>
+            <p className="v2-mix-quote">"It gave me the exact words to say to a client I had a tough week with. I had that conversation that afternoon. They're still with me today. I'm still with Retayned."</p>
             <div className="v2-mix-footer">
-              <div style={{ width: 44, height: 44, borderRadius: "50%", background: C.btn, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 14, fontWeight: 700, color: "#fff" }}>JR</div>
+              <div style={{ width: 44, height: 44, borderRadius: "50%", background: C.btn, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 14, fontWeight: 700, color: "#fff" }}>NS</div>
               <div>
                 <div style={{ fontSize: 15, fontWeight: 700, color: C.text }}>Freelancer</div>
-                <div style={{ fontSize: 13, color: C.textMuted, marginTop: 2 }}>1-5 Clients</div>
+                <div style={{ fontSize: 13, color: C.textMuted, marginTop: 2 }}>3 Clients</div>
               </div>
             </div>
           </div>
@@ -1412,15 +1426,13 @@ function HomeV2({ setPage }) {
             </div>
             <p className="v2-mix-quote">"The health check questions are uncomfortable in the best way. They force you to admit what you already know but haven't said out loud. It's something we thought we'd use for crises and it's turned into our daily operations hub."</p>
             <div className="v2-mix-footer">
-              <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#92A596", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              </div>
+              <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#92A596", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 14, fontWeight: 700, color: "#fff" }}>JD</div>
               <div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
                   <span style={{ fontSize: 15, fontWeight: 700, color: C.text }}>Consultant</span>
                   <span style={{ fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 4, background: C.primarySoft, color: C.primary, textTransform: "uppercase", letterSpacing: ".04em" }}>From our beta</span>
                 </div>
-                <div style={{ fontSize: 13, color: C.textMuted, marginTop: 2 }}>10-50 Clients</div>
+                <div style={{ fontSize: 13, color: C.textMuted, marginTop: 2 }}>15 Clients</div>
               </div>
             </div>
           </div>
@@ -1777,7 +1789,7 @@ function Pricing({ setPage }) {
       <section className="r-full-bleed" style={{ background: C.primaryDeep, color: "#fff", padding: "88px 48px" }}>
         <div className="ret-section-inner" style={{ maxWidth: 1100 }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
-            <div className="ret-eyebrow ret-eyebrow-light">Retayned Enterprise · Early Access</div>
+            <div className="ret-eyebrow ret-eyebrow-light">Retayned Enterprise · Coming Soon</div>
             <h2 className="ret-h2" style={{ marginTop: 14, color: "#fff", maxWidth: 720, margin: "14px auto 0" }}>
               Relationship intelligence, <span style={{ fontFamily: "'Caveat', cursive", color: C.primaryLight, fontWeight: 700, fontSize: "1.1em" }}>scaled.</span>
             </h2>
@@ -1994,14 +2006,862 @@ function About({ setPage }) {
 }
 
 // ═══ RESOURCES (was Blog) — ported from final/resources.html ═══
-const RESOURCES_POSTS = [
-  { tag: "DIAGNOSTICS", read: "4 min read", title: "The signal you keep missing: vague positivity.", sub: "\"Looks good.\" \"All good on our end.\" \"No notes.\" When engaged clients go quiet, the silence is the warning." },
-  { tag: "PLAYBOOK", read: "5 min read", title: "How to handle the new stakeholder without burning your champion.", sub: "Your main contact's new boss wants to review all vendor relationships. Mike says don't worry. Here's the move that keeps both relationships intact." },
-  { tag: "FRAMEWORK", read: "8 min read", title: "Twelve dimensions, twenty combinations: how to actually score a client relationship.", sub: "Most retention scoring is a wrapped-up NPS. Here's a richer framework that captures how clients actually behave before they leave." },
-  { tag: "DIAGNOSTICS", read: "3 min read", title: "The cancelled-meeting math.", sub: "A meeting moved once is a calendar problem. Twice is a relationship problem. Three times is a renewal problem." },
-  { tag: "PLAYBOOK", read: "6 min read", title: "Saying \"I noticed something\" without sounding paranoid.", sub: "The exact opening line we've used for ten years to surface concerns before they harden." },
-  { tag: "CASE STUDY", read: "5 min read", title: "Saved at month 11: how Pinebrook's renewal got back on track in 14 days.", sub: "A real save, with the dashboards, the script, and the timeline." },
+const RESOURCES_CONTENT = [
+  {
+    slug: "the-signal-you-keep-missing",
+    tag: "DIAGNOSTICS",
+    read: "4 min read",
+    kind: "article",
+    featured: true,
+    title: "The signal you keep missing: vague positivity",
+    excerpt: "\"Looks good.\" \"All good on our end.\" When engaged clients go quiet, the silence is the warning.",
+    body: `# The signal you keep missing: vague positivity
+
+"Looks good." "All good on our end." "No notes."
+
+You read those and feel fine. The work shipped, the client didn't complain, the inbox is quiet. You move to the next fire.
+
+Here's the problem. When a client who used to engage starts handing you frictionless approvals, that isn't satisfaction. It's distance. And distance is the first thing that happens before a client leaves.
+
+## Approval is not the same as engagement
+
+Early in a relationship, a good client argues with you a little. They ask why. They push on the headline, question the number, want to understand the call you made. That friction is a sign they care about the outcome and trust you enough to be honest about it.
+
+When that friction disappears, two things could be true. Either you've earned so much trust that they've stopped checking your work, or they've stopped caring how it turns out. From the outside, those two look identical. Both produce "looks good." Only one of them renews.
+
+The tell is the change, not the words. A client who has always been low-touch and says "looks good" is being themselves. A client who used to dig in and now waves everything through has changed, and a change you can't explain is the one worth a second look.
+
+## Why the quiet ones are the dangerous ones
+
+The clients who complain are giving you information. They're telling you exactly what's wrong and exactly what would fix it. A complaining client is an engaged client.
+
+The client who goes vaguely positive has stopped giving you information. They've decided it isn't worth the energy to tell you what they actually think, which usually means they've half-decided the relationship isn't worth that energy either. By the time the silence becomes a non-renewal, the decision was made weeks ago, in a meeting you weren't in.
+
+This is the trap inside a stable relationship. Stable is not safe. A coasting account is the single most vulnerable thing in your book, because it's the one you've stopped paying attention to, and it's the one a competitor's pitch or an internal review lands on cleanest.
+
+## What to do when you see it
+
+Don't accuse. "You seem distant" puts the client on defense and asks them to do the diagnostic work for you. Instead, bring them something that requires a real opinion.
+
+Send a decision, not a status update. A choice between two genuine directions. A recommendation you're willing to defend. Something they have to actually weigh in on. If a normally-sharp client still hands it back with "whatever you think is best," you've confirmed the drift, and now you can have the real conversation: "I want to make sure you're still happy with where this is going." Curious, not needy.
+
+The goal isn't to manufacture a problem. It's to find out whether one already exists while you can still do something about it. A client who can't tell you why they're satisfied is a client someone else can talk out of working with you. Give them the language to defend the engagement, and make sure they still want to.
+
+---
+
+*Retayned reads the shape of a client relationship, not just the last email. Vague positivity is exactly the kind of drift it's built to surface, before the silence hardens into a decision.*`,
+  },
+  {
+    slug: "the-new-stakeholder-play",
+    tag: "PLAYBOOK",
+    read: "5 min read",
+    kind: "article",
+    featured: false,
+    title: "How to handle the new stakeholder without burning your champion",
+    excerpt: "A new boss wants to review every vendor. Your contact says don't worry. Here's the move that keeps both relationships intact.",
+    body: `# How to handle the new stakeholder without burning your champion
+
+Your main contact's new boss wants to review all the vendor relationships. Your contact says don't worry about it. Standard process, nothing personal.
+
+Believe half of that. The "nothing personal" part is probably true. The "don't worry" part is the most expensive advice you'll get all quarter.
+
+## What actually just happened
+
+A new decision-maker reviewing vendors is someone asking a simple question about every line item: is this worth it? They have no history with you. None of the goodwill you've built over months, none of the wins, none of the trust. To them you are a cost with a logo.
+
+Your champion has all of that context. The new stakeholder has none of it. And the new stakeholder is the one holding the pen.
+
+This is the single point of failure that every long relationship eventually hits. Your champion is your most valuable asset, and the moment a new person sits above them, your champion becomes a liability you've been ignoring: if your entire relationship lives inside one person's head, you are one org-chart change away from starting over.
+
+## The move that protects both relationships
+
+The instinct is to go around your champion, introduce yourself to the new boss, and make your own case. That burns the champion. They told you not to worry, and you went over their head at the first sign of pressure. Now you've signaled you don't trust them, in front of the exact person whose opinion of them matters most.
+
+The opposite instinct, doing nothing because your champion said so, leaves your fate entirely in the hands of someone who can't see your value.
+
+The move is to do both relationships at once, in the right order.
+
+First, arm your champion. Give them the wins, the numbers, the language. Not a brag sheet, an internal-defense kit: the three things you've done this quarter that they can say out loud in a review without sounding like your publicist. Most champions want to defend you and simply don't have the words ready. Hand them the words.
+
+Then, ask, don't act: "Would it make sense for me to introduce myself to [new stakeholder] directly, or would you rather walk them through our work yourself?" You've offered. You've made it their call. If they say yes, you get the introduction with your champion's blessing. If they say no, you've shown respect and reinforced that you're a team, which is its own argument for keeping you.
+
+## The 48-hour version
+
+If the change is bigger than a new boss, an acquisition, a restructure, a reorg that scrambles the whole reporting line, compress the timeline. Reach out within 48 hours, to your existing contact, with one question: "What does this mean for our work together?"
+
+You're not pitching. You're being the stable, calm constant while everyone around them is anxious about their own job. In a period of organizational chaos, the vendor who is unbothered and useful is the one that survives the cuts. The vendor who goes quiet and hopes is the one nobody fights for.
+
+## The thing to never do
+
+Never badmouth the old way of doing things, the old org chart, or the people who left. The new stakeholder doesn't know yet whose side anyone is on, and the consultant who throws shade in week one reads as a political risk. Be the person who makes the transition easier, and you'll still be here when it's over.
+
+---
+
+*Retayned tracks who else at a client knows your name, so a new face in the reporting line is a prompt to act, not a surprise you find out about at renewal.*`,
+  },
+  {
+    slug: "score-a-client-relationship",
+    tag: "FRAMEWORK",
+    read: "8 min read",
+    kind: "article",
+    featured: false,
+    title: "Twelve dimensions, twenty combinations: how to actually score a client relationship",
+    excerpt: "Most retention scoring is a wrapped-up NPS. Here's a framework that captures how clients actually behave before they leave.",
+    body: `# Twelve dimensions, twenty combinations: how to actually score a client relationship
+
+Most retention scoring is a satisfaction survey wearing a lab coat. You ask the client how things are going, they say fine because saying anything else is awkward, you log a number, and the number tells you nothing you didn't already fear.
+
+The problem isn't the math. It's the input. You're asking the wrong person. The client is the last to admit a relationship is cooling, often because they haven't admitted it to themselves yet. The person who actually knows is you. You just haven't had a structured way to write down what you already sense.
+
+That's what a real relationship score is for. Not to grade the client. To force you to be honest about what you're seeing.
+
+## Why a single number lies
+
+A relationship is a shape, not a score. Two clients can both sit at the same overall health and be in completely different situations.
+
+One trusts you completely but is quietly shopping competitors. The other is loyal as a dog but micromanages every deliverable because they don't trust you to make a call. Same number. Opposite problems. Opposite moves. If your scoring collapses both into "68, watch closely," it has told you nothing about what to actually do on Tuesday morning.
+
+So you score the dimensions underneath the number, and you read them together.
+
+## The twelve dimensions
+
+Think of them in two groups: the ones that decide whether the relationship survives, and the ones that tell you how to handle it.
+
+The heavy ones, the dimensions that carry the most weight because they predict churn most directly:
+
+- **Trust.** Do they trust you to do your job? When trust is low, you get micromanagement, second-guessing, approval bottlenecks. High trust is delegation.
+- **Loyalty.** Are they looking at other options? Low loyalty is a client actively comparing you to alternatives, even if they're perfectly pleasant about it.
+- **Expectations.** Are their expectations realistic? Misaligned expectations are a ticking clock; every week you don't address the gap, it widens.
+- **Grace.** When something goes wrong, how do they react? Zero-tolerance clients turn one bad week into a relationship crisis. Clients with grace give you room to recover.
+
+If you only score four things, score those four.
+
+The supporting ones add texture, and several of them are U-shaped, meaning both extremes are the risk, not just the low end:
+
+- **Budget Commitment.** Will money be the reason they leave?
+- **Relationship Depth.** Is there a real relationship beyond the work? Moderate is healthiest; zero is fragile, but total enmeshment is its own kind of unstable.
+- **Replaceability.** How embedded are you? More embedded is safer.
+- **Communication Tone.** Warm and direct, or cold and clipped?
+- **Decision-Making Authority.** Can your contact actually say yes, or are they a relay to someone who can?
+- **Communication Frequency.** Here's the U-shape: radio silence is a risk, and so is constant frantic contact. The healthy zone is a rhythm.
+- **Stress Response.** Another U-shape. The client who goes silent under pressure and the client who escalates loudly both create risk, in opposite directions.
+- **Reporting Need.** "Don't bother me" and "send me everything" are both harder to sustain than a steady middle.
+
+## Read the combinations, not the columns
+
+The insight isn't in any single dimension. It's in the two or three lowest ones, read together.
+
+Low Trust plus low Grace is a different animal than low Loyalty plus high Trust. The first is a client who doesn't trust you and won't forgive a mistake, which means you operate with no margin for error and should be over-communicating every step. The second is a client who likes your work fine but isn't committed, which means the move is to deepen the relationship and make leaving feel like a loss, not to tighten your process.
+
+There are roughly twenty of these combinations worth naming, and once you start looking for them, you stop being surprised by departures. The "looks good" client whose tone has cooled and whose engagement has dropped isn't a mystery. It's a pattern with a name, and a play.
+
+## Always read against baseline
+
+The last rule, and the one people skip: a score only means something compared to where it was.
+
+A client steady at 70 for six months is stable. A client at 70 who was at 85 a quarter ago is in freefall, and 70 is just the number you happened to catch on the way down. The absolute value is almost meaningless. The delta is everything.
+
+This is why scoring once and filing it away is worthless. The relationship moves. Your read has to move with it, which is the entire reason to keep the profile current instead of treating it like a form you filled out at onboarding.
+
+## What the score is actually for
+
+It is not a verdict. Low Loyalty doesn't doom a relationship, and high Trust doesn't make one safe. The profile tells you where to look and how to communicate. It does not tell you who's leaving.
+
+What it does is end the guessing. Instead of a vague unease about an account, you have a specific read: here's the dimension that slipped, here's what that pattern usually means, here's the conversation to have this week. The number gets you to look. The shape tells you what to do.
+
+---
+
+*Retayned scores all twelve dimensions for every client and reads the combinations automatically, so the pattern surfaces before you'd have noticed it on your own. How those dimensions combine into a single Retention Score is the engine; what you do with it is the job.*`,
+  },
+  {
+    slug: "the-cancelled-meeting-math",
+    tag: "DIAGNOSTICS",
+    read: "3 min read",
+    kind: "article",
+    featured: false,
+    title: "The cancelled-meeting math",
+    excerpt: "A meeting moved once is a calendar problem. Twice is a relationship problem. Three times is a renewal problem.",
+    body: `# The cancelled-meeting math
+
+A meeting moved once is a calendar problem.
+
+Twice is a relationship problem.
+
+Three times is a renewal problem.
+
+That's the whole framework. The rest of this is why it's true and what to do at each stage.
+
+## Once: take it at face value
+
+People are busy. Calendars collide. A single reschedule, with a real reason and a quick rebooking, is noise. If you read churn risk into every shifted call, you'll exhaust yourself and annoy clients who are perfectly happy.
+
+So the first time, you do nothing except rebook cleanly and move on. Reading too much into a one-off is its own kind of mistake. Don't overengineer a response to a non-trend.
+
+## Twice: the pattern starts
+
+The second cancellation is where attention is warranted, not alarm. One reschedule is an event. Two is the beginning of a pattern, and patterns are the only thing worth acting on.
+
+What's happening underneath is a quiet reordering of priorities. Your meeting used to be protected time. Now it's the thing that gets moved when something else comes up. That shift, from protected to optional, is the client telling you where you currently sit in their week, whether they mean to or not.
+
+The move here is light. Not a confrontation, a recalibration. When you rebook the second one, make the next touch worth protecting: bring a decision they need to make, a result they'll want to hear, a reason the time matters. You're testing whether the deprioritization is about you or about a genuinely chaotic month on their end. Both happen. You want to know which.
+
+## Three times: the window is closing
+
+By the third cancellation, the meeting has effectively stopped existing. And a relationship with no live contact is running on memory, which means it's running on borrowed time.
+
+This is no longer a scheduling issue to solve over email. Three cancellations is the client showing you, through behavior rather than words, that the engagement has drifted to the bottom of their list. The renewal conversation, whenever it comes, is going to start from that drifted position unless you change it now.
+
+The move is to stop chasing the recurring meeting and have the direct one. Not "can we finally find a time," which keeps you in the weak position of the thing that's easy to cancel. Instead: "I want to make sure this is still delivering what you need. Can we take fifteen minutes to talk about where it goes from here?" You're naming the drift without accusing, and you're reframing the call as a decision about the future rather than another status update they can skip.
+
+## Why this matters more than it looks
+
+Cancelled meetings feel administrative. They're not. They're one of the cleanest behavioral signals you get, because behavior doesn't lie the way "looks good" does. A client can tell you everything's fine while their calendar quietly says otherwise.
+
+The trap is that each individual cancellation has a perfectly reasonable explanation, so you accept each one in isolation and never see the line they're drawing. The math exists so you stop evaluating cancellations one at a time and start counting them. One, two, three. The number tells you which conversation to have.
+
+---
+
+*Retayned counts the pattern for you, so a third reschedule shows up as a flag instead of slipping past as one more reasonable excuse.*`,
+  },
+  {
+    slug: "i-noticed-something",
+    tag: "PLAYBOOK",
+    read: "6 min read",
+    kind: "article",
+    featured: false,
+    title: "Saying \"I noticed something\" without sounding paranoid",
+    excerpt: "The exact opening structure for surfacing a concern before it hardens into a reason to leave.",
+    body: `# Saying "I noticed something" without sounding paranoid
+
+There's a specific fear that keeps consultants from surfacing concerns early: that naming a problem creates one. That if you say "I've noticed things feel a little different lately," the client will think *I hadn't noticed, but now that you mention it...* and you'll have talked yourself out of a renewal.
+
+So you wait. You tell yourself you're being patient, reading the room, not being needy. And the concern you could have addressed in a two-minute conversation hardens into a reason to leave that you never saw coming.
+
+Hard conversations are only hard because they were postponed. The opener below is how you have them early, when they're still easy.
+
+## Why "I noticed something" works when "is everything okay?" doesn't
+
+"Is everything okay?" is a trap. It's vague, it asks the client to do the diagnostic work, and it invites the reflexive "yeah, all good" that ends the conversation without surfacing anything. You've signaled anxiety and gotten nothing back.
+
+"I noticed something specific" does the opposite. It's grounded in an observation, which makes it feel like attentiveness rather than insecurity. And it gives the client something concrete to respond to instead of a mood to reassure.
+
+The structure is: a specific, neutral observation, then a genuine question, then silence.
+
+- **Observation, not accusation.** "I noticed the last couple of approvals came back faster than usual" is a fact. "You seem checked out" is a charge. The first invites an answer; the second invites a defense.
+- **A real question.** "I want to make sure we're still aimed at the right thing. Has anything shifted on your end I should know about?" You're not asking them to manage your feelings. You're asking for information that makes your work better.
+- **Then stop talking.** The instinct is to fill the silence by softening it, walking it back, adding "but no worries if not." Don't. The pause is where the real answer lives.
+
+## Anchor it to something you actually saw
+
+The difference between attentive and paranoid is evidence. A concern grounded in a specific, observable change reads as a professional paying attention. A concern grounded in a vibe reads as someone fishing for reassurance.
+
+Good anchors are behavioral and concrete: a change in response time, a meeting that moved twice, a new name on the thread, scope that quietly shrank, a tone that cooled. You're not interpreting their inner life. You're pointing at a thing that happened and asking what it means.
+
+This is also why you don't lead with the feeling. "Something feels off" is your anxiety talking. "Your team's been looping in [new name] on the last few threads, and I want to make sure I'm supporting that right" is an observation they can actually engage with. Lead with the fact. The feeling stays yours.
+
+## Match the delivery to the client
+
+The same concern lands differently depending on who's receiving it.
+
+- A **data-driven client** wants the numbers. Bring the metric that changed, not the worry about it.
+- A **relationship-first client** needs the personal framing. "I value working with you and want to keep it strong" is the right doorway.
+- A **client who spirals under stress** needs the headline first and the reassurance attached, so a careful question doesn't read as a crisis: "Small thing, easily handled, I just want to flag it."
+
+Reading which one you're talking to is the entire skill. The observation is the same. The packaging is everything.
+
+## The cost of not saying it
+
+Here's the part that should change the calculus. Bad news delivered well builds more trust than good news delivered generically. When you surface a small concern early and handle it cleanly, you've shown the client that you watch the relationship, you're honest about it, and you'll tell them the truth before it's a problem. That is exactly the reputation that survives a budget review.
+
+The consultant who never raises anything until renewal looks, in hindsight, like someone who either wasn't paying attention or wasn't being straight. Neither is who you want to be when the contract's on the table.
+
+Name the uncomfortable thing while it's still small. It almost never costs you the relationship. Letting it grow in silence is what does.
+
+---
+
+*Retayned surfaces the specific change worth naming, the cooled tone, the shrinking scope, the new stakeholder, so the conversation you have is grounded in something real, not a hunch you're second-guessing.*`,
+  },
+  {
+    slug: "twelve-retention-dimensions",
+    tag: "GUIDE",
+    read: "Guide",
+    kind: "guide",
+    featured: false,
+    title: "The 12 Retention Dimensions",
+    excerpt: "A complete cheat sheet for what to watch across every client relationship.",
+    body: `# The 12 Retention Dimensions
+### A cheat sheet for reading a client relationship before it tells you it's over
+
+A client relationship is a shape, not a score. These are the twelve dimensions that make up the shape. Score each one honestly, read the lowest few together, and watch how they move against their own baseline, not the portfolio average.
+
+A quick orientation before the list:
+
+- **Score on a 0 to 10 scale.** Leave a dimension blank rather than guessing. An honest blank is better than a confident wrong number.
+- **The change matters more than the value.** A 7 that used to be a 9 is a problem. A 7 that's been a 7 for a year is stability.
+- **Read the lowest two or three together.** The combination is the diagnosis. Any single dimension in isolation is just a data point.
+
+---
+
+## The four heavy dimensions
+
+These four carry the most predictive weight. They are the ones most likely to decide whether a relationship survives. If you only have time to score four things, score these.
+
+### Trust
+*Do they trust you to do your job?*
+- **Low:** micromanagement, second-guessing, every decision routed back to them, slow approvals because they're checking your work.
+- **High:** delegation, "you make the call," room to operate.
+- **Watch for:** trust dropping after a miss. It doesn't recover on its own; it recovers through a direct conversation and a visible correction.
+
+### Loyalty
+*Are they looking at other options?*
+- **Low:** comparing you to competitors out loud, mentioning what someone else charges, "we're just exploring."
+- **High:** locked in, not shopping, treats leaving as off the table.
+- **Watch for:** loyalty is the one a client can hide behind perfect politeness. Pleasant and disloyal coexist easily.
+
+### Expectations
+*Are their expectations realistic?*
+- **Low (unrealistic):** wants outcomes the engagement can't produce, on a timeline that doesn't exist.
+- **High (aligned):** understands what's achievable and by when.
+- **Watch for:** you can create this problem yourself. The ambitious promise you make today is the disappointment you manage in sixty days.
+
+### Grace
+*When something goes wrong, how do they react?*
+- **Low:** zero tolerance, one mistake becomes a referendum on the whole relationship.
+- **High:** gives benefit of the doubt, judges you on the recovery, not the stumble.
+- **Watch for:** low grace means you operate with no margin for error. Over-communicate accordingly.
+
+---
+
+## The eight supporting dimensions
+
+These add texture and tell you *how* to handle the relationship. Several are U-shaped, meaning both extremes are the risk, not just the low end.
+
+### Budget Commitment
+*Will budget become the reason they leave?* Higher is safer. Watch for budget pressure that has nothing to do with you, an internal squeeze that still ends with your line item on the chopping block.
+
+### Relationship Depth
+*Is there a real relationship beyond the work?* Moderate to high is healthiest. Zero depth is fragile. Total enmeshment is its own instability. You want a genuine connection, not a dependency.
+
+### Replaceability
+*How easy would it be to replace you?* More embedded is safer. The more your work is woven into how they operate, the higher the cost of switching.
+
+### Communication Tone
+*Cold and clipped, or warm and direct?* Higher is better. A cooling tone is one of the earliest and most reliable drift signals, often arriving before anything else changes.
+
+### Decision-Making Authority
+*Can your contact actually say yes?* Higher is better. A contact who's really a relay to someone you never speak to is a structural risk: you're managing a relationship with a person who can't keep you.
+
+### Communication Frequency *(U-shaped)*
+*How often do they reach out?* Both extremes are risk. Radio silence where you always initiate is disengagement. Constant frantic contact is anxiety. The healthy zone is a rhythm.
+
+### Stress Response *(U-shaped)*
+*How do you find out when something's wrong?* Going silent and dealing with it internally is a risk, because you find out too late. Loud immediate escalation is a different risk. Both make the relationship harder to steer under pressure.
+
+### Reporting Need *(U-shaped)*
+*How much reporting do they want?* "Don't bother me" and "send me every detail" are both harder to sustain than a steady middle cadence.
+
+---
+
+## How to use this
+
+1. **Score all twelve at onboarding.** Leave unknowns blank; let them fill in as you learn.
+2. **Re-score when something material shifts** — a new stakeholder, a pricing conversation, a changed communication pattern, or just a gut feeling you can't shake.
+3. **Read the lowest two or three together.** That combination, not the overall number, is what tells you which conversation to have this week.
+4. **Track the delta.** Where each dimension is heading matters more than where it sits today.
+
+The dimensions don't predict who leaves. They tell you where to look and how to communicate. The job is still yours. This just makes sure you're looking in the right place.
+
+---
+
+*This is the manual read. Retayned scores all twelve continuously, blends them into a single Retention Score, and surfaces the combinations automatically, so you spend your attention on the conversation instead of the spreadsheet.*`,
+  },
+  {
+    slug: "quiet-client-script-pack",
+    tag: "GUIDE",
+    read: "Guide",
+    kind: "guide",
+    featured: false,
+    title: "The Quiet-Client Script Pack",
+    excerpt: "Ten openers for the awkward check-in, built on observation, question, silence.",
+    body: `# The Quiet-Client Script Pack
+### Ten openers for the check-in you keep putting off
+
+A client has gone quiet. Not angry, not complaining, just... less. Slower replies, frictionless approvals, a meeting that moved twice. You want to say something, but every draft sounds either needy ("just checking in!!") or accusatory ("you seem distant"), so you say nothing and the quiet gets louder.
+
+These ten openers solve that. Each one is built on the same structure: a specific, neutral observation, a genuine question, then silence. Anchor to something real. Lead with the fact, not the feeling. Then stop talking and let them answer.
+
+Use them as starting points, not copy-paste. Reshape each into your own voice and the channel you actually use with that client.
+
+---
+
+## 1. The faster-approvals tell
+*When a normally-engaged client starts waving everything through.*
+
+> Quick one. The last few approvals came back fast, which is great, and I also want to make sure I'm not moving past anything you'd actually want to weigh in on. Anything you'd want me to slow down and walk through?
+
+Why it works: names the behavior change without judgment, and reframes "you've gone quiet" as "I want to serve you better."
+
+---
+
+## 2. The honest happiness check
+*When everything looks fine but your gut says otherwise.*
+
+> I want to make sure you're genuinely happy with where things are, not just fine with them. If there's something you'd change about how we work together, I'd rather hear it now than guess.
+
+Why it works: "happy, not just fine" gives them permission to say the small thing they've been sitting on. Curious, not needy.
+
+---
+
+## 3. The decision, not the update
+*When you want to test engagement without asking about it directly.*
+
+> I'm at a fork on [specific thing] and I'd rather have your read than make the call myself. Option A gets us [outcome]. Option B gets us [outcome]. Which feels right to you?
+
+Why it works: you're not asking "are we okay," you're handing them a real decision. A disengaged client hands it back with "whatever you think." That answer is your answer.
+
+---
+
+## 4. The new name on the thread
+*When someone you don't know starts getting cc'd.*
+
+> I noticed [name] has been on the last couple of threads, and I want to make sure I'm supporting that well. Is there context on their involvement that would help me show up right?
+
+Why it works: treats a new stakeholder as a chance to serve, not a threat to defend against. Surfaces the org change before it surfaces you.
+
+---
+
+## 5. The twice-moved meeting
+*When the recurring call keeps sliding.*
+
+> Our check-in has moved a couple of times, which usually just means it's a busy stretch. Before we rebook, is the current rhythm still useful to you, or would a different cadence fit your month better?
+
+Why it works: names the pattern lightly, hands them control of the cadence, and tests whether the deprioritization is about you or about a chaotic month.
+
+---
+
+## 6. The value narration
+*When you're delivering but they may not see it.*
+
+> Wanted to connect the dots on the last stretch: here's what we did, and here's what it produced for you. If your team ever needs this in a format that's easy to forward upward, say the word and I'll put it together.
+
+Why it works: a client who can't articulate why they keep you is a client someone can talk out of keeping you. This hands them the language to defend the engagement internally.
+
+---
+
+## 7. The pre-renewal soft open
+*When the contract end is inside 60 days and no one's mentioned it.*
+
+> Before we get close to the wire on the agreement, I've been thinking about what the next phase could look like. Mind if I share a rough sketch and get your gut reaction? No pressure, I just plan better with your input.
+
+Why it works: a client invested in the future renews; a client reviewing the past is evaluating. This points them at the future, early and informally.
+
+---
+
+## 8. The post-dip repair
+*When results slipped and the client went distant.*
+
+> Results came in softer than we both wanted last cycle, and I don't want to let that sit behind a dashboard. Can we grab fifteen minutes? I want to walk you through what happened, what I'm changing, and hear anything that's on your mind.
+
+Why it works: a report doesn't repair broken trust; a direct conversation within 48 hours does. Leads with the fact, owns the next move, invites their side.
+
+---
+
+## 9. The comprehensive-summary request
+*When they suddenly ask for a big performance recap.*
+
+> Happy to pull that together, I'll have it to you by [day]. While I'm at it, is there a particular question behind it I should make sure to answer? Sometimes these come up because someone upstairs is asking, and I'd rather speak directly to that.
+
+Why it works: a sudden "send me everything" usually means someone above is asking "is this worth it." You deliver, then gently find out what prompted it.
+
+---
+
+## 10. The autopilot interrupt
+*When nothing's wrong, which is exactly the risk.*
+
+> No fire here, just didn't want a quiet stretch to turn into a coasting one. I pulled a couple of ideas for where we could push next. Want me to send them over, or save them for our next sync?
+
+Why it works: stable is not safe. A proactive touch precisely because nothing has happened lately is how you keep a coasting account from drifting toward a competitor's pitch.
+
+---
+
+## The rules underneath all ten
+
+- **Observation, not accusation.** "I noticed the approvals sped up" invites an answer. "You seem checked out" invites a defense.
+- **Lead with the fact, keep the feeling.** Your anxiety stays yours. Point at the thing that actually happened.
+- **Then stop.** The pause after the question is where the real answer lives. Don't soften it away.
+- **Match the person.** Data clients want the number. Relationship clients want the personal framing. Stress-reactive clients want the headline first so a careful question doesn't read as a crisis.
+
+---
+
+*Retayned tells you which client has gone quiet and why, and Rai will reshape any of these into your voice and your channel before you hit send.*`,
+  },
+  {
+    slug: "renewal-pre-mortem",
+    tag: "TEMPLATE",
+    read: "Template",
+    kind: "guide",
+    featured: false,
+    title: "The Renewal Pre-Mortem",
+    excerpt: "A 60-day playbook for at-risk accounts, with a copy-paste worksheet.",
+    body: `# The Renewal Pre-Mortem
+### A 60-day playbook for the accounts you can't afford to lose
+
+A pre-mortem flips the usual question. Instead of waiting for the non-renewal and asking "what went wrong," you stand at 60 days out and ask: *if this client doesn't renew, what will the reason have been?* Then you go fix that reason while there's still time.
+
+The renewal conversation doesn't start at the deadline. It starts 60 days out, informally, and the work below is what fills those 60 days. Run it on every account where losing them would change your quarter.
+
+---
+
+## Step 1 — Write the obituary (Day 60)
+
+Imagine the client has left. Write the one-sentence reason. Be honest, not generous to yourself.
+
+Common true reasons, roughly in order of how often they're the real one:
+- The relationship went quiet and a competitor or internal review filled the silence.
+- A new decision-maker who has no history with you reviewed the spend.
+- Results dipped and trust never got repaired with a direct conversation.
+- Their budget got squeezed for reasons that have nothing to do with you.
+- They could never quite articulate the value, so someone talked them out of it.
+
+Pick the most likely one. That's your pre-mortem. The rest of the playbook is aimed at it.
+
+---
+
+## Step 2 — Pull the real read (Day 60 to 55)
+
+Before you act, get honest about where the relationship actually stands.
+
+- **Score the relationship against baseline.** Not "are they happy," but "where is each dimension *heading*." A 70 that used to be an 85 is the story.
+- **Identify the lowest two or three dimensions** and read them together. That combination tells you which conversation to have.
+- **Map the org.** Who is your champion? Who else there knows your name? If the answer is "only my one contact," that's a single point of failure to fix this month.
+- **Check the behavioral signals,** not just the sentiment: response times, meeting reschedules, scope trajectory, approval friction. Behavior doesn't lie the way "looks good" does.
+
+---
+
+## Step 3 — Run the plays that match the reason (Day 55 to 20)
+
+Aim your effort at the obituary you wrote. Don't do everything; do the thing that addresses the actual risk.
+
+**If the risk is silence / autopilot:** Re-engage with substance, not a status update. Bring a decision, a result, an idea for what's next. A proactive touch precisely because nothing has happened lately is the whole move.
+
+**If the risk is a new decision-maker:** Arm your champion with wins, numbers, and language they can use in a review. Then offer, don't act: "Would it help if I introduced myself to [name], or would you rather walk them through our work?" Their call.
+
+**If the risk is broken trust after a dip:** Have the direct conversation within 48 hours of recognizing it. Lead with the fact, own what you're changing, then listen. A dashboard does not repair trust. A conversation does.
+
+**If the risk is budget pressure:** Don't preemptively cut your rate or signal you're expendable. Find the highest-value smaller engagement that keeps you in the account. Staying in beats short-term revenue.
+
+**If the risk is unspoken value:** Narrate what you've done and what it produced, in a format your champion can forward upward. Give them the language to defend you when you're not in the room.
+
+---
+
+## Step 4 — Open the renewal, informally (Day 30 to 20)
+
+Don't wait for the formal conversation. Open it as a future-tense, low-pressure sketch:
+
+> Here's what I'm thinking for the next phase. How are you feeling about how things have been going?
+
+A client invested in the future renews. A client reviewing the past is evaluating. Your job in this window is to get them thinking forward.
+
+---
+
+## Step 5 — The capacity honesty check (ongoing)
+
+If several accounts are hitting this list at once, the problem usually isn't the clients. It's capacity. Spreading attention equally across all of them saves none of them.
+
+Be honest about which relationships deserve your full attention and which need transitioning, pausing, or referring out. Never jeopardize your winners to rescue a relationship that was always going to close. Some chapters are supposed to end, and protecting a thriving account is often a better use of the hour than rescuing a dying one.
+
+---
+
+## The one-page worksheet
+
+Copy this per at-risk account:
+
+\`\`\`
+CLIENT: ________________     RENEWAL DATE: __________  (days out: ____)
+
+THE OBITUARY (most likely reason they leave):
+__________________________________________________________
+
+RELATIONSHIP READ:
+  Overall direction (improving / stable / shifted / declining): ______
+  Lowest dimensions: ____________  +  ____________
+  Champion: ____________   Others who know me: ____________
+  Behavioral flags (reschedules, slow replies, scope, approvals):
+  __________________________________________________________
+
+THE MATCHED PLAY (from Step 3): ________________________________
+
+INFORMAL RENEWAL OPENED?  Y / N    Date: __________
+
+VERDICT: fight for it / transition gracefully / let it close
+\`\`\`
+
+---
+
+*Retayned runs a version of this read continuously, flagging the at-risk accounts and the reason before you'd have built the spreadsheet yourself. The pre-mortem is the manual version; the point of both is the same: never be surprised by a non-renewal.*`,
+  },
+  {
+    slug: "health-check-question-bank",
+    tag: "GUIDE",
+    read: "Guide",
+    kind: "guide",
+    featured: false,
+    title: "The Health Check Question Bank",
+    excerpt: "The questions worth asking yourself about every client, organized by dimension.",
+    body: `# The Health Check Question Bank
+### The questions that surface drift before the client does
+
+A health check works because of who it asks. Not the client, who is the last to admit a relationship is cooling, but you, who already senses it and just hasn't written it down. The questions below are organized by the twelve dimensions. You won't answer all of them every time; you answer the ones that fit the moment.
+
+Two rules before you start:
+- **Answer against baseline.** The question isn't "is this good," it's "is this different from how it used to be."
+- **An honest "I don't know" is data.** If you can't answer a question about a client, that gap is itself a signal worth noticing.
+
+---
+
+## Trust — *do they trust you to do your job?*
+- Are approvals getting faster because they trust me, or because they've stopped engaging?
+- Am I being asked to justify decisions I wasn't asked to justify three months ago?
+- When I make a judgment call, do they back it or relitigate it?
+- Has anything happened recently that would have dented their trust, even if neither of us named it?
+
+## Loyalty — *are they looking at other options?*
+- Have they mentioned a competitor, a price they saw elsewhere, or "exploring options"?
+- If a cheaper alternative pitched them tomorrow, would they take the call?
+- Do they talk about our work as a long-term thing, or one cycle at a time?
+- Are they comparing me to a previous provider in a way that suggests they haven't fully committed?
+
+## Expectations — *are their expectations realistic?*
+- Is there a gap between what they expect and what this engagement can actually produce?
+- Did I make a promise early on that's quietly becoming a liability?
+- Have we explicitly aligned on what success looks like, or are we each assuming?
+- Is any unrealistic expectation widening week over week without being addressed?
+
+## Grace — *how do they react when something goes wrong?*
+- The last time something slipped, did they give benefit of the doubt or treat it as a referendum?
+- Am I operating with margin for error, or does every detail have to be perfect?
+- Do they judge me on the recovery, or on the stumble?
+
+## Budget Commitment — *will money be the reason they leave?*
+- Is there budget pressure on their side, even if it has nothing to do with my work?
+- Have invoices, scope, or spend conversations changed tone recently?
+- If their budget got cut 20%, would my line item survive the conversation?
+
+## Relationship Depth — *is there a real relationship beyond the work?*
+- Is there a genuine connection here, or is it purely transactional?
+- Has the personal warmth changed in either direction recently?
+- Am I relying on one human bond that could vanish if that person left?
+
+## Replaceability — *how embedded am I?*
+- How hard would it actually be for them to replace me?
+- Is my work woven into how they operate, or is it a discrete deliverable anyone could pick up?
+- Have I become more essential over the last six months, or less?
+
+## Communication Tone — *warm and direct, or cold and clipped?*
+- Has the tone of their messages cooled, even slightly?
+- Are replies shorter, later, or more formal than they used to be?
+- Is there warmth that's gone missing without an obvious reason?
+
+## Decision-Making Authority — *can my contact actually say yes?*
+- Does my main contact have the authority to keep me, or are they a relay?
+- Has decision-making quietly moved to someone I don't have a relationship with?
+- Do I know who, besides my contact, could decide my fate here?
+
+## Communication Frequency — *the rhythm (U-shaped: both extremes are risk)*
+- Has our contact gone from a steady rhythm to radio silence, where I always initiate?
+- Or has it spiked into constant, anxious back-and-forth?
+- Does the current frequency match what this client actually wants, or what's convenient for me?
+
+## Stress Response — *how do I find out when something's wrong? (U-shaped)*
+- When something goes wrong on their end, do they tell me, or go quiet and handle it internally?
+- Do they escalate loudly in a way that destabilizes the work?
+- Am I finding out about problems too late because they don't surface them?
+
+## Reporting Need — *how much do they want to hear from me? (U-shaped)*
+- Is the current reporting cadence sustainable, or is it drifting toward "don't bother me" or "send me everything"?
+- Have they asked for more detail recently, and if so, why now?
+- Could a sudden request for a comprehensive summary mean someone above them is asking "is this worth it?"
+
+---
+
+## Cross-cutting questions worth asking every time
+- What's my honest gut feeling about this relationship right now, and what evidence would confirm or kill it?
+- What's changed since the last check, in either direction?
+- If this client left in 90 days, what would the reason most likely be?
+- Where would the next hour of my attention produce the most relationship value, here or somewhere else in my book?
+
+---
+
+## How to run it
+1. **Cadence by health, not calendar.** Monthly for critical accounts, quarterly for stable ones, yearly for thriving. Don't get pinged on a schedule that makes you rush through to clear the queue.
+2. **Answer honestly, including the blanks.** The questions you can't answer are telling you where you've stopped paying attention.
+3. **Read the lowest dimensions together.** The combination is the diagnosis.
+4. **Update the profile.** A health check only sharpens your reads if the answers actually go back into the system.
+
+---
+
+*Retayned chooses the right questions for each client based on what's already shifting, so a check-in stays short and pointed instead of becoming a 47-question form you fill out to get it off your plate.*`,
+  },
 ];
+// ── Lightweight markdown renderer (no dependencies) ──
+// Handles: # ## ### headings, **bold**, *italic*, `code`, > blockquote,
+// - bullet lists, 1. ordered lists, ``` fenced code, --- hr, and paragraphs.
+function renderMarkdown(md) {
+  const lines = md.split("\n");
+  const blocks = [];
+  let i = 0;
+  const inline = (text) => {
+    // escape nothing (trusted authored content); apply inline md
+    const parts = [];
+    let key = 0;
+    // process **bold**, *italic*, `code`
+    const regex = /(\*\*([^*]+)\*\*|\*([^*]+)\*|`([^`]+)`)/g;
+    let last = 0, m;
+    while ((m = regex.exec(text)) !== null) {
+      if (m.index > last) parts.push(text.slice(last, m.index));
+      if (m[2] !== undefined) parts.push(<strong key={key++}>{m[2]}</strong>);
+      else if (m[3] !== undefined) parts.push(<em key={key++}>{m[3]}</em>);
+      else if (m[4] !== undefined) parts.push(<code key={key++} className="md-code">{m[4]}</code>);
+      last = m.index + m[0].length;
+    }
+    if (last < text.length) parts.push(text.slice(last));
+    return parts;
+  };
+
+  while (i < lines.length) {
+    let line = lines[i];
+
+    if (line.trim() === "") { i++; continue; }
+
+    // fenced code
+    if (line.trim().startsWith("```")) {
+      const buf = [];
+      i++;
+      while (i < lines.length && !lines[i].trim().startsWith("```")) { buf.push(lines[i]); i++; }
+      i++;
+      blocks.push(<pre key={blocks.length} className="md-pre"><code>{buf.join("\n")}</code></pre>);
+      continue;
+    }
+    // hr
+    if (line.trim() === "---") { blocks.push(<hr key={blocks.length} className="md-hr" />); i++; continue; }
+    // headings
+    if (line.startsWith("### ")) { blocks.push(<h3 key={blocks.length} className="md-h3">{inline(line.slice(4))}</h3>); i++; continue; }
+    if (line.startsWith("## ")) { blocks.push(<h2 key={blocks.length} className="md-h2">{inline(line.slice(3))}</h2>); i++; continue; }
+    if (line.startsWith("# ")) { blocks.push(<h1 key={blocks.length} className="md-h1">{inline(line.slice(2))}</h1>); i++; continue; }
+    // blockquote (may span multiple lines)
+    if (line.startsWith(">")) {
+      const buf = [];
+      while (i < lines.length && lines[i].startsWith(">")) { buf.push(lines[i].replace(/^>\s?/, "")); i++; }
+      blocks.push(<blockquote key={blocks.length} className="md-quote">{inline(buf.join(" "))}</blockquote>);
+      continue;
+    }
+    // unordered list
+    if (/^[-*]\s/.test(line.trim())) {
+      const items = [];
+      while (i < lines.length && /^[-*]\s/.test(lines[i].trim())) { items.push(lines[i].trim().replace(/^[-*]\s/, "")); i++; }
+      blocks.push(<ul key={blocks.length} className="md-ul">{items.map((it, k) => <li key={k}>{inline(it)}</li>)}</ul>);
+      continue;
+    }
+    // ordered list
+    if (/^\d+\.\s/.test(line.trim())) {
+      const items = [];
+      while (i < lines.length && /^\d+\.\s/.test(lines[i].trim())) { items.push(lines[i].trim().replace(/^\d+\.\s/, "")); i++; }
+      blocks.push(<ol key={blocks.length} className="md-ol">{items.map((it, k) => <li key={k}>{inline(it)}</li>)}</ol>);
+      continue;
+    }
+    // paragraph (gather until blank)
+    const buf = [line];
+    i++;
+    while (i < lines.length && lines[i].trim() !== "" && !/^(#{1,3}\s|>|[-*]\s|\d+\.\s|```|---)/.test(lines[i].trim())) { buf.push(lines[i]); i++; }
+    blocks.push(<p key={blocks.length} className="md-p">{inline(buf.join(" "))}</p>);
+  }
+  return blocks;
+}
+
+const RESOURCES_BY_SLUG = Object.fromEntries(RESOURCES_CONTENT.map(r => [r.slug, r]));
+
+function BlogPost({ slug, setPage }) {
+  const post = RESOURCES_BY_SLUG[slug] || RESOURCES_CONTENT[0];
+  const related = RESOURCES_CONTENT.filter(r => r.slug !== post.slug && r.kind === post.kind).slice(0, 3);
+  const relatedPool = related.length ? related : RESOURCES_CONTENT.filter(r => r.slug !== post.slug).slice(0, 3);
+  return (
+    <div>
+      <RetPageStyles />
+      <style>{`
+        .md-article { max-width: 720px; margin: 0 auto; }
+        .md-h1 { font-size: clamp(30px, 5vw, 44px); font-weight: 900; letter-spacing: -0.03em; line-height: 1.12; color: ${C.text}; margin: 0 0 8px; }
+        .md-h2 { font-size: clamp(22px, 3vw, 28px); font-weight: 800; letter-spacing: -0.02em; color: ${C.text}; margin: 40px 0 14px; }
+        .md-h3 { font-size: 19px; font-weight: 800; color: ${C.text}; margin: 28px 0 10px; }
+        .md-p { font-size: 17px; line-height: 1.75; color: ${C.textSec}; margin: 0 0 20px; }
+        .md-p strong, .md-ul strong, .md-ol strong, .md-quote strong { color: ${C.text}; font-weight: 800; }
+        .md-ul, .md-ol { margin: 0 0 20px; padding-left: 24px; }
+        .md-ul li, .md-ol li { font-size: 17px; line-height: 1.7; color: ${C.textSec}; margin-bottom: 10px; }
+        .md-ul { list-style: none; padding-left: 4px; }
+        .md-ul li { position: relative; padding-left: 22px; }
+        .md-ul li::before { content: ""; position: absolute; left: 2px; top: 12px; width: 6px; height: 6px; border-radius: 50%; background: ${C.primaryLight}; }
+        .md-quote { border-left: 3px solid ${C.btn}; background: ${C.primaryGhost}; padding: 16px 22px; margin: 0 0 22px; border-radius: 0 12px 12px 0; font-size: 17px; line-height: 1.7; color: ${C.text}; font-style: italic; }
+        .md-code { font-family: 'Courier New', monospace; font-size: 0.88em; background: ${C.surfaceWarm}; padding: 2px 6px; border-radius: 5px; color: ${C.primaryDeep}; }
+        .md-pre { background: ${C.sidebar}; color: #E8ECE6; padding: 20px 22px; border-radius: 12px; overflow-x: auto; margin: 0 0 22px; font-size: 13.5px; line-height: 1.6; }
+        .md-pre code { font-family: 'Courier New', monospace; white-space: pre; }
+        .md-hr { border: none; border-top: 1px solid ${C.borderLight}; margin: 36px 0; }
+      `}</style>
+
+      {/* Article hero */}
+      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", paddingBottom: 28 }}>
+        <div className="ret-section-inner">
+          <div style={{ maxWidth: 720, margin: "0 auto" }}>
+            <span onClick={() => setPage("blog")} style={{ fontSize: 13, fontWeight: 700, color: C.btn, cursor: "pointer", display: "inline-block", marginBottom: 20 }}>← All resources</span>
+            <div style={{ display: "flex", gap: 8, marginBottom: 14 }}>
+              <MiniTag color={post.kind === "guide" ? "warning" : "primary"}>{post.tag}</MiniTag>
+            </div>
+            <div style={{ fontSize: 12, color: C.textMuted, letterSpacing: "0.08em", textTransform: "uppercase", fontWeight: 700 }}>{post.read} · Adam Lawrence</div>
+          </div>
+        </div>
+      </section>
+
+      <RetCurve from="#F2EEE8" to={C.bg} variant="rightCrest" />
+
+      {/* Body */}
+      <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
+        <div className="ret-section-inner">
+          <article className="md-article">
+            {renderMarkdown(post.body)}
+          </article>
+        </div>
+      </section>
+
+      <RetCurve from={C.bg} to="#F2EEE8" variant="default" />
+
+      {/* Related */}
+      <section className="ret-section ret-bg-cream r-full-bleed">
+        <div className="ret-section-inner">
+          <div className="ret-section-head">
+            <div className="ret-eyebrow">Keep reading</div>
+            <h2 className="ret-h2">More from the library.</h2>
+          </div>
+          <div className="ret-grid-3">
+            {relatedPool.map(r => (
+              <div key={r.slug} className="ret-card ret-card-hover" style={{ cursor: "pointer" }} onClick={() => setPage("post:" + r.slug)}>
+                <MiniTag color={r.kind === "guide" ? "warning" : "primary"}>{r.tag}</MiniTag>
+                <h3 style={{ fontSize: 18, fontWeight: 800, color: C.text, margin: "12px 0 8px", lineHeight: 1.3, letterSpacing: "-0.015em" }}>{r.title}</h3>
+                <p style={{ fontSize: 14, color: C.textSec, lineHeight: 1.6, margin: 0 }}>{r.excerpt}</p>
+                <div style={{ marginTop: 14, fontSize: 13, fontWeight: 700, color: C.btn }}>Read →</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <RetFinalCTA
+        h2="Stop guessing which client is about to go quiet."
+        sub="Start free. Retayned reads the relationship so you can act before it drifts."
+        setPage={setPage}
+      />
+      <Footer setPage={setPage} />
+    </div>
+  );
+}
+
 
 const RESOURCES_TOOLS = [
   { kind: "ASSESSMENT", dur: "60 sec", title: "Retention Health Check", sub: "Think of one client. Answer five questions honestly. Get a retention score and know what to do next." },
@@ -2010,17 +2870,8 @@ const RESOURCES_TOOLS = [
   { kind: "SIMULATOR", dur: "4 min", title: "The Hard Conversation Simulator", sub: "Five scenarios. Three approaches each. See how your instincts play out." },
 ];
 
-const RESOURCES_GUIDES = [
-  { name: "The 12 Retention Dimensions", sub: "A complete cheat sheet for what to watch.", kind: "PDF · 14 pages" },
-  { name: "The Quiet-Client Script Pack", sub: "Ten openers for the awkward check-in.", kind: "PDF · 6 pages" },
-  { name: "Renewal Pre-Mortem Template", sub: "A 60-day playbook for at-risk accounts.", kind: "NOTION · template" },
-  { name: "Health Check Question Bank", sub: "The exact 47 questions Rai chooses from.", kind: "PDF · 8 pages" },
-];
-
 const RESOURCES_WEBINARS = [
-  { date: "JUN 12", dur: "45 min", title: "Reading client tone in writing.", sub: "A live teardown of three real client emails — what we'd notice, what we'd say next.", kind: "On demand" },
-  { date: "MAY 28", dur: "30 min", title: "When to bring up renewal (and when not to).", sub: "Adam walks through the timing model.", kind: "On demand" },
-  { date: "JUL 18", dur: "60 min", title: "Office hours: bring one client, leave with a plan.", sub: "Live, with five operators per session.", kind: "Upcoming" },
+  { date: "TBD", dur: "60 min", title: "Office hours: bring one client, leave with a plan.", sub: "Live, with five operators per session.", kind: "Coming soon" },
 ];
 
 function MiniTag({ color = "primary", children }) {
@@ -2039,8 +2890,289 @@ function MiniTag({ color = "primary", children }) {
 function Blog({ setPage }) {
   const [filter, setFilter] = useState("All");
   const filters = ["All", "Articles", "Tools", "Guides", "Webinars"];
-  const featured = RESOURCES_POSTS[0];
-  const sideFeatured = RESOURCES_POSTS.slice(1, 3);
+  const articles = RESOURCES_CONTENT.filter(r => r.kind === "article");
+  const guidePosts = RESOURCES_CONTENT.filter(r => r.kind === "guide");
+  const featured = articles[0];
+  const sideFeatured = articles.slice(1, 3);
+  const restArticles = articles.slice(3);
+
+  // ── Interactive tools (ported) ──
+  const [activeModule, setActiveModule] = useState(null);
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState({});
+  const [sliderVals, setSliderVals] = useState({});
+
+  const reset = () => { setActiveModule(null); setStep(0); setAnswers({}); setSliderVals({}); };
+
+  useEffect(() => { if (activeModule) window.scrollTo(0, 0); }, [step, activeModule]);
+
+  const modules = [
+    { id: "health", title: "Retention Health Check", desc: "Think of one client. Answer five questions honestly. Get a retention score and know what to do next.", time: "60 sec", tag: "Assessment" },
+    { id: "calculator", title: "The Retention Calculator", desc: "See what client churn is actually costing you. The number is always bigger than you think.", time: "30 sec", tag: "Calculator" },
+    { id: "profile", title: "Grade Your Client Relationship", desc: "Score one client across 12 relationship dimensions. See where the cracks are.", time: "2 min", tag: "Assessment" },
+    { id: "simulator", title: "The Hard Conversation Simulator", desc: "Five scenarios. Three approaches each. See how your instincts play out.", time: "4 min", tag: "Simulator" },
+  ];
+
+  // ── Health Check data ──
+  const hcQuestions = [
+    { q: "Has this client's communication pattern changed recently?", opts: [{ t: "Same as always — no shift in how we talk", s: 10 }, { t: "Slightly different but could be nothing", s: 8 }, { t: "Noticeably different from normal", s: 3 }, { t: "Something has clearly changed", s: 1 }] },
+    { q: "When was your last meaningful conversation?", opts: [{ t: "This week — we're in a good rhythm", s: 10 }, { t: "Within 2 weeks — normal for us", s: 8 }, { t: "It's been a while — longer than usual", s: 4 }, { t: "It's been 84 years...", s: 1 }] },
+    { q: "How honest is the feedback you're getting?", opts: [{ t: "Same as always — they engage the way they always have", s: 10 }, { t: "Slightly less engaged than normal", s: 8 }, { t: "Noticeably pulled back from how they used to be", s: 4 }, { t: "Little to no feedback at all — and that's new", s: 1 }] },
+    { q: "Is there a conversation you've been putting off?", opts: [{ t: "No — we're aligned and I feel good about it", s: 10 }, { t: "Something small I should probably mention", s: 8 }, { t: "Something real that's been on my mind", s: 4 }, { t: "Yes — and the longer I wait the harder it gets", s: 1 }] },
+    { q: "If they cancelled tomorrow, how would you feel?", opts: [{ t: "Surprised. Unexpected for sure.", s: 10 }, { t: "Surprised but I could see it if I'm honest", s: 6 }, { t: "Not that surprised", s: 3 }, { t: "I've had the thought myself", s: 1 }] },
+  ];
+
+  // ── Simulator data ──
+  const raiNudge = " The truth is, by the time response times have doubled and meetings are slipping, you're playing catch-up. The A play was having this conversation weeks ago when the first signal appeared. Want help spotting those earlier? Talk to Rai.";
+  const simScenarios = [
+    { title: "The New Stakeholder", setup: "Your main contact Mike just told you his new boss wants to \"review all vendor relationships.\" Mike says not to worry. What do you do?",
+      opts: [
+        { label: "Ask for an intro to Mike's new boss to set the tone directly", desc: "\"Mike, we'd really like to speak to your new boss to make sure he sees our value..\"", outcome: "If Mike is protective of the relationship, you just undermined your biggest advocate. If you are already providing value, the new boss will likely see it regardless. Rai can help diagnose situations like this.", score: "C" },
+        { label: "Ask Mike how he'd like to handle it together", desc: "\"I trust your read on this. How do you want to play it — should I put something together for you, or would it help if I met them directly?\"", outcome: "You're respecting Mike's position while giving him options. He knows whether an intro helps or hurts.", score: "A" },
+        { label: "Trust Mike and wait it out", desc: "He knows the internal dynamics better than you.", outcome: "This can work — if Mike has real influence and a strong relationship with the new boss. But you're betting your contract on someone else's political capital without knowing how much they have.", score: "B" },
+      ]},
+    { title: "The Vague Feedback Shift", setup: "Your client Ally used to give detailed, specific feedback on every deliverable. For the last three rounds, it's been \"looks good\" and nothing else. What do you do?",
+      opts: [
+        { label: "Send a longer-form review request or survey", desc: "A formal feedback form covering satisfaction, communication, and goals.", outcome: "Formality when the relationship has been informal signals that you know something is wrong. It also gives her an easy out — she'll check all the positive boxes and you'll learn nothing.", score: "C" },
+        { label: "Enjoy the easy approval and move on", desc: "Less revision means more efficiency. Maybe she just trusts you now.", outcome: "Vague positivity is one of the most missed churn signals. Engaged clients give details. Disengaging clients say \"looks good.\"", score: "D" },
+        { label: "Ask a specific question that forces a real answer", desc: "\"Ally, on the last campaign — was the creative direction what you had in mind, or would you have gone a different way?\"", outcome: "You're not asking, \"Is everything okay?\" — you're making it easy for her to give you something real without it feeling like a confrontation.", score: "A" },
+      ]},
+    { title: "The Budget Conversation", setup: "Your client James casually mentions they're \"tightening budgets across the board this quarter.\" He hasn't said anything about your contract specifically. What do you do?",
+      opts: [
+        { label: "Proactively propose a restructured package", desc: "\"James, I heard you on the budget pressure. Here's what I'd suggest if we need to adjust — these are the highest-impact pieces I'd protect.\"", outcome: "You're showing you listened, you're flexible, and you're strategic. Clients cut vendors who seem rigid first.", score: "A" },
+        { label: "Wait to see if it affects you", desc: "He didn't mention your contract. No need to bring it up and plant ideas.", outcome: "You're hoping the problem doesn't find you. It usually does — and by then you've lost the chance to shape the conversation.", score: "C" },
+        { label: "Ask directly if your contract is at risk", desc: "\"James, should I be worried about our engagement?\"", outcome: "Direct, but it puts him in an awkward position and frames you as a cost to defend rather than a partner solving a problem.", score: "C" },
+      ]},
+    { title: "The Competitor Mention", setup: "During a call, your client Priya casually says \"we've been getting pitched by a few other agencies lately.\" She laughs it off. What do you do?",
+      opts: [
+        { label: "Laugh it off too and change the subject", desc: "She brought it up casually, so it's probably nothing. Don't make it weird.", outcome: "She told you for a reason. Clients don't mention competitors by accident. This was either a test or a warning — either way, ignoring it is the worst response.", score: "D" },
+        { label: "Immediately pitch new ideas to prove your value", desc: "Launch into everything new you've been thinking about to remind her why she hired you.", outcome: "Reactive and transparent. She'll see through it — and it signals insecurity rather than confidence.", score: "C" },
+        { label: "Match her energy with confidence", desc: "\"Of course you are! You're a great client. I'd be worried if they weren't calling you.\"", outcome: "No panic, no defensiveness. You're reminding her she's valuable and you're not threatened. Confidence is the most underrated retention tool.", score: "A" },
+      ]},
+    { title: "The Slow Fade", setup: "Your client Sarah used to respond within hours. Now it takes days. Meetings keep getting rescheduled. The work quality hasn't changed. What do you do?",
+      opts: [
+        { label: "Name the pattern directly", desc: "\"Sarah, I've noticed our rhythm has shifted. I want to make sure I'm still delivering what matters most to you.\"", outcome: "This is the right instinct and it may still work." + raiNudge, score: "B" },
+        { label: "Send a check-in email", desc: "\"Hey Sarah, just checking in — everything okay on your end?\"", outcome: "She'll say \"All good!\" and the fade continues. You've confirmed nothing and changed nothing." + raiNudge, score: "C" },
+        { label: "Increase deliverables to prove value", desc: "Send an extra report, add a new initiative, work harder.", outcome: "More output doesn't fix a relationship problem. You're solving the wrong thing and burning resources." + raiNudge, score: "D" },
+      ]},
+  ];
+
+  // ── Profile dimensions ──
+  const profileDims = [
+    { key: "commFreq", name: "Communication Frequency", left: "Rarely", right: "Constantly" },
+    { key: "commTone", name: "Communication Tone", left: "Reserved", right: "Direct" },
+    { key: "trustLevel", name: "Trust Level", left: "Hands-on", right: "Delegated" },
+    { key: "decisionSpeed", name: "Decision Speed", left: "Deliberate", right: "Immediate" },
+    { key: "feedbackStyle", name: "Feedback Style", left: "Indirect", right: "Blunt" },
+    { key: "metricFocus", name: "Metric Focus", left: "Gut feel", right: "Data-driven" },
+    { key: "expectLevel", name: "Expectation Level", left: "Conservative", right: "Aggressive" },
+    { key: "reportNeed", name: "Reporting Need", left: "Hands-off", right: "Everything" },
+    { key: "stressResponse", name: "Stress Response", left: "Goes quiet", right: "Gets loud" },
+    { key: "changeAppetite", name: "Change Appetite", left: "Stable", right: "Experimenting" },
+    { key: "loyaltySignal", name: "Loyalty Signal", left: "Shopping around", right: "Locked in" },
+    { key: "relationDepth", name: "Relationship Depth", left: "Business", right: "Personal" },
+  ];
+
+  // ── Shared email gate ──
+  const EmailGate = ({ title, sub }) => (
+    <div style={{ background: C.raiGrad, borderRadius: 16, padding: "28px 26px", color: "#fff", textAlign: "center" }}>
+      <div style={{ fontSize: 19, fontWeight: 800, marginBottom: 6, letterSpacing: "-0.01em" }}>{title || "Want help before your next hard conversation?"}</div>
+      <p style={{ fontSize: 14.5, color: "rgba(255,255,255,.72)", lineHeight: 1.6, margin: "0 auto 18px", maxWidth: 380 }}>{sub || "Rai reads the relationship and gives you the next move. See it on your own book."}</p>
+      <button onClick={() => setPage("signup")} className="cta-btn" style={{ padding: "13px 30px", background: "#fff", color: C.btn, border: "none", borderRadius: 12, fontSize: 15, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
+    </div>
+  );
+
+  const Opt = ({ text, selected, onClick }) => (
+    <div onClick={onClick} style={{ padding: "13px 16px", borderRadius: 12, cursor: "pointer", background: selected ? C.primaryGhost : C.card, border: "1.5px solid " + (selected ? C.primary : C.borderLight), fontSize: 14.5, color: selected ? C.primary : C.textSec, fontWeight: selected ? 700 : 500, transition: "all 0.15s", boxShadow: selected ? "none" : C.cardShadow }}>{text}</div>
+  );
+
+  const BackBtn = ({ onClick }) => <button onClick={onClick} style={{ padding: "9px 18px", background: C.surface, color: C.textSec, border: "none", borderRadius: 10, fontSize: 13, fontWeight: 700, cursor: "pointer", fontFamily: "inherit" }}>← Back</button>;
+  const NextBtn = ({ onClick, disabled, label }) => <button onClick={onClick} disabled={disabled} style={{ padding: "9px 22px", background: disabled ? C.surface : C.btn, color: disabled ? C.textMuted : "#fff", border: "none", borderRadius: 10, fontSize: 13, fontWeight: 700, cursor: disabled ? "default" : "pointer", fontFamily: "inherit", transition: "background 0.15s" }}>{label || "Next"}</button>;
+
+  const renderHealth = () => {
+    const total = hcQuestions.length;
+    if (step < total) {
+      const q = hcQuestions[step];
+      return (
+        <div>
+          <div style={{ display: "flex", gap: 4, marginBottom: 16 }}>{Array.from({ length: total }).map((_, i) => <div key={i} style={{ flex: 1, height: 3, borderRadius: 2, background: i <= step ? C.primary : C.borderLight }} />)}</div>
+          <p style={{ fontSize: 11, color: C.textMuted, marginBottom: 6 }}>{step + 1} of {total}</p>
+          <p style={{ fontSize: 16, fontWeight: 700, marginBottom: 14, lineHeight: 1.4 }}>{q.q}</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+            {q.opts.map((o, i) => <Opt key={i} text={o.t} selected={answers[step] === i} onClick={() => { setAnswers({ ...answers, [step]: i }); setTimeout(() => setStep(step + 1), 300); }} />)}
+          </div>
+          {step > 0 && <div style={{ marginTop: 14 }}><BackBtn onClick={() => setStep(step - 1)} /></div>}
+        </div>
+      );
+    }
+    const score = Math.round(hcQuestions.reduce((a, q, i) => a + q.opts[answers[i]]?.s, 0) / 50 * 100);
+    const label = score >= 90 ? "Thriving" : score >= 80 ? "Healthy" : score >= 70 ? "Check In" : score >= 60 ? "Attention Needed" : score >= 50 ? "Watch Closely" : score >= 40 ? "At Risk" : score >= 30 ? "Serious" : score >= 20 ? "Critical" : "Emergency";
+    const color = score >= 70 ? C.success : score >= 50 ? C.warning : C.danger;
+    const msg = score >= 90 ? "This relationship is strong. Keep showing up the way you have been. Great work!"
+      : score >= 80 ? "Healthy. Nothing urgent that stands out, but don't coast — momentum is easier to keep than rebuild."
+      : score >= 70 ? "Nothing alarming, but worth considering what you can do slightly differently to improve this engagement."
+      : score >= 60 ? "Something is off. You seem to sense it. Think through what's changed and how you can address any new variables. We recommend reviewing with Rai."
+      : score >= 50 ? "There's a pattern forming here. Multiple signals suggest this isn't a one-off rough patch. We recommend having an honest conversation soon. Speak with Rai."
+      : score >= 40 ? "Several things need attention and they're compounding. The longer you wait, the harder each one gets to fix. Speak with Rai before this escalates."
+      : score >= 30 ? "This client relationship has serious, overlapping problems. We strongly recommend building a retention gameplan with Rai today. Not this week — today."
+      : score >= 20 ? "This relationship has deep fractures on multiple fronts. If there's a path back, it requires a direct, honest conversation immediately. Speak with Rai and prepare for either outcome."
+      : "There's no way to sugarcoat this one. It's time to decide: is a last effort worth it, or is it time for the Rolodex? If things are ending, a graceful exit can still pave the way for referrals and future business.";
+    return (
+      <div>
+        <div style={{ textAlign: "center", marginBottom: 20 }}>
+          <div style={{ fontSize: 56, fontWeight: 900, color, letterSpacing: "-0.04em" }}>{score}%</div>
+          <div style={{ fontSize: 18, fontWeight: 700, color }}>{label}</div>
+          <p style={{ fontSize: 14, color: C.textSec, marginTop: 8 }}>{msg}</p>
+        </div>
+        <EmailGate title="You know the score. Now get the fix." />
+      </div>
+    );
+  };
+
+  const renderCalculator = () => {
+    const clients = parseInt(answers.clients) || 0;
+    const avgRev = parseInt(answers.avgRev) || 0;
+    const churnPct = parseInt(answers.churnPct) || 0;
+    const calculated = clients > 0 && avgRev > 0 && churnPct > 0;
+    const annualLoss = Math.round(clients * (churnPct / 100) * avgRev * 12);
+    const fivePctImprove = Math.round(annualLoss * 0.05 * 20);
+    return (
+      <div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 14, marginBottom: 20 }}>
+          <div>
+            <label style={{ fontSize: 13, fontWeight: 600, display: "block", marginBottom: 6 }}>How many active clients do you have?</label>
+            <input type="number" value={answers.clients || ""} onChange={e => setAnswers({ ...answers, clients: e.target.value })} placeholder="e.g. 12" style={{ width: "100%", padding: "12px 14px", border: "1.5px solid " + C.border, borderRadius: 12, fontSize: 15, fontFamily: "inherit", outline: "none", background: C.bg, boxSizing: "border-box" }} />
+          </div>
+          <div>
+            <label style={{ fontSize: 13, fontWeight: 600, display: "block", marginBottom: 6 }}>Average monthly revenue per client ($)</label>
+            <input type="number" value={answers.avgRev || ""} onChange={e => setAnswers({ ...answers, avgRev: e.target.value })} placeholder="e.g. 4000" style={{ width: "100%", padding: "12px 14px", border: "1.5px solid " + C.border, borderRadius: 12, fontSize: 15, fontFamily: "inherit", outline: "none", background: C.bg, boxSizing: "border-box" }} />
+          </div>
+          <div>
+            <label style={{ fontSize: 13, fontWeight: 600, display: "block", marginBottom: 6 }}>What % of clients do you lose per year?</label>
+            <input type="number" value={answers.churnPct || ""} onChange={e => setAnswers({ ...answers, churnPct: e.target.value })} placeholder="e.g. 20" style={{ width: "100%", padding: "12px 14px", border: "1.5px solid " + C.border, borderRadius: 12, fontSize: 15, fontFamily: "inherit", outline: "none", background: C.bg, boxSizing: "border-box" }} />
+          </div>
+        </div>
+        {calculated && (
+          <div style={{ marginBottom: 20 }}>
+            <div style={{ background: C.dangerBg, borderRadius: 14, padding: "24px", border: "1px solid " + C.danger + "44", textAlign: "center", marginBottom: 14 }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: C.danger, textTransform: "uppercase", letterSpacing: ".04em", marginBottom: 6 }}>You're losing</div>
+              <div style={{ fontSize: 44, fontWeight: 900, color: C.danger, letterSpacing: "-0.03em" }}>${annualLoss.toLocaleString()}</div>
+              <div style={{ fontSize: 14, color: C.danger }}>per year to client churn</div>
+            </div>
+            <div style={{ background: C.primarySoft, borderRadius: 14, padding: "24px", border: "1px solid " + C.primary + "44", textAlign: "center" }}>
+              <div style={{ fontSize: 11, fontWeight: 700, color: C.primary, textTransform: "uppercase", letterSpacing: ".04em", marginBottom: 6 }}>A 5% retention improvement =</div>
+              <div style={{ fontSize: 44, fontWeight: 900, color: C.primary, letterSpacing: "-0.03em" }}>+${fivePctImprove.toLocaleString()}</div>
+              <div style={{ fontSize: 14, color: C.primary }}>in profit impact (at 95% margin on retained revenue)</div>
+            </div>
+          </div>
+        )}
+        {calculated && <EmailGate title="Ready to reduce your churn?" />}
+      </div>
+    );
+  };
+
+  const renderProfile = () => {
+    const total = profileDims.length;
+    if (step < total) {
+      const dim = profileDims[step];
+      const val = sliderVals[dim.key];
+      const hasVal = val !== undefined;
+      return (
+        <div>
+          <div style={{ display: "flex", gap: 3, marginBottom: 14 }}>{profileDims.map((_, i) => <div key={i} style={{ flex: 1, height: 3, borderRadius: 2, background: i <= step ? C.primary : C.borderLight }} />)}</div>
+          <p style={{ fontSize: 11, color: C.textMuted, marginBottom: 6 }}>{step + 1} of {total}</p>
+          <p style={{ fontSize: 18, fontWeight: 700, marginBottom: 4 }}>{dim.name}</p>
+          <div style={{ textAlign: "center", marginBottom: 8 }}>
+            <span style={{ fontSize: 36, fontWeight: 900, color: hasVal ? C.primary : C.borderLight }}>{hasVal ? val : "—"}</span>
+          </div>
+          <div style={{ padding: "0 4px", marginBottom: 6 }}>
+            <input type="range" min="0" max="10" value={hasVal ? val : 5} onChange={e => setSliderVals({ ...sliderVals, [dim.key]: parseInt(e.target.value) })} style={{ width: "100%", height: 6, appearance: "none", WebkitAppearance: "none", background: `linear-gradient(to right, ${C.border} 0%, ${C.primary} 100%)`, borderRadius: 3, outline: "none", cursor: "pointer" }} />
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", fontSize: 11, color: C.textMuted, marginBottom: 14 }}>
+            <span>{dim.left}</span><span>{dim.right}</span>
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            {step > 0 ? <BackBtn onClick={() => setStep(step - 1)} /> : <div />}
+            <NextBtn onClick={() => hasVal && setStep(step + 1)} disabled={!hasVal} label={step < total - 1 ? "Next" : "See Profile"} />
+          </div>
+        </div>
+      );
+    }
+    const loyalty = (sliderVals.loyaltySignal || 5) / 10;
+    const trust = (sliderVals.trustLevel || 5) / 10;
+    const baseline = Math.round((loyalty * 0.30 + trust * 0.20 + 0.50) * 100);
+    const label = baseline >= 75 ? "Strong" : baseline >= 55 ? "Stable" : baseline >= 35 ? "Watch" : "At Risk";
+    const color = baseline >= 75 ? C.success : baseline >= 55 ? C.warning : C.danger;
+    return (
+      <div>
+        <div style={{ textAlign: "center", marginBottom: 16 }}>
+          <div style={{ fontSize: 56, fontWeight: 900, color, letterSpacing: "-0.04em" }}>{baseline}%</div>
+          <div style={{ fontSize: 18, fontWeight: 700, color }}>{label}</div>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 6, marginBottom: 20 }}>
+          {profileDims.map(d => (
+            <div key={d.key} style={{ display: "flex", justifyContent: "space-between", padding: "8px 10px", background: C.bg, borderRadius: 8, fontSize: 12 }}>
+              <span style={{ color: C.textSec }}>{d.name}</span>
+              <span style={{ fontWeight: 700, color: C.primary }}>{sliderVals[d.key]}</span>
+            </div>
+          ))}
+        </div>
+        <EmailGate title="Want to level up your client relationships?" />
+      </div>
+    );
+  };
+
+  const renderSimulator = () => {
+    const total = simScenarios.length;
+    if (step < total) {
+      const s = simScenarios[step];
+      const picked = answers[step];
+      const revealed = picked !== undefined;
+      return (
+        <div>
+          <div style={{ display: "flex", gap: 4, marginBottom: 16 }}>{Array.from({ length: total }).map((_, i) => <div key={i} style={{ flex: 1, height: 3, borderRadius: 2, background: i <= step ? C.primary : C.borderLight }} />)}</div>
+          <p style={{ fontSize: 11, color: C.textMuted, marginBottom: 6 }}>Scenario {step + 1} of {total}</p>
+          <p style={{ fontSize: 18, fontWeight: 700, marginBottom: 8 }}>{s.title}</p>
+          <p style={{ fontSize: 14, color: C.textSec, lineHeight: 1.55, marginBottom: 16 }}>{s.setup}</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {s.opts.map((o, i) => (
+              <div key={i} onClick={() => !revealed && setAnswers({ ...answers, [step]: i })} style={{ padding: "14px 16px", borderRadius: 10, cursor: revealed ? "default" : "pointer", background: revealed && picked === i ? (o.score === "A" ? C.primarySoft : o.score === "B" ? C.warningBg : C.dangerBg) : C.bg, border: "1.5px solid " + (revealed && picked === i ? (o.score === "A" ? C.primary : o.score === "B" ? C.warning : C.danger) : C.borderLight) }}>
+                <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4 }}>{o.label}</div>
+                <div style={{ fontSize: 13, color: C.textSec, fontStyle: "italic" }}>{o.desc}</div>
+                {revealed && picked === i && (
+                  <div style={{ marginTop: 10, padding: "10px 12px", background: "rgba(0,0,0,0.03)", borderRadius: 8 }}>
+                    <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 4 }}>Grade: {o.score}</div>
+                    <p style={{ fontSize: 13, color: C.textSec, lineHeight: 1.5 }}>{o.outcome}</p>
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+          <div style={{ display: "flex", justifyContent: "space-between", marginTop: 14 }}>
+            {step > 0 ? <BackBtn onClick={() => setStep(step - 1)} /> : <div />}
+            {revealed && <NextBtn onClick={() => setStep(step + 1)} label={step < total - 1 ? "Next" : "See Results"} />}
+          </div>
+        </div>
+      );
+    }
+    const grades = simScenarios.map((s, i) => s.opts[answers[i]]?.score || "?");
+    return (
+      <div>
+        <div style={{ textAlign: "center", marginBottom: 20 }}>
+          <div style={{ display: "flex", justifyContent: "center", gap: 12, marginBottom: 12 }}>
+            {grades.map((g, i) => (
+              <div key={i} style={{ width: 56, height: 56, borderRadius: 12, background: g === "A" ? C.primarySoft : g === "B" ? C.warningBg : C.dangerBg, border: "2px solid " + (g === "A" ? C.primary : g === "B" ? C.warning : C.danger), display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, fontWeight: 900, color: g === "A" ? C.primary : g === "B" ? C.warning : C.danger }}>{g}</div>
+            ))}
+          </div>
+          <div style={{ fontSize: 18, fontWeight: 700 }}>{grades.filter(g => g === "A").length >= 3 ? "Strong conversational instincts." : "Most people avoid these conversations entirely."}</div>
+          <p style={{ fontSize: 14, color: C.textSec, marginTop: 8 }}>The right words at the right time save accounts. The wrong ones — or no words at all — lose them.</p>
+        </div>
+        <EmailGate />
+      </div>
+    );
+  };
+
+  const renderers = { health: renderHealth, calculator: renderCalculator, profile: renderProfile, simulator: renderSimulator };
 
   return (
     <div className="resources-page">
@@ -2086,19 +3218,19 @@ function Blog({ setPage }) {
               <div style={{ padding: "24px 28px" }}>
                 <div style={{ fontSize: 11, color: C.textMuted, letterSpacing: "0.1em", textTransform: "uppercase", fontWeight: 700 }}>{featured.read} · Adam Lawrence</div>
                 <h3 style={{ fontSize: 26, fontWeight: 900, lineHeight: 1.2, marginTop: 8, color: C.text, letterSpacing: "-0.02em" }}>{featured.title}</h3>
-                <p style={{ fontSize: 14, color: C.textSec, marginTop: 10, lineHeight: 1.6 }}>{featured.sub}</p>
-                <span style={{ color: C.btn, fontSize: 13.5, fontWeight: 800, marginTop: 14, display: "inline-block", cursor: "pointer" }}>Read post →</span>
+                <p style={{ fontSize: 14, color: C.textSec, marginTop: 10, lineHeight: 1.6 }}>{featured.excerpt}</p>
+                <span onClick={() => setPage("post:" + featured.slug)} style={{ color: C.btn, fontSize: 13.5, fontWeight: 800, marginTop: 14, display: "inline-block", cursor: "pointer" }}>Read post →</span>
               </div>
             </div>
 
             <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               {sideFeatured.map(p => (
-                <div key={p.title} className="ret-card" style={{ padding: "22px 24px", flex: 1 }}>
+                <div key={p.slug} className="ret-card ret-card-hover" style={{ padding: "22px 24px", flex: 1, cursor: "pointer" }} onClick={() => setPage("post:" + p.slug)}>
                   <MiniTag color="primary">{p.tag}</MiniTag>
                   <div style={{ fontSize: 11, color: C.textMuted, marginTop: 8, fontWeight: 600, letterSpacing: "0.05em" }}>{p.read}</div>
                   <h4 style={{ fontSize: 17, fontWeight: 800, lineHeight: 1.25, marginTop: 8, color: C.text, letterSpacing: "-0.01em" }}>{p.title}</h4>
-                  <p style={{ fontSize: 13, color: C.textSec, marginTop: 6, lineHeight: 1.55 }}>{p.sub}</p>
-                  <span style={{ color: C.btn, fontSize: 13, fontWeight: 800, marginTop: 10, display: "inline-block", cursor: "pointer" }}>Read →</span>
+                  <p style={{ fontSize: 13, color: C.textSec, marginTop: 6, lineHeight: 1.55 }}>{p.excerpt}</p>
+                  <span style={{ color: C.btn, fontSize: 13, fontWeight: 800, marginTop: 10, display: "inline-block" }}>Read →</span>
                 </div>
               ))}
             </div>
@@ -2111,6 +3243,21 @@ function Blog({ setPage }) {
       {/* ─── LIBRARY + FILTER ─── */}
       <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
         <div className="ret-section-inner">
+          {activeModule ? (
+            <div style={{ maxWidth: 640, margin: "0 auto" }}>
+              <button onClick={reset} style={{ background: "none", border: "none", fontSize: 13, fontWeight: 700, color: C.btn, cursor: "pointer", fontFamily: "inherit", marginBottom: 16, padding: 0 }}>← Back to all tools</button>
+              <div style={{ background: C.card, borderRadius: 16, padding: "28px 26px", border: "1px solid " + C.border, boxShadow: C.cardShadow }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 20 }}>
+                  <div style={{ width: 44, height: 44, borderRadius: 12, background: C.primaryGhost, border: "1px solid " + C.borderLight, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <ToolIcon name={activeModule} size={28} />
+                  </div>
+                  <h2 style={{ fontSize: 22, fontWeight: 800, margin: 0, letterSpacing: "-0.02em" }}>{modules.find(m => m.id === activeModule)?.title}</h2>
+                </div>
+                {renderers[activeModule]?.()}
+              </div>
+            </div>
+          ) : (
+          <>
           <div className="res-filter-row" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 32, flexWrap: "wrap", gap: 14 }}>
             <h2 className="ret-h2" style={{ fontSize: "clamp(28px, 4vw, 42px)", margin: 0 }}>The library.</h2>
             <div style={{ display: "inline-flex", background: C.card, padding: 5, borderRadius: 999, border: "1px solid " + C.borderLight, flexWrap: "wrap" }}>
@@ -2127,30 +3274,37 @@ function Blog({ setPage }) {
           </div>
 
           <div className="res-library-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16 }}>
-            {(filter === "All" || filter === "Tools") && RESOURCES_TOOLS.map(t => (
-              <div key={t.title} className="ret-card" style={{ padding: "24px 26px", background: "#EFE9FB" }}>
-                <MiniTag color="btn">{t.kind}</MiniTag>
-                <h4 style={{ fontSize: 17, fontWeight: 800, marginTop: 14, color: C.text, letterSpacing: "-0.01em" }}>{t.title}</h4>
+            {(filter === "All" || filter === "Tools") && RESOURCES_TOOLS.map(t => {
+              const modId = { "Retention Health Check": "health", "The Retention Calculator": "calculator", "Grade Your Client Relationship": "profile", "The Hard Conversation Simulator": "simulator" }[t.title];
+              return (
+              <div key={t.title} className="ret-card ret-card-hover" style={{ padding: "24px 26px", background: "#EFE9FB", cursor: "pointer" }} onClick={() => { reset(); setActiveModule(modId); window.scrollTo(0, 0); }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 12 }}>
+                  <div style={{ width: 46, height: 46, borderRadius: 12, background: C.card, border: "1px solid " + C.btnLight, display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <ToolIcon name={modId} size={28} />
+                  </div>
+                  <MiniTag color="btn">{t.kind}</MiniTag>
+                </div>
+                <h4 style={{ fontSize: 17, fontWeight: 800, color: C.text, letterSpacing: "-0.01em" }}>{t.title}</h4>
                 <p style={{ fontSize: 13.5, color: C.textSec, marginTop: 6, lineHeight: 1.55 }}>{t.sub}</p>
-                <span style={{ color: C.btn, fontSize: 13.5, fontWeight: 800, marginTop: 12, display: "inline-block", cursor: "pointer" }}>Start interactive →</span>
+                <span style={{ color: C.btn, fontSize: 13.5, fontWeight: 800, marginTop: 12, display: "inline-block" }}>Start interactive →</span>
               </div>
-            ))}
-            {(filter === "All" || filter === "Articles") && RESOURCES_POSTS.slice(3, 6).map(p => (
-              <div key={p.title} className="ret-card" style={{ padding: "24px 26px" }}>
+            );})}
+            {(filter === "All" || filter === "Articles") && restArticles.map(p => (
+              <div key={p.slug} className="ret-card ret-card-hover" style={{ padding: "24px 26px", cursor: "pointer" }} onClick={() => setPage("post:" + p.slug)}>
                 <MiniTag color="primary">{p.tag}</MiniTag>
                 <div style={{ fontSize: 11, color: C.textMuted, marginTop: 8, fontWeight: 600, letterSpacing: "0.05em" }}>{p.read}</div>
                 <h4 style={{ fontSize: 17, fontWeight: 800, lineHeight: 1.2, marginTop: 8, color: C.text, letterSpacing: "-0.01em" }}>{p.title}</h4>
-                <p style={{ fontSize: 13.5, color: C.textSec, marginTop: 6, lineHeight: 1.55 }}>{p.sub}</p>
-                <span style={{ color: C.btn, fontSize: 13.5, fontWeight: 800, marginTop: 10, display: "inline-block", cursor: "pointer" }}>Read →</span>
+                <p style={{ fontSize: 13.5, color: C.textSec, marginTop: 6, lineHeight: 1.55 }}>{p.excerpt}</p>
+                <span style={{ color: C.btn, fontSize: 13.5, fontWeight: 800, marginTop: 10, display: "inline-block" }}>Read →</span>
               </div>
             ))}
-            {(filter === "All" || filter === "Guides") && RESOURCES_GUIDES.map(g => (
-              <div key={g.name} className="ret-card" style={{ padding: "24px 26px" }}>
-                <MiniTag color="warning">{g.kind.split(" ")[0]}</MiniTag>
-                <h4 style={{ fontSize: 17, fontWeight: 800, marginTop: 14, color: C.text, letterSpacing: "-0.01em" }}>{g.name}</h4>
-                <p style={{ fontSize: 13.5, color: C.textSec, marginTop: 6, lineHeight: 1.55 }}>{g.sub}</p>
-                <div style={{ fontSize: 11.5, color: C.textMuted, marginTop: 8, fontWeight: 600 }}>{g.kind}</div>
-                <span style={{ color: C.btn, fontSize: 13.5, fontWeight: 800, marginTop: 12, display: "inline-block", cursor: "pointer" }}>↓ Download</span>
+            {(filter === "All" || filter === "Guides") && guidePosts.map(g => (
+              <div key={g.slug} className="ret-card ret-card-hover" style={{ padding: "24px 26px", cursor: "pointer" }} onClick={() => setPage("post:" + g.slug)}>
+                <MiniTag color="warning">{g.tag}</MiniTag>
+                <h4 style={{ fontSize: 17, fontWeight: 800, marginTop: 14, color: C.text, letterSpacing: "-0.01em" }}>{g.title}</h4>
+                <p style={{ fontSize: 13.5, color: C.textSec, marginTop: 6, lineHeight: 1.55 }}>{g.excerpt}</p>
+                <div style={{ fontSize: 11.5, color: C.textMuted, marginTop: 8, fontWeight: 600 }}>{g.read}</div>
+                <span style={{ color: C.btn, fontSize: 13.5, fontWeight: 800, marginTop: 12, display: "inline-block" }}>Read guide →</span>
               </div>
             ))}
             {(filter === "All" || filter === "Webinars") && RESOURCES_WEBINARS.map(w => (
@@ -2162,10 +3316,12 @@ function Blog({ setPage }) {
                 <div style={{ fontFamily: "'Courier New', monospace", fontSize: 11.5, color: C.primaryLight, marginTop: 10, fontWeight: 600 }}>{w.date} · {w.kind}</div>
                 <h4 style={{ fontSize: 17, fontWeight: 800, marginTop: 10, color: "#fff", letterSpacing: "-0.01em" }}>{w.title}</h4>
                 <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.7)", marginTop: 6, lineHeight: 1.55 }}>{w.sub}</p>
-                <span style={{ color: C.primaryLight, fontSize: 13.5, fontWeight: 800, marginTop: 12, display: "inline-block", cursor: "pointer" }}>{w.kind === "Upcoming" ? "Reserve a seat →" : "Watch →"}</span>
+                <span style={{ color: C.primaryLight, fontSize: 13.5, fontWeight: 800, marginTop: 12, display: "inline-block" }}>{w.kind === "Coming soon" ? "Notify me →" : w.kind === "Upcoming" ? "Reserve a seat →" : "Watch →"}</span>
               </div>
             ))}
           </div>
+          </>
+          )}
         </div>
       </section>
 
@@ -3136,18 +4292,18 @@ function Platform({ setPage }) {
 
   // 12 dimensions used across the scoring engine
   const dims = [
-    { name: "Trust", weight: "15%" },
-    { name: "Loyalty", weight: "15%" },
-    { name: "Expectations", weight: "15%" },
-    { name: "Grace", weight: "15%" },
-    { name: "Communication", weight: "5%" },
-    { name: "Responsiveness", weight: "5%" },
-    { name: "Tone", weight: "5%" },
-    { name: "Sentiment", weight: "5%" },
-    { name: "Engagement", weight: "5%" },
-    { name: "Alignment", weight: "5%" },
-    { name: "Stability", weight: "5%" },
-    { name: "Depth", weight: "5%" },
+    { name: "Trust", tier: "Core" },
+    { name: "Loyalty", tier: "Core" },
+    { name: "Expectations", tier: "Core" },
+    { name: "Grace", tier: "Core" },
+    { name: "Communication", tier: "Signal" },
+    { name: "Responsiveness", tier: "Signal" },
+    { name: "Tone", tier: "Signal" },
+    { name: "Sentiment", tier: "Signal" },
+    { name: "Engagement", tier: "Signal" },
+    { name: "Alignment", tier: "Signal" },
+    { name: "Stability", tier: "Signal" },
+    { name: "Depth", tier: "Signal" },
   ];
 
   // Combination signal examples
@@ -3230,7 +4386,7 @@ function Platform({ setPage }) {
           border: 1px solid ${C.borderLight}; font-size: 13px;
         }
         .plat-dim-name { color: ${C.text}; font-weight: 600; }
-        .plat-dim-weight { color: ${C.primary}; font-weight: 700; font-variant-numeric: tabular-nums; }
+        .plat-dim-weight { color: ${C.primary}; font-weight: 700; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
 
         /* Two surfaces section */
         .plat-surfaces {
@@ -3250,7 +4406,7 @@ function Platform({ setPage }) {
         sub="Relationship intelligence, health monitoring, and pipeline management in one system. Our AI isn't just smart — it's emotionally intelligent."
         primaryCta="Start Free Trial"
         primaryAction="signup"
-        secondaryCta="See pricing"
+        secondaryCta="See Pricing"
         secondaryAction="pricing"
         setPage={setPage}
       />
@@ -3429,7 +4585,7 @@ function Platform({ setPage }) {
               {dims.map(d => (
                 <div key={d.name} className="plat-dim-chip">
                   <span className="plat-dim-name">{d.name}</span>
-                  <span className="plat-dim-weight">{d.weight}</span>
+                  <span className="plat-dim-weight" style={{ color: d.tier === "Core" ? C.primary : C.textMuted }}>{d.tier}</span>
                 </div>
               ))}
             </div>
@@ -3471,7 +4627,7 @@ function Platform({ setPage }) {
             <div className="ret-card">
               <div style={{ fontSize: 11, fontWeight: 700, color: C.primary, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 12 }}>For your agents</div>
               <h3 className="ret-h3">MCP tools and REST endpoints.</h3>
-              <p style={{ fontSize: 15, color: C.textSec, lineHeight: 1.7, margin: 0 }}>Point your agent stack at Retayned and every client in your book is instantly available with full relationship context. Agents handle the 80%. Humans handle the 20% that matters most.</p>
+              <p style={{ fontSize: 15, color: C.textSec, lineHeight: 1.7, margin: 0 }}>Point your agent stack at Retayned and every client in your book is instantly available with full relationship context. Whatever you don't route to a person, your agents can handle, with the same scoring and playbooks underneath.</p>
             </div>
           </div>
         </div>
@@ -3624,8 +4780,7 @@ function FreelancerWeb() {
           <circle key={"n" + i} cx={n.x} cy={n.y} r={sevR[n.sev]} fill={sevColor[n.sev]} stroke="#F2EEE8" strokeWidth="2" />
         ))}
         <circle cx="220" cy="220" r="32" fill={C.primary} />
-        <text x="220" y="218" textAnchor="middle" fill="#fff" fontFamily="'Caveat', cursive" fontSize="16" fontWeight="700">you</text>
-        <text x="220" y="234" textAnchor="middle" fill="rgba(255,255,255,0.55)" fontFamily="'Courier New', monospace" fontSize="9">team-of-one</text>
+        <text x="220" y="226" textAnchor="middle" fill="#fff" fontFamily="'Caveat', cursive" fontSize="18" fontWeight="700">you</text>
       </svg>
       <div style={{ display: "flex", justifyContent: "center", gap: 18, fontSize: 11.5, color: C.textSec, marginTop: 12, flexWrap: "wrap" }}>
         <span style={{ display: "flex", alignItems: "center", gap: 6 }}><span style={{ width: 9, height: 9, borderRadius: 999, background: C.danger }} /> Drift signal</span>
@@ -3655,15 +4810,15 @@ function Freelancers({ setPage }) {
         <div className="ret-section-inner" style={{ maxWidth: 880 }}>
           <div className="ret-eyebrow">For freelancers & consultants</div>
           <h1 className="ret-h1" style={{ marginTop: 16 }}>
-            Open the app at 8:47am. Know exactly <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>who needs you</span> today.
+            Open the app at 8:47am. Know exactly who needs you today.
           </h1>
           <p style={{ marginTop: 22, fontSize: 17, color: C.textSec, lineHeight: 1.6, maxWidth: 620, marginInline: "auto" }}>
-            You're a team of one. Retayned is the operating system you didn't know was missing — the one that watches all 30 of your client relationships while you focus on the work.
+            Retayned is the operating system you didn't know was missing — the one that watches all your client relationships while you focus on the work.
           </p>
           <div style={{ marginTop: 28, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <button className="cta-btn" onClick={() => setPage("signup")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
           </div>
-          <div style={{ fontSize: 13, color: C.textSec, marginTop: 12 }}>$29/mo flat · no per-client fees · 14-day free trial</div>
+          <div style={{ fontSize: 13, color: C.textSec, marginTop: 12 }}>14-day free trial. Cancel anytime.</div>
         </div>
       </section>
 
@@ -3675,13 +4830,13 @@ function Freelancers({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">The freelancer reality</div>
             <h2 className="ret-h2" style={{ marginTop: 12 }}>
-              You carry 30 clients in your <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>head.</span>
+              You carry 25 clients in your head.
             </h2>
             <p style={{ marginTop: 16, fontSize: 16, color: C.textSec, lineHeight: 1.6, maxWidth: 640, marginInline: "auto" }}>
               You remember Rachel's daughter just started kindergarten. You remember James hates phone calls before 11. By Thursday, you've been in 14 Zooms, written 3 proposals, and three of those details have gone missing.
             </p>
             <p style={{ marginTop: 16, fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: 22, lineHeight: 1.4, maxWidth: 640, marginInline: "auto" }}>
-              You're not forgetting because you don't care. You're forgetting because no brain holds 30 relationships at this fidelity.
+              You're not forgetting because you don't care. You're forgetting because no brain holds 25 relationships at this fidelity.
             </p>
           </div>
           <FreelancerWeb />
@@ -3694,21 +4849,21 @@ function Freelancers({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">Your weekly rhythm</div>
             <h2 className="ret-h2" style={{ marginTop: 12 }}>
-              A small move every day. <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>Nothing burns down.</span>
+              A small move every day. Nothing burns down.
             </h2>
           </div>
           <div className="fr-week-grid" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 14, maxWidth: 1100, margin: "0 auto" }}>
             {[
-              { d: "MON", t: "Today screen", b: "6 tasks ranked. Most expensive first.", tag: "velocity" },
-              { d: "TUE", t: "Two fixes", b: "Send the scripts Rai drafted in your voice.", tag: "scripts" },
-              { d: "WED", t: "One referral", b: "Ask the client whose readiness score crossed 80.", tag: "referrals" },
-              { d: "THU", t: "Health check", b: "Five questions, two minutes. Catch drift early.", tag: "health" },
-              { d: "FRI", t: "Look back", b: "Score deltas this week. What you saved. What you missed.", tag: "review" },
+              { d: "MON", t: "Read the Brief", b: "Rai swept your whole book overnight. Open Today to a ranked list and her read on who moved and why.", tag: "Today · Rai" },
+              { d: "TUE", t: "Send two scripts", b: "Two relationships need words, not work. Rai drafts them in your voice. You edit a line and send.", tag: "Rai" },
+              { d: "WED", t: "Ask while it's warm", b: "A client's referral-readiness crossed the line. Make the intro now, before the moment cools.", tag: "Referrals" },
+              { d: "THU", t: "Run a health check", b: "Pick the account your gut flags. A few honest questions re-score the relationship and surface the drift.", tag: "Health" },
+              { d: "FRI", t: "Work the warm pipeline", b: "Revisit the Rolodex. A former client just hit a trigger worth a no-pressure reconnect.", tag: "Rolodex" },
             ].map(d => (
               <div key={d.d} className="ret-card" style={{ padding: "22px 20px" }}>
                 <div style={{ fontFamily: "'Courier New', monospace", fontSize: 11, letterSpacing: "0.16em", color: C.btn, fontWeight: 800 }}>{d.d}</div>
                 <div style={{ fontWeight: 800, fontSize: 16, marginTop: 12, color: C.text, letterSpacing: "-0.01em" }}>{d.t}</div>
-                <div style={{ fontSize: 13, color: C.textSec, marginTop: 6, lineHeight: 1.55, minHeight: 50 }}>{d.b}</div>
+                <div style={{ fontSize: 13, color: C.textSec, marginTop: 6, lineHeight: 1.55, minHeight: 72 }}>{d.b}</div>
                 <div style={{ marginTop: 12 }}>
                   <span style={{ display: "inline-block", padding: "4px 10px", background: "#EFE9FB", color: C.btn, borderRadius: 999, fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.14em" }}>{d.tag}</span>
                 </div>
@@ -3730,7 +4885,7 @@ function Freelancers({ setPage }) {
           <div style={{ maxWidth: 920, margin: "0 auto" }}>
             {[
               { t: "08:47", h: "Open Today.", b: "Six tasks ranked by impact. The most expensive one — Rachel — is right at the top." },
-              { t: "09:02", h: "Fix Rachel.", b: "Tap Talk to Rai. Get four script options. Send the second one in your voice." },
+              { t: "09:02", h: "Fix Rachel.", b: "Open Rai. Get four script options. Send the second one in your voice." },
               { t: "09:14", h: "Two referrals.", b: "Nika is at 89 referral-readiness. You ask for the intro before getting on the work." },
               { t: "12:30", h: "Lunch.", b: "A reply comes in from Rachel. Score moves from 38 to 56. Logged automatically." },
               { t: "15:40", h: "A signal.", b: "Push notification: Wes's renewal moved to 14 days. New task added to tomorrow." },
@@ -3756,7 +4911,7 @@ function Freelancers({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">Your math</div>
             <h2 className="ret-h2" style={{ marginTop: 12 }}>
-              The math is <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>not subtle.</span>
+              The math is <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>not</span> subtle.
             </h2>
           </div>
           <div className="ret-card" style={{ maxWidth: 620, margin: "0 auto", padding: "30px 36px" }}>
@@ -3792,10 +4947,10 @@ function Freelancers({ setPage }) {
           <div className="ret-section-head"><div className="ret-eyebrow">Freelancer FAQ</div></div>
           <div>
             {[
-              ["Is this just a CRM?", "No. A CRM is a place to store data. Retayned tells you what to do with it. You won't feed it. It feeds you."],
-              ["How long does setup take?", "About 12 minutes. Connect email, calendar, and your existing client list. Retayned scores everyone overnight."],
-              ["What if I have one client?", "Then the math is even easier. Solo is $29/mo flat no matter how many clients you manage. Save that one client once, and you're covered for years."],
-              ["Will my client know I'm using it?", "No. Retayned reads signals from your side of the relationship. Your clients see you, not the system."],
+              ["Is this just a CRM?", "No. A CRM is a place to store data; you feed it and it sits there. Retayned reads the data and tells you what to do with it. It feeds you, not the other way around."],
+              ["How long does setup take?", "Minutes, not days. Connect your email and calendar, bring in your existing client list, and Retayned scores every relationship overnight. You wake up to a ranked book."],
+              ["What if I only have a few clients?", "Then it's even simpler to stay on top of. Solo is $29/mo flat and covers up to 25 managed clients, with unlimited advisory beyond that. Save a single relationship once and the year has paid for itself."],
+              ["Will my client know I'm using it?", "No. Retayned works from your side of the relationship — your notes, your calendar, the patterns you observe. It never contacts your clients. They see you, not the system."],
             ].map(([q, a]) => (
               <div key={q} style={{ padding: "18px 0", borderBottom: "1px solid " + C.borderLight }}>
                 <div style={{ fontWeight: 800, fontSize: 15, color: C.text, letterSpacing: "-0.01em" }}>{q}</div>
@@ -3810,7 +4965,7 @@ function Freelancers({ setPage }) {
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingBottom: 88 }}>
         <div className="ret-section-inner" style={{ maxWidth: 720 }}>
           <h2 className="ret-h2" style={{ marginTop: 12 }}>
-            You'll never carry 30 clients in your head <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>alone</span> again.
+            Stop carrying your whole book <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>in your head.</span>
           </h2>
           <button className="cta-btn" onClick={() => setPage("signup")} style={{ marginTop: 24, padding: "16px 36px", fontSize: 16, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
           <div style={{ fontSize: 13, color: C.textSec, marginTop: 12 }}>14-day free trial. Cancel anytime.</div>
@@ -3883,10 +5038,10 @@ function Agencies({ setPage }) {
         <div className="ret-section-inner" style={{ maxWidth: 940 }}>
           <div className="ret-eyebrow">For agencies & studios</div>
           <h1 className="ret-h1" style={{ marginTop: 16 }}>
-            Your best AM just left. Your best clients won't.
+            Know which clients <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>need</span> you before they go dark.
           </h1>
-          <p style={{ marginTop: 22, fontSize: 17, color: C.textSec, lineHeight: 1.6, maxWidth: 640, marginInline: "auto" }}>
-            Retayned is the institutional memory layer for your book of business. Account managers come and go. The intelligence — every signal, every health score, every conversation worth remembering — stays with the agency.
+          <p style={{ marginTop: 22, fontSize: 17, color: C.textSec, lineHeight: 1.6, maxWidth: 660, marginInline: "auto" }}>
+            Retayned is the operating system for your agency's client relationships. Every account scored, every AM's book in one view, every at-risk relationship surfaced early.
           </p>
           <div style={{ marginTop: 28, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <button className="cta-btn" onClick={() => setPage("signup")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
@@ -3937,7 +5092,7 @@ function Agencies({ setPage }) {
                 <li>+ Every account, scored across 12 dimensions</li>
                 <li>+ Handoff brief generated in 30 seconds</li>
                 <li>+ Continuity from day one for the new AM</li>
-                <li>+ Zero churn during transition (avg over 47 handoffs)</li>
+                <li>+ The relationship holds steady through the transition</li>
               </ul>
             </div>
           </div>
@@ -4006,10 +5161,10 @@ function Agencies({ setPage }) {
           </div>
           <div className="ag-rhythm-grid" style={{ maxWidth: 940, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
             {[
-              { c: "Daily", t: "AM huddle", b: "Yesterday's deltas. Today's top three accounts to touch." },
-              { c: "Weekly", t: "Portfolio sweep", b: "Drift signals across the book. Reassign or escalate." },
-              { c: "Monthly", t: "Health check", b: "Five-question structured pulse on every account." },
-              { c: "Quarterly", t: "Renewal forecast", b: "Readiness scoring + churn risk for next 90 days." },
+              { c: "Daily", t: "The morning read", b: "Rai's overnight sweep ranks the whole book. The team opens to today's accounts; the owner sees the portfolio at a glance." },
+              { c: "Weekly", t: "Portfolio sweep", b: "Drift signals across every AM's book. Decide what to escalate, reassign, or step into directly." },
+              { c: "Monthly", t: "Health checks", b: "Structured pulse on each account so the score reflects the relationship, not last quarter's guess." },
+              { c: "Quarterly", t: "Renewal forecast", b: "Referral-readiness and churn risk across the next 90 days, so renewals start as conversations, not scrambles." },
             ].map(d => (
               <div key={d.c} className="ret-card" style={{ padding: "22px 20px" }}>
                 <div style={{ fontFamily: "'Courier New', monospace", fontSize: 11, letterSpacing: "0.16em", color: C.btn, fontWeight: 800, textTransform: "uppercase" }}>{d.c}</div>
@@ -4083,7 +5238,7 @@ function Agencies({ setPage }) {
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingBottom: 88 }}>
         <div className="ret-section-inner" style={{ maxWidth: 760 }}>
           <h2 className="ret-h2" style={{ marginTop: 12 }}>
-            The brain stays. <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>Even when people don't.</span>
+            Run the whole book from <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>one place.</span>
           </h2>
           <div style={{ marginTop: 24, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <button className="cta-btn" onClick={() => setPage("signup")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
@@ -4119,32 +5274,32 @@ function Enterprise({ setPage }) {
         @media (max-width: 480px) {
           .ent-rhythm-grid { grid-template-columns: 1fr !important; }
         }
+        .ent-hero { padding: 112px 48px 56px; }
+        @media (max-width: 760px) {
+          .ent-hero { padding: 72px 24px 48px; }
+        }
       `}</style>
 
       {/* HERO ON DARK */}
-      <section className="r-full-bleed" style={{ background: C.primaryDeep, color: "#fff", padding: "72px 48px 56px", textAlign: "center" }}>
-        <div className="ret-eyebrow ret-eyebrow-light">Retayned Enterprise · early access</div>
+      <section className="r-full-bleed ent-hero" style={{ background: C.primaryDeep, color: "#fff", textAlign: "center" }}>
+        <div className="ret-eyebrow ret-eyebrow-light">Retayned Enterprise · Coming Soon</div>
         <h1 className="ret-h1" style={{ color: "#fff", maxWidth: 920, margin: "16px auto 0" }}>
-          Account management <span style={{ fontFamily: "'Caveat', cursive", color: C.primaryLight, fontWeight: 700, fontSize: "1.05em" }}>as a service.</span>
+          A managed agent that tells your team the <span style={{ fontFamily: "'Caveat', cursive", color: C.primaryLight, fontWeight: 700, fontSize: "1.05em" }}>next right thing</span> to do.
         </h1>
         <p style={{ color: "rgba(255,255,255,0.78)", fontSize: 17.5, lineHeight: 1.6, marginTop: 22, maxWidth: 700, marginInline: "auto" }}>
-          One brain. Two surfaces. Your AMs run the 50 accounts that need a human. Your Rai agents run the 950 that need attention but not a meeting. Same signals. Same scoring. Same playbooks. One source of truth.
+          Retayned watches every account, scores every relationship, and surfaces the one move that matters most for each one. The only question is who acts on it: your people, your AI agents, or both. Same brain underneath.
         </p>
 
         {/* TWO-SURFACE VISUAL */}
         <div className="ent-surface-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 22, maxWidth: 1000, margin: "44px auto 0", textAlign: "left" }}>
           {[
-            { tag: "HUMAN SURFACE", t: "Strategic 50", sub: "Your AMs. Your top accounts. Quarterly reviews, real conversations, hand-crafted briefs.", n: "50", n2: "high-touch accounts" },
-            { tag: "AGENT SURFACE", t: "Long-tail 950", sub: "Rai. Reads signals. Sends approved scripts. Schedules check-ins. Escalates the moment it matters.", n: "950", n2: "agent-managed accounts" },
+            { tag: "FOR YOUR PEOPLE", t: "Account managers", sub: "Each AM opens to a ranked book and the next right action on every account — who to call, what to say, and why it matters today." },
+            { tag: "FOR YOUR AGENTS", t: "AI agents", sub: "Hand accounts to Retayned's agents. They read the signals, take approved actions, and escalate to a human the moment it matters." },
           ].map(c => (
             <div key={c.tag} style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 16, padding: "28px 30px" }}>
               <div style={{ fontFamily: "'Courier New', monospace", fontSize: 11, letterSpacing: "0.2em", color: "rgba(255,255,255,0.55)", fontWeight: 600 }}>{c.tag}</div>
-              <div style={{ fontSize: 30, fontWeight: 900, marginTop: 14, color: "#fff", letterSpacing: "-0.02em" }}>{c.t}</div>
+              <div style={{ fontSize: 26, fontWeight: 900, marginTop: 14, color: "#fff", letterSpacing: "-0.02em" }}>{c.t}</div>
               <div style={{ fontSize: 14, color: "rgba(255,255,255,0.7)", lineHeight: 1.6, marginTop: 12 }}>{c.sub}</div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 12, marginTop: 22, paddingTop: 18, borderTop: "1px solid rgba(255,255,255,0.1)" }}>
-                <div style={{ fontFamily: "'Caveat', cursive", fontSize: 48, fontWeight: 700, color: C.primaryLight, lineHeight: 1 }}>{c.n}</div>
-                <div style={{ fontSize: 12, color: "rgba(255,255,255,0.55)" }}>{c.n2}</div>
-              </div>
             </div>
           ))}
         </div>
@@ -4156,38 +5311,30 @@ function Enterprise({ setPage }) {
 
       <RetCurve from={C.primaryDeep} to="#F2EEE8" variant="leftCrest" />
 
-      {/* THE 50/950 PROBLEM */}
+      {/* HOW IT WORKS */}
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8" }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
-            <div className="ret-eyebrow">The 50 / 950 problem</div>
+            <div className="ret-eyebrow">How it works</div>
             <h2 className="ret-h2" style={{ marginTop: 12, maxWidth: 820, marginInline: "auto" }}>
-              Your enterprise has a thousand customers.<br />
-              <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>Fifty get attention.</span>
+              One brain reads the book. <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>You decide who acts.</span>
             </h2>
             <p style={{ marginTop: 18, fontSize: 16, color: C.textSec, lineHeight: 1.6, maxWidth: 660, marginInline: "auto" }}>
-              Account managers don't scale. They're expensive, they leave, and they cap out around fifty accounts apiece. So 95% of your customer base gets handled by automated nurture sequences and quarterly NPS surveys — exactly the relationship infrastructure that doesn't actually retain anyone.
-            </p>
-            <p style={{ marginTop: 18, fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: 22, maxWidth: 620, marginInline: "auto", lineHeight: 1.4 }}>
-              The long tail churns quietly. Then the spreadsheet asks why.
+              Retayned scores every account and figures out the next right action for each relationship. From there, the work flows wherever you point it — to a person, to an agent, or to both at once.
             </p>
           </div>
-
-          <div style={{ maxWidth: 920, margin: "0 auto" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 10, fontSize: 12, color: C.textSec, fontFamily: "'Courier New', monospace", letterSpacing: "0.06em", fontWeight: 600 }}>
-              <span>1,000 active accounts</span>
-              <span>covered by humans →</span>
-            </div>
-            <div style={{ height: 40, borderRadius: 10, overflow: "hidden", display: "flex", border: "1px solid " + C.borderLight }}>
-              <div style={{ width: "5%", background: C.btn, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontWeight: 800, fontSize: 12.5 }}>50</div>
-              <div style={{ width: "95%", background: C.bg, borderLeft: "1px dashed " + C.borderLight, display: "flex", alignItems: "center", justifyContent: "center", color: C.textSec, fontSize: 12.5, fontStyle: "italic" }}>
-                the silent 950
+          <div className="ret-grid-3">
+            {[
+              { h: "It watches every account", p: "Email, calendar, product usage, billing, support — every signal feeds a live Retention Score on every relationship, not just the few that get a human." },
+              { h: "It names the next right action", p: "For each account, Retayned surfaces the one move that matters most right now, and the reasoning behind it. No dashboards to interpret, no guessing." },
+              { h: "Your team or your agents act on it", p: "Route an account to an AM and it shows up in their book. Route it to a Retayned agent and it gets handled, with escalation to a human the moment it needs one." },
+            ].map((s, i) => (
+              <div key={i} className="ret-card">
+                <div style={{ fontSize: 11, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>0{i + 1}</div>
+                <h3 className="ret-h3">{s.h}</h3>
+                <p style={{ fontSize: 14.5, color: C.textSec, lineHeight: 1.6, margin: 0 }}>{s.p}</p>
               </div>
-            </div>
-            <div style={{ display: "flex", justifyContent: "space-between", marginTop: 12, fontSize: 13, color: C.textSec }}>
-              <span><strong style={{ color: C.text, fontWeight: 800 }}>~5%</strong> get an AM</span>
-              <span><strong style={{ color: C.text, fontWeight: 800 }}>~95%</strong> get a newsletter</span>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -4225,7 +5372,7 @@ function Enterprise({ setPage }) {
               {[
                 { ep: "POST /accounts/score", d: "On-demand health score across 12 dimensions, callable from any system." },
                 { ep: "POST /signals/ingest", d: "Pipe behavioral signals from your warehouse — usage, billing, support, custom events." },
-                { ep: "POST /rai/handle", d: "Hand a long-tail account to a Rai agent. Returns a transcript and an outcome score." },
+                { ep: "POST /rai/handle", d: "Hand an account to a Retayned agent. Returns a transcript and an outcome score." },
                 { ep: "GET  /portfolio/rollup", d: "Org-wide portfolio view: AM rollups, vertical slices, cohort drift." },
                 { ep: "WEBHOOK score.dropped", d: "Fires the moment any account crosses a configurable drift threshold." },
               ].map(r => (
@@ -4265,9 +5412,9 @@ function Enterprise({ setPage }) {
           </div>
           <div className="ent-rhythm-grid" style={{ maxWidth: 940, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
             {[
-              { c: "Q+1 wk", t: "Drift sweep", b: "Every account scored. Top 5% drift cases routed to AMs. Rest handled by Rai." },
-              { c: "Q+3 wk", t: "Health checks", b: "Five-question structured pulse. Auto-sent for the long tail. Crafted briefs for the 50." },
-              { c: "Q+8 wk", t: "Renewal forecast", b: "Readiness + churn risk for next 90 days, by AM, by vertical, by ARR band." },
+              { c: "Q+1 wk", t: "Drift sweep", b: "Every account re-scored. The accounts that moved get routed — to an AM or to an agent, your call." },
+              { c: "Q+3 wk", t: "Health checks", b: "Structured pulse on each relationship. Handled by agents at scale, with crafted briefs where a human is leading." },
+              { c: "Q+8 wk", t: "Renewal forecast", b: "Readiness and churn risk for the next 90 days, sliced by team, by vertical, by ARR band." },
               { c: "Q+12 wk", t: "Strategic review", b: "Board-ready retention narrative. Cohort drift. Save vs. churn. ARR retained." },
             ].map(d => (
               <div key={d.c} className="ret-card" style={{ padding: "22px 20px" }}>
@@ -4351,13 +5498,13 @@ function Enterprise({ setPage }) {
 
       {/* FINAL CTA ON DARK */}
       <section className="r-full-bleed" style={{ background: C.primaryDeep, color: "#fff", padding: "80px 48px", textAlign: "center" }}>
-        <div className="ret-eyebrow ret-eyebrow-light">Early access · onboarding cohort 03</div>
+        <div className="ret-eyebrow ret-eyebrow-light">Retayned Enterprise · Coming Soon</div>
         <h2 className="ret-h2" style={{ color: "#fff", maxWidth: 780, margin: "18px auto 0" }}>
-          Two surfaces. One brain.<br />
-          <span style={{ fontFamily: "'Caveat', cursive", color: C.primaryLight, fontWeight: 700, fontSize: "1.05em" }}>Every account gets a relationship.</span>
+          One brain for the book.<br />
+          <span style={{ fontFamily: "'Caveat', cursive", color: C.primaryLight, fontWeight: 700, fontSize: "1.05em" }}>Your people, your agents, or both.</span>
         </h2>
         <p style={{ color: "rgba(255,255,255,0.72)", fontSize: 15.5, marginTop: 20, maxWidth: 600, marginInline: "auto", lineHeight: 1.6 }}>
-          Limited slots in our current onboarding cohort. White-glove deployment, dedicated solutions engineer, and direct access to the team that builds Retayned.
+          We're onboarding a small group of design partners now. White-glove deployment, a dedicated solutions engineer, and direct access to the team that builds Retayned.
         </p>
         <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 32, flexWrap: "wrap" }}>
           <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Request Early Access</button>
@@ -4381,7 +5528,7 @@ function FeatureToday({ setPage }) {
         sub="Today tells you who needs you most — right now. Tasks are sorted by an invisible priority engine that weighs relationship health against business value."
         primaryCta="Start Free Trial"
         primaryAction="signup"
-        secondaryCta="See all features"
+        secondaryCta="See Features"
         secondaryAction="platform"
         setPage={setPage}
       />
@@ -4507,7 +5654,7 @@ function FeatureScoring({ setPage }) {
         sub="Every client gets a score from 1–99. It tells you exactly where the relationship stands — not where you hope it is."
         primaryCta="Start Free Trial"
         primaryAction="signup"
-        secondaryCta="See all features"
+        secondaryCta="See Features"
         secondaryAction="platform"
         setPage={setPage}
       />
@@ -4526,7 +5673,7 @@ function FeatureScoring({ setPage }) {
           </div>
           <div className="ret-grid-2">
             {[
-              { h: "12 weighted dimensions", p: "Trust, loyalty, expectations, grace — and eight more. Each client is scored on all twelve. The four big ones carry 15% weight; the other eight carry 5%." },
+              { h: "12 weighted dimensions", p: "Trust, loyalty, expectations, grace — and eight more. Each client is scored on all twelve. A core few carry the most weight; the rest refine the read." },
               { h: "20 combination signals", p: "When specific pairs of low dimensions show up together — like low trust plus low grace — a combination fires. \"No Room to Operate.\" \"Ice Wall.\" \"Silent Exit.\" Patterns no single metric catches." },
               { h: "Qualifying facts + tenure", p: "Hard facts adjust the number directly — late payments, a prior termination, competing vendors pull it down; a referral origin and every year of tenure nudge it up." },
               { h: "Profile context", p: "Revenue concentration, LTV, and tenure act as a multiplier on the Today page's sort — so the score you see reflects business impact, not just relationship state." },
@@ -4657,7 +5804,7 @@ function FeatureHealth({ setPage }) {
         sub="Structured check-ins that surface what you already sense but haven't said out loud. They keep the relationship dimensions current — and those dimensions are the score, so an honest answer moves the number."
         primaryCta="Start Free Trial"
         primaryAction="signup"
-        secondaryCta="See all features"
+        secondaryCta="See Features"
         secondaryAction="platform"
         setPage={setPage}
       />
@@ -4790,7 +5937,7 @@ function FeatureRai({ setPage }) {
         sub="Rai is an AI advisor calibrated to your specific relationships. When you don't know what to say — the opening line, the tone, whether to call or email — Rai gives you the script."
         primaryCta="Start Free Trial"
         primaryAction="signup"
-        secondaryCta="See all features"
+        secondaryCta="See Features"
         secondaryAction="platform"
         setPage={setPage}
       />
@@ -4928,7 +6075,7 @@ function FeatureRolodex({ setPage }) {
         sub="The Rolodex tracks who left, how it ended, and whether they'd come back. One-off projects become re-engagement opportunities. Your pipeline is forward-looking."
         primaryCta="Start Free Trial"
         primaryAction="signup"
-        secondaryCta="See all features"
+        secondaryCta="See Features"
         secondaryAction="platform"
         setPage={setPage}
       />
@@ -5066,7 +6213,7 @@ function FeatureReferrals({ setPage }) {
         sub="Retayned tracks referral readiness based on loyalty, trust, and relationship depth. When a client is ready to refer, the system knows before you do."
         primaryCta="Start Free Trial"
         primaryAction="signup"
-        secondaryCta="See all features"
+        secondaryCta="See Features"
         secondaryAction="platform"
         setPage={setPage}
       />
@@ -5246,7 +6393,7 @@ function FeatureWorkers({ setPage }) {
         sub="You don't do every piece of the work yourself — but the contractor doing one task doesn't need the keys to your whole book. Workers is the lightweight bridge: hand off a single task with one secure link, and stay the hub for everything else."
         primaryCta="Start Free Trial"
         primaryAction="signup"
-        secondaryCta="See all features"
+        secondaryCta="See Features"
         secondaryAction="platform"
         setPage={setPage}
       />
@@ -5422,7 +6569,19 @@ const PAGE_META = {
 function pageFromPath(pathname) {
   // Trim trailing slash (except root), then lookup. Fallback to "home".
   const cleaned = pathname.length > 1 && pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
+  // Dynamic resource posts: /blog/<slug> or /guides/<slug>
+  const m = cleaned.match(/^\/(?:blog|guides)\/([a-z0-9-]+)$/);
+  if (m && RESOURCES_BY_SLUG[m[1]]) return "post:" + m[1];
   return PATH_TO_PAGE[cleaned] || "home";
+}
+
+// Resolve a page-state value to its URL path (handles dynamic post: pages).
+function pathForPage(p) {
+  if (p && p.startsWith("post:")) {
+    const post = RESOURCES_BY_SLUG[p.slice(5)];
+    if (post) return (post.kind === "guide" ? "/guides/" : "/blog/") + post.slug;
+  }
+  return PAGE_TO_PATH[p] || "/";
 }
 
 export default function RetaynedSite() {
@@ -5436,7 +6595,7 @@ export default function RetaynedSite() {
   const setPage = (next) => {
     setPageState(next);
     if (typeof window !== "undefined") {
-      const path = PAGE_TO_PATH[next] || "/";
+      const path = pathForPage(next);
       if (window.location.pathname !== path) {
         window.history.pushState({ page: next }, "", path);
       }
@@ -5456,7 +6615,12 @@ export default function RetaynedSite() {
   // Keep the document title + meta description in sync with the current page.
   useEffect(() => {
     if (typeof document === "undefined") return;
-    const meta = PAGE_META[page] || PAGE_META.home;
+    let meta = PAGE_META[page];
+    if (!meta && page && page.startsWith("post:")) {
+      const post = RESOURCES_BY_SLUG[page.slice(5)];
+      if (post) meta = { title: post.title + " — Retayned", desc: post.excerpt };
+    }
+    if (!meta) meta = PAGE_META.home;
     document.title = meta.title;
     const setMeta = (selector, attr, value) => {
       const el = document.querySelector(selector);
@@ -5467,7 +6631,7 @@ export default function RetaynedSite() {
     setMeta('meta[property="og:description"]', "content", meta.desc);
     setMeta('meta[name="twitter:title"]', "content", meta.title);
     setMeta('meta[name="twitter:description"]', "content", meta.desc);
-    const path = PAGE_TO_PATH[page] || "/";
+    const path = pathForPage(page);
     setMeta('meta[property="og:url"]', "content", "https://www.retayned.com" + (path === "/" ? "/" : path));
     let canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) canonical.setAttribute("href", "https://www.retayned.com" + (path === "/" ? "/" : path));
@@ -5729,7 +6893,7 @@ export default function RetaynedSite() {
           margin-bottom: clamp(8px, 0.5vw, 10px);
           animation: subtleBob 4s ease-in-out infinite;
         }
-        .v2-trust-dot { width: 6px; height: 6px; border-radius: 50%; background: ${C.success}; }
+        .v2-trust-dot { flex-shrink: 0; display: block; }
         .v2-hero-h1 {
           font-size: clamp(40px, 7.5vw, 104px);
           font-weight: 900; letter-spacing: -0.045em;
@@ -6385,6 +7549,7 @@ export default function RetaynedSite() {
         {page === "about" && <About setPage={setPage} />}
         {page === "faq" && <FAQPage setPage={setPage} />}
         {page === "blog" && <Blog setPage={setPage} />}
+        {page && page.startsWith("post:") && <BlogPost slug={page.slice(5)} setPage={setPage} />}
         {page === "contact" && <Contact setPage={setPage} />}
         {page === "login" && <Login setPage={setPage} />}
         {page === "signup" && <Signup setPage={setPage} />}
