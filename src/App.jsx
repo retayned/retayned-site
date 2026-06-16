@@ -140,7 +140,7 @@ const NAV_ICONS = {
   referrals: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><circle cx="6" cy="16" r="3.5" fill="#558B68" stroke="#2F2F31" strokeWidth="1.6"/><path d="M9.5 16 Q15 16 18 8" fill="none" stroke="#2F2F31" strokeWidth="1.6" strokeLinecap="round"/><path d="M9.5 16 Q15 16 18 24" fill="none" stroke="#2F2F31" strokeWidth="1.6" strokeLinecap="round"/><path d="M14 8 L18 7 L17 11" fill="none" stroke="#2F2F31" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/><path d="M14 24 L18 25 L17 21" fill="none" stroke="#2F2F31" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/><circle cx="22" cy="6" r="3" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6"/><circle cx="26" cy="14" r="3" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6"/><circle cx="22" cy="26" r="3" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6"/><path d="M9.5 16 Q18 16 23 14" fill="none" stroke="#2F2F31" strokeWidth="1.6" strokeLinecap="round"/></svg>,
   freelancers: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><ellipse cx="16" cy="25" rx="9" ry="2" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.4"/><path d="M8 14 L9.5 23 Q10 25 12 25 L20 25 Q22 25 22.5 23 L24 14 Z" fill="#558B68" stroke="#2F2F31" strokeWidth="1.6" strokeLinejoin="round"/><ellipse cx="16" cy="14" rx="8" ry="1.6" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.4"/><path d="M24 16 Q28 17 27 21 Q26 23 23 22.5" fill="none" stroke="#2F2F31" strokeWidth="1.6" strokeLinecap="round"/><path d="M14 11 Q12 8 14 6 Q16 4 15 2" fill="none" stroke="#2F2F31" strokeWidth="1.4" strokeLinecap="round"/><path d="M19 11 L20 9 L21 12 L22 8 L23 11" fill="none" stroke="#558B68" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/></svg>,
   agencies: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><path d="M19 5 Q26 5 26 11 Q26 16 21 17 L19 20 L19 17 Q14 16 14 11 Q14 5 19 5 Z" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6" strokeLinejoin="round"/><path d="M11 11 Q18 11 18 17 Q18 22 13 23 L11 26 L11 23 Q6 22 6 17 Q6 11 11 11 Z" fill="#558B68" stroke="#2F2F31" strokeWidth="1.6" strokeLinejoin="round"/><circle cx="9" cy="17" r="1" fill="#FCFCFE"/><circle cx="12" cy="17" r="1" fill="#FCFCFE"/><circle cx="15" cy="17" r="1" fill="#FCFCFE"/></svg>,
-  enterprise: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><rect x="4" y="14" width="11" height="14" rx="1" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6"/><line x1="9.5" y1="14" x2="9.5" y2="28" stroke="#2F2F31" strokeWidth="1"/><line x1="4" y1="20" x2="15" y2="20" stroke="#2F2F31" strokeWidth="1" opacity="0.6"/><rect x="14" y="10" width="9" height="18" rx="1" fill="#558B68" stroke="#2F2F31" strokeWidth="1.6"/><line x1="14" y1="18" x2="23" y2="18" stroke="#FCFCFE" strokeWidth="1" opacity="0.7"/><line x1="18.5" y1="10" x2="18.5" y2="28" stroke="#FCFCFE" strokeWidth="1" opacity="0.7"/><rect x="22" y="16" width="7" height="12" rx="1" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6"/><line x1="22" y1="22" x2="29" y2="22" stroke="#2F2F31" strokeWidth="1" opacity="0.6"/><line x1="25.5" y1="16" x2="25.5" y2="11" stroke="#2F2F31" strokeWidth="1.4"/><path d="M25.5 11 L29 12 L25.5 13.5 Z" fill="#558B68" stroke="#2F2F31" strokeWidth="1.2" strokeLinejoin="round"/></svg>,
+  workers: <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"><circle cx="11" cy="11" r="4" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6"/><path d="M4 25 Q4 17 11 17 Q15 17 17 19" fill="#558B68" stroke="#2F2F31" strokeWidth="1.6" strokeLinejoin="round"/><path d="M17 13 L27 13 Q29 13 29 15 L29 21 Q29 23 27 23 L21 23 L18 26 L19 23 Q17 23 17 21 Z" fill="#FCFCFE" stroke="#2F2F31" strokeWidth="1.6" strokeLinejoin="round"/><path d="M20 18 L22.5 20.5 L27 15.5" fill="none" stroke="#558B68" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>,
 };
 
 function NavIcon({ name, size = 20 }) {
@@ -183,12 +183,13 @@ function Nav({ page, setPage }) {
   };
 
   const features = [
-    { id: "feature-today", label: "Today", desc: "One page. Every priority.", icon: "today" },
-    { id: "feature-scoring", label: "Retention Score", desc: "1–99, based on 12 dimensions.", icon: "retention-score" },
-    { id: "feature-health", label: "Health Checks", desc: "Five questions. Two minutes.", icon: "health-checks" },
-    { id: "feature-rai", label: "Talk to Rai", desc: "AI advisor for your book.", icon: "talk-to-rai" },
+    { id: "feature-today", label: "Today", desc: "Rai ranks the day's work.", icon: "today" },
+    { id: "feature-scoring", label: "Clients", desc: "Scored and sorted by what matters.", icon: "retention-score" },
+    { id: "feature-health", label: "Health", desc: "Catch drift before damage.", icon: "health-checks" },
     { id: "feature-rolodex", label: "Rolodex", desc: "Forward-looking pipeline.", icon: "rolodex" },
     { id: "feature-referrals", label: "Referrals", desc: "Who's ready, with data.", icon: "referrals" },
+    { id: "feature-workers", label: "Workers", desc: "Delegate by secure link.", icon: "workers" },
+    { id: "feature-rai", label: "Rai", desc: "AI advisor for your book.", icon: "talk-to-rai" },
   ];
   const solutions = [
     { id: "freelancers", label: "Freelancers", desc: "For the one person holding every relationship.", icon: "freelancers" },
@@ -515,11 +516,12 @@ function Footer({ setPage }) {
           <h5>Product</h5>
           <a href="/platform" onClick={(e) => { e.preventDefault(); setPage("platform"); }}>Platform</a>
           <a href="/features/today" onClick={(e) => { e.preventDefault(); setPage("feature-today"); }}>Today</a>
-          <a href="/features/retention-score" onClick={(e) => { e.preventDefault(); setPage("feature-scoring"); }}>Retention Score</a>
-          <a href="/features/health-checks" onClick={(e) => { e.preventDefault(); setPage("feature-health"); }}>Health Checks</a>
-          <a href="/features/talk-to-rai" onClick={(e) => { e.preventDefault(); setPage("feature-rai"); }}>Talk to Rai</a>
+          <a href="/features/clients" onClick={(e) => { e.preventDefault(); setPage("feature-scoring"); }}>Clients</a>
+          <a href="/features/health" onClick={(e) => { e.preventDefault(); setPage("feature-health"); }}>Health</a>
           <a href="/features/rolodex" onClick={(e) => { e.preventDefault(); setPage("feature-rolodex"); }}>Rolodex</a>
           <a href="/features/referrals" onClick={(e) => { e.preventDefault(); setPage("feature-referrals"); }}>Referrals</a>
+          <a href="/features/workers" onClick={(e) => { e.preventDefault(); setPage("feature-workers"); }}>Workers</a>
+          <a href="/features/rai" onClick={(e) => { e.preventDefault(); setPage("feature-rai"); }}>Rai</a>
         </div>
         <div className="v2-footer-col">
           <h5>Who it's for</h5>
@@ -852,12 +854,13 @@ function HomeV2({ setPage }) {
   }, []);
 
   const homeTabs = [
-    { id: "today", label: "Today", icon: "◉", headline: "One page. Every priority.", sub: "Your Today tab knows which clients need you most — right now. Tasks are sorted by an invisible priority engine that weighs relationship health against business value. Green clients surface first. At-risk clients with high revenue jump the line." },
-    { id: "scoring", label: "Retention Score", icon: "◎", headline: "A number that means something.", sub: "12 dimensions. 20 combination signals. Health check modifiers. Every client gets a Retention Score from 1–99 that tells you exactly where the relationship stands — not where you hope it is." },
-    { id: "health", label: "Health Checks", icon: "♡", headline: "Five questions. Two minutes. The truth.", sub: "Regular check-ins that detect drift before it becomes damage. Your answers blend directly into the Retention Score — bad news moves the number immediately. No lengthy forms. No busywork. Just the signal." },
-    { id: "rai", label: "Talk to Rai", icon: "✦", headline: "She writes the words you need when it matters most.", sub: "Rai is an AI advisor calibrated to your specific relationships. When you don't know what to say — the opening line, the tone, whether to call or email — Rai gives you the script." },
+    { id: "today", label: "Today", icon: "◉", headline: "One page. Every priority.", sub: "Your Today tab is where Rai suggests and ranks the work that matters most — tasks sorted by an invisible priority engine that weighs relationship health against business value. Green clients surface first. At-risk clients with high revenue jump the line." },
+    { id: "scoring", label: "Clients", icon: "◎", headline: "Every relationship, scored and sorted.", sub: "Your client list, ranked by what matters. Each client carries a Retention Score built from 12 weighted dimensions and 20 combination signals — a 1–99 read on exactly where the relationship stands, not where you hope it does." },
+    { id: "health", label: "Health", icon: "♡", headline: "Catch the drift before it becomes damage.", sub: "Structured check-ins that surface what you already sense but haven't said out loud. The twelve relationship dimensions assess health directly, so keeping a profile current keeps its score honest. No lengthy forms. Just the signal." },
     { id: "rolodex", label: "Rolodex", icon: "⟐", headline: "Your pipeline is forward-looking.", sub: "Former clients aren't dead relationships — they're future revenue. The Rolodex tracks who left, how it ended, and whether they'd come back. One-off projects become re-engagement opportunities." },
     { id: "referrals", label: "Referrals", icon: "⟡", headline: "Your best clients send you their friends.", sub: "Retayned tracks referral readiness based on loyalty, trust, and relationship depth. When a client is ready to refer, the system knows before you do." },
+    { id: "workers", label: "Workers", icon: "⟿", headline: "Delegate the task. Keep the relationship.", sub: "Hand a single task to a contractor or VA with one secure link — no account, no login, no access to the rest of your book. The work flows outward; you stay the hub." },
+    { id: "rai", label: "Rai", icon: "✦", headline: "She writes the words you need when it matters most.", sub: "Rai is an AI advisor calibrated to your specific relationships. When you don't know what to say — the opening line, the tone, whether to call or email — Rai gives you the script." },
   ];
   const ht = homeTabs[activeTab];
 
@@ -1013,7 +1016,7 @@ function HomeV2({ setPage }) {
               <p className="v2-section-sub">Your pipeline is forward-looking. Your clients aren't in it. They're the business you've already earned — and most CRMs treat them like they're already safe.</p>
               <div className="v2-bullets">
                 <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>12-dimension retention scoring</strong> that measures relationship health, not transaction volume.</div></div>
-                <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>Health checks that blend into the score</strong> — five questions, two minutes, and the truth moves the number immediately.</div></div>
+                <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>Health checks that surface the truth</strong> — structured questions that name the drift you already sense, so you keep the profile current and the score honest.</div></div>
                 <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>Rai writes the words you need</strong> when it matters most — calibrated to your specific relationships.</div></div>
                 <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>Your Rolodex is future revenue</strong> — former clients become re-engagement opportunities, not dead weight.</div></div>
               </div>
@@ -1487,8 +1490,30 @@ function HomeV2({ setPage }) {
 
 // ═══ HOME ═══
 // ═══ PRICING — ported from final/pricing.html ═══
+const roiLabelStyle = { fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 700, color: C.textSec };
+const roiValueStyle = { fontWeight: 900, fontSize: 22, marginTop: 4, color: C.text, letterSpacing: "-0.02em" };
+
+// Defined at module scope (NOT inside ROICalculator) so its component identity
+// is stable across renders. A nested definition gets recreated every render,
+// which makes React remount the <input> mid-drag — causing janky, stepwise sliding.
+const ROISlider = ({ label, value, set, min, max, step, prefix = "", suffix = "" }) => (
+  <div>
+    <div style={roiLabelStyle}>{label}</div>
+    <div style={roiValueStyle}>{prefix}{value.toLocaleString()}{suffix}</div>
+    <input
+      type="range"
+      min={min}
+      max={max}
+      step={step}
+      value={value}
+      onChange={(e) => set(Number(e.target.value))}
+      style={{ width: "100%", marginTop: 10, accentColor: C.btn }}
+    />
+  </div>
+);
+
 function ROICalculator() {
-  const [clients, setClients] = useState(20);
+  const [clients, setClients] = useState(12);
   const [avgValue, setAvgValue] = useState(2500);
   const [savedRate, setSavedRate] = useState(15);
   const monthlyCost = 29;
@@ -1496,24 +1521,10 @@ function ROICalculator() {
   const revenueSaved = clientsSaved * avgValue;
   const roi = monthlyCost > 0 ? Math.round(revenueSaved / monthlyCost) : 0;
 
-  const labelStyle = { fontSize: 11, letterSpacing: "0.14em", textTransform: "uppercase", fontWeight: 700, color: C.textSec };
-  const valueStyle = { fontWeight: 900, fontSize: 22, marginTop: 4, color: C.text, letterSpacing: "-0.02em" };
+  const labelStyle = roiLabelStyle;
+  const valueStyle = roiValueStyle;
 
-  const Slider = ({ label, value, set, min, max, step, prefix = "", suffix = "" }) => (
-    <div>
-      <div style={labelStyle}>{label}</div>
-      <div style={valueStyle}>{prefix}{value.toLocaleString()}{suffix}</div>
-      <input
-        type="range"
-        min={min}
-        max={max}
-        step={step}
-        value={value}
-        onChange={(e) => set(Number(e.target.value))}
-        style={{ width: "100%", marginTop: 10, accentColor: C.btn }}
-      />
-    </div>
-  );
+  const Slider = ROISlider;
 
   return (
     <div style={{ background: C.card, border: "1px solid " + C.borderLight, borderRadius: 18, padding: "32px 36px", boxShadow: "0 12px 40px rgba(28,50,36,0.06), 0 2px 6px rgba(28,50,36,0.04)" }}>
@@ -1522,7 +1533,7 @@ function ROICalculator() {
         <span style={{ fontSize: 12, color: C.textMuted }}>Move the sliders →</span>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 28, marginTop: 20 }} className="pricing-roi-grid">
-        <Slider label="Active clients" value={clients} set={setClients} min={5} max={100} step={1} />
+        <Slider label="Active clients" value={clients} set={setClients} min={1} max={25} step={1} />
         <Slider label="Avg client value / mo" value={avgValue} set={setAvgValue} min={250} max={10000} step={50} prefix="$" />
         <Slider label="Churn prevented" value={savedRate} set={setSavedRate} min={1} max={50} step={1} suffix="%" />
       </div>
@@ -1548,9 +1559,10 @@ function ROICalculator() {
 function Pricing({ setPage }) {
   const features = [
     "Today (prioritized tasks, ranked by impact)",
-    "Retention Score (1–99 · 12 dimensions)",
-    "Health Checks (monthly cadence, scored drift)",
-    "Talk to Rai · unlimited, calibrated scripts",
+    "Today (Rai-ranked tasks, by impact)",
+    "Clients (scored 1–99 · 12 dimensions)",
+    "Health (relationship drift detection)",
+    "Rai · calibrated scripts (fair-use limits)",
     "Rolodex of former clients, ready to re-engage",
     "Referrals · readiness scoring, right-time asks",
     "5 team seats included · +$19 per extra seat",
@@ -1565,18 +1577,18 @@ function Pricing({ setPage }) {
       priceSub: "25 managed clients · unlimited advisory clients",
       points: [
         "Everything in Retayned, every feature",
-        "Today, Retention Score, Health Checks",
-        "Unlimited Talk to Rai",
+        "Today, Clients, Health",
+        "Unlimited Rai (within fair-use limits)",
         "Rolodex + Referrals",
         "Daily exports + CSV",
       ],
       cta: "Start Free Trial",
       action: "signup",
-      featured: false,
+      featured: true,
     },
     {
-      name: "Agency",
-      tagline: "For human teams sharing a book of business.",
+      name: "Team",
+      tagline: "For human teams and agencies sharing a book of business.",
       price: "$99",
       priceSub: "5 seats included · +$19 / extra seat / mo · no client cap",
       points: [
@@ -1588,7 +1600,7 @@ function Pricing({ setPage }) {
       ],
       cta: "Start Free Trial",
       action: "signup",
-      featured: true,
+      featured: false,
     },
     {
       name: "Enterprise",
@@ -1635,12 +1647,12 @@ function Pricing({ setPage }) {
           One price. Every feature. No surprises.
         </h1>
         <p style={{ fontSize: 17, lineHeight: 1.55, color: "rgba(255,255,255,0.65)", maxWidth: 540, margin: "20px auto 0" }}>
-          Every plan unlocks the entire platform — including advanced AI built on frontier models. No feature gates, nothing held back for a higher tier.
+          Every plan unlocks the entire platform — including advanced AI features. Nothing gated, nothing held back for a higher tier.
         </p>
 
         <div style={{ marginTop: 36 }}>
           <button className="cta-btn" onClick={() => setPage("signup")} style={{ padding: "16px 36px", fontSize: 16, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
-          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginTop: 14 }}>14-day free trial · cancel anytime</div>
+          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginTop: 14 }}>14-day free trial. Cancel anytime.</div>
         </div>
 
         {/* Single restrained proof row */}
@@ -1851,7 +1863,6 @@ function About({ setPage }) {
       <RetPageStyles />
       <style>{`
         @media (max-width: 760px) {
-          .about-vocab { font-size: 22px !important; gap: 18px !important; }
           .about-founder-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
           .about-timeline { grid-template-columns: 1fr 1fr !important; gap: 32px 16px !important; }
           .about-timeline-line { display: none !important; }
@@ -1863,22 +1874,16 @@ function About({ setPage }) {
         <div className="ret-section-inner" style={{ maxWidth: 880 }}>
           <div className="ret-eyebrow">About Retayned</div>
           <h1 className="ret-h1" style={{ marginTop: 16, maxWidth: 880, marginInline: "auto" }}>
-            We didn't set out to build a CRM. We set out to keep the clients <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>nobody else does.</span>
+            We didn't set out to build a CRM. We set out to keep the clients <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>nobody else does.</span>
           </h1>
         </div>
       </section>
 
-      {/* Mixed-typography vocab row */}
-      <section className="r-full-bleed" style={{ background: "#F2EEE8", padding: "16px 48px 56px" }}>
-        <div className="about-vocab" style={{ display: "flex", justifyContent: "center", gap: 28, flexWrap: "wrap", alignItems: "baseline", fontSize: 30 }}>
-          <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 900, color: C.primary }}>Loyalty</span>
-          <span style={{ fontFamily: "'Caveat', cursive", fontStyle: "italic", color: C.btn, fontWeight: 700, fontSize: "1.15em" }}>Tenure</span>
-          <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 800, textTransform: "uppercase", color: C.danger, letterSpacing: "0.05em", fontSize: "0.85em" }}>SIGNAL</span>
-          <span style={{ fontFamily: "'Caveat', cursive", fontWeight: 600, color: C.warning, fontSize: "1.15em" }}>Words</span>
-          <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 900, color: C.success }}>Trust</span>
-          <span style={{ fontFamily: "'Caveat', cursive", fontStyle: "italic", color: C.primaryLight, fontWeight: 700, fontSize: "1.15em" }}>Receipts</span>
-          <span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 800, color: C.primary }}>Repeat</span>
-        </div>
+      {/* Subhead */}
+      <section className="r-full-bleed" style={{ background: "#F2EEE8", padding: "8px 48px 56px", textAlign: "center" }}>
+        <p style={{ maxWidth: 600, margin: "0 auto", fontSize: 18, lineHeight: 1.55, color: C.textSec }}>
+          Ten years of keeping clients other people lost — turned into the system that does it for you.
+        </p>
       </section>
 
       <RetCurve from="#F2EEE8" to={C.primaryDeep} variant="leftRise" />
@@ -1934,8 +1939,8 @@ function About({ setPage }) {
             <div>
               <div className="ret-eyebrow">What we believe</div>
               <div style={{ marginTop: 22 }}>
-                {values.map(v => (
-                  <div key={v.n} style={{ padding: "16px 0", borderBottom: "1px solid " + C.borderLight }}>
+                {values.map((v, i) => (
+                  <div key={v.n} style={{ padding: "18px 0", borderBottom: i < values.length - 1 ? "1px solid " + C.borderLight : "none" }}>
                     <div style={{ display: "flex", gap: 14, alignItems: "baseline" }}>
                       <span style={{ fontFamily: "'Courier New', monospace", fontSize: 11, color: C.btn, fontWeight: 800, letterSpacing: "0.05em" }}>{v.n}</span>
                       <strong style={{ fontSize: 15.5, color: C.text, letterSpacing: "-0.01em" }}>{v.t}</strong>
@@ -1957,7 +1962,7 @@ function About({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">The Timeline</div>
             <h2 className="ret-h2" style={{ marginTop: 12 }}>
-              How we got here, in <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>four moments.</span>
+              How we got here, in <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>four moments.</span>
             </h2>
           </div>
 
@@ -2059,7 +2064,7 @@ function Blog({ setPage }) {
           <div style={{ maxWidth: 760, margin: "0 auto" }}>
             <div className="ret-eyebrow">Resources</div>
             <h1 className="ret-h1" style={{ marginTop: 16 }}>
-              Field notes from the <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>retention business.</span>
+              Field notes from the <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>retention business.</span>
             </h1>
             <p style={{ marginTop: 18, fontSize: 17, color: C.textSec, lineHeight: 1.55 }}>Articles, tools, guides, and webinars. Free. No sign-up required.</p>
           </div>
@@ -2069,7 +2074,7 @@ function Blog({ setPage }) {
             <div className="ret-card" style={{ padding: 0, overflow: "hidden" }}>
               <div style={{ height: 280, background: "linear-gradient(135deg, " + C.primarySoft + ", #EFE9FB)", position: "relative" }}>
                 <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                  <div style={{ fontFamily: "'Caveat', cursive", fontSize: 72, color: C.btn, textAlign: "center", lineHeight: 0.9, fontWeight: 700 }}>
+                  <div style={{ fontFamily: "'Caveat', cursive", fontSize: 72, color: C.primary, textAlign: "center", lineHeight: 0.9, fontWeight: 700 }}>
                     the<br/><span style={{ fontFamily: "'Manrope', sans-serif", fontWeight: 900, color: C.primary, letterSpacing: "-0.04em", fontSize: 64 }}>SIGNAL</span>
                   </div>
                 </div>
@@ -2799,7 +2804,7 @@ const FAQ_DATA = [
   {
     label: "Pricing & Plans",
     questions: [
-      { q: "What does it cost?", a: "Flat, predictable pricing — no per-client fees. Solo is $29/mo for freelancers and consultants (25 managed clients, unlimited advisory). Agency is $99/mo for human teams: 5 seats included, $19 per extra seat, no client cap. Both include every feature — unlimited Rai chats, dynamic scoring, health checks, integrations — and a 14-day free trial. Enterprise (for autonomous agents and books at massive scale) is custom; contact us." },
+      { q: "What does it cost?", a: "Flat, predictable pricing — no per-client fees. Solo is $29/mo for freelancers and consultants (25 managed clients, unlimited advisory). Team is $99/mo for human teams and agencies: 5 seats included, $19 per extra seat, no client cap. Both include every feature — Rai chats (unlimited within fair-use limits), dynamic scoring, health checks, integrations — and a 14-day free trial. Enterprise (for autonomous agents and books at massive scale) is custom; contact us." },
     ],
   },
   {
@@ -3057,9 +3062,9 @@ function Terms({ setPage }) {
 
               <h3>5. Payment and Billing</h3>
               <p><strong>Subscription Plans.</strong> The Service is offered on a subscription basis. Current pricing is displayed on our pricing page. Prices are subject to change with 30 days' notice. Subscription fees are non-refundable except as described below.</p>
-              <p><strong>Subscription pricing.</strong> Retayned is offered on a flat monthly subscription basis across the plans described on our pricing page. The Agency plan includes a set number of team seats; additional seats beyond the included allotment are charged at the per-seat rate shown on the pricing page in effect at the start of each billing period.</p>
+              <p><strong>Subscription pricing.</strong> Retayned is offered on a flat monthly subscription basis across the plans described on our pricing page. The Team plan includes a set number of team seats; additional seats beyond the included allotment are charged at the per-seat rate shown on the pricing page in effect at the start of each billing period.</p>
               <p><strong>Free Trial.</strong> We may offer a free trial period. At the end of the trial, your subscription will begin automatically unless you cancel before the trial ends. We will notify you before charging.</p>
-              <p><strong>Billing.</strong> Fees are billed on a recurring basis (monthly or annual, depending on your plan) through Stripe. You authorize us to charge your payment method on file for all applicable fees, including any additional seat charges on the Agency plan.</p>
+              <p><strong>Billing.</strong> Fees are billed on a recurring basis (monthly or annual, depending on your plan) through Stripe. You authorize us to charge your payment method on file for all applicable fees, including any additional seat charges on the Team plan.</p>
               <p><strong>Cancellation.</strong> You may cancel your subscription at any time. Cancellation takes effect at the end of your current billing period. You will retain access to the Service until then. We do not provide prorated refunds for partial billing periods.</p>
               <p><strong>Refunds.</strong> If you are dissatisfied with the Service, you may request a refund within 14 days of your first paid subscription charge. Refund requests after 14 days are handled at our discretion.</p>
 
@@ -3117,12 +3122,13 @@ function Terms({ setPage }) {
 // PLATFORM — one page linking to all six feature pages
 // ═══════════════════════════════════════════════════════════════
 const PLATFORM_FEATURES = [
-  { id: "feature-today", label: "Today", headline: "One page. Every priority.", sub: "Your Today tab knows which clients need you most — right now. Tasks are sorted by an invisible priority engine that weighs relationship health against business value." },
-  { id: "feature-scoring", label: "Retention Score", headline: "A number that means something.", sub: "12 dimensions. 20 combination signals. Health check modifiers. Every client gets a Retention Score from 1–99 that tells you exactly where the relationship stands." },
-  { id: "feature-health", label: "Health Checks", headline: "Five questions. Two minutes. The truth.", sub: "Regular check-ins that detect drift before it becomes damage. Your answers blend directly into the Retention Score — bad news moves the number immediately." },
-  { id: "feature-rai", label: "Talk to Rai", headline: "She writes the words you need when it matters most.", sub: "Rai is an AI advisor calibrated to your specific relationships. When you don't know what to say, Rai gives you the script." },
+  { id: "feature-today", label: "Today", headline: "One page. Every priority.", sub: "Your Today tab is where Rai suggests and ranks the work that matters most — tasks sorted by an invisible priority engine that weighs relationship health against business value, so you always know who needs you right now." },
+  { id: "feature-scoring", label: "Clients", headline: "Every relationship, scored and sorted.", sub: "Your client list, ranked by what matters. Each client carries a Retention Score built from 12 weighted dimensions and 20 combination signals — a 1–99 read on exactly where the relationship stands." },
+  { id: "feature-health", label: "Health", headline: "Catch the drift before it becomes damage.", sub: "Structured check-ins that surface what you already sense but haven't said out loud. The twelve relationship dimensions assess health directly, so keeping a profile current keeps its score honest." },
   { id: "feature-rolodex", label: "Rolodex", headline: "Your pipeline is forward-looking.", sub: "Former clients aren't dead relationships — they're future revenue. The Rolodex tracks who left, how it ended, and whether they'd come back." },
   { id: "feature-referrals", label: "Referrals", headline: "Your best clients send you their friends.", sub: "Retayned tracks referral readiness based on loyalty, trust, and relationship depth. When a client is ready to refer, the system knows before you do." },
+  { id: "feature-workers", label: "Workers", headline: "Delegate the task. Keep the relationship.", sub: "Hand a single task to a contractor or VA with one secure link — no account, no login, no access to the rest of your book. You stay the hub; the work flows outward." },
+  { id: "feature-rai", label: "Rai", headline: "She writes the words you need when it matters most.", sub: "Rai is an AI advisor calibrated to your specific relationships. When you don't know what to say, Rai gives you the script." },
 ];
 
 function Platform({ setPage }) {
@@ -3495,7 +3501,7 @@ function Platform({ setPage }) {
 
       <RetFinalCTA
         h2="Every feature, every relationship."
-        sub="Flat pricing. $29/mo Solo, $99/mo Agency. No per-client fees."
+        sub="Flat pricing. $29/mo Solo, $99/mo Team. No per-client fees."
         setPage={setPage}
       />
 
@@ -3649,7 +3655,7 @@ function Freelancers({ setPage }) {
         <div className="ret-section-inner" style={{ maxWidth: 880 }}>
           <div className="ret-eyebrow">For freelancers & consultants</div>
           <h1 className="ret-h1" style={{ marginTop: 16 }}>
-            Open the app at 8:47am. Know exactly <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>who needs you</span> today.
+            Open the app at 8:47am. Know exactly <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>who needs you</span> today.
           </h1>
           <p style={{ marginTop: 22, fontSize: 17, color: C.textSec, lineHeight: 1.6, maxWidth: 620, marginInline: "auto" }}>
             You're a team of one. Retayned is the operating system you didn't know was missing — the one that watches all 30 of your client relationships while you focus on the work.
@@ -3669,12 +3675,12 @@ function Freelancers({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">The freelancer reality</div>
             <h2 className="ret-h2" style={{ marginTop: 12 }}>
-              You carry 30 clients in your <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>head.</span>
+              You carry 30 clients in your <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>head.</span>
             </h2>
             <p style={{ marginTop: 16, fontSize: 16, color: C.textSec, lineHeight: 1.6, maxWidth: 640, marginInline: "auto" }}>
               You remember Rachel's daughter just started kindergarten. You remember James hates phone calls before 11. By Thursday, you've been in 14 Zooms, written 3 proposals, and three of those details have gone missing.
             </p>
-            <p style={{ marginTop: 16, fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: 22, lineHeight: 1.4, maxWidth: 640, marginInline: "auto" }}>
+            <p style={{ marginTop: 16, fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: 22, lineHeight: 1.4, maxWidth: 640, marginInline: "auto" }}>
               You're not forgetting because you don't care. You're forgetting because no brain holds 30 relationships at this fidelity.
             </p>
           </div>
@@ -3688,7 +3694,7 @@ function Freelancers({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">Your weekly rhythm</div>
             <h2 className="ret-h2" style={{ marginTop: 12 }}>
-              A small move every day. <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>Nothing burns down.</span>
+              A small move every day. <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>Nothing burns down.</span>
             </h2>
           </div>
           <div className="fr-week-grid" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 14, maxWidth: 1100, margin: "0 auto" }}>
@@ -3750,7 +3756,7 @@ function Freelancers({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">Your math</div>
             <h2 className="ret-h2" style={{ marginTop: 12 }}>
-              The math is <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>not subtle.</span>
+              The math is <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>not subtle.</span>
             </h2>
           </div>
           <div className="ret-card" style={{ maxWidth: 620, margin: "0 auto", padding: "30px 36px" }}>
@@ -3804,7 +3810,7 @@ function Freelancers({ setPage }) {
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingBottom: 88 }}>
         <div className="ret-section-inner" style={{ maxWidth: 720 }}>
           <h2 className="ret-h2" style={{ marginTop: 12 }}>
-            You'll never carry 30 clients in your head <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>alone</span> again.
+            You'll never carry 30 clients in your head <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>alone</span> again.
           </h2>
           <button className="cta-btn" onClick={() => setPage("signup")} style={{ marginTop: 24, padding: "16px 36px", fontSize: 16, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
           <div style={{ fontSize: 13, color: C.textSec, marginTop: 12 }}>14-day free trial. Cancel anytime.</div>
@@ -3897,7 +3903,7 @@ function Agencies({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">The handoff problem</div>
             <h2 className="ret-h2" style={{ marginTop: 12 }}>
-              What walks out the door <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>when an AM does.</span>
+              What walks out the door <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>when an AM does.</span>
             </h2>
           </div>
           <div className="ret-card ag-handoff-grid" style={{ maxWidth: 880, margin: "0 auto", padding: 0, overflow: "hidden", display: "grid", gridTemplateColumns: "1fr 1fr", position: "relative" }}>
@@ -3944,7 +3950,7 @@ function Agencies({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">The portfolio view</div>
             <h2 className="ret-h2" style={{ marginTop: 12 }}>
-              One screen. <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>All your AMs, all their books.</span>
+              One screen. <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>All your AMs, all their books.</span>
             </h2>
           </div>
           <div className="ret-card" style={{ maxWidth: 1000, margin: "0 auto", padding: 0, overflow: "hidden" }}>
@@ -3995,7 +4001,7 @@ function Agencies({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">The agency rhythm</div>
             <h2 className="ret-h2" style={{ marginTop: 12 }}>
-              A heartbeat for your <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>book of business.</span>
+              A heartbeat for your <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>book of business.</span>
             </h2>
           </div>
           <div className="ag-rhythm-grid" style={{ maxWidth: 940, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
@@ -4023,14 +4029,14 @@ function Agencies({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">Agency math</div>
             <h2 className="ret-h2" style={{ marginTop: 12 }}>
-              8 AMs. <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>$156/mo.</span>
+              8 AMs. <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>$156/mo.</span>
             </h2>
           </div>
           <div className="ret-card" style={{ maxWidth: 620, margin: "0 auto", padding: "30px 36px" }}>
             <div style={{ textAlign: "center", fontSize: 11, letterSpacing: "0.18em", color: C.textSec, textTransform: "uppercase", fontWeight: 700 }}>
               Mid-size agency · 8 AMs · 120 active accounts · no client cap
             </div>
-            {[["Retayned Agency", "$99.00"], ["5 seats included", "$0.00"], ["3 extra seats × $19", "$57.00"], ["Per-client fees", "$0.00"], ["Total monthly cost", "$156.00"]].map(([k, v], i, a) => (
+            {[["Retayned Team", "$99.00"], ["5 seats included", "$0.00"], ["3 extra seats × $19", "$57.00"], ["Per-client fees", "$0.00"], ["Total monthly cost", "$156.00"]].map(([k, v], i, a) => (
               <div key={k} style={{ display: "flex", justifyContent: "space-between", padding: "14px 0", borderBottom: i < a.length - 1 ? "1px dashed " + C.borderLight : "none", fontSize: 14.5 }}>
                 <span style={{ color: C.textSec }}>{k}</span>
                 <span style={{ fontWeight: i === a.length - 1 ? 800 : 500, color: C.text }}>{v}</span>
@@ -4061,7 +4067,7 @@ function Agencies({ setPage }) {
             {[
               ["How does AM-level permissioning work?", "AMs see their own book by default. Managers see the full portfolio. Owners see the financials. Granular roles available on Enterprise."],
               ["Can we white-label client-facing artifacts?", "Yes — health-check exports and QBR briefs ship with your agency mark on Enterprise. Retayned itself stays internal-only."],
-              ["How does seat pricing work?", "Agency is $99/mo and includes 5 seats. Each additional seat is $19/mo — add or remove them as your team changes. There's no per-client fee and no client cap, so your book can grow without your bill tracking it."],
+              ["How does seat pricing work?", "Team is $99/mo and includes 5 seats. Each additional seat is $19/mo — add or remove them as your team changes. There's no per-client fee and no client cap, so your book can grow without your bill tracking it."],
               ["How does this fit alongside our existing CRM?", "Most agencies keep their CRM as the system of record for deals. Retayned plugs into it as the relationship-intelligence layer above. Two-way sync with HubSpot, Salesforce, Pipedrive, and Folk."],
             ].map(([q, a]) => (
               <div key={q} style={{ padding: "18px 0", borderBottom: "1px solid " + C.borderLight }}>
@@ -4077,7 +4083,7 @@ function Agencies({ setPage }) {
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingBottom: 88 }}>
         <div className="ret-section-inner" style={{ maxWidth: 760 }}>
           <h2 className="ret-h2" style={{ marginTop: 12 }}>
-            The brain stays. <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>Even when people don't.</span>
+            The brain stays. <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>Even when people don't.</span>
           </h2>
           <div style={{ marginTop: 24, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <button className="cta-btn" onClick={() => setPage("signup")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
@@ -4157,12 +4163,12 @@ function Enterprise({ setPage }) {
             <div className="ret-eyebrow">The 50 / 950 problem</div>
             <h2 className="ret-h2" style={{ marginTop: 12, maxWidth: 820, marginInline: "auto" }}>
               Your enterprise has a thousand customers.<br />
-              <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>Fifty get attention.</span>
+              <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>Fifty get attention.</span>
             </h2>
             <p style={{ marginTop: 18, fontSize: 16, color: C.textSec, lineHeight: 1.6, maxWidth: 660, marginInline: "auto" }}>
               Account managers don't scale. They're expensive, they leave, and they cap out around fifty accounts apiece. So 95% of your customer base gets handled by automated nurture sequences and quarterly NPS surveys — exactly the relationship infrastructure that doesn't actually retain anyone.
             </p>
-            <p style={{ marginTop: 18, fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: 22, maxWidth: 620, marginInline: "auto", lineHeight: 1.4 }}>
+            <p style={{ marginTop: 18, fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: 22, maxWidth: 620, marginInline: "auto", lineHeight: 1.4 }}>
               The long tail churns quietly. Then the spreadsheet asks why.
             </p>
           </div>
@@ -4194,7 +4200,7 @@ function Enterprise({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">Built like infrastructure</div>
             <h2 className="ret-h2" style={{ marginTop: 12 }}>
-              Account management with <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>an API.</span>
+              Account management with <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>an API.</span>
             </h2>
             <p style={{ marginTop: 16, fontSize: 16, color: C.textSec, lineHeight: 1.6, maxWidth: 660, marginInline: "auto" }}>
               Score any account on demand. Pipe signals from your data warehouse. Trigger Rai actions from any system in your stack. Webhook out the moment a relationship cools.
@@ -4254,7 +4260,7 @@ function Enterprise({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">The cadence</div>
             <h2 className="ret-h2" style={{ marginTop: 12 }}>
-              Quarterly retention <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>pulse.</span>
+              Quarterly retention <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>pulse.</span>
             </h2>
           </div>
           <div className="ent-rhythm-grid" style={{ maxWidth: 940, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
@@ -4282,7 +4288,7 @@ function Enterprise({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">Enterprise math</div>
             <h2 className="ret-h2" style={{ marginTop: 12 }}>
-              One retained account at <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontWeight: 700, fontSize: "1.05em" }}>$120k ARR</span> covers the year.
+              One retained account at <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>$120k ARR</span> covers the year.
             </h2>
           </div>
           <div className="ret-card" style={{ maxWidth: 660, margin: "0 auto", padding: "30px 36px" }}>
@@ -4496,7 +4502,7 @@ function FeatureScoring({ setPage }) {
     <div>
       <RetPageStyles />
       <RetHero
-        eyebrow="Retention Score"
+        eyebrow="Clients"
         h1="A number that means something."
         sub="Every client gets a score from 1–99. It tells you exactly where the relationship stands — not where you hope it is."
         primaryCta="Start Free Trial"
@@ -4515,14 +4521,14 @@ function FeatureScoring({ setPage }) {
             <div className="ret-eyebrow">How it works</div>
             <h2 className="ret-h2">How the score is built.</h2>
             <p className="ret-sub" style={{ maxWidth: 700, marginTop: 12 }}>
-              The Retention Score isn't a gut feeling. It's the blended output of four weighted inputs, updated every time new information lands.
+              The Retention Score isn't a gut feeling. It's the weighted output of how every relationship dimension is scored, adjusted for the facts that move risk, and updated every time you keep a profile current.
             </p>
           </div>
           <div className="ret-grid-2">
             {[
               { h: "12 weighted dimensions", p: "Trust, loyalty, expectations, grace — and eight more. Each client is scored on all twelve. The four big ones carry 15% weight; the other eight carry 5%." },
               { h: "20 combination signals", p: "When specific pairs of low dimensions show up together — like low trust plus low grace — a combination fires. \"No Room to Operate.\" \"Ice Wall.\" \"Silent Exit.\" Patterns no single metric catches." },
-              { h: "Health Check modifier", p: "Your regular check-ins blend in at 80/20. Bad news from a Health Check moves the score immediately." },
+              { h: "Qualifying facts + tenure", p: "Hard facts adjust the number directly — late payments, a prior termination, competing vendors pull it down; a referral origin and every year of tenure nudge it up." },
               { h: "Profile context", p: "Revenue concentration, LTV, and tenure act as a multiplier on the Today page's sort — so the score you see reflects business impact, not just relationship state." },
             ].map((s, i) => (
               <div key={i} className="ret-card">
@@ -4646,9 +4652,9 @@ function FeatureHealth({ setPage }) {
     <div>
       <RetPageStyles />
       <RetHero
-        eyebrow="Health Checks"
-        h1="Five questions. Two minutes. The truth."
-        sub="Regular check-ins that detect drift before it becomes damage. Your answers blend into the Retention Score immediately — bad news moves the number on impact."
+        eyebrow="Health"
+        h1="Catch the drift before it becomes damage."
+        sub="Structured check-ins that surface what you already sense but haven't said out loud. They keep the relationship dimensions current — and those dimensions are the score, so an honest answer moves the number."
         primaryCta="Start Free Trial"
         primaryAction="signup"
         secondaryCta="See all features"
@@ -4669,9 +4675,9 @@ function FeatureHealth({ setPage }) {
           </div>
           <div className="ret-grid-3">
             {[
-              { h: "Five questions, built for honesty", p: "Not \"how is the relationship?\" — that's too abstract to answer honestly. We ask about specific observable changes: tone, cadence, signals of stress, things that have shifted since baseline." },
+              { h: "Questions built for honesty", p: "Not \"how is the relationship?\" — that's too abstract to answer honestly. We ask about specific observable changes: tone, cadence, signals of stress, things that have shifted since baseline." },
               { h: "Cadence that matches reality", p: "Monthly for your critical accounts. Quarterly for your stable ones. Yearly for your thriving. You don't get pinged on a schedule that makes you lie to clear the queue." },
-              { h: "Answers blend at 80/20", p: "The Health Check score is 20% of the Retention Score. Not dominant — but enough that one bad check moves the number immediately. Drift shows up in real time." },
+              { h: "Answers update the score directly", p: "A check-in re-scores the relationship dimensions — and those twelve dimensions are the Retention Score itself. There's no separate, weaker signal to dilute it; honest answers move the number on impact." },
             ].map((s, i) => (
               <div key={i} className="ret-card">
                 <div style={{ fontSize: 11, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>0{i + 1}</div>
@@ -4779,7 +4785,7 @@ function FeatureRai({ setPage }) {
     <div>
       <RetPageStyles />
       <RetHero
-        eyebrow="Talk to Rai"
+        eyebrow="Rai"
         h1="She writes the words you need when it matters most."
         sub="Rai is an AI advisor calibrated to your specific relationships. When you don't know what to say — the opening line, the tone, whether to call or email — Rai gives you the script."
         primaryCta="Start Free Trial"
@@ -5184,6 +5190,179 @@ function FeatureReferrals({ setPage }) {
   );
 }
 
+function WorkersFlowGraphic() {
+  return (
+    <svg viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "auto", display: "block" }} role="img" aria-label="A task flows from the operator out to a worker via a secure link, and the completed result flows back.">
+      {/* connecting flow line */}
+      <line x1="170" y1="140" x2="350" y2="140" stroke={C.btnLight} strokeWidth="2" strokeDasharray="5 5" />
+      <line x1="490" y1="140" x2="560" y2="140" stroke={C.primaryLight} strokeWidth="2" strokeDasharray="5 5" />
+      {/* arrowheads */}
+      <path d="M348 134 L360 140 L348 146 Z" fill={C.btn} />
+      <path d="M558 134 L570 140 L558 146 Z" fill={C.primary} />
+
+      {/* OPERATOR (hub) */}
+      <g>
+        <circle cx="100" cy="140" r="52" fill={C.primarySoft} stroke={C.primary} strokeWidth="2" />
+        <circle cx="100" cy="118" r="15" fill={C.primary} />
+        <path d="M76 168 a24 22 0 0 1 48 0 Z" fill={C.primary} />
+        <text x="100" y="218" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="800" fill={C.text}>You</text>
+        <text x="100" y="236" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="11" fill={C.textSec}>The hub. Full picture.</text>
+      </g>
+
+      {/* SECURE LINK (middle) */}
+      <g>
+        <rect x="262" y="104" width="166" height="72" rx="14" fill={C.card} stroke={C.btn} strokeWidth="1.5" />
+        <circle cx="290" cy="140" r="15" fill="#EFE9FB" />
+        <path d="M285 139 v-4 a5 5 0 0 1 10 0 v4" fill="none" stroke={C.btn} strokeWidth="2" />
+        <rect x="284" y="139" width="12" height="9" rx="2" fill={C.btn} />
+        <text x="312" y="133" fontFamily="system-ui, sans-serif" fontSize="12.5" fontWeight="800" fill={C.text}>Secure link</text>
+        <text x="312" y="150" fontFamily="system-ui, sans-serif" fontSize="10.5" fill={C.textSec}>No login. No password.</text>
+        <text x="312" y="165" fontFamily="system-ui, sans-serif" fontSize="10.5" fill={C.btn} fontWeight="700">Expires in 7 days</text>
+        <text x="345" y="92" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="11" fill={C.textSec}>one task only →</text>
+      </g>
+
+      {/* WORKER */}
+      <g>
+        <circle cx="620" cy="140" r="52" fill={C.primaryGhost} stroke={C.primaryLight} strokeWidth="2" />
+        <circle cx="620" cy="118" r="15" fill={C.primaryLight} />
+        <path d="M596 168 a24 22 0 0 1 48 0 Z" fill={C.primaryLight} />
+        {/* check badge */}
+        <circle cx="652" cy="112" r="13" fill={C.success} />
+        <path d="M646 112 l4 4 l8 -8" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
+        <text x="620" y="218" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="800" fill={C.text}>Worker</text>
+        <text x="620" y="236" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="11" fill={C.textSec}>Sees one task. Marks done.</text>
+      </g>
+    </svg>
+  );
+}
+
+function FeatureWorkers({ setPage }) {
+  return (
+    <div>
+      <RetPageStyles />
+      <RetHero
+        eyebrow="Workers"
+        h1="Delegate the task. Keep the relationship."
+        sub="You don't do every piece of the work yourself — but the contractor doing one task doesn't need the keys to your whole book. Workers is the lightweight bridge: hand off a single task with one secure link, and stay the hub for everything else."
+        primaryCta="Start Free Trial"
+        primaryAction="signup"
+        secondaryCta="See all features"
+        secondaryAction="platform"
+        setPage={setPage}
+      />
+
+      <RetCurve from="#F2EEE8" to="#EAE4D6" variant="default" />
+
+      <section className="ret-section ret-bg-beige r-full-bleed">
+        <div className="ret-section-inner">
+          <div className="ret-section-head">
+            <div className="ret-eyebrow">How it works</div>
+            <h2 className="ret-h2">Send work out. Keep control in.</h2>
+            <p className="ret-sub" style={{ maxWidth: 700, marginTop: 12 }}>
+              Add a Worker with just a name and email. Assign them a task. They get a secure link, do the one thing, and that's it — no account, no access to the rest of your clients.
+            </p>
+          </div>
+          <div className="ret-grid-3">
+            {[
+              { h: "Add a Worker in seconds", p: "A name and an email — that's the whole setup. No invitation to accept, no seat to provision. A Worker isn't a user of Retayned; they're someone you send a piece of work to." },
+              { h: "One task, one secure link", p: "Assign a task to a Worker and Retayned emails them a magic link. They click it and see only that task — nothing about your other clients, your scores, or your book. The link expires after 7 days." },
+              { h: "They mark it done — you stay the hub", p: "The Worker completes the task and marks it done. The result flows back to you. You keep the full relationship picture; they got exactly what they needed and nothing more." },
+            ].map((s, i) => (
+              <div key={i} className="ret-card">
+                <div style={{ fontSize: 11, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>0{i + 1}</div>
+                <h3 className="ret-h3">{s.h}</h3>
+                <p style={{ fontSize: 14.5, color: C.textSec, lineHeight: 1.6, margin: 0 }}>{s.p}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <RetCurve from="#EAE4D6" to={C.bg} variant="dome" />
+
+      {/* Flow graphic */}
+      <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
+        <div className="ret-section-inner">
+          <div style={{ maxWidth: 760, margin: "0 auto", background: C.card, borderRadius: 20, border: "1px solid " + C.border, padding: "36px 32px", boxShadow: "0 20px 60px rgba(0,0,0,0.08)" }}>
+            <WorkersFlowGraphic />
+          </div>
+        </div>
+      </section>
+
+      {/* Seats vs Workers distinction */}
+      <section className="ret-section r-full-bleed" style={{ background: C.bg, paddingTop: 0 }}>
+        <div className="ret-section-inner">
+          <div className="ret-section-head">
+            <div className="ret-eyebrow">Seats vs. Workers</div>
+            <h2 className="ret-h2">Two different kinds of people.</h2>
+            <p className="ret-sub" style={{ maxWidth: 700, marginTop: 12 }}>
+              Seats are people who use Retayned. Workers are people Retayned reaches.
+            </p>
+          </div>
+          <div className="ret-grid-2" style={{ maxWidth: 820, margin: "0 auto" }}>
+            <div className="ret-card">
+              <div style={{ fontSize: 11, fontWeight: 800, color: C.primary, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>Seats · Team plan</div>
+              <h3 className="ret-h3">People who think inside Retayned.</h3>
+              <p style={{ fontSize: 14.5, color: C.textSec, lineHeight: 1.6, margin: 0 }}>
+                Account managers with their own login, their own dashboard, and an assigned book of clients. They work in the tool every day.
+              </p>
+            </div>
+            <div className="ret-card">
+              <div style={{ fontSize: 11, fontWeight: 800, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>Workers · Every plan</div>
+              <h3 className="ret-h3">People Retayned sends work out to.</h3>
+              <p style={{ fontSize: 14.5, color: C.textSec, lineHeight: 1.6, margin: 0 }}>
+                Contractors, VAs, and freelance collaborators. No login, no dashboard — just a secure link to one task at a time. They're recipients of work, not users.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Reframe */}
+      <section className="ret-section r-full-bleed" style={{ background: C.bg, paddingTop: 0 }}>
+        <div className="ret-section-inner">
+          <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
+            <h2 className="ret-h2" style={{ marginBottom: 14 }}>Delegation without surrender.</h2>
+            <p style={{ fontSize: 16, color: C.textSec, lineHeight: 1.75 }}>
+              Most tools force a choice: give someone full access, or do it yourself. Neither is right when you're a high-agency operator running your own book.
+              <br /><br />
+              <strong style={{ color: C.text }}>Workers lets the work flow outward while the relationship stays with you.</strong> You're still the one who knows the client, holds the context, and owns the outcome. The contractor just does the task.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <RetCurve from={C.bg} to="#F2EEE8" variant="default" />
+
+      <section className="ret-section ret-bg-cream r-full-bleed">
+        <div className="ret-section-inner">
+          <div className="ret-section-head">
+            <div className="ret-eyebrow">Related features</div>
+            <h2 className="ret-h2">Better together.</h2>
+          </div>
+          <div className="ret-grid-3">
+            {PLATFORM_FEATURES.filter(f => f.id !== "feature-workers").slice(0, 3).map(f => (
+              <div key={f.id} className="ret-card ret-card-hover" style={{ cursor: "pointer" }} onClick={() => setPage(f.id)}>
+                <div style={{ fontSize: 11, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>{f.label}</div>
+                <h3 style={{ fontSize: 18, fontWeight: 800, color: C.text, marginBottom: 8, lineHeight: 1.3, letterSpacing: "-0.015em" }}>{f.headline}</h3>
+                <p style={{ fontSize: 14, color: C.textSec, lineHeight: 1.6, margin: 0 }}>{f.sub}</p>
+                <div style={{ marginTop: 14, fontSize: 13, fontWeight: 700, color: C.btn }}>Learn more →</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <RetFinalCTA
+        h2="Hand off the task. Hold onto the relationship."
+        sub="Start free. Send your first Worker a task in under a minute."
+        setPage={setPage}
+      />
+      <Footer setPage={setPage} />
+    </div>
+  );
+}
+
 // ═══ MAIN APP ═══
 
 // Map between page state and URL paths. Pages not listed here have no URL.
@@ -5198,11 +5377,12 @@ const PAGE_TO_PATH = {
   platform: "/platform",
   faq: "/faq",
   "feature-today": "/features/today",
-  "feature-scoring": "/features/retention-score",
-  "feature-health": "/features/health-checks",
-  "feature-rai": "/features/talk-to-rai",
+  "feature-scoring": "/features/clients",
+  "feature-health": "/features/health",
   "feature-rolodex": "/features/rolodex",
   "feature-referrals": "/features/referrals",
+  "feature-workers": "/features/workers",
+  "feature-rai": "/features/rai",
   privacy: "/privacy",
   terms: "/terms",
   signup: "/signup",
@@ -5217,7 +5397,7 @@ const SITE_NAME = "Retayned";
 const DEFAULT_DESC = "Retayned tracks the health of relationships to predict churn before it happens — giving you precise, client-specific solutions to keep and grow the business you've earned.";
 const PAGE_META = {
   home: { title: "Retayned — Client Relationship Management", desc: DEFAULT_DESC },
-  pricing: { title: "Pricing — Retayned", desc: "Flat, predictable pricing with every feature included. Solo $29/mo, Agency $99/mo. No per-client fees, no feature gates. 14-day free trial." },
+  pricing: { title: "Pricing — Retayned", desc: "Flat, predictable pricing with every feature included. Solo $29/mo, Team $99/mo. No per-client fees, no feature gates. 14-day free trial." },
   about: { title: "About — Retayned", desc: "Built by a performance marketer who spent ten years keeping the clients other people lost. Retayned is the system that came out of it." },
   blog: { title: "Blog — Retayned", desc: "Field notes on client retention, relationship health, and running a book of business that compounds instead of churns." },
   freelancers: { title: "Retayned for Freelancers", desc: "For freelancers and consultants: track every client relationship, catch churn early, and keep the business you worked to win. $29/mo flat." },
@@ -5225,12 +5405,13 @@ const PAGE_META = {
   enterprise: { title: "Retayned Enterprise", desc: "Relationship intelligence at scale — for autonomous agents and books of business managing thousands of accounts. Managed Rai, API, and SSO." },
   platform: { title: "Platform — Retayned", desc: "One brain for your entire book: retention scoring, health checks, and advanced AI built on frontier models. Every feature, every plan." },
   faq: { title: "FAQ — Retayned", desc: "Answers on pricing, features, data, and how Retayned predicts and prevents client churn." },
-  "feature-today": { title: "Today — Retayned", desc: "Your daily operating view: the few client relationships that need attention right now, surfaced before they become problems." },
-  "feature-scoring": { title: "Retention Score — Retayned", desc: "A dynamic, twelve-dimension score for every client relationship, so you can see where you stand before the client tells you." },
-  "feature-health": { title: "Health Checks — Retayned", desc: "Structured relationship health checks that force the honest questions — and turn what you already sense into something you can act on." },
-  "feature-rai": { title: "Talk to Rai — Retayned", desc: "Rai is your senior advisor for every account: ranked priorities, the exact words for a hard conversation, and context that carries across sessions." },
+  "feature-today": { title: "Today — Retayned", desc: "Your daily operating view: Rai suggests and ranks the work that matters most, so the few relationships that need you surface before they become problems." },
+  "feature-scoring": { title: "Clients — Retayned", desc: "Your client list, scored and sorted by what matters. A dynamic twelve-dimension Retention Score on every relationship, so you see where you stand before the client tells you." },
+  "feature-health": { title: "Health — Retayned", desc: "Structured relationship check-ins that surface what you already sense. The twelve dimensions assess health directly, so keeping a profile current keeps its score honest." },
   "feature-rolodex": { title: "Rolodex — Retayned", desc: "Every contact, relationship, and piece of history in one place — so nothing about a client lives only in your head." },
   "feature-referrals": { title: "Referrals — Retayned", desc: "Track and grow the referrals your best relationships generate, instead of leaving them to chance." },
+  "feature-workers": { title: "Workers — Retayned", desc: "Hand a single task to a contractor or VA with one secure link — no account, no login, no access to the rest of your book. You stay the hub; the work flows outward." },
+  "feature-rai": { title: "Rai — Retayned", desc: "Rai is your senior advisor for every account: ranked priorities, the exact words for a hard conversation, and context that carries across sessions." },
   privacy: { title: "Privacy Policy — Retayned", desc: "How Retayned collects, uses, and protects your data." },
   terms: { title: "Terms of Service — Retayned", desc: "The terms governing your use of Retayned." },
   signup: { title: "Start your free trial — Retayned", desc: "Start a 14-day free trial of Retayned. Every feature included." },
@@ -6199,6 +6380,7 @@ export default function RetaynedSite() {
         {page === "feature-rai" && <FeatureRai setPage={setPage} />}
         {page === "feature-rolodex" && <FeatureRolodex setPage={setPage} />}
         {page === "feature-referrals" && <FeatureReferrals setPage={setPage} />}
+        {page === "feature-workers" && <FeatureWorkers setPage={setPage} />}
         {page === "pricing" && <Pricing setPage={setPage} />}
         {page === "about" && <About setPage={setPage} />}
         {page === "faq" && <FAQPage setPage={setPage} />}
