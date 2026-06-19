@@ -217,7 +217,7 @@ function Nav({ page, setPage }) {
     { id: "blog", label: "Resources" },
   ];
 
-  const platformActive = ["platform", "feature-today", "feature-scoring", "feature-health", "feature-rai", "feature-rolodex", "feature-referrals"].includes(page);
+  const platformActive = ["feature-today", "feature-scoring", "feature-health", "feature-rai", "feature-rolodex", "feature-referrals", "feature-workers"].includes(page);
   const solutionsActive = ["freelancers", "agencies", "enterprise"].includes(page);
 
   return (
@@ -240,10 +240,10 @@ function Nav({ page, setPage }) {
             {/* Platform dropdown */}
             <div onMouseEnter={openPlatform} onMouseLeave={closePlatform} style={{ position: "relative" }}>
               <span
-                onClick={() => setPage("platform")}
+                onClick={() => platformOpen ? closePlatform() : openPlatform()}
                 role="button"
                 tabIndex={0}
-                onKeyDown={e => e.key === "Enter" && setPage("platform")}
+                onKeyDown={e => e.key === "Enter" && (platformOpen ? closePlatform() : openPlatform())}
                 style={{
                   fontSize: 15,
                   fontWeight: platformActive ? 700 : 600,
@@ -382,10 +382,10 @@ function Nav({ page, setPage }) {
             <span style={{ fontSize: 22, fontWeight: 900, color: C.primary, marginLeft: 1, fontFamily: "system-ui, -apple-system, sans-serif" }}>.</span>
           </div>
 
-          {/* Platform: label navigates, chevron expands */}
+          {/* Platform: label + chevron both expand the feature list */}
           <div style={{ display: "flex", alignItems: "stretch", borderBottom: "1px solid " + C.borderLight }}>
             <button
-              onClick={() => { setPage("platform"); setOpen(false); setMobilePlatformExpanded(false); }}
+              onClick={() => setMobilePlatformExpanded(!mobilePlatformExpanded)}
               style={{
                 flex: 1, textAlign: "left", padding: "14px 0",
                 background: "none", border: "none",
@@ -528,7 +528,6 @@ function Footer({ setPage }) {
         </div>
         <div className="v2-footer-col">
           <h5>Product</h5>
-          <a href="/platform" onClick={(e) => { e.preventDefault(); setPage("platform"); }}>Platform</a>
           <a href="/features/today" onClick={(e) => { e.preventDefault(); setPage("feature-today"); }}>Today</a>
           <a href="/features/clients" onClick={(e) => { e.preventDefault(); setPage("feature-scoring"); }}>Clients</a>
           <a href="/features/health" onClick={(e) => { e.preventDefault(); setPage("feature-health"); }}>Health</a>
@@ -570,6 +569,207 @@ function Footer({ setPage }) {
 
 // Inline footer for pages ending in the 4-stop gradient — renders inside the gradient wrapper
 // so the gradient flows seamlessly through it (no hard cut from gradient to solid).
+// ═══ HOME FEATURE SWITCHER VISUALS ═══
+// Renders the feature graphic for the homepage platform-section tab strip.
+// Clients (the portfolio table) is rendered inline in the homepage section itself;
+// this component covers the other six features, reusing their feature-page graphics.
+function HomeFeatureVisual({ tab }) {
+  const card = { background: C.card, borderRadius: 20, border: "1px solid " + C.border, padding: 28, boxShadow: "0 20px 60px rgba(0,0,0,0.06)" };
+
+  if (tab === "today") {
+    return <div style={{ ...card, padding: 0, overflow: "hidden" }}><V2TodayFeed /></div>;
+  }
+
+  if (tab === "workers") {
+    return <div style={{ ...card, padding: "32px 28px" }}><WorkersFlowGraphic /></div>;
+  }
+
+  if (tab === "scoring") {
+    return (
+      <div style={card}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 24, alignItems: "center", marginBottom: 24 }}>
+          <div style={{ textAlign: "center", flex: "0 0 auto" }}>
+            <div style={{ width: 118, height: 118, borderRadius: "50%", background: "linear-gradient(135deg, #FEF3C7, #FDE68A)", border: "4px solid #92400E20", display: "inline-flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
+              <span style={{ fontSize: 44, fontWeight: 900, color: "#92400E", lineHeight: 1 }}>67</span>
+              <div style={{ position: "absolute", bottom: -10, background: "#fff", padding: "3px 10px", border: "1px solid #92400E30", borderRadius: 100, fontSize: 10, fontWeight: 700, color: "#92400E", textTransform: "uppercase", letterSpacing: ".08em" }}>At risk</div>
+            </div>
+          </div>
+          <div style={{ flex: "1 1 200px" }}>
+            <div style={{ fontSize: 18, fontWeight: 800, letterSpacing: "-0.02em" }}>Broadleaf Media</div>
+            <div style={{ fontSize: 13, color: C.textMuted, marginTop: 3 }}>Rachel Chen · Account Lead · 14 months</div>
+            <div style={{ marginTop: 12, fontSize: 12.5, color: C.danger, fontWeight: 700 }}>↓ Dropped 11 points in 2 weeks</div>
+          </div>
+        </div>
+        <div style={{ fontSize: 10.5, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: 10 }}>Core dimensions</div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 16 }}>
+          {[["Trust", 6, C.warning], ["Loyalty", 7, C.primaryLight], ["Expectations", 7, C.primaryLight], ["Grace", 5, C.warning]].map(([name, val, color]) => (
+            <div key={name} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 14px", background: C.bg, borderRadius: 8, fontSize: 13 }}>
+              <span style={{ color: C.textSec, fontWeight: 600 }}>{name}</span>
+              <span style={{ fontWeight: 800, color }}>{val}/10</span>
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize: 10.5, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: 10 }}>Active combinations</div>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+          <div style={{ padding: "8px 14px", background: C.danger + "15", borderRadius: 8, fontSize: 12.5, color: C.danger, fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.danger }} />No Room to Operate
+          </div>
+          <div style={{ padding: "8px 14px", background: C.warning + "15", borderRadius: 8, fontSize: 12.5, color: C.warning, fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}>
+            <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.warning }} />Ice Wall
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (tab === "health") {
+    return (
+      <div style={card}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18 }}>
+          <div>
+            <div style={{ fontSize: 10.5, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: 2 }}>Health Check</div>
+            <div style={{ fontSize: 15, fontWeight: 800, letterSpacing: "-0.01em" }}>Broadleaf Media</div>
+          </div>
+          <div style={{ fontSize: 11.5, color: C.textMuted, fontWeight: 700 }}>2 of 5</div>
+        </div>
+        <div style={{ height: 4, borderRadius: 2, background: C.borderLight, marginBottom: 22, overflow: "hidden" }}>
+          <div style={{ width: "40%", height: "100%", background: C.primary }} />
+        </div>
+        <div style={{ fontSize: 16, fontWeight: 700, color: C.text, lineHeight: 1.4, marginBottom: 18 }}>
+          Has their communication cadence changed in the last month?
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+          {[
+            { t: "Same as always — steady and responsive", sel: false },
+            { t: "Slightly slower, but nothing alarming", sel: true },
+            { t: "Noticeably quieter than they used to be", sel: false },
+            { t: "Gone cold — I'm chasing replies", sel: false },
+          ].map((o, i) => (
+            <div key={i} style={{ padding: "13px 16px", borderRadius: 12, fontSize: 14, fontWeight: o.sel ? 700 : 500, border: "1.5px solid " + (o.sel ? C.primary : C.borderLight), background: o.sel ? C.primaryGhost : C.card, color: o.sel ? C.primary : C.textSec }}>{o.t}</div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (tab === "rolodex") {
+    return (
+      <div style={card}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18, paddingBottom: 14, borderBottom: "1px solid " + C.borderLight }}>
+          <div>
+            <div style={{ fontSize: 10.5, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: 2 }}>Rolodex</div>
+            <div style={{ fontSize: 16, fontWeight: 800, letterSpacing: "-0.02em" }}>12 former clients</div>
+          </div>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 11px", borderRadius: 100, background: C.primarySoft, fontSize: 11, fontWeight: 700, color: C.primary }}>
+            <span style={{ width: 5, height: 5, borderRadius: "50%", background: C.primary }} />3 ready now
+          </div>
+        </div>
+        {[
+          { name: "Maplewood Agency", type: "Former", months: "14 months together", reason: "Budget cut Q3 2024", tags: ["Would refer", "Would come back"], readiness: 88, signal: "Just raised Series A" },
+          { name: "Harlow & Associates", type: "Former", months: "8 months together", reason: "Internal hire", tags: ["Would come back"], readiness: 82, signal: "Their hire just left" },
+        ].map((r, i) => (
+          <div key={i} style={{ padding: "14px 0", borderTop: i > 0 ? "1px solid " + C.borderLight : "none" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 3 }}>
+                  <span style={{ fontWeight: 700, fontSize: 14 }}>{r.name}</span>
+                  <span style={{ fontSize: 11, color: C.textMuted }}>{r.type} · {r.months}</span>
+                </div>
+                <div style={{ fontSize: 12, color: C.textMuted, marginBottom: 6 }}>Ended: {r.reason}</div>
+                <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
+                  {r.tags.map(t => (
+                    <span key={t} style={{ fontSize: 10.5, fontWeight: 600, padding: "3px 9px", borderRadius: 5, background: C.primarySoft, color: C.primary }}>{t}</span>
+                  ))}
+                </div>
+              </div>
+              <div style={{ textAlign: "center", flexShrink: 0 }}>
+                <div style={{ width: 42, height: 42, borderRadius: "50%", background: C.success + "15", border: "1.5px solid " + C.success + "40", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13.5, fontWeight: 800, color: C.success }}>{r.readiness}</div>
+                <div style={{ fontSize: 9.5, color: C.textMuted, marginTop: 4, fontWeight: 600, textTransform: "uppercase", letterSpacing: ".06em" }}>ready</div>
+              </div>
+            </div>
+            <div style={{ padding: "8px 12px", background: C.primarySoft + "60", borderRadius: 8, fontSize: 12.5, color: C.primary }}>
+              <strong>Signal:</strong> {r.signal}
+            </div>
+          </div>
+        ))}
+        <div style={{ marginTop: 16, fontSize: 13, color: C.btn, fontWeight: 700, textAlign: "center" }}>3 re-engagement opportunities this week</div>
+      </div>
+    );
+  }
+
+  if (tab === "referrals") {
+    return (
+      <div style={card}>
+        <div style={{ fontSize: 10.5, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: 14 }}>Referral Intelligence · Last 90 days</div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 20 }}>
+          {[["Asked", "7"], ["Converted", "4"], ["Revenue added", "$18.4k"]].map(([label, val]) => (
+            <div key={label} style={{ background: C.bg, borderRadius: 11, padding: 14, textAlign: "center" }}>
+              <div style={{ fontSize: 22, fontWeight: 900, color: C.primary, lineHeight: 1 }}>{val}</div>
+              <div style={{ fontSize: 10, color: C.textMuted, marginTop: 4, fontWeight: 600, textTransform: "uppercase", letterSpacing: ".06em" }}>{label}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ fontSize: 13.5, fontWeight: 800, marginBottom: 12, color: C.text }}>Ready to refer this week</div>
+        {[
+          { name: "Northvane Studios", contact: "Sarah Chen", readiness: 94, note: "Just wrapped their anniversary retainer renewal." },
+          { name: "Oakline Outdoors", contact: "James Park", readiness: 86, note: "Loyalty score hit 95 after Q1 campaign success." },
+        ].map((r, i) => (
+          <div key={i} style={{ display: "flex", alignItems: "center", gap: 14, padding: "13px 0", borderTop: i > 0 ? "1px solid " + C.borderLight : "none" }}>
+            <div style={{ flex: 1, minWidth: 0 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
+                <span style={{ fontWeight: 700, fontSize: 14 }}>{r.name}</span>
+                <span style={{ fontSize: 11.5, color: C.textMuted }}>· {r.contact}</span>
+              </div>
+              <div style={{ fontSize: 12.5, color: C.textSec, lineHeight: 1.45 }}>{r.note}</div>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
+              <div style={{ width: 56, height: 6, borderRadius: 3, background: C.borderLight, overflow: "hidden" }}>
+                <div style={{ width: r.readiness + "%", height: "100%", background: "linear-gradient(90deg, " + C.primaryLight + ", " + C.success + ")" }} />
+              </div>
+              <span style={{ fontSize: 13, fontWeight: 800, color: C.success, minWidth: 28 }}>{r.readiness}</span>
+            </div>
+          </div>
+        ))}
+        <div style={{ marginTop: 16, padding: "12px 14px", background: C.primarySoft, borderRadius: 10, fontSize: 13, color: C.text, lineHeight: 1.55 }}>
+          <strong style={{ color: C.primary }}>Rai says:</strong> Sarah at Northvane is textbook ready. Ask in-person at Thursday's sync — not by email.
+        </div>
+      </div>
+    );
+  }
+
+  if (tab === "rai") {
+    return (
+      <div style={card}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18, paddingBottom: 14, borderBottom: "1px solid " + C.borderLight }}>
+          <div style={{ width: 34, height: 34, borderRadius: "50%", background: "linear-gradient(135deg, " + C.primary + ", " + C.primaryLight + ")", display: "inline-flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: 15, fontWeight: 800 }}>✦</div>
+          <div>
+            <div style={{ fontSize: 14, fontWeight: 800 }}>Rai</div>
+            <div style={{ fontSize: 11.5, color: C.textMuted }}>Senior retention advisor</div>
+          </div>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+          <div style={{ alignSelf: "flex-end", maxWidth: "82%", padding: "11px 15px", background: C.primary, color: "#fff", borderRadius: "16px 16px 4px 16px", fontSize: 13, lineHeight: 1.5 }}>
+            Rachel at Broadleaf has been different lately. What should I do?
+          </div>
+          <div style={{ alignSelf: "flex-start", maxWidth: "92%", padding: "13px 15px", background: C.bg, borderRadius: "16px 16px 16px 4px", fontSize: 13, lineHeight: 1.6, border: "1px solid " + C.borderLight }}>
+            <div style={{ fontWeight: 800, color: C.primary, marginBottom: 6, fontSize: 10.5, letterSpacing: "0.06em", textTransform: "uppercase", display: "flex", alignItems: "center", gap: 5 }}><span>✦</span> Rai</div>
+            Rachel's score dropped from 78 to 67 over two check-ins. "No Room to Operate" just triggered.<br /><br />
+            <strong style={{ color: C.text }}>Call her. Not email.</strong> Open with: <em>"I've noticed things have felt different lately — what's on your mind?"</em>
+          </div>
+          <div style={{ alignSelf: "flex-start", maxWidth: "82%", padding: "10px 14px", background: C.primarySoft, borderRadius: "14px 14px 14px 4px", fontSize: 12.5, color: C.primary, fontStyle: "italic" }}>
+            I've flagged a profile re-evaluation for Broadleaf. Queue it after the call?
+          </div>
+        </div>
+        <div style={{ marginTop: 18, padding: "11px 14px", background: C.surface, borderRadius: 10, fontSize: 12.5, color: C.textMuted }}>
+          Ask Rai anything about your book...
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+}
+
 // ═══ HERO INTERACTIVE DEMO ═══
 function V2TodayFeed() {
   // Breakpoint-aware row heights — same architecture as desktop+mobile reference files.
@@ -587,21 +787,21 @@ function V2TodayFeed() {
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
-  const ROW_H = bp === "small" ? 124 : bp === "mobile" ? 116 : 92;
+  const ROW_H = bp === "small" ? 150 : bp === "mobile" ? 142 : 124;
   const GAP = bp === "small" ? 10 : 12;
   const STEP = ROW_H + GAP;
 
   // 4-task pool with kind-based color tokens
   const pool = useRef([
-    { id: "hollis",    kind: "deepen",    title: "Hollis & Lee just hit one year — send handwritten note", meta: "Tenure: 12 mo · LTV: $144k · Health: 91", score: 91 },
-    { id: "baxter",    kind: "nurture",   title: "Baxter Firm renewal in 21 days — confirm scope",          meta: "LTV: $50k · Renewal probability: 94%",     score: 87 },
-    { id: "pinebrook", kind: "nurture",   title: "Pinebrook contract expires in 10 days — align pricing",   meta: "LTV: $38k · Renewal probability: 71%",     score: 76 },
-    { id: "meridian",  kind: "urgent",    title: "Meridian Co. hasn't opened emails in 14 days",            meta: "Revenue at risk: $96k/yr · Last touch: 18 days ago", score: 42 },
+    { id: "hollis",    kind: "deepen",    title: "Hollis & Lee just hit one year — send handwritten note", meta: "Tenure: 12 mo · LTV: $144k", score: 91 },
+    { id: "baxter",    kind: "nurture",   title: "Baxter Firm renewal in 21 days, confirm updated scope with Jesse",          meta: "Tenure: 20 mo · LTV: $52k",     score: 87 },
+    { id: "pinebrook", kind: "nurture",   title: "Pinebrook contract expires in 10 days — align pricing",   meta: "Tenure: 8 mo · LTV: $38k",     score: 76 },
+    { id: "meridian",  kind: "develop",    title: "Meridian Co. needs a dedicated report on all our recent wins",            meta: "Tenure: 16 mo · LTV: $96k", score: 42 },
   ]).current;
 
   const raiLines = {
-    meridian:  "Meridian just dropped to a 42 — worst score in your book. I'm pulling it up to second so you don't miss it.",
-    pinebrook: "Pinebrook renewal probability slipped this morning. Bumping it above Baxter — it needs you first.",
+    meridian:  "Meridian's primed to expand — a recent-wins recap now sets up the upsell. Pulling it to second so it doesn't slip.",
+    pinebrook: "I drafted this one for you: Pinebrook's renewal probability slipped this morning. Bumping it above Baxter — it needs you first.",
     baxter:    "Baxter Firm just confirmed scope on their renewal call. Pinebrook can wait — putting Baxter back ahead.",
     hollis:    "Hollis & Lee are stable at 91. They\'re not urgent today — dropping them so the at-risk accounts surface.",
   };
@@ -725,8 +925,22 @@ function V2TodayFeed() {
                     <div className={"v2tf-label v2tf-label-" + t.kind}>{t.kind}</div>
                     <div className={"v2tf-score v2tf-score-" + t.kind}>{t.score}</div>
                   </div>
-                  <div className="v2tf-title">{t.title}</div>
-                  <div className="v2tf-meta">{t.meta}</div>
+                  <div className="v2tf-title">
+                    {t.id === "pinebrook" && (
+                      <span title="Created by Rai" style={{ color: C.btn, fontSize: 13, fontWeight: 700, marginRight: 6, verticalAlign: "0px", flexShrink: 0 }}>✦</span>
+                    )}
+                    {(t.id === "hollis" || t.id === "baxter") ? (
+                      <span style={{ textDecoration: "underline", textDecorationStyle: "dotted", textDecorationColor: C.btn, textDecorationThickness: "2px", textUnderlineOffset: "3px" }}>{t.title}</span>
+                    ) : t.title}
+                  </div>
+                  {(t.id === "hollis" || t.id === "baxter") ? (
+                    <div style={{ display: "flex", alignItems: "baseline", gap: 10, flexWrap: "wrap" }}>
+                      <span className="v2tf-meta">{t.meta}</span>
+                      <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontSize: 16, fontWeight: 700, lineHeight: 1, whiteSpace: "nowrap" }}>(Rai can draft this for you)</span>
+                    </div>
+                  ) : (
+                    <div className="v2tf-meta">{t.meta}</div>
+                  )}
                 </div>
               );
             })}
@@ -843,6 +1057,9 @@ function AudienceIllustration({ tab }) {
 
 // ─── Main HomeV2 component ───
 function HomeV2({ setPage }) {
+  // Toggle the homepage platform feature-switcher. false = original Clients-only
+  // section (current). Set true to bring back the 7-tab switcher (code preserved below).
+  const SHOW_FEATURE_SWITCHER = false;
   const [audienceTab, setAudienceTab] = useState("freelancers");
   const [activeTab, setActiveTab] = useState(1);
   const [expandedText, setExpandedText] = useState(false);
@@ -918,7 +1135,7 @@ function HomeV2({ setPage }) {
 
   const audiencePanels = {
     freelancers: {
-      h: "The CRM that catches what you miss.",
+      h: "An operating system for high-agency solos.",
       p: "You're a team of one. You can't be laser-focused on every Slack thread and hint of drift. Retayned watches the whole book while you do the work.",
       cta: "See Platform",
       ctaTarget: "freelancers",
@@ -955,7 +1172,7 @@ function HomeV2({ setPage }) {
             </span>{" "}churn.
           </h1>
           <p className="v2-hero-sub">Stop losing clients you should have kept.</p>
-          <p className="v2-hero-desc">Most CRMs track deals. Retayned tracks relationship health — providing client-specific solutions to keep and grow the business you've earned.</p>
+          <p className="v2-hero-desc">Retayned replaces the spreadsheets, docs, notes, and reminders you've been duct-taping together with one system to help you keep and grow the business you've earned.</p>
           <div className="v2-hero-cta-row">
             <button className="v2-btn-primary-lg cta-btn" onClick={() => setPage("signup")}>Start Free Trial</button>
           </div>
@@ -1026,16 +1243,31 @@ function HomeV2({ setPage }) {
           <div className="v2-platform-grid">
             <div>
               <div className="v2-eyebrow">The platform</div>
-              <h2 className="v2-section-h2">CRMs track deals. Retayned tracks relationships.</h2>
+              <h2 className="v2-section-h2">Most CRMs track deals. Retayned tracks relationships.</h2>
               <p className="v2-section-sub">Your pipeline only looks ahead. Your clients aren't in it — they're the revenue you already earned, and most CRMs treat them like they're safe. They're not.</p>
               <div className="v2-bullets">
                 <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>12-dimension retention scoring.</strong> Relationship health, not transaction volume — one number that tells you who's drifting before they say a word.</div></div>
                 <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>Observations and health checks.</strong> Business-level insights that separate the forest from the trees on a weekly basis. With no client left behind.</div></div>
                 <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>Rai writes the words that save the account.</strong> The exact message for the exact relationship, the moment it matters most, straight from today's tasks.</div></div>
-                <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>Your Rolodex is future revenue.</strong> Every client you've lost is a re-engagement waiting to happen — not dead weight. This pipeline runs both directions.</div></div>
+                <div className="v2-bullet"><div className="v2-check">✓</div><div><strong>Your Rolodex is future revenue.</strong> Every client you've lost is a potential re-engagement — not dead weight. This pipeline runs both directions.</div></div>
               </div>
             </div>
             <div className="v2-platform-portfolio">
+              {/* Feature tab strip — switches the visual below */}
+              {SHOW_FEATURE_SWITCHER && (
+              <div className="v2-feature-tabs">
+                {homeTabs.map((t, i) => (
+                  <button
+                    key={t.id}
+                    className={"v2-feature-tab" + (activeTab === i ? " active" : "")}
+                    onClick={() => setActiveTab(i)}
+                  >{t.label}</button>
+                ))}
+              </div>
+              )}
+
+              {(!SHOW_FEATURE_SWITCHER || activeTab === 1) ? (
+              <>
               {/* Header */}
               <div style={{ marginBottom: 18 }}>
                 <div style={{ fontSize: 11, color: C.textMuted, marginBottom: 3, letterSpacing: "0.03em" }}>Your portfolio</div>
@@ -1155,6 +1387,10 @@ function HomeV2({ setPage }) {
                 </div>
 
               </div>
+              </>
+              ) : (
+                <HomeFeatureVisual tab={ht.id} />
+              )}
             </div>
           </div>
         </div>
@@ -1253,17 +1489,17 @@ function HomeV2({ setPage }) {
             <div className="v2-enterprise-card">
               <div className="v2-enterprise-label">Managed agent</div>
               <h4 className="v2-enterprise-h">Rai as autonomous service</h4>
-              <p className="v2-enterprise-p">Daily sweeps across your entire book. Twelve-dimension scoring. Archetype detection. Prioritized task lists delivered to whoever owns the relationship.</p>
+              <p className="v2-enterprise-p">Daily sweeps across your entire book. Twelve-dimension scoring. Archetype detection. Prioritized task lists delivered to your AMs.</p>
             </div>
             <div className="v2-enterprise-card">
               <div className="v2-enterprise-label">Multi-seat app</div>
               <h4 className="v2-enterprise-h">Your team, one view</h4>
-              <p className="v2-enterprise-p">Unlimited seats. Role-based permissions. Full handoff history per client. When an account manager leaves, their knowledge stays.</p>
+              <p className="v2-enterprise-p">Unlimited seats. Role-based permissions. Full handoff history per client. When an account manager leaves, their knowledge stays...permanently and in full.</p>
             </div>
             <div className="v2-enterprise-card">
               <div className="v2-enterprise-label">MCP + REST API</div>
               <h4 className="v2-enterprise-h">Plug into your stack</h4>
-              <p className="v2-enterprise-p">Give your internal agents the same retention intelligence. Connect to Salesforce, HubSpot, or your homegrown CRM.</p>
+              <p className="v2-enterprise-p">Give your internal agents the same retention intelligence. Integrate with the communication tools your clients love. Connect to Salesforce, HubSpot, and more.</p>
             </div>
           </div>
 
@@ -1413,7 +1649,7 @@ function HomeV2({ setPage }) {
             <div className="v2-mix-footer">
               <div style={{ width: 44, height: 44, borderRadius: "50%", background: C.btn, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 14, fontWeight: 700, color: "#fff" }}>NS</div>
               <div>
-                <div style={{ fontSize: 15, fontWeight: 700, color: C.text }}>Freelancer</div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: C.text }}>Pinterest Marketer</div>
                 <div style={{ fontSize: 13, color: C.textMuted, marginTop: 2 }}>3 Clients</div>
               </div>
             </div>
@@ -1429,7 +1665,7 @@ function HomeV2({ setPage }) {
               <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#92A596", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 14, fontWeight: 700, color: "#fff" }}>JD</div>
               <div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontSize: 15, fontWeight: 700, color: C.text }}>Consultant</span>
+                  <span style={{ fontSize: 15, fontWeight: 700, color: C.text }}>Healthcare consultant</span>
                   <span style={{ fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 4, background: C.primarySoft, color: C.primary, textTransform: "uppercase", letterSpacing: ".04em" }}>From our beta</span>
                 </div>
                 <div style={{ fontSize: 13, color: C.textMuted, marginTop: 2 }}>15 Clients</div>
@@ -1590,9 +1826,9 @@ function Pricing({ setPage }) {
       points: [
         "Everything in Retayned, every feature",
         "Today, Clients, Health",
-        "Unlimited Rai (within fair-use limits)",
+        "Unlimited Rai*",
         "Rolodex + Referrals",
-        "Daily exports + CSV",
+        "Worker assignments and tasking",
       ],
       cta: "Start Free Trial",
       action: "signup",
@@ -1602,13 +1838,13 @@ function Pricing({ setPage }) {
       name: "Team",
       tagline: "For human teams and agencies sharing a book of business.",
       price: "$99",
-      priceSub: "5 seats included · +$19 / extra seat / mo · no client cap",
+      priceSub: "5 seats included · no client cap",
       points: [
         "Everything in Solo, no client cap",
         "Owner's Brief across every AM's book",
-        "Handoff briefs when an AM leaves",
         "Per-AM coverage + assignment",
         "Role-based access",
+        "Only $19 per seat after 5",
       ],
       cta: "Start Free Trial",
       action: "signup",
@@ -1633,9 +1869,9 @@ function Pricing({ setPage }) {
   ];
 
   const enterpriseCards = [
-    { eyebrow: "Managed Agent", title: "Rai as autonomous service.", body: "Daily sweeps across your entire book. Twelve-dimension scoring. Archetype detection. Prioritized task lists delivered to whoever owns the relationship." },
-    { eyebrow: "Multi-seat App", title: "Your team, one view.", body: "Unlimited seats. Role-based permissions. Full handoff history per client. When an account manager leaves, their knowledge stays." },
-    { eyebrow: "MCP + REST API", title: "Plug into your stack.", body: "Give your internal agents the same retention intelligence. Connect to Salesforce, HubSpot, or your homegrown CRM." },
+    { eyebrow: "Managed Agent", title: "Rai as autonomous service.", body: "Daily sweeps across your entire book. Twelve-dimension scoring. Archetype detection. Prioritized task lists delivered to your AMs." },
+    { eyebrow: "Multi-seat App", title: "Your team, one view.", body: "Unlimited seats. Role-based permissions. Full handoff history per client. When an account manager leaves, their knowledge stays...permanently and in full." },
+    { eyebrow: "MCP + REST API", title: "Plug into your stack.", body: "Give your internal agents the same retention intelligence. Integrate with the communication tools your clients love. Connect to Salesforce, HubSpot, and more." },
     { eyebrow: "White-glove", title: "Onboarding + dedicated CS.", body: "A real person who knows your book. SOC 2, SAML, audit log. Quarterly business reviews. Custom playbook training." },
   ];
 
@@ -1649,6 +1885,8 @@ function Pricing({ setPage }) {
           .pricing-ent-grid { grid-template-columns: 1fr !important; }
           .pricing-tier-grid { grid-template-columns: 1fr !important; }
           .pricing-ent-cta { flex-direction: column; align-items: stretch !important; }
+          .pricing-contrast { flex-direction: column !important; gap: 24px !important; }
+          .pricing-contrast-divider { display: none !important; }
         }
       `}</style>
 
@@ -1656,8 +1894,9 @@ function Pricing({ setPage }) {
       <section className="r-full-bleed" style={{ background: C.primaryDeep, color: "#fff", padding: "84px 48px 96px", textAlign: "center" }}>
         <div className="ret-eyebrow ret-eyebrow-light">Pricing</div>
         <h1 className="ret-h1" style={{ color: "#fff", maxWidth: 760, margin: "16px auto 0" }}>
-          One price. Every feature. No surprises.
+          "This shouldn't be this cheap..."
         </h1>
+        <div style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", marginTop: 14, letterSpacing: "0.02em" }}>— someone actually said this</div>
         <p style={{ fontSize: 17, lineHeight: 1.55, color: "rgba(255,255,255,0.65)", maxWidth: 540, margin: "20px auto 0" }}>
           Every plan unlocks the entire platform — including advanced AI features. Nothing gated, nothing held back for a higher tier.
         </p>
@@ -1667,14 +1906,17 @@ function Pricing({ setPage }) {
           <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginTop: 14 }}>14-day free trial. Cancel anytime.</div>
         </div>
 
-        {/* Single restrained proof row */}
-        <div style={{ marginTop: 44, paddingTop: 32, borderTop: "0.5px solid rgba(255,255,255,0.12)", maxWidth: 560, marginLeft: "auto", marginRight: "auto", display: "flex", justifyContent: "center", gap: 28, flexWrap: "wrap" }}>
-          {["Flat pricing", "No per-client fees", "Every feature included"].map(item => (
-            <span key={item} style={{ display: "inline-flex", alignItems: "center", gap: 8, fontSize: 14, color: "rgba(255,255,255,0.82)" }}>
-              <span style={{ color: C.primaryLight, fontWeight: 800, fontSize: 13 }}>✓</span>
-              {item}
-            </span>
-          ))}
+        {/* Value-vs-cost contrast */}
+        <div className="pricing-contrast" style={{ marginTop: 44, paddingTop: 32, borderTop: "0.5px solid rgba(255,255,255,0.12)", maxWidth: 560, marginLeft: "auto", marginRight: "auto", display: "flex", justifyContent: "center", alignItems: "center", gap: 0 }}>
+          <div style={{ flex: 1, textAlign: "center", padding: "0 24px" }}>
+            <div style={{ fontSize: 34, fontWeight: 900, color: "#fff", lineHeight: 1 }}>$29<span style={{ fontSize: 15, color: "rgba(255,255,255,0.5)", fontWeight: 600 }}>/mo</span></div>
+            <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.6)", marginTop: 6 }}>to keep your whole book</div>
+          </div>
+          <div className="pricing-contrast-divider" style={{ width: 1, alignSelf: "stretch", background: "rgba(255,255,255,0.14)", flexShrink: 0 }} />
+          <div style={{ flex: 1, textAlign: "center", padding: "0 24px" }}>
+            <div style={{ fontSize: 34, fontWeight: 900, color: "#fff", lineHeight: 1 }}>5–7×</div>
+            <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.6)", marginTop: 6 }}>the cost to replace one lost client</div>
+          </div>
         </div>
       </section>
 
@@ -1686,10 +1928,7 @@ function Pricing({ setPage }) {
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
             <div className="ret-section-head">
               <div className="ret-eyebrow">Plans</div>
-              <h2 className="ret-h2" style={{ marginTop: 12, fontSize: "clamp(24px, 3.5vw, 36px)" }}>One flat price. Pick your scale.</h2>
-              <p style={{ marginTop: 14, fontSize: 17, color: C.textSec, lineHeight: 1.5, maxWidth: 620, margin: "14px auto 0" }}>
-                Solve your business's most consequential problem for the cost of a Netflix subscription.
-              </p>
+              <h2 className="ret-h2" style={{ marginTop: 12, fontSize: "clamp(24px, 3.5vw, 36px)" }}>Solve your business's most consequential problem for the cost of a Netflix subscription.</h2>
             </div>
             <div className="pricing-tier-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 18, alignItems: "stretch" }}>
               {tiers.map(t => (
@@ -1739,7 +1978,10 @@ function Pricing({ setPage }) {
               ))}
             </div>
             <div style={{ textAlign: "center", marginTop: 18, fontSize: 13, color: C.textSec }}>
-              Every plan includes a 14-day free trial. Card required. Cancel anytime.
+              Every plan includes a 14-day free trial. Cancel anytime.
+            </div>
+            <div style={{ textAlign: "center", marginTop: 10, fontSize: 12, color: C.textMuted }}>
+              * Unlimited Rai is subject to fair-use limits to prevent abuse.
             </div>
           </div>
         </div>
@@ -1753,7 +1995,7 @@ function Pricing({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">Run the math</div>
             <h2 className="ret-h2" style={{ maxWidth: 720, margin: "12px auto 0" }}>
-              Saving just ONE client makes Retayned free for a decade.
+              See what saving a client or two can do for your bottom line.
             </h2>
             <p style={{ marginTop: 14, fontSize: 17, color: C.textSec, lineHeight: 1.5 }}>Move the sliders to your reality.</p>
           </div>
@@ -1842,7 +2084,7 @@ function Pricing({ setPage }) {
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", padding: "72px 48px" }}>
         <div className="ret-section-inner" style={{ maxWidth: 880 }}>
           <h3 style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 800, color: C.text, lineHeight: 1.3, letterSpacing: "-0.02em" }}>
-            Saving just <span style={{ color: C.primary }}>ONE</span> relationship for even just <span style={{ color: C.primary }}>ONE</span> month could pay for Retayned for a <span style={{ color: C.primary }}>DECADE</span>.
+            Saving just one relationship could pay for Retayned for a decade.
           </h3>
           <button className="cta-btn" onClick={() => setPage("signup")} style={{ marginTop: 24, padding: "16px 36px", fontSize: 16, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
           <div style={{ fontSize: 13, color: C.textSec, marginTop: 12 }}>14-day free trial. Cancel anytime.</div>
@@ -4287,386 +4529,6 @@ const PLATFORM_FEATURES = [
   { id: "feature-rai", label: "Rai", headline: "She writes the words you need when it matters most.", sub: "Rai is an AI advisor calibrated to your specific relationships. When you don't know what to say, Rai gives you the script." },
 ];
 
-function Platform({ setPage }) {
-  const [activeFeat, setActiveFeat] = useState(0);
-
-  // 12 dimensions used across the scoring engine
-  const dims = [
-    { name: "Trust", tier: "Core" },
-    { name: "Loyalty", tier: "Core" },
-    { name: "Expectations", tier: "Core" },
-    { name: "Grace", tier: "Core" },
-    { name: "Communication", tier: "Signal" },
-    { name: "Responsiveness", tier: "Signal" },
-    { name: "Tone", tier: "Signal" },
-    { name: "Sentiment", tier: "Signal" },
-    { name: "Engagement", tier: "Signal" },
-    { name: "Alignment", tier: "Signal" },
-    { name: "Stability", tier: "Signal" },
-    { name: "Depth", tier: "Signal" },
-  ];
-
-  // Combination signal examples
-  const combos = [
-    { t: "Silent Satisfaction", d: "High trust + low communication — content but pulling away." },
-    { t: "Delegation Drift", d: "Handoffs increasing + engagement dropping — champion is distancing." },
-    { t: "Transactional Freeze", d: "Grace low + responsiveness normal — work continues, warmth is gone." },
-    { t: "Budget Bloom", d: "Alignment rising + depth rising — expansion window is open." },
-    { t: "Vague Positivity", d: "Tone neutral + engagement dropping — the \"looks good\" slow fade." },
-    { t: "Champion Shift", d: "Depth dropping + new stakeholder — relationship has to be rebuilt." },
-  ];
-
-  const pf = PLATFORM_FEATURES[activeFeat];
-
-  return (
-    <div>
-      <RetPageStyles />
-      <style>{`
-        .plat-tabs-wrap { display: flex; justify-content: center; width: 100%; }
-        .plat-tabs {
-          display: inline-flex; gap: 4px; padding: 5px;
-          background: #F5ECD8; border-radius: 100px;
-          box-shadow: inset 0 0 0 1px rgba(28, 50, 36, 0.04);
-          max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch;
-        }
-        .plat-tab {
-          padding: 8px 18px; border-radius: 100px; border: none;
-          font-family: inherit; font-size: 13.5px; font-weight: 600;
-          color: ${C.textSec}; background: transparent; cursor: pointer;
-          transition: all 0.2s ease; white-space: nowrap; flex: 0 0 auto;
-        }
-        .plat-tab:hover { color: ${C.text}; }
-        .plat-tab-active {
-          background: #FAFAF7; color: ${C.text}; font-weight: 700;
-          box-shadow: 0 2px 8px rgba(28, 50, 36, 0.08);
-        }
-
-        .plat-feat-grid {
-          display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
-          align-items: center; margin-top: 48px;
-        }
-        .plat-feat-body h3 {
-          font-size: clamp(26px, 3vw, 38px); font-weight: 900;
-          letter-spacing: -0.03em; line-height: 1.1;
-          color: ${C.text}; margin: 12px 0 16px;
-        }
-        .plat-feat-body p {
-          font-size: 16px; color: ${C.textSec}; line-height: 1.65;
-          margin: 0 0 24px;
-        }
-        .plat-feat-label {
-          font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
-          text-transform: uppercase; color: ${C.btn};
-        }
-
-        .plat-mockup {
-          background: #fff; border-radius: 20px; padding: 22px;
-          box-shadow: 0 20px 60px rgba(60,40,10,0.10), 0 4px 12px rgba(60,40,10,0.04);
-          border: 1px solid ${C.borderLight};
-          min-height: 320px;
-        }
-
-        .plat-combo-card {
-          background: #fff; border-radius: 14px; padding: 20px 22px;
-          border: 1px solid ${C.borderLight};
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .plat-combo-card:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 12px 32px rgba(60,40,10,0.08);
-        }
-
-        .plat-dims-grid {
-          display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-          gap: 10px;
-        }
-        .plat-dim-chip {
-          display: flex; justify-content: space-between; align-items: center;
-          padding: 10px 14px; background: #fff; border-radius: 10px;
-          border: 1px solid ${C.borderLight}; font-size: 13px;
-        }
-        .plat-dim-name { color: ${C.text}; font-weight: 600; }
-        .plat-dim-weight { color: ${C.primary}; font-weight: 700; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; }
-
-        /* Two surfaces section */
-        .plat-surfaces {
-          display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-          max-width: 900px; margin: 0 auto;
-        }
-
-        @media (max-width: 900px) {
-          .plat-feat-grid { grid-template-columns: 1fr; gap: 32px; }
-          .plat-surfaces { grid-template-columns: 1fr; }
-        }
-      `}</style>
-
-      <RetHero
-        eyebrow="The Platform"
-        h1={<>Your clients won't know Retayned exists. <span style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, color: C.primary }}>They'll just stay.</span></>}
-        sub="Relationship intelligence, health monitoring, and pipeline management in one system. Our AI isn't just smart — it's emotionally intelligent."
-        primaryCta="Start Free Trial"
-        primaryAction="signup"
-        secondaryCta="See Pricing"
-        secondaryAction="pricing"
-        setPage={setPage}
-      />
-
-      <RetCurve from="#F2EEE8" to="#EAE4D6" variant="rightCrest" />
-
-      {/* Interactive feature explorer */}
-      <section className="ret-section ret-bg-beige r-full-bleed">
-        <div className="ret-section-inner">
-          <div className="ret-section-head">
-            <div className="ret-eyebrow">Six features, one system</div>
-            <h2 className="ret-h2">Everything you need to keep a client.</h2>
-            <p className="ret-sub" style={{ margin: "0 auto" }}>Built to work together from the moment you sign in. Click through to explore each one.</p>
-          </div>
-
-          <div className="plat-tabs-wrap">
-            <div className="plat-tabs">
-              {PLATFORM_FEATURES.map((f, i) => (
-                <button
-                  key={f.id}
-                  className={"plat-tab" + (i === activeFeat ? " plat-tab-active" : "")}
-                  onClick={() => setActiveFeat(i)}
-                >
-                  {f.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <div className="plat-feat-grid">
-            <div className="plat-feat-body">
-              <div className="plat-feat-label">{pf.label}</div>
-              <h3>{pf.headline}</h3>
-              <p>{pf.sub}</p>
-              <div className="ret-cta-row ret-cta-row-left" style={{ marginTop: 0, justifyContent: "flex-start" }}>
-                <button className="ret-btn-primary" onClick={() => setPage(pf.id)}>Learn more</button>
-              </div>
-            </div>
-            <div className="plat-mockup">
-              {pf.id === "feature-today" && (
-                <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", color: C.textMuted, textTransform: "uppercase", marginBottom: 14 }}>Today · 5 tasks</div>
-                  {[
-                    { cat: "URGENT", title: "Sarah K — Response time doubled this week", score: 42, color: C.danger, bg: C.dangerBg },
-                    { cat: "DEEPEN", title: "Marcus L — Referral readiness spiking", score: 87, color: C.primary, bg: C.primarySoft },
-                    { cat: "NURTURE", title: "Priya M — Competitor mention on call", score: 68, color: C.warning, bg: C.warningBg },
-                    { cat: "PROACTIVE", title: "James R — Strong Q3, right moment to ask", score: 91, color: C.btn, bg: "#EDE4F8" },
-                  ].map((t, i) => (
-                    <div key={i} style={{ display: "flex", alignItems: "center", gap: 12, padding: "12px 14px", background: "#FAFAF7", borderRadius: 10, marginBottom: 8 }}>
-                      <span style={{ fontSize: 9.5, fontWeight: 700, letterSpacing: "0.08em", padding: "4px 7px", borderRadius: 4, background: t.bg, color: t.color, minWidth: 64, textAlign: "center" }}>{t.cat}</span>
-                      <span style={{ fontSize: 13, color: C.text, fontWeight: 600, flex: 1, minWidth: 0, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{t.title}</span>
-                      <span style={{ fontSize: 12, fontWeight: 700, color: t.color, background: t.bg, padding: "4px 8px", borderRadius: 5 }}>{t.score}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-              {pf.id === "feature-scoring" && (
-                <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", color: C.textMuted, textTransform: "uppercase", marginBottom: 14 }}>Retention Score · Sarah K</div>
-                  <div style={{ textAlign: "center", padding: "24px 0", marginBottom: 18, background: C.dangerBg, borderRadius: 14 }}>
-                    <div style={{ fontSize: 72, fontWeight: 900, color: C.danger, letterSpacing: "-0.04em", lineHeight: 1 }}>42</div>
-                    <div style={{ fontSize: 14, fontWeight: 800, color: C.danger, marginTop: 4, letterSpacing: "-0.01em" }}>At Risk</div>
-                  </div>
-                  <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.12em", color: C.textMuted, textTransform: "uppercase", marginBottom: 10 }}>Signals detected</div>
-                  {[
-                    { s: "Silent Satisfaction", v: "-8" },
-                    { s: "Delegation Drift", v: "-6" },
-                    { s: "Vague Positivity", v: "-4" },
-                  ].map((c, i) => (
-                    <div key={i} style={{ display: "flex", justifyContent: "space-between", padding: "8px 12px", background: "#FAFAF7", borderRadius: 8, marginBottom: 6, fontSize: 13 }}>
-                      <span style={{ color: C.text, fontWeight: 600 }}>{c.s}</span>
-                      <span style={{ color: C.danger, fontWeight: 700, fontVariantNumeric: "tabular-nums" }}>{c.v}</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-              {pf.id === "feature-health" && (
-                <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", color: C.textMuted, textTransform: "uppercase", marginBottom: 14 }}>Health Check · James R · 1 of 5</div>
-                  <div style={{ display: "flex", gap: 4, marginBottom: 18 }}>
-                    {[1,0,0,0,0].map((v,i) => <div key={i} style={{ flex: 1, height: 4, borderRadius: 2, background: v ? C.primary : C.borderLight }} />)}
-                  </div>
-                  <div style={{ fontSize: 17, fontWeight: 800, color: C.text, marginBottom: 16, lineHeight: 1.3, letterSpacing: "-0.015em" }}>Has this client's communication pattern changed recently?</div>
-                  {[
-                    "Same as always — no shift in how we talk",
-                    "Slightly different but could be nothing",
-                    "Noticeably different from normal",
-                    "Something has clearly changed",
-                  ].map((o,i) => (
-                    <div key={i} style={{ padding: "11px 14px", background: i===0?C.primarySoft:"#FAFAF7", border: "1.5px solid "+(i===0?C.primary:C.borderLight), borderRadius: 10, marginBottom: 6, fontSize: 13, color: i===0?C.primary:C.textSec, fontWeight: i===0?600:500 }}>{o}</div>
-                  ))}
-                </div>
-              )}
-              {pf.id === "feature-rai" && (
-                <div>
-                  <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
-                    <div style={{ width: 32, height: 32, borderRadius: 8, background: C.btn, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 800, color: "#fff" }}>R</div>
-                    <div>
-                      <div style={{ fontSize: 13, fontWeight: 700, color: C.text }}>Rai</div>
-                      <div style={{ fontSize: 11, color: C.textMuted }}>Advising on Sarah K</div>
-                    </div>
-                  </div>
-                  <div style={{ padding: "14px 16px", background: "#FAFAF7", borderLeft: "3px solid "+C.btn, borderRadius: 6, marginBottom: 12, fontSize: 13.5, color: C.text, lineHeight: 1.6 }}>
-                    Sarah's a Direct-Communication archetype. Don't soften this. Try:
-                  </div>
-                  <div style={{ padding: "14px 16px", background: "#fff", border: "1px solid "+C.borderLight, borderRadius: 10, fontSize: 13.5, color: C.text, lineHeight: 1.7, fontStyle: "italic" }}>
-                    "Sarah — I want to name something I've noticed. Your response rhythm with us has shifted over the last three weeks. Rather than guess, I'd rather ask directly: is there something about the work that isn't landing?"
-                  </div>
-                  <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
-                    <button style={{ padding: "8px 14px", fontSize: 12, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 8, cursor: "pointer", fontFamily: "inherit" }}>Send as-is</button>
-                    <button style={{ padding: "8px 14px", fontSize: 12, fontWeight: 700, background: "transparent", color: C.btn, border: "1.5px solid "+C.btn, borderRadius: 8, cursor: "pointer", fontFamily: "inherit" }}>Edit first</button>
-                  </div>
-                </div>
-              )}
-              {pf.id === "feature-rolodex" && (
-                <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", color: C.textMuted, textTransform: "uppercase", marginBottom: 14 }}>Rolodex · 14 former clients</div>
-                  {[
-                    { name: "Dana Ortiz", endedMonth: "8 mo ago", status: "Window open", statusColor: C.success, note: "New Head of Growth at previous company" },
-                    { name: "Amit Shah", endedMonth: "1 yr ago", status: "Watching", statusColor: C.warning, note: "Quiet since ending — no change yet" },
-                    { name: "Jen Kwak", endedMonth: "3 mo ago", status: "Not yet", statusColor: C.textMuted, note: "Ended on strong note — too soon" },
-                  ].map((c, i) => (
-                    <div key={i} style={{ padding: "12px 14px", background: "#FAFAF7", borderRadius: 10, marginBottom: 8 }}>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 4 }}>
-                        <span style={{ fontSize: 13.5, fontWeight: 700, color: C.text }}>{c.name}</span>
-                        <span style={{ fontSize: 11, color: c.statusColor, fontWeight: 700 }}>{c.status}</span>
-                      </div>
-                      <div style={{ fontSize: 11.5, color: C.textMuted, marginBottom: 4 }}>Ended {c.endedMonth}</div>
-                      <div style={{ fontSize: 12, color: C.textSec, fontStyle: "italic", lineHeight: 1.5 }}>{c.note}</div>
-                    </div>
-                  ))}
-                </div>
-              )}
-              {pf.id === "feature-referrals" && (
-                <div>
-                  <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: "0.14em", color: C.textMuted, textTransform: "uppercase", marginBottom: 14 }}>Referral readiness · Top 3</div>
-                  {[
-                    { name: "Marcus L", readiness: 92, loyalty: 95, trust: 90, depth: 91 },
-                    { name: "Elena P", readiness: 88, loyalty: 90, trust: 85, depth: 89 },
-                    { name: "Tomás R", readiness: 84, loyalty: 88, trust: 82, depth: 82 },
-                  ].map((c, i) => (
-                    <div key={i} style={{ padding: "14px 16px", background: "#FAFAF7", borderRadius: 10, marginBottom: 8 }}>
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }}>
-                        <span style={{ fontSize: 14, fontWeight: 700, color: C.text }}>{c.name}</span>
-                        <span style={{ fontSize: 14, fontWeight: 900, color: C.primary, letterSpacing: "-0.02em" }}>{c.readiness}</span>
-                      </div>
-                      <div style={{ display: "flex", gap: 14, fontSize: 11, color: C.textMuted }}>
-                        <span>Loyalty <strong style={{ color: C.text, fontWeight: 700 }}>{c.loyalty}</strong></span>
-                        <span>Trust <strong style={{ color: C.text, fontWeight: 700 }}>{c.trust}</strong></span>
-                        <span>Depth <strong style={{ color: C.text, fontWeight: 700 }}>{c.depth}</strong></span>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <RetCurve from="#EAE4D6" to={C.bg} variant="leftCrest" />
-
-      {/* Combination signals — the math */}
-      <section className="ret-section ret-bg-light r-full-bleed">
-        <div className="ret-section-inner">
-          <div className="ret-section-head">
-            <div className="ret-eyebrow">The math behind the magic</div>
-            <h2 className="ret-h2">A scoring engine built on years of client research.</h2>
-            <p className="ret-sub" style={{ margin: "0 auto" }}>Twelve dimensions. Twenty combinations. Every pattern.</p>
-          </div>
-
-          {/* 12 dimensions */}
-          <div style={{ marginBottom: 56 }}>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.14em", color: C.textMuted, textTransform: "uppercase", marginBottom: 16, textAlign: "center" }}>12 dimensions · weighted</div>
-            <div className="plat-dims-grid">
-              {dims.map(d => (
-                <div key={d.name} className="plat-dim-chip">
-                  <span className="plat-dim-name">{d.name}</span>
-                  <span className="plat-dim-weight" style={{ color: d.tier === "Core" ? C.primary : C.textMuted }}>{d.tier}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* 6 of 20 combination signals */}
-          <div>
-            <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: "0.14em", color: C.textMuted, textTransform: "uppercase", marginBottom: 16, textAlign: "center" }}>20 combination signals · 6 shown</div>
-            <div className="ret-grid-3">
-              {combos.map((c, i) => (
-                <div key={i} className="plat-combo-card">
-                  <div style={{ fontSize: 10.5, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 8 }}>Signal · {String(i+1).padStart(2, '0')}</div>
-                  <h4 style={{ fontSize: 17, fontWeight: 800, color: C.text, margin: "0 0 8px", letterSpacing: "-0.015em" }}>{c.t}</h4>
-                  <p style={{ fontSize: 13.5, color: C.textSec, lineHeight: 1.55, margin: 0 }}>{c.d}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <RetCurve from={C.bg} to="#EAE4D6" variant="dome" />
-
-      {/* Two surfaces narrative */}
-      <section className="ret-section ret-bg-beige r-full-bleed">
-        <div className="ret-section-inner">
-          <div className="ret-section-head">
-            <div className="ret-eyebrow">How it ships</div>
-            <h2 className="ret-h2">Two surfaces, one brain.</h2>
-            <p className="ret-sub" style={{ margin: "0 auto" }}>The same scoring engine powers a multi-seat app for humans and a clean API for agents. Your team works from the same graph as your automation.</p>
-          </div>
-
-          <div className="plat-surfaces">
-            <div className="ret-card">
-              <div style={{ fontSize: 11, fontWeight: 700, color: C.primary, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 12 }}>For your team</div>
-              <h3 className="ret-h3">A multi-seat app for account managers.</h3>
-              <p style={{ fontSize: 15, color: C.textSec, lineHeight: 1.7, margin: 0 }}>Every client scored, ranked, and triaged daily. Health Checks run automatically. Rai surfaces the conversations that need a human, and drafts the ones that don't.</p>
-            </div>
-            <div className="ret-card">
-              <div style={{ fontSize: 11, fontWeight: 700, color: C.primary, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 12 }}>For your agents</div>
-              <h3 className="ret-h3">MCP tools and REST endpoints.</h3>
-              <p style={{ fontSize: 15, color: C.textSec, lineHeight: 1.7, margin: 0 }}>Point your agent stack at Retayned and every client in your book is instantly available with full relationship context. Whatever you don't route to a person, your agents can handle, with the same scoring and playbooks underneath.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <RetCurve from="#EAE4D6" to="#F2EEE8" variant="default" />
-
-      {/* Feature grid */}
-      <section className="ret-section ret-bg-cream r-full-bleed">
-        <div className="ret-section-inner">
-          <div className="ret-section-head">
-            <div className="ret-eyebrow">Explore by feature</div>
-            <h2 className="ret-h2">Every piece of the system.</h2>
-          </div>
-          <div className="ret-grid-2">
-            {PLATFORM_FEATURES.map(f => (
-              <div key={f.id} className="ret-card ret-card-hover" style={{ cursor: "pointer" }} onClick={() => setPage(f.id)}>
-                <div style={{ fontSize: 11, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>{f.label}</div>
-                <h3 className="ret-h3">{f.headline}</h3>
-                <p style={{ fontSize: 15, color: C.textSec, lineHeight: 1.6, marginBottom: 14 }}>{f.sub}</p>
-                <div style={{ fontSize: 14, fontWeight: 700, color: C.btn }}>Learn more →</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <RetFinalCTA
-        h2="Every feature, every relationship."
-        sub="Flat pricing. $29/mo Solo, $99/mo Team. No per-client fees."
-        setPage={setPage}
-      />
-
-      <Footer setPage={setPage} />
-    </div>
-  );
-}
-
-// ═══════════════════════════════════════════════════════════════
 // AUDIENCE PAGES — shared template
 // ═══════════════════════════════════════════════════════════════
 function AudiencePage({ data, setPage }) {
@@ -5517,6 +5379,7 @@ function Enterprise({ setPage }) {
   );
 }
 
+
 function FeatureToday({ setPage }) {
   const otherFeatures = PLATFORM_FEATURES.filter(f => f.id !== "feature-today").slice(0, 3);
   return (
@@ -5529,7 +5392,7 @@ function FeatureToday({ setPage }) {
         primaryCta="Start Free Trial"
         primaryAction="signup"
         secondaryCta="See Features"
-        secondaryAction="platform"
+        secondaryAction="home"
         setPage={setPage}
       />
 
@@ -5655,7 +5518,7 @@ function FeatureScoring({ setPage }) {
         primaryCta="Start Free Trial"
         primaryAction="signup"
         secondaryCta="See Features"
-        secondaryAction="platform"
+        secondaryAction="home"
         setPage={setPage}
       />
 
@@ -5805,7 +5668,7 @@ function FeatureHealth({ setPage }) {
         primaryCta="Start Free Trial"
         primaryAction="signup"
         secondaryCta="See Features"
-        secondaryAction="platform"
+        secondaryAction="home"
         setPage={setPage}
       />
 
@@ -5938,7 +5801,7 @@ function FeatureRai({ setPage }) {
         primaryCta="Start Free Trial"
         primaryAction="signup"
         secondaryCta="See Features"
-        secondaryAction="platform"
+        secondaryAction="home"
         setPage={setPage}
       />
 
@@ -6076,7 +5939,7 @@ function FeatureRolodex({ setPage }) {
         primaryCta="Start Free Trial"
         primaryAction="signup"
         secondaryCta="See Features"
-        secondaryAction="platform"
+        secondaryAction="home"
         setPage={setPage}
       />
 
@@ -6214,7 +6077,7 @@ function FeatureReferrals({ setPage }) {
         primaryCta="Start Free Trial"
         primaryAction="signup"
         secondaryCta="See Features"
-        secondaryAction="platform"
+        secondaryAction="home"
         setPage={setPage}
       />
 
@@ -6394,7 +6257,7 @@ function FeatureWorkers({ setPage }) {
         primaryCta="Start Free Trial"
         primaryAction="signup"
         secondaryCta="See Features"
-        secondaryAction="platform"
+        secondaryAction="home"
         setPage={setPage}
       />
 
@@ -6521,7 +6384,6 @@ const PAGE_TO_PATH = {
   freelancers: "/freelancers",
   agencies: "/agencies",
   enterprise: "/enterprise",
-  platform: "/platform",
   faq: "/faq",
   "feature-today": "/features/today",
   "feature-scoring": "/features/clients",
@@ -6550,7 +6412,6 @@ const PAGE_META = {
   freelancers: { title: "Retayned for Freelancers", desc: "For freelancers and consultants: track every client relationship, catch churn early, and keep the business you worked to win. $29/mo flat." },
   agencies: { title: "Retayned for Agencies", desc: "For agencies and human teams: shared client visibility, handoff briefs, and per-AM coverage so knowledge stays when people move. $99/mo." },
   enterprise: { title: "Retayned Enterprise", desc: "Relationship intelligence at scale — for autonomous agents and books of business managing thousands of accounts. Managed Rai, API, and SSO." },
-  platform: { title: "Platform — Retayned", desc: "One brain for your entire book: retention scoring, health checks, and advanced AI built on frontier models. Every feature, every plan." },
   faq: { title: "FAQ — Retayned", desc: "Answers on pricing, features, data, and how Retayned predicts and prevents client churn." },
   "feature-today": { title: "Today — Retayned", desc: "Your daily operating view: Rai suggests and ranks the work that matters most, so the few relationships that need you surface before they become problems." },
   "feature-scoring": { title: "Clients — Retayned", desc: "Your client list, scored and sorted by what matters. A dynamic twelve-dimension Retention Score on every relationship, so you see where you stand before the client tells you." },
@@ -7043,6 +6904,7 @@ export default function RetaynedSite() {
         .v2tf-task {
           position: absolute;
           left: 0; right: 0;
+          display: flex; flex-direction: column; justify-content: center;
           background: #fff;
           border: 1px solid #ebe4d4;
           border-radius: 14px;
@@ -7085,6 +6947,7 @@ export default function RetaynedSite() {
         .v2tf-label-urgent    { background: #f9dcd4; color: #a04432; }
         .v2tf-label-nurture   { background: #f1e2bf; color: #7a5a1b; }
         .v2tf-label-proactive { background: #e3dcf2; color: #534392; }
+        .v2tf-label-develop   { background: #f9dcd4; color: #a04432; }
 
         .v2tf-score {
           margin-left: auto;
@@ -7101,6 +6964,7 @@ export default function RetaynedSite() {
         .v2tf-score-urgent    { background: #f5c6ba; color: #a04432; }
         .v2tf-score-nurture   { background: #ecd59e; color: #7a5a1b; }
         .v2tf-score-proactive { background: #dcd3ee; color: #534392; }
+        .v2tf-score-develop   { background: #f5c6ba; color: #a04432; }
 
         .v2tf-title {
           font-size: 14.5px; font-weight: 600;
@@ -7249,6 +7113,22 @@ export default function RetaynedSite() {
 
         /* ═══ PLATFORM ═══ */
         .v2-section-platform { background: #EAE4D6; padding: 112px 48px; }
+        .v2-feature-tabs {
+          display: flex; flex-wrap: wrap; gap: 4px;
+          background: rgba(255,255,255,0.5); border: 1px solid rgba(0,0,0,0.05);
+          border-radius: 999px; padding: 5px; margin-bottom: 20px;
+        }
+        .v2-feature-tab {
+          flex: 1; min-width: 0; padding: 8px 12px; border: none; background: transparent;
+          border-radius: 999px; font-family: inherit; font-size: 13px; font-weight: 700;
+          color: ${C.textSec}; cursor: pointer; transition: all 0.15s ease; white-space: nowrap;
+        }
+        .v2-feature-tab:hover { color: ${C.text}; }
+        .v2-feature-tab.active { background: #fff; color: ${C.text}; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+        @media (max-width: 640px) {
+          .v2-feature-tabs { gap: 2px; padding: 4px; }
+          .v2-feature-tab { padding: 7px 8px; font-size: 12px; }
+        }
         .v2-platform-grid {
           display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px;
           align-items: center;
@@ -7504,7 +7384,7 @@ export default function RetaynedSite() {
         /* ═══ V2 RESPONSIVE ═══ */
         @media (max-width: 1024px) {
           .v2-hero { padding: 56px 24px 48px; }
-          .v2-hero-device { padding: 20px 16px 0; margin-top: 40px; }
+          .v2-hero-device { padding: 20px 16px 20px; margin-top: 40px; }
           .v2-section-rai, .v2-section-platform, .v2-section-audience, .v2-section-combos { padding: 72px 24px; }
           .v2-section-enterprise, .v2-section-final { padding: 72px 24px; }
           .v2-platform-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -7516,7 +7396,7 @@ export default function RetaynedSite() {
         }
         @media (max-width: 640px) {
           .v2-hero { padding: 40px 20px 40px; }
-          .v2-hero-device { padding: 16px 12px 0; margin-top: 32px; border-radius: 18px; }
+          .v2-hero-device { padding: 16px 12px 16px; margin-top: 32px; border-radius: 18px; }
           .v2-section-rai, .v2-section-platform, .v2-section-audience, .v2-section-combos { padding: 64px 20px; }
           .v2-section-enterprise, .v2-section-final { padding: 64px 20px; }
           .v2-section-head { margin-bottom: 40px; }
@@ -7534,7 +7414,6 @@ export default function RetaynedSite() {
       <div style={{ overflowX: "hidden" }}>
       <div className="r-wrap">
         {page === "home" && <HomeV2 setPage={setPage} />}
-        {page === "platform" && <Platform setPage={setPage} />}
         {page === "freelancers" && <Freelancers setPage={setPage} />}
         {page === "agencies" && <Agencies setPage={setPage} />}
         {page === "enterprise" && <Enterprise setPage={setPage} />}
