@@ -1994,7 +1994,7 @@ function Pricing({ setPage }) {
                         <span style={{ fontSize: 15, color: C.textMuted, fontWeight: 600 }}>/mo</span>
                       </>
                     ) : (
-                      <span style={{ fontSize: 36, fontWeight: 900, letterSpacing: "-0.02em", color: C.text, lineHeight: 1 }}>Let's talk</span>
+                      <span style={{ fontSize: 48, fontWeight: 900, letterSpacing: "-0.03em", color: C.text, lineHeight: 1 }}>Let's talk</span>
                     )}
                   </div>
                   {t.priceSub && <div style={{ fontSize: 13, color: C.textSec, marginTop: 8 }}>{t.priceSub}</div>}
@@ -2126,9 +2126,10 @@ function Pricing({ setPage }) {
       {/* ─── FINAL CALLBACK ─── */}
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", padding: "72px 48px" }}>
         <div className="ret-section-inner" style={{ maxWidth: 880 }}>
-          <h3 style={{ fontSize: "clamp(20px, 2.5vw, 26px)", fontWeight: 800, color: C.text, lineHeight: 1.3, letterSpacing: "-0.02em" }}>
+          <h3 style={{ fontSize: "clamp(28px, 3.5vw, 48px)", fontWeight: 900, color: C.text, lineHeight: 1.05, letterSpacing: "-0.03em" }}>
             Saving just one relationship could pay for Retayned for a decade.
           </h3>
+          <p style={{ fontSize: 17, color: C.textSec, lineHeight: 1.6, maxWidth: 620, margin: "16px auto 0" }}>See the signal. Get the script. Keep the client.</p>
           <button className="cta-btn" onClick={() => setPage("signup")} style={{ marginTop: 24, padding: "16px 36px", fontSize: 16, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
           <div style={{ fontSize: 13, color: C.textSec, marginTop: 12 }}>14-day free trial. Cancel anytime.</div>
         </div>
@@ -2142,17 +2143,18 @@ function Pricing({ setPage }) {
 // ═══ ABOUT — ported from final/about.html ═══
 function About({ setPage }) {
   const values = [
-    { n: "01", t: "Vague positivity is a churn signal.", b: "When clients go quiet, the silence is the warning. We name it out loud." },
-    { n: "02", t: "The script has to be yours.", b: "No template carries a relationship. Rai writes scripts in your voice, not ours." },
-    { n: "03", t: "A 5% lift in retention beats every growth hack.", b: "Run the math. We do, every time we ship a feature." },
-    { n: "04", t: "Tools should be cheap. Relationships are not.", b: "$29/mo flat is a deliberate price." },
+    { n: "01", t: "A 5% lift in retention beats every growth hack.", b: "Run the math. We do, and it's really not even close." },
+    { n: "02", t: "AI can't do what you can.", b: "Rai drafts, reminds, and supports. You preserve and grow relationships." },
+    { n: "03", t: "Water your flowers before your weeds.", b: "Your best clients shouldn't get neglected because of new, subpar business." },
+    { n: "04", t: "Tools should be cheap.", b: "It's easier than ever to build world-class software. Our pricing is deliberate." },
+    { n: "05", t: "CRMs shouldn't make you feel dumb.", b: "If you need onboarding calls to understand Retayned, we have failed." },
   ];
 
   const timeline = [
-    { y: "2014", label: "First retained client.", sub: "A DTC brand. Still with us today." },
-    { y: "2018", label: "The pattern emerges.", sub: "We rarely lose accounts. We start to wonder why." },
-    { y: "2022", label: "A founder moment.", sub: "\"You're in the client retention business.\"" },
-    { y: "2025", label: "Retayned ships.", sub: "The system, externalized for everyone else." },
+    { y: "2014", label: "First retained client.", sub: "A restaurant. Kept for four years and counting." },
+    { y: "2018", label: "The pattern emerges.", sub: "We rarely lost accounts. We started asking why." },
+    { y: "2021", label: "Retention pays off.", sub: "Five-year clients. Referrals everywhere. Real growth." },
+    { y: "2025", label: "A founder moment.", sub: "\"You're not in paid social. You're in retention.\"" },
   ];
 
   return (
@@ -2171,7 +2173,7 @@ function About({ setPage }) {
         <div className="ret-section-inner" style={{ maxWidth: 880 }}>
           <div className="ret-eyebrow">About Retayned</div>
           <h1 className="ret-h1" style={{ marginTop: 16, maxWidth: 880, marginInline: "auto" }}>
-            We didn't set out to build a CRM. We set out to keep the clients <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>nobody else does.</span>
+            We didn't set out to build a CRM. It just made cents.
           </h1>
         </div>
       </section>
@@ -2179,7 +2181,7 @@ function About({ setPage }) {
       {/* Subhead */}
       <section className="r-full-bleed" style={{ background: "#F2EEE8", padding: "8px 48px 56px", textAlign: "center" }}>
         <p style={{ maxWidth: 600, margin: "0 auto", fontSize: 18, lineHeight: 1.55, color: C.textSec }}>
-          Ten years of keeping clients other people lost — turned into the system that does it for you.
+          After ten years of keeping clients others lost, we knew we had something worth building (and sharing).
         </p>
       </section>
 
@@ -2188,46 +2190,45 @@ function About({ setPage }) {
       {/* ─── MANIFESTO ON DARK ─── */}
       <section className="r-full-bleed" style={{ background: C.primaryDeep, color: "#fff", padding: "88px 48px" }}>
         <div style={{ maxWidth: 760, margin: "0 auto" }}>
-          <div className="ret-eyebrow ret-eyebrow-light">Our manifesto</div>
+          <div className="ret-eyebrow ret-eyebrow-light">Our purpose</div>
           <div style={{ marginTop: 32, fontSize: "clamp(19px, 2.4vw, 24px)", lineHeight: 1.55, color: "#E8EFE8", fontWeight: 400 }}>
             <p>Most CRMs are built around the deal. The signed contract. The closed-won.</p>
             <p style={{ marginTop: 22 }}>
-              We think the deal is the <em style={{ color: C.primaryLight, fontStyle: "italic" }}>least</em> interesting moment in a client relationship. The interesting moments are the <strong style={{ fontWeight: 800, color: "#fff" }}>quiet</strong> ones — the email that was a little colder than usual, the follow-up that went two days longer than normal, the tone that shifted between week six and week seven.
+              We think the deal is the <em style={{ fontStyle: "italic" }}>least</em> interesting moment in a client relationship.
             </p>
             <p style={{ marginTop: 22 }}>
-              Those are the moments that decide whether a client renews. And those are the moments every other CRM <em style={{ color: C.danger, fontStyle: "italic" }}>misses</em>.
+              It's the part everyone celebrates yet nobody protects. The real work — and the real growth — is in what comes after: the relationships you keep, renew, and refer while your competitors are still chasing strangers.
             </p>
-            <p style={{ marginTop: 28, fontWeight: 900, fontSize: "clamp(24px, 3vw, 32px)", lineHeight: 1.25, color: "#fff", letterSpacing: "-0.02em" }}>
-              Retayned doesn't track deals. It tracks the small things that decide them.
+            <p style={{ marginTop: 22 }}>
+              It isn't flashy. <strong style={{ fontWeight: 900, color: "#fff" }}>It's just better business.</strong>
             </p>
           </div>
         </div>
       </section>
 
-      <RetCurve from={C.primaryDeep} to={C.bg} variant="rightCrest" />
+      <RetCurve from={C.primaryDeep} to="#F2EEE8" variant="rightCrest" />
 
       {/* ─── FOUNDER + VALUES ─── */}
-      <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
+      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8" }}>
         <div className="ret-section-inner" style={{ maxWidth: 1100 }}>
           <div className="about-founder-grid" style={{ display: "grid", gridTemplateColumns: "1.1fr 1fr", gap: 40, alignItems: "start" }}>
             {/* Founder card */}
             <div className="ret-card" style={{ padding: "36px 32px" }}>
               <div className="ret-eyebrow">Founder</div>
               <div style={{ display: "flex", gap: 18, marginTop: 18, alignItems: "center" }}>
-                <div style={{ width: 72, height: 72, borderRadius: 16, overflow: "hidden", background: C.primarySoft, flexShrink: 0 }}>
-                  <img src="/AdamLawrence.jpg" alt="Adam Lawrence" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                <div style={{ width: 84, height: 84, borderRadius: 16, overflow: "hidden", background: C.primarySoft, flexShrink: 0 }}>
+                  <img src="/AdamLawrence.jpg" alt="Adam Lawrence" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 22%" }} />
                 </div>
                 <div>
                   <div style={{ fontWeight: 800, fontSize: 19, color: C.text }}>Adam Lawrence</div>
-                  <div style={{ fontSize: 13, color: C.textSec, marginTop: 2 }}>Founder. Wrote the manual. Picks up the phone.</div>
+                  <div style={{ fontSize: 13, color: C.textSec, marginTop: 2 }}>Owner-operator turned Founder. At your service.</div>
                 </div>
               </div>
               <p style={{ fontSize: 14.5, color: C.textSec, marginTop: 22, lineHeight: 1.6 }}>
-                Ten years of paid social. Ran campaigns for agencies, DTC brands, and enterprises. Kept the clients other people lost. Eventually figured out why — and then turned it into the system you're looking at.
+                Ten years of paid social. Ran campaigns for agencies, DTC brands, SMBs and Fortune 500 companies. Kept the clients other people lost. Eventually figured out why — and then turned it into the system you're looking at.
               </p>
               <div style={{ marginTop: 22, display: "flex", gap: 10, flexWrap: "wrap" }}>
                 <span style={{ display: "inline-block", padding: "5px 12px", background: C.primarySoft, color: C.primary, borderRadius: 999, fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.14em" }}>Washington, DC</span>
-                <span style={{ display: "inline-block", padding: "5px 12px", background: "#EFE9FB", color: C.btn, borderRadius: 999, fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.14em" }}>Talk to me directly</span>
                 <a href="mailto:adam@retayned.com" style={{ display: "inline-block", padding: "5px 12px", background: C.primarySoft, color: C.primary, borderRadius: 999, fontSize: 11, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.14em", textDecoration: "none" }}>adam@retayned.com</a>
               </div>
             </div>
@@ -2251,15 +2252,15 @@ function About({ setPage }) {
         </div>
       </section>
 
-      <RetCurve from={C.bg} to="#F2EEE8" variant="leftCrest" />
+      <RetCurve from="#F2EEE8" to={C.bg} variant="leftCrest" />
 
       {/* ─── TIMELINE ─── */}
-      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", paddingBottom: 96 }}>
+      <section className="ret-section r-full-bleed" style={{ background: C.bg, paddingBottom: 96 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">The Timeline</div>
             <h2 className="ret-h2" style={{ marginTop: 12 }}>
-              How we got here, in <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>four moments.</span>
+              How we got here, in four moments.
             </h2>
           </div>
 
@@ -2267,18 +2268,26 @@ function About({ setPage }) {
             <div className="about-timeline-line" style={{ position: "absolute", top: 14, left: "6%", right: "6%", height: 1, background: C.borderLight }} />
             {timeline.map(m => (
               <div key={m.y} style={{ textAlign: "center", position: "relative", padding: "0 14px" }}>
-                <div style={{ width: 14, height: 14, borderRadius: 999, background: C.btn, margin: "8px auto 0", border: "3px solid #F2EEE8" }} />
-                <div style={{ fontWeight: 900, fontSize: 15, marginTop: 16, color: C.btn, letterSpacing: "0.04em" }}>{m.y}</div>
+                <div style={{ width: 14, height: 14, borderRadius: 999, background: C.btn, margin: "8px auto 0", border: "3px solid " + C.bg }} />
+                <div style={{ fontWeight: 900, fontSize: 15, marginTop: 16, color: C.primary, letterSpacing: "0.04em" }}>{m.y}</div>
                 <div style={{ fontSize: 14.5, fontWeight: 800, marginTop: 8, color: C.text, letterSpacing: "-0.01em" }}>{m.label}</div>
                 <div style={{ fontSize: 13, color: C.textSec, marginTop: 8, lineHeight: 1.55 }}>{m.sub}</div>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div style={{ textAlign: "center", marginTop: 64 }}>
-            <p style={{ fontWeight: 800, fontSize: "clamp(18px, 2.3vw, 22px)", color: C.text, letterSpacing: "-0.01em" }}>
-              Built for the way you already work — when nobody was looking.
+      <RetCurve from={C.bg} to="#F2EEE8" variant="leftCrest" />
+
+      {/* ─── FINAL CTA ─── */}
+      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", paddingBottom: 96 }}>
+        <div className="ret-section-inner">
+          <div style={{ textAlign: "center" }}>
+            <p style={{ fontWeight: 900, fontSize: "clamp(28px, 3.5vw, 48px)", color: C.text, lineHeight: 1.05, letterSpacing: "-0.03em" }}>
+              Your clients won't know Retayned exists.<br />They'll just stay.
             </p>
+            <p style={{ fontSize: 17, color: C.textSec, lineHeight: 1.6, maxWidth: 620, margin: "16px auto 0" }}>Everything you need and more to keep a client.</p>
             <button className="cta-btn" onClick={() => setPage("signup")} style={{ marginTop: 18, padding: "16px 36px", fontSize: 16, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
             <div style={{ fontSize: 13, color: C.textSec, marginTop: 10 }}>14-day free trial. Cancel anytime.</div>
           </div>
@@ -3616,7 +3625,7 @@ function Blog({ setPage }) {
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingBottom: 88 }}>
         <div className="ret-section-inner" style={{ maxWidth: 760 }}>
           <div className="ret-eyebrow">Stay in the loop</div>
-          <h3 className="ret-h2" style={{ marginTop: 14, fontSize: "clamp(24px, 3.5vw, 36px)" }}>Get notified when we publish.</h3>
+          <h3 className="ret-h2" style={{ marginTop: 14, fontSize: "clamp(28px, 3.5vw, 48px)", fontWeight: 900, lineHeight: 1.05, letterSpacing: "-0.03em" }}>Get notified when we publish.</h3>
           <div className="res-newsletter-row" style={{ marginTop: 22, display: "inline-flex", gap: 8, alignItems: "center", background: C.card, padding: 6, borderRadius: 999, border: "1px solid " + C.borderLight, maxWidth: "100%" }}>
             <input
               type="email"
