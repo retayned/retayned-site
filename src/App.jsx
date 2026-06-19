@@ -521,6 +521,55 @@ function Nav({ page, setPage }) {
 function Footer({ setPage }) {
   return (
     <footer className="v2-footer r-full-bleed">
+      <style>{`
+        .v2-footer { background: ${C.primaryDeep}; color: #fff; padding: 72px 48px 36px; }
+        .v2-footer-inner {
+          max-width: 1320px; margin: 0 auto;
+          display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+          gap: 40px;
+        }
+        .v2-footer-wordmark {
+          font-family: system-ui, -apple-system, sans-serif;
+          font-size: 26px; font-weight: 900;
+          letter-spacing: -0.04em; color: #fff;
+          margin-bottom: 14px; cursor: pointer;
+        }
+        .v2-footer-tag {
+          font-size: 13px; color: rgba(255,255,255,0.5);
+          line-height: 1.6; max-width: 280px;
+        }
+        .v2-footer-col h5 {
+          font-size: 11px; font-weight: 700;
+          text-transform: uppercase; letter-spacing: 0.14em;
+          color: rgba(255,255,255,0.5); margin: 0 0 14px;
+        }
+        .v2-footer-col a {
+          display: block; font-size: 13px; color: rgba(255,255,255,0.85);
+          margin-bottom: 9px; cursor: pointer; text-decoration: none;
+        }
+        .v2-footer-col a:hover { color: #fff; }
+        .v2-footer-bottom {
+          max-width: 1320px; margin: 40px auto 0;
+          padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);
+          font-size: 12px; color: rgba(255,255,255,0.4);
+          display: flex; justify-content: space-between;
+          flex-wrap: wrap; gap: 8px;
+        }
+        .v2-footer-citation {
+          max-width: 1320px; margin: 32px auto 0;
+          font-size: 11px; color: rgba(255,255,255,0.32);
+          line-height: 1.5;
+        }
+        .v2-footer-citation sup { font-size: 9px; }
+        @media (max-width: 1024px) {
+          .v2-footer { padding: 56px 24px 32px; }
+          .v2-footer-inner { grid-template-columns: 1fr 1fr; gap: 32px; }
+        }
+        @media (max-width: 640px) {
+          .v2-footer { padding: 48px 20px 28px; }
+          .v2-footer-inner { grid-template-columns: 1fr; gap: 28px; }
+        }
+      `}</style>
       <div className="v2-footer-inner">
         <div className="v2-footer-brand">
           <div className="v2-footer-wordmark" onClick={() => setPage("home")} role="button" tabIndex={0}>Retayned.</div>
@@ -558,6 +607,7 @@ function Footer({ setPage }) {
       </div>
       <div className="v2-footer-citation">
         <sup>1</sup> Reichheld, F. & Schefter, P. "The Economics of E-Loyalty." Harvard Business School / Bain & Company.
+        <br /><sup>2</sup> Acquiring a new client costs 5–25× more than retaining one. Bain & Company; Harvard Business Review.
       </div>
       <div className="v2-footer-bottom">
         <div>© {new Date().getFullYear()} Maniac Digital, LLC · Retayned</div>
@@ -801,7 +851,7 @@ function V2TodayFeed() {
 
   const raiLines = {
     meridian:  "Meridian's primed to expand — a recent-wins recap now sets up the upsell. Pulling it to second so it doesn't slip.",
-    pinebrook: "I drafted this one for you: Pinebrook's renewal probability slipped this morning. Bumping it above Baxter — it needs you first.",
+    pinebrook: "I drafted this one for you: Pinebrook's renewal probability slipped this morning. Bumping it — they need you first.",
     baxter:    "Baxter Firm just confirmed scope on their renewal call. Pinebrook can wait — putting Baxter back ahead.",
     hollis:    "Hollis & Lee are stable at 91. They\'re not urgent today — dropping them so the at-risk accounts surface.",
   };
@@ -1162,7 +1212,7 @@ function HomeV2({ setPage }) {
         <div className="v2-hero-inner">
           <div className="v2-trust-pill">
             <svg className="v2-trust-dot" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 4.2 C8.5 2.8 3.4 6 3.1 11.5 C2.8 17.2 7.6 21.4 13 21 C18.4 20.6 21.8 16.2 20.7 11 C19.9 7.1 16.4 4.2 11.6 4.6 C9.9 4.7 8.3 5.4 7.4 6.6" fill="none" stroke={C.primary} strokeWidth="2" strokeLinecap="round" /></svg>
-            For solo operators, agencies, and mobsters.
+            For freelancers, agencies, and mobsters.
           </div>
           <h1 className="v2-hero-h1">
             The CRM that{" "}
@@ -1172,7 +1222,7 @@ function HomeV2({ setPage }) {
             </span>{" "}churn.
           </h1>
           <p className="v2-hero-sub">Stop losing clients you should have kept.</p>
-          <p className="v2-hero-desc">Retayned replaces the spreadsheets, docs, notes, and reminders you've been duct-taping together with one system to help you keep and grow the business you've earned.</p>
+          <p className="v2-hero-desc">You've outgrown templates. Replace the spreadsheets, docs, notes, and reminders you've been duct-taping together with one system to help you keep and grow the business you've earned.</p>
           <div className="v2-hero-cta-row">
             <button className="v2-btn-primary-lg cta-btn" onClick={() => setPage("signup")}>Start Free Trial</button>
           </div>
@@ -1891,44 +1941,37 @@ function Pricing({ setPage }) {
       `}</style>
 
       {/* ─── HERO (forest dark) ─── */}
-      <section className="r-full-bleed" style={{ background: C.primaryDeep, color: "#fff", padding: "84px 48px 96px", textAlign: "center" }}>
-        <div className="ret-eyebrow ret-eyebrow-light">Pricing</div>
-        <h1 className="ret-h1" style={{ color: "#fff", maxWidth: 760, margin: "16px auto 0" }}>
-          "This shouldn't be this cheap..."
+      <section className="r-full-bleed" style={{ background: "#F2EEE8", color: C.text, padding: "84px 48px 96px", textAlign: "center" }}>
+        <div className="ret-eyebrow">Pricing</div>
+        <h1 className="ret-h1" style={{ color: C.text, maxWidth: 760, margin: "16px auto 0" }}>
+          Built to pay for itself by Tuesday afternoon.
         </h1>
-        <div style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", marginTop: 14, letterSpacing: "0.02em" }}>— someone actually said this</div>
-        <p style={{ fontSize: 17, lineHeight: 1.55, color: "rgba(255,255,255,0.65)", maxWidth: 540, margin: "20px auto 0" }}>
+        <p style={{ fontSize: 17, lineHeight: 1.55, color: C.textSec, maxWidth: 540, margin: "20px auto 0" }}>
           Every plan unlocks the entire platform — including advanced AI features. Nothing gated, nothing held back for a higher tier.
         </p>
 
         <div style={{ marginTop: 36 }}>
           <button className="cta-btn" onClick={() => setPage("signup")} style={{ padding: "16px 36px", fontSize: 16, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
-          <div style={{ fontSize: 13, color: "rgba(255,255,255,0.5)", marginTop: 14 }}>14-day free trial. Cancel anytime.</div>
+          <div style={{ fontSize: 13, color: C.textMuted, marginTop: 14 }}>14-day free trial. Cancel anytime.</div>
         </div>
 
         {/* Value-vs-cost contrast */}
-        <div className="pricing-contrast" style={{ marginTop: 44, paddingTop: 32, borderTop: "0.5px solid rgba(255,255,255,0.12)", maxWidth: 560, marginLeft: "auto", marginRight: "auto", display: "flex", justifyContent: "center", alignItems: "center", gap: 0 }}>
-          <div style={{ flex: 1, textAlign: "center", padding: "0 24px" }}>
-            <div style={{ fontSize: 34, fontWeight: 900, color: "#fff", lineHeight: 1 }}>$29<span style={{ fontSize: 15, color: "rgba(255,255,255,0.5)", fontWeight: 600 }}>/mo</span></div>
-            <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.6)", marginTop: 6 }}>to keep your whole book</div>
-          </div>
-          <div className="pricing-contrast-divider" style={{ width: 1, alignSelf: "stretch", background: "rgba(255,255,255,0.14)", flexShrink: 0 }} />
-          <div style={{ flex: 1, textAlign: "center", padding: "0 24px" }}>
-            <div style={{ fontSize: 34, fontWeight: 900, color: "#fff", lineHeight: 1 }}>5–7×</div>
-            <div style={{ fontSize: 12.5, color: "rgba(255,255,255,0.6)", marginTop: 6 }}>the cost to replace one lost client</div>
-          </div>
+        <div className="pricing-contrast" style={{ marginTop: 44, paddingTop: 32, borderTop: "0.5px solid " + C.border, maxWidth: 560, marginLeft: "auto", marginRight: "auto", textAlign: "center" }}>
+          <p style={{ fontSize: 17, lineHeight: 1.6, color: C.textSec, margin: 0 }}>
+            Replacing a lost client costs <strong style={{ color: C.text, fontWeight: 800 }}>5–25× more</strong><sup style={{ fontSize: 11, color: C.textMuted, fontWeight: 400, marginLeft: 1 }}>2</sup> than keeping one.
+          </p>
         </div>
       </section>
 
-      <RetCurve from={C.primaryDeep} to="#F2EEE8" variant="leftCrest" />
+      <RetCurve from="#F2EEE8" to={C.primaryDeep} variant="leftCrest" />
 
       {/* ─── THREE TIERS ─── */}
-      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", paddingTop: 80 }}>
+      <section className="ret-section r-full-bleed" style={{ background: C.primaryDeep, color: "#fff", paddingTop: 80 }}>
         <div className="ret-section-inner">
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
             <div className="ret-section-head">
-              <div className="ret-eyebrow">Plans</div>
-              <h2 className="ret-h2" style={{ marginTop: 12, fontSize: "clamp(24px, 3.5vw, 36px)" }}>Solve your business's most consequential problem for the cost of a Netflix subscription.</h2>
+              <div className="ret-eyebrow ret-eyebrow-light">Plans</div>
+              <h2 className="ret-h2" style={{ marginTop: 12, fontSize: "clamp(24px, 3.5vw, 36px)", color: "#fff" }}>Solve your business's most consequential problem for the cost of a Netflix subscription.</h2>
             </div>
             <div className="pricing-tier-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 18, alignItems: "stretch" }}>
               {tiers.map(t => (
@@ -1977,17 +2020,17 @@ function Pricing({ setPage }) {
                 </div>
               ))}
             </div>
-            <div style={{ textAlign: "center", marginTop: 18, fontSize: 13, color: C.textSec }}>
+            <div style={{ textAlign: "center", marginTop: 18, fontSize: 13, color: "rgba(255,255,255,0.7)" }}>
               Every plan includes a 14-day free trial. Cancel anytime.
             </div>
-            <div style={{ textAlign: "center", marginTop: 10, fontSize: 12, color: C.textMuted }}>
+            <div style={{ textAlign: "center", marginTop: 10, fontSize: 12, color: "rgba(255,255,255,0.5)" }}>
               * Unlimited Rai is subject to fair-use limits to prevent abuse.
             </div>
           </div>
         </div>
       </section>
 
-      <RetCurve from="#F2EEE8" to={C.bg} variant="rightRise" />
+      <RetCurve from={C.primaryDeep} to={C.bg} variant="rightRise" />
 
       {/* ─── ROI CALCULATOR ─── */}
       <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
@@ -2072,7 +2115,7 @@ function Pricing({ setPage }) {
               <div style={{ fontSize: 14, color: "rgba(255,255,255,0.65)", marginTop: 6, lineHeight: 1.55 }}>30-minute call with Adam. Bring your book size, your stack, and one tough account.</div>
             </div>
             <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
-              <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 22px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Request Early Access</button>
+              <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 22px", fontSize: 15, fontWeight: 700, background: "#fff", color: C.primaryDeep, border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Request Early Access</button>
             </div>
           </div>
         </div>
@@ -4020,10 +4063,10 @@ function Login({ setPage }) {
               style={{
                 fontSize: 32,
                 fontWeight: 900,
-                letterSpacing: "-0.03em",
+                letterSpacing: "-0.04em",
                 color: C.primary,
                 cursor: "pointer",
-                fontFamily: "inherit",
+                fontFamily: "system-ui, -apple-system, sans-serif",
               }}
             >
               Retayned.
@@ -4083,7 +4126,7 @@ function Login({ setPage }) {
             </div>
 
             <p style={{ fontSize: 14, color: C.textSec, textAlign: "left", marginTop: 22 }}>
-              Don't have an account? <span onClick={() => setPage("signup")} style={{ color: C.primary, fontWeight: 700, cursor: "pointer" }}>Start free trial</span>
+              Don't have an account? <span onClick={() => setPage("signup")} style={{ color: C.primary, fontWeight: 700, cursor: "pointer" }}>Start Free Trial</span>
             </p>
           </div>
         </div>
@@ -4108,10 +4151,10 @@ function Signup({ setPage }) {
               style={{
                 fontSize: 32,
                 fontWeight: 900,
-                letterSpacing: "-0.03em",
+                letterSpacing: "-0.04em",
                 color: C.primary,
                 cursor: "pointer",
-                fontFamily: "inherit",
+                fontFamily: "system-ui, -apple-system, sans-serif",
               }}
             >
               Retayned.
@@ -4528,94 +4571,6 @@ const PLATFORM_FEATURES = [
   { id: "feature-workers", label: "Workers", headline: "Delegate the task. Keep the relationship.", sub: "Hand a single task to a contractor or VA with one secure link — no account, no login, no access to the rest of your book. You stay the hub; the work flows outward." },
   { id: "feature-rai", label: "Rai", headline: "She writes the words you need when it matters most.", sub: "Rai is an AI advisor calibrated to your specific relationships. When you don't know what to say, Rai gives you the script." },
 ];
-
-// AUDIENCE PAGES — shared template
-// ═══════════════════════════════════════════════════════════════
-function AudiencePage({ data, setPage }) {
-  return (
-    <div>
-      <RetPageStyles />
-      <RetHero
-        eyebrow={data.eyebrow}
-        h1={data.h1}
-        sub={data.heroSub}
-        primaryCta={data.primaryCta || "Start Free Trial"}
-        primaryAction={data.primaryAction || "signup"}
-        secondaryCta={data.secondaryCta}
-        secondaryAction={data.secondaryAction}
-        fine={data.fine}
-        setPage={setPage}
-      />
-      <RetCurve from="#F2EEE8" to="#EAE4D6" variant="dome" />
-      {data.graphic && (
-        <section className="ret-section ret-bg-beige r-full-bleed" style={{ paddingBottom: 56 }}>
-          <div className="ret-section-inner" style={{ textAlign: "center" }}>
-            {data.graphic}
-          </div>
-        </section>
-      )}
-      <RetCurve from="#EAE4D6" to={C.bg} variant="rightCrest" />
-      <section className="ret-section ret-bg-light r-full-bleed">
-        <div className="ret-section-inner">
-          <div className="ret-section-head">
-            <div className="ret-eyebrow">{data.realityEyebrow}</div>
-            <h2 className="ret-h2">{data.realityH2}</h2>
-            <p className="ret-sub" style={{ margin: "0 auto" }}>{data.realitySub}</p>
-          </div>
-          <div className="ret-grid-3">
-            {data.cards.map((card, i) => (
-              <div key={i} className="ret-card ret-card-hover">
-                <div style={{ fontSize: 10.5, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>{card.cat}</div>
-                <h3 style={{ fontSize: 17, fontWeight: 800, color: C.text, marginBottom: 10, lineHeight: 1.3, letterSpacing: "-0.01em" }}>{card.q}</h3>
-                <p style={{ fontSize: 14, color: C.textSec, lineHeight: 1.6, margin: 0 }}>{card.a}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <RetCurve from={C.bg} to="#F2EEE8" variant="default" />
-      <section className="ret-section ret-bg-cream r-full-bleed">
-        <div className="ret-section-inner" style={{ maxWidth: 640, textAlign: "center" }}>
-          <div className="ret-eyebrow">Solo plan. Every feature.</div>
-          <div style={{ display: "flex", alignItems: "baseline", justifyContent: "center", gap: 6, marginBottom: 8, marginTop: 8 }}>
-            <span style={{ fontSize: 64, fontWeight: 900, letterSpacing: "-0.04em", color: C.text, lineHeight: 1 }}>$29</span>
-            <span style={{ fontSize: 17, color: C.textMuted, fontWeight: 600 }}>/mo flat</span>
-          </div>
-          <div style={{ fontSize: 16, color: C.textSec, marginBottom: 20 }}>No per-client fees · <span style={{ fontWeight: 700, color: C.text }}>25 managed, unlimited advisory</span></div>
-          <p style={{ fontSize: 15, color: C.textSec, marginBottom: 28, lineHeight: 1.5, maxWidth: 460, margin: "0 auto 28px" }}>Solve your business's most consequential problem for less than a Netflix subscription.</p>
-          <div className="ret-cta-row">
-            <button className="ret-btn-primary" onClick={() => setPage("signup")}>Start Free Trial</button>
-          </div>
-          <p className="ret-hero-fine">14-day free trial. Cancel anytime.</p>
-        </div>
-      </section>
-      <RetCurve from="#F2EEE8" to="#EAE4D6" variant="leftCrest" />
-      <section className="ret-section ret-bg-beige r-full-bleed">
-        <div className="ret-section-inner">
-          <div className="ret-section-head">
-            <h2 className="ret-h2">{data.featuresH2}</h2>
-            <p className="ret-sub" style={{ margin: "0 auto" }}>{data.featuresSub}</p>
-          </div>
-          <div className="ret-grid-3">
-            {data.features.map((f, i) => (
-              <div key={i} className="ret-card">
-                <div style={{ fontSize: 11, fontWeight: 700, color: C.primary, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>{f.label}</div>
-                <div style={{ fontSize: 14, color: C.textSec, lineHeight: 1.6 }}>{f.desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-      <RetCurve from="#EAE4D6" to="#F2EEE8" variant="rightCrest" />
-      <RetFinalCTA
-        h2={data.finalH2}
-        sub={data.finalSub}
-        setPage={setPage}
-      />
-      <Footer setPage={setPage} />
-    </div>
-  );
-}
 
 // ═══════════════════════════════════════════════════════════════
 // FREELANCERS — full-page port of final/freelancer.html
@@ -5167,7 +5122,7 @@ function Enterprise({ setPage }) {
         </div>
 
         <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 40, flexWrap: "wrap" }}>
-          <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Request Early Access</button>
+          <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: "#fff", color: C.primaryDeep, border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Request Early Access</button>
         </div>
       </section>
 
@@ -5369,7 +5324,7 @@ function Enterprise({ setPage }) {
           We're onboarding a small group of design partners now. White-glove deployment, a dedicated solutions engineer, and direct access to the team that builds Retayned.
         </p>
         <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 32, flexWrap: "wrap" }}>
-          <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Request Early Access</button>
+          <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: "#fff", color: C.primaryDeep, border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Request Early Access</button>
           <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: "transparent", color: "#fff", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Talk to founders</button>
         </div>
       </section>
