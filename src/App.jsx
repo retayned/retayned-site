@@ -20,6 +20,9 @@ const C = {
   raiGrad: "linear-gradient(145deg, #1E261F 0%, #33543E 55%, #558B68 100%)",
 };
 
+// Spacing tokens (on an 8px-ish grid). Single source of truth for repeated gaps.
+const EYEBROW_GAP = 24; // gap between an eyebrow pill and the headline beneath it
+const HERO_TOP = 56; // gap from the top of the page content to the hero eyebrow
 
 const HEADSHOT = "/AdamLawrence.jpg";
 
@@ -953,7 +956,7 @@ function V2TodayFeed() {
           <div className={"v2tf-ranking" + (thinking ? " thinking" : "")}>Rai is ranking</div>
         </div>
 
-        <div className="v2tf-list-wrap">
+        <div className="v2tf-list-wrap" style={{ height: `${4 * ROW_H + 3 * GAP}px` }}>
           <div
             className="v2tf-list"
             style={{ height: `${order.length * ROW_H + (order.length - 1) * GAP}px` }}
@@ -1212,7 +1215,7 @@ function HomeV2({ setPage }) {
         <div className="v2-hero-inner">
           <div className="v2-trust-pill">
             <svg className="v2-trust-dot" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M14 4.2 C8.5 2.8 3.4 6 3.1 11.5 C2.8 17.2 7.6 21.4 13 21 C18.4 20.6 21.8 16.2 20.7 11 C19.9 7.1 16.4 4.2 11.6 4.6 C9.9 4.7 8.3 5.4 7.4 6.6" fill="none" stroke={C.primary} strokeWidth="2" strokeLinecap="round" /></svg>
-            For freelancers, agencies, and mobsters.
+            For freelancers, consultants, and agencies.
           </div>
           <h1 className="v2-hero-h1">
             The CRM that{" "}
@@ -1222,7 +1225,7 @@ function HomeV2({ setPage }) {
             </span>{" "}churn.
           </h1>
           <p className="v2-hero-sub">Stop losing clients you should have kept.</p>
-          <p className="v2-hero-desc">You've outgrown templates. Replace the spreadsheets, docs, notes, and reminders you've been duct-taping together with one system to help you keep and grow the business you've earned.</p>
+          <p className="v2-hero-desc">Replace the spreadsheets, docs, notes, and reminders with one system to help you keep and grow the business you've earned.</p>
           <div className="v2-hero-cta-row">
             <button className="v2-btn-primary-lg cta-btn" onClick={() => setPage("signup")}>Start Free Trial</button>
           </div>
@@ -1941,9 +1944,9 @@ function Pricing({ setPage }) {
       `}</style>
 
       {/* ─── HERO (forest dark) ─── */}
-      <section className="r-full-bleed" style={{ background: "#F2EEE8", color: C.text, padding: "84px 48px 96px", textAlign: "center" }}>
+      <section className="r-full-bleed" style={{ background: "#F2EEE8", color: C.text, padding: `${HERO_TOP}px 48px 72px`, textAlign: "center" }}>
         <div className="ret-eyebrow">Pricing</div>
-        <h1 className="ret-h1" style={{ color: C.text, maxWidth: 760, margin: "16px auto 0" }}>
+        <h1 className="ret-h1" style={{ color: C.text, maxWidth: 760, margin: "0 auto" }}>
           Built to pay for itself by Tuesday afternoon.
         </h1>
         <p style={{ fontSize: 17, lineHeight: 1.55, color: C.textSec, maxWidth: 540, margin: "20px auto 0" }}>
@@ -1971,7 +1974,7 @@ function Pricing({ setPage }) {
           <div style={{ maxWidth: 1100, margin: "0 auto" }}>
             <div className="ret-section-head">
               <div className="ret-eyebrow ret-eyebrow-light">Plans</div>
-              <h2 className="ret-h2" style={{ marginTop: 12, fontSize: "clamp(24px, 3.5vw, 36px)", color: "#fff" }}>Solve your business's most consequential problem for the cost of a Netflix subscription.</h2>
+              <h2 className="ret-h2" style={{ fontSize: "clamp(24px, 3.5vw, 36px)", color: "#fff" }}>Solve your business's most consequential problem for the cost of a Netflix subscription.</h2>
             </div>
             <div className="pricing-tier-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 18, alignItems: "stretch" }}>
               {tiers.map(t => (
@@ -2075,7 +2078,7 @@ function Pricing({ setPage }) {
         <div className="ret-section-inner" style={{ maxWidth: 1100 }}>
           <div style={{ textAlign: "center", marginBottom: 40 }}>
             <div className="ret-eyebrow ret-eyebrow-light">Retayned Enterprise · Coming Soon</div>
-            <h2 className="ret-h2" style={{ marginTop: 14, color: "#fff", maxWidth: 720, margin: "14px auto 0" }}>
+            <h2 className="ret-h2" style={{ color: "#fff", maxWidth: 720, margin: "0 auto" }}>
               Relationship intelligence, <span style={{ fontFamily: "'Caveat', cursive", color: C.primaryLight, fontWeight: 700, fontSize: "1.1em" }}>scaled.</span>
             </h2>
             <p style={{ color: "rgba(255,255,255,0.7)", maxWidth: 620, margin: "16px auto 0", fontSize: 15.5, lineHeight: 1.6 }}>
@@ -2169,10 +2172,10 @@ function About({ setPage }) {
       `}</style>
 
       {/* ─── HERO ─── */}
-      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", paddingBottom: 24, textAlign: "center" }}>
+      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", paddingTop: HERO_TOP, paddingBottom: 24, textAlign: "center" }}>
         <div className="ret-section-inner" style={{ maxWidth: 880 }}>
           <div className="ret-eyebrow">About Retayned</div>
-          <h1 className="ret-h1" style={{ marginTop: 16, maxWidth: 880, marginInline: "auto" }}>
+          <h1 className="ret-h1" style={{ maxWidth: 880, marginInline: "auto" }}>
             We didn't set out to build a CRM. It just made cents.
           </h1>
         </div>
@@ -2259,7 +2262,7 @@ function About({ setPage }) {
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">The Timeline</div>
-            <h2 className="ret-h2" style={{ marginTop: 12 }}>
+            <h2 className="ret-h2">
               How we got here, in four moments.
             </h2>
           </div>
@@ -2301,6 +2304,324 @@ function About({ setPage }) {
 
 // ═══ RESOURCES (was Blog) — ported from final/resources.html ═══
 const RESOURCES_CONTENT = [
+  {
+    slug: "water-your-flowers-before-your-weeds",
+    tag: "DIAGNOSTICS",
+    read: "4 min read",
+    kind: "article",
+    featured: false,
+    title: "Water your flowers before your weeds",
+    excerpt: "Your best client gets a quiet quarter while you pour energy into the new account that may never be great. That trade is more expensive than it feels.",
+    body: `# Water your flowers before your weeds
+
+Look at where your attention actually went last month. Not where you meant for it to go. Where it went.
+
+For most operators, the honest answer is uncomfortable: the loudest, newest, least-proven accounts got the most of you. The new logo you're still trying to impress. The difficult client who emails at 11pm. The prospect who might sign. Meanwhile the three clients who have paid you on time for two years, never made a scene, and refer you without being asked got a few quick replies and a quarter of silence.
+
+You watered the weeds. The flowers went dry.
+
+## The trap is that weeds demand and flowers don't
+
+A struggling or demanding account announces itself. It generates fires, threads, escalations. It feels urgent, so it gets your hours. A great account does the opposite. It runs quietly, asks for little, and gives you no reason to think about it. Its very health is what makes it easy to ignore.
+
+So the natural pull of any given week is to spend your best energy on your worst-fit business, and your leftover energy on your best. Repeat that for a year and you've systematically underinvested in exactly the relationships that fund everything else.
+
+## What the neglect actually costs
+
+A new, marginal client might become great, or might churn in six months and was never going to be worth the acquisition cost. That's a bet. A two-year client with a clean payment history and a habit of referring you is not a bet. It's a known, compounding asset. When you let it coast untended, you're risking a sure thing to chase a maybe.
+
+And the downside isn't symmetric. Lose the maybe and you've lost a maybe. Lose the flower and you've lost recurring revenue, the referrals that came with it, and the reputation that client carried for you in rooms you were never in.
+
+## The discipline is deciding on purpose
+
+This isn't "ignore new business." New clients are how you grow, and some weeds become flowers. The discipline is refusing to let urgency alone allocate your attention, because urgency always over-funds the wrong accounts.
+
+Once a week, before the inbox sets your agenda, look at your best clients specifically and ask one question: when did I last give this relationship something it didn't ask for? A useful insight, a heads-up, a recap of a win, a genuine check-in. If the answer is "I can't remember," that flower is going dry while you weren't looking, and a competitor's pitch lands cleanest on exactly the client you stopped watering.
+
+---
+
+*Retayned watches your whole book at once, including the quiet accounts you'd otherwise forget, so the clients keeping your business alive never go a quarter without your attention.*`,
+  },
+  {
+    slug: "the-compounding-edge",
+    tag: "FRAMEWORK",
+    read: "5 min read",
+    kind: "article",
+    featured: false,
+    title: "The compounding edge nobody brags about",
+    excerpt: "New deals get the applause. Kept clients build the thing nobody can take from you. Why retention is the most underrated advantage a small operator has.",
+    body: `# The compounding edge nobody brags about
+
+Walk into any room of operators and listen to what they talk about. New clients. Big wins. The pitch they just landed. Nobody stands up and says "I kept everyone I had this year." It doesn't sound like an accomplishment. It sounds like nothing happened.
+
+That's exactly why retention is the most underrated edge in business. The thing that compounds fastest is the thing nobody thinks to brag about.
+
+## Acquisition is a tax you pay over and over
+
+Winning a new client is expensive. It costs pitches, proposals, discovery calls, the price of every prospect who said no, and the slow ramp before a new account is profitable. Most operators pay that tax constantly because they treat their book as a leaky bucket: pour new clients in the top, lose old ones out the bottom, and run hard just to stay level.
+
+Keeping a client you already have skips the entire tax. No pitch, no ramp, no acquisition cost. The relationship is already profitable and the trust is already built. A dollar of retained revenue is worth more than a dollar of new revenue because it cost you almost nothing to earn it again.
+
+## Why it compounds and acquisition doesn't
+
+A new client is a flat event. You won them, once. A kept client is a curve. Year two they're more profitable than year one, because you understand their business and the work goes faster. Year three they refer someone. Year four they're a case study, a reference, the reason a prospect trusts you on the first call.
+
+Retention doesn't add. It multiplies. Every year you keep a good client, they're worth more than the year before, and that surplus stacks. The operator who keeps clients for five years isn't doing five times the work of the one who churns annually. They're doing less work for more money, and the gap widens every year.
+
+## How the quiet operator wins
+
+This is how a single person out-earns a whole sales team. The team is busy paying the acquisition tax, running flat, celebrating new logos that replace the ones quietly leaving. The operator who masters retention stops paying the tax, lets their book compound, and ends up owning a niche nobody noticed them taking, because the win didn't look like a win. It looked like a quiet year where everyone stayed.
+
+It will never trend. It will never get applause. It just works, relentlessly, in the background, which is the whole point.
+
+---
+
+*Retayned is built for the part of the business that compounds: the relationships you already earned. It watches them, scores them, and tells you who needs you, so keeping clients stops depending on memory and starts being a system.*`,
+  },
+  {
+    slug: "your-best-client-is-fragile",
+    tag: "DIAGNOSTICS",
+    read: "4 min read",
+    kind: "article",
+    featured: false,
+    title: "Why your best client is your most fragile",
+    excerpt: "Stable is not safe. The account you've stopped worrying about is the one a competitor's pitch lands on cleanest.",
+    body: `# Why your best client is your most fragile
+
+Ask an operator which client keeps them up at night and they'll name the difficult one. The escalations, the late payments, the impossible stakeholder. That's the account they're watching.
+
+Which is exactly why it's not the one in danger. The client you're watching closely is safe. The one that should keep you up at night is the one you've completely stopped thinking about, because it never gives you a reason to.
+
+## Stable is a status, not a guarantee
+
+A long, smooth, low-drama relationship feels permanent. It's been good for two years, so you assume it'll be good for two more. But "stable" only describes the past. It tells you the relationship hasn't given you trouble. It doesn't tell you the client still values you, still remembers why they chose you, or still feels like they're getting their money's worth.
+
+Those things decay quietly. A client can drift from "this is essential" to "this is a line item I haven't questioned in a while" without a single negative interaction. Nothing breaks. The work still ships, the invoices still get paid. And then a budget review happens, or a new boss arrives, or a competitor sends a sharp pitch, and the relationship that felt permanent turns out to have been coasting on inertia.
+
+## Inertia cuts both ways
+
+The thing keeping a coasting client is the same thing that makes them easy to lose: they haven't thought about you in a while. Inertia is holding the relationship in place. The moment something interrupts the inertia, a reorg, a cost-cutting mandate, a rival who shows up with a number, there's nothing underneath it. No recent win they can point to. No fresh reason to stay. Just a habit, and habits break the instant someone gives a reason to question them.
+
+A difficult, engaged client has the opposite problem and the opposite safety. They're annoying precisely because they're paying attention, and a client paying attention is a client you can still win.
+
+## The move is to interrupt your own inertia first
+
+You can't stop a competitor from pitching or a new stakeholder from arriving. What you can do is make sure that when they do, your best client has a fresh, specific reason to stay, one you put there on purpose.
+
+That means periodically doing for your coasting accounts what you do reflexively for your fires: showing up with something. A recent result framed clearly. A recommendation they didn't ask for. A reminder, made concrete, of what they're actually getting. Not because anything is wrong, but because the absence of anything wrong is exactly the condition under which good clients quietly slip away.
+
+---
+
+*Retayned flags the accounts that have gone quiet and stable, the ones you've stopped watching, so the relationships most likely to be lost to inertia are the ones you re-engage before someone else does.*`,
+  },
+  {
+    slug: "rai-drafts-you-decide",
+    tag: "PLAYBOOK",
+    read: "5 min read",
+    kind: "article",
+    featured: false,
+    title: "Rai drafts, you decide: where AI belongs in a client relationship",
+    excerpt: "AI can surface the signal and draft the words. It cannot carry the relationship. Here's the line, and why it matters.",
+    body: `# Rai drafts, you decide: where AI belongs in a client relationship
+
+There's a version of "AI for client management" that's a trap. It promises to automate the relationship: auto-send the check-ins, auto-reply to the emails, run the account on autopilot so you don't have to. That version will lose you clients faster than neglect, because clients can feel when they're being managed by a script.
+
+The useful version is the opposite. AI handles the parts that are pattern, memory, and drafting. You handle the parts that are judgment, relationship, and accountability. Getting that line right is the whole game.
+
+## What AI is genuinely good at here
+
+Three things, and they're real.
+
+First, watching. A person cannot hold the state of fifty relationships in their head, notice that one client's emails have cooled over six weeks, and remember that another's renewal is forty days out. Pattern detection across a whole book is exactly what software is for, and it's the part humans are worst at.
+
+Second, remembering. The contact's role, the last touchpoint, the rate history, the win from four months ago that's worth resurfacing. AI doesn't forget the context that makes a message land.
+
+Third, drafting. Staring at a blank message to a client who's gone quiet is where good intentions die. A strong first draft, in your voice, calibrated to that specific relationship, gets you from nothing to "almost right" in a way that makes the move actually happen.
+
+## What it must never do
+
+It must not decide, and it must not send blind.
+
+The judgment call, is this the moment to push, or to give space, is yours, because only you carry the history and the stakes. The relationship is yours, not the tool's. When you send a client a message, your name is on it and your reputation is behind it, and that accountability is exactly what makes the message mean something. A client who finds out they've been talking to an autoresponder doesn't think "how efficient." They think "I don't matter enough for a real person."
+
+So the draft is a starting point, never a send button you stopped reading. The tool gets you to the doorstep. You're the one who knocks.
+
+## Why the line is the point
+
+The fear that AI will replace the operator gets this backwards. The operator's edge was never doing the busywork faster. It was the attention, the judgment, the relationship. Hand the busywork to the tool and you don't become less essential. You become more, because now all of your attention goes to the part only you can do.
+
+AI can give you the signal and the script. It cannot care about the client. That part is still your job, and it always will be.
+
+---
+
+*Rai drafts, reminds, and surfaces what's worth your attention. The decision, the relationship, and the send are always yours. That's the line Retayned is built around.*`,
+  },
+  {
+    slug: "the-referral-you-didnt-ask-for",
+    tag: "PLAYBOOK",
+    read: "4 min read",
+    kind: "article",
+    featured: false,
+    title: "The referral you didn't ask for",
+    excerpt: "Your best growth channel isn't a campaign. It's the client who already trusts you. Here's how to make referrals happen without it feeling like a pitch.",
+    body: `# The referral you didn't ask for
+
+The cheapest, highest-converting lead you'll ever get is a client referral. The prospect arrives pre-trusting you, pre-sold by someone they respect, and ready to skip the entire skeptical phase. No ad spend, no cold outreach, no proving yourself from zero.
+
+So why do most operators get so few of them? Not because their clients wouldn't refer. Because nobody made it easy, and the moment was never set up on purpose.
+
+## Referrals come from kept clients, not happy ones
+
+There's a difference. A happy client likes the work. A kept client, one who's been with you long enough to see results compound, has staked a little of their own credibility on you. They've told their boss you're worth it. When they refer you, they're not doing you a favor. They're reinforcing a decision they already made and want to feel good about.
+
+This is why retention and referrals are the same engine. You don't run a referral program. You keep clients long enough and well enough that referring you becomes a natural extension of how they already talk about you. The book you've retained is your sales team, and they work for free.
+
+## The timing nobody uses
+
+The instinct is to ask for referrals at renewal, bundled with the awkward money conversation. That's the worst moment. The client is evaluating you, not advocating for you.
+
+The right moment is right after a concrete win. You delivered a result, they're feeling it, the value is fresh and specific. That's when a client is most willing to put their name behind you, because the evidence is sitting right in front of them. The move isn't "do you know anyone who needs us." It's lighter: "Glad that landed. If anyone in your network is wrestling with the same thing, I'd love an intro, no pressure." You're attaching the ask to a moment of proof, not a moment of doubt.
+
+## Make the referral effortless to give
+
+A client who has to think about how to refer you usually won't. Hand them the language. A one-line description of exactly who you help and what you solve, easy to forward, easy to repeat. The goal is that referring you costs them ten seconds and zero risk, because every bit of friction is a referral that doesn't happen.
+
+The operators with overflowing pipelines and no ad budget aren't lucky. They kept clients long enough to earn advocacy, then made it easy and well-timed to act on. That's a system, not a stroke of luck.
+
+---
+
+*Retayned tracks the wins worth following up on and the relationships strong enough to ask, so the referral conversation happens at the right moment with the right client, instead of never happening at all.*`,
+  },
+  {
+    slug: "the-renewal-is-decided-before-the-renewal",
+    tag: "DIAGNOSTICS",
+    read: "4 min read",
+    kind: "article",
+    featured: false,
+    title: "The renewal is decided before the renewal",
+    excerpt: "By the time the contract is up, the decision is already made. The work that keeps a client happens in the quiet months nobody's watching.",
+    body: `# The renewal is decided before the renewal
+
+Here's the mistake that loses good accounts: treating the renewal as the moment you win or lose the client. By the time the renewal date arrives, the decision has usually already been made, weeks or months earlier, in conversations you weren't part of. The renewal is just the paperwork that confirms it.
+
+If you're trying to save a relationship at renewal time, you're not negotiating. You're appealing a verdict that's already been reached.
+
+## The decision is a slow accumulation
+
+A client doesn't decide to leave at renewal. They drift toward it. A cooled relationship here, a result that didn't quite land there, a stretch where they couldn't quite remember what they were paying for. None of it is dramatic. Each individual moment is forgettable. But they accumulate, quietly, into a default position, and by renewal that position is set: "I'm not sure this is worth it anymore."
+
+The reverse is also true and more useful. A client who renews enthusiastically doesn't decide at renewal either. They decided over months of small, accumulated reasons to stay: the win they remember, the heads-up that saved them, the sense that you're paying attention. Renewal just ratifies what the quiet months already built.
+
+## This is why the quiet months matter most
+
+The months when nothing is happening, no fire, no deadline, no renewal pressure, feel like the safe stretch where you can take your foot off the gas. They're actually the only stretch that decides anything. The renewal conversation is downstream of them. Whatever you did or didn't do in those quiet months is what the client is voting on when the contract comes up.
+
+So the work isn't a strong renewal pitch. It's a steady accumulation of reasons to stay, deposited during the months when it would be easiest to deposit nothing. A recap of a result. A useful flag. A check-in with substance. Each one is a small entry on the side of "worth it," made long before anyone's counting.
+
+## Earn it before it's due
+
+The operators who never sweat renewals aren't better closers. They've moved the work upstream. They treat every quiet month as part of the renewal, because it is. By the time the contract is actually up, there's nothing to sweat, because the case for staying was made continuously, in the open, while their competitors were waiting for a deadline to start trying.
+
+The renewal is a lagging indicator. Manage the months. The date takes care of itself.
+
+---
+
+*Retayned makes the quiet months legible, surfacing the touchpoints, wins, and warning signs that decide a renewal long before the date arrives, so you're building the case to stay the whole time, not scrambling at the end.*`,
+  },
+  {
+    slug: "the-client-tenure-audit",
+    tag: "GUIDE",
+    read: "6 min read",
+    kind: "guide",
+    featured: false,
+    title: "The Client Tenure Audit",
+    excerpt: "A simple, repeatable way to look at your whole book by tenure and health, and find the accounts quietly drifting before they're gone.",
+    body: `# The Client Tenure Audit
+
+Most operators have never looked at their entire book in one view. They look at clients one at a time, as each one surfaces a task or a fire. That means the accounts that aren't surfacing anything, the quiet ones, are invisible by definition, and the quiet ones are where churn hides.
+
+This is a simple audit you can run in an afternoon, with a spreadsheet and an honest eye. Do it once a quarter.
+
+## Step 1: List every active client with three numbers
+
+For each client, write down three things: how long they've been with you (tenure), roughly how much they're worth to you per year (value), and the last time you had real contact, not an invoice or an automated email, but an actual exchange (last touch).
+
+That's it. No scoring model yet. Just the raw facts, all in one place, where you can see them at once for the first time.
+
+## Step 2: Sort by last touch, not by value
+
+The instinct is to sort by value and focus on the big accounts. Resist it. Sort by last touch, oldest first. The clients at the top, the ones you haven't genuinely engaged with in the longest, are your real risk list, regardless of size. A high-value client you haven't spoken to in two months is more dangerous than a small one you talked to yesterday.
+
+This sort surfaces the flowers going dry: the good, stable accounts that have drifted out of your attention precisely because they never demanded it.
+
+## Step 3: Cross it with tenure
+
+Now look at tenure alongside that. The combination tells you the story:
+
+Long tenure, long since last touch. This is the most dangerous cell in the audit. A multi-year client you've stopped engaging is coasting on inertia, and inertia breaks the moment something interrupts it. These get your attention first.
+
+Short tenure, long since last touch. A newer client already drifting is a relationship that never fully formed. They're deciding right now whether you're worth it, and silence is answering for you.
+
+Recent touch, any tenure. These are fine for now. Don't spend the audit's energy here.
+
+## Step 4: Pick three, and do something specific
+
+Don't try to fix the whole risk list at once, you won't, and a vague "reconnect with everyone" produces nothing. Pick the three accounts where the combination of value and neglect is worst. For each, decide on one concrete move: a recap of a recent result, a useful flag, a real check-in with substance. Not "touch base." Something that requires a genuine response.
+
+## Step 5: Note what you couldn't answer
+
+As you go, you'll hit clients where you can't remember the last win, can't name their current priority, can't recall who the real decision-maker is now. Those blanks are the audit's most valuable output. A relationship you can't describe is a relationship you've stopped managing, and that's the one most easily taken from you.
+
+Run this quarterly and the worst outcome, finding out a client is gone after they've already decided, stops happening. You catch the drift while it's still drift.
+
+---
+
+*The tenure audit is the manual version of what Retayned does continuously: watch every relationship's tenure, value, and engagement at once, and surface the quiet drift automatically, so you don't have to remember to look.*`,
+  },
+  {
+    slug: "the-win-recap-template",
+    tag: "TEMPLATE",
+    read: "4 min read",
+    kind: "guide",
+    featured: false,
+    title: "The Win-Recap Template",
+    excerpt: "A reusable structure for reminding a client what they're getting, on purpose, before they forget. The single highest-leverage retention move there is.",
+    body: `# The Win-Recap Template
+
+The most common reason a good client leaves isn't dissatisfaction. It's forgetting. They stop being able to clearly articulate what they're getting for what they're paying, and a client who can't defend the engagement is a client someone else can talk out of it.
+
+The win recap fixes that. It's a short, deliberate message that re-anchors the value in the client's mind, sent not when something's wrong, but on purpose, during the quiet stretches. Here's the structure.
+
+## When to send it
+
+Two triggers. The first is right after a concrete result, while the proof is fresh. The second is during a quiet stretch, a month or two with no natural touchpoint, when the client is most at risk of forgetting what you do. The second one is the one nobody sends and the one that matters most.
+
+## The structure
+
+Four short parts. Keep the whole thing under a screen.
+
+The result, stated plainly. What actually happened, in their terms, with a number if you have one. Not "we did a lot this quarter." Instead: "Since March, the thing we set out to fix is measurably better, here's the figure." Concrete beats comprehensive.
+
+The connection to what they care about. Tie the result to their actual goal, the one they told you mattered. The client doesn't care about your deliverables. They care about their outcome. Bridge the two explicitly so they don't have to.
+
+The forward look. One line about what's next, so the message reads as momentum, not a victory lap. "Next, I want to build on this by X." This signals the relationship is going somewhere, not winding down.
+
+The light open door. Not a hard ask. An invitation: "Anything you want me to prioritize from here?" It gives them a reason to respond, which tells you whether they're still engaged, and reminds them they have an attentive partner, not a vendor running on autopilot.
+
+## Why it works
+
+It does three things at once. It refreshes the client's memory of your value before they had a chance to forget it. It generates a response, which is a live read on how engaged they actually are. And it builds one more entry on the "worth it" side of the ledger, during the quiet months when the renewal is quietly being decided.
+
+It is the highest-leverage retention move there is, because it's cheap, it's repeatable, and it works on exactly the clients you'd otherwise lose to silence: the good ones, coasting, who just needed a reason to remember why they stay.
+
+## The discipline
+
+The template is easy. The discipline is sending it when nothing is prompting you to, which is precisely when it counts. Put it on a cadence. The win recap that saves a client is the one you send in the quiet month, not the one you scramble to write when they've already gone cold.
+
+---
+
+*Retayned tells you which clients are due for a recap and drafts the first version in your voice, pulling the real wins and context, so the highest-leverage move you keep meaning to make actually gets made.*`,
+  },
   {
     slug: "the-signal-you-keep-missing",
     tag: "DIAGNOSTICS",
@@ -2574,100 +2895,6 @@ Name the uncomfortable thing while it's still small. It almost never costs you t
 ---
 
 *Retayned surfaces the specific change worth naming, the cooled tone, the shrinking scope, the new stakeholder, so the conversation you have is grounded in something real, not a hunch you're second-guessing.*`,
-  },
-  {
-    slug: "twelve-retention-dimensions",
-    tag: "GUIDE",
-    read: "Guide",
-    kind: "guide",
-    featured: false,
-    title: "The 12 Retention Dimensions",
-    excerpt: "A complete cheat sheet for what to watch across every client relationship.",
-    body: `# The 12 Retention Dimensions
-### A cheat sheet for reading a client relationship before it tells you it's over
-
-A client relationship is a shape, not a score. These are the twelve dimensions that make up the shape. Score each one honestly, read the lowest few together, and watch how they move against their own baseline, not the portfolio average.
-
-A quick orientation before the list:
-
-- **Score on a 0 to 10 scale.** Leave a dimension blank rather than guessing. An honest blank is better than a confident wrong number.
-- **The change matters more than the value.** A 7 that used to be a 9 is a problem. A 7 that's been a 7 for a year is stability.
-- **Read the lowest two or three together.** The combination is the diagnosis. Any single dimension in isolation is just a data point.
-
----
-
-## The four heavy dimensions
-
-These four carry the most predictive weight. They are the ones most likely to decide whether a relationship survives. If you only have time to score four things, score these.
-
-### Trust
-*Do they trust you to do your job?*
-- **Low:** micromanagement, second-guessing, every decision routed back to them, slow approvals because they're checking your work.
-- **High:** delegation, "you make the call," room to operate.
-- **Watch for:** trust dropping after a miss. It doesn't recover on its own; it recovers through a direct conversation and a visible correction.
-
-### Loyalty
-*Are they looking at other options?*
-- **Low:** comparing you to competitors out loud, mentioning what someone else charges, "we're just exploring."
-- **High:** locked in, not shopping, treats leaving as off the table.
-- **Watch for:** loyalty is the one a client can hide behind perfect politeness. Pleasant and disloyal coexist easily.
-
-### Expectations
-*Are their expectations realistic?*
-- **Low (unrealistic):** wants outcomes the engagement can't produce, on a timeline that doesn't exist.
-- **High (aligned):** understands what's achievable and by when.
-- **Watch for:** you can create this problem yourself. The ambitious promise you make today is the disappointment you manage in sixty days.
-
-### Grace
-*When something goes wrong, how do they react?*
-- **Low:** zero tolerance, one mistake becomes a referendum on the whole relationship.
-- **High:** gives benefit of the doubt, judges you on the recovery, not the stumble.
-- **Watch for:** low grace means you operate with no margin for error. Over-communicate accordingly.
-
----
-
-## The eight supporting dimensions
-
-These add texture and tell you *how* to handle the relationship. Several are U-shaped, meaning both extremes are the risk, not just the low end.
-
-### Budget Commitment
-*Will budget become the reason they leave?* Higher is safer. Watch for budget pressure that has nothing to do with you, an internal squeeze that still ends with your line item on the chopping block.
-
-### Relationship Depth
-*Is there a real relationship beyond the work?* Moderate to high is healthiest. Zero depth is fragile. Total enmeshment is its own instability. You want a genuine connection, not a dependency.
-
-### Replaceability
-*How easy would it be to replace you?* More embedded is safer. The more your work is woven into how they operate, the higher the cost of switching.
-
-### Communication Tone
-*Cold and clipped, or warm and direct?* Higher is better. A cooling tone is one of the earliest and most reliable drift signals, often arriving before anything else changes.
-
-### Decision-Making Authority
-*Can your contact actually say yes?* Higher is better. A contact who's really a relay to someone you never speak to is a structural risk: you're managing a relationship with a person who can't keep you.
-
-### Communication Frequency *(U-shaped)*
-*How often do they reach out?* Both extremes are risk. Radio silence where you always initiate is disengagement. Constant frantic contact is anxiety. The healthy zone is a rhythm.
-
-### Stress Response *(U-shaped)*
-*How do you find out when something's wrong?* Going silent and dealing with it internally is a risk, because you find out too late. Loud immediate escalation is a different risk. Both make the relationship harder to steer under pressure.
-
-### Reporting Need *(U-shaped)*
-*How much reporting do they want?* "Don't bother me" and "send me every detail" are both harder to sustain than a steady middle cadence.
-
----
-
-## How to use this
-
-1. **Score all twelve at onboarding.** Leave unknowns blank; let them fill in as you learn.
-2. **Re-score when something material shifts** — a new stakeholder, a pricing conversation, a changed communication pattern, or just a gut feeling you can't shake.
-3. **Read the lowest two or three together.** That combination, not the overall number, is what tells you which conversation to have this week.
-4. **Track the delta.** Where each dimension is heading matters more than where it sits today.
-
-The dimensions don't predict who leaves. They tell you where to look and how to communicate. The job is still yours. This just makes sure you're looking in the right place.
-
----
-
-*This is the manual read. Retayned scores all twelve continuously, blends them into a single Retention Score, and surfaces the combinations automatically, so you spend your attention on the conversation instead of the spreadsheet.*`,
   },
   {
     slug: "quiet-client-script-pack",
@@ -3485,11 +3712,11 @@ function Blog({ setPage }) {
       `}</style>
 
       {/* ─── HERO ─── */}
-      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingBottom: 32 }}>
+      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingTop: HERO_TOP, paddingBottom: 32 }}>
         <div className="ret-section-inner">
           <div style={{ maxWidth: 760, margin: "0 auto" }}>
             <div className="ret-eyebrow">Resources</div>
-            <h1 className="ret-h1" style={{ marginTop: 16 }}>
+            <h1 className="ret-h1">
               Field notes from the <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>retention business.</span>
             </h1>
             <p style={{ marginTop: 18, fontSize: 17, color: C.textSec, lineHeight: 1.55 }}>Articles, tools, guides, and webinars. Free. No sign-up required.</p>
@@ -3625,15 +3852,15 @@ function Blog({ setPage }) {
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingBottom: 88 }}>
         <div className="ret-section-inner" style={{ maxWidth: 760 }}>
           <div className="ret-eyebrow">Stay in the loop</div>
-          <h3 className="ret-h2" style={{ marginTop: 14, fontSize: "clamp(28px, 3.5vw, 48px)", fontWeight: 900, lineHeight: 1.05, letterSpacing: "-0.03em" }}>Get notified when we publish.</h3>
-          <div className="res-newsletter-row" style={{ marginTop: 22, display: "inline-flex", gap: 8, alignItems: "center", background: C.card, padding: 6, borderRadius: 999, border: "1px solid " + C.borderLight, maxWidth: "100%" }}>
+          <h3 className="ret-h2" style={{ fontSize: "clamp(28px, 3.5vw, 48px)", fontWeight: 900, lineHeight: 1.05, letterSpacing: "-0.03em" }}>Get notified when we publish.</h3>
+          <div className="res-newsletter-row" style={{ marginTop: 22, display: "inline-flex", gap: 8, alignItems: "center", background: C.card, padding: 6, borderRadius: 999, border: "1px solid " + C.borderLight, maxWidth: "100%", boxSizing: "border-box" }}>
             <input
               type="email"
               placeholder="you@agency.com"
               className="res-newsletter-input"
-              style={{ background: "transparent", border: "none", outline: "none", padding: "10px 18px", width: 280, fontSize: 14.5, color: C.text, fontFamily: "inherit" }}
+              style={{ background: "transparent", border: "none", outline: "none", padding: "10px 18px", width: 280, maxWidth: "100%", minWidth: 0, flex: "1 1 auto", boxSizing: "border-box", fontSize: 14.5, color: C.text, fontFamily: "inherit" }}
             />
-            <button className="cta-btn" style={{ padding: "10px 22px", fontSize: 14, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 999, cursor: "pointer", fontFamily: "inherit" }}>Subscribe</button>
+            <button className="cta-btn" style={{ padding: "10px 22px", fontSize: 14, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 999, cursor: "pointer", fontFamily: "inherit", flexShrink: 0 }}>Subscribe</button>
           </div>
           <div style={{ fontSize: 12.5, color: C.textSec, marginTop: 12 }}>One email a month. Unsubscribe with one click.</div>
         </div>
@@ -3655,14 +3882,14 @@ function Blog({ setPage }) {
 function RetPageStyles() {
   return (
     <style>{`
-      .ret-hero { background: #F2EEE8; padding: 56px 48px 72px; position: relative; overflow: hidden; }
+      .ret-hero { background: #F2EEE8; padding: ${HERO_TOP}px 48px 72px; position: relative; overflow: hidden; }
       .ret-hero-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
       .ret-hero-left { max-width: 1100px; margin: 0 auto; text-align: left; }
       .ret-eyebrow {
         font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em;
         color: ${C.primary}; background: ${C.primarySoft};
         display: inline-block; padding: 6px 14px; border-radius: 100px;
-        margin-bottom: 20px;
+        margin-bottom: ${EYEBROW_GAP}px;
       }
       .ret-eyebrow-purple { color: ${C.btn}; background: #EDE4F8; }
       .ret-eyebrow-light { color: ${C.primaryLight}; background: rgba(255,255,255,0.08); }
@@ -4632,10 +4859,10 @@ function Freelancers({ setPage }) {
       `}</style>
 
       {/* HERO */}
-      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingBottom: 40 }}>
+      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingTop: HERO_TOP, paddingBottom: 40 }}>
         <div className="ret-section-inner" style={{ maxWidth: 880 }}>
           <div className="ret-eyebrow">For freelancers & consultants</div>
-          <h1 className="ret-h1" style={{ marginTop: 16 }}>
+          <h1 className="ret-h1">
             Open the app at 8:47am. Know exactly who needs you today.
           </h1>
           <p style={{ marginTop: 22, fontSize: 17, color: C.textSec, lineHeight: 1.6, maxWidth: 620, marginInline: "auto" }}>
@@ -4655,7 +4882,7 @@ function Freelancers({ setPage }) {
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">The freelancer reality</div>
-            <h2 className="ret-h2" style={{ marginTop: 12 }}>
+            <h2 className="ret-h2">
               You carry 25 clients in your head.
             </h2>
             <p style={{ marginTop: 16, fontSize: 16, color: C.textSec, lineHeight: 1.6, maxWidth: 640, marginInline: "auto" }}>
@@ -4674,7 +4901,7 @@ function Freelancers({ setPage }) {
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">Your weekly rhythm</div>
-            <h2 className="ret-h2" style={{ marginTop: 12 }}>
+            <h2 className="ret-h2">
               A small move every day. Nothing burns down.
             </h2>
           </div>
@@ -4706,7 +4933,7 @@ function Freelancers({ setPage }) {
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">A day in the life</div>
-            <h2 className="ret-h2" style={{ marginTop: 12 }}>A Monday with Retayned, hour by hour.</h2>
+            <h2 className="ret-h2">A Monday with Retayned, hour by hour.</h2>
           </div>
           <div style={{ maxWidth: 920, margin: "0 auto" }}>
             {[
@@ -4736,7 +4963,7 @@ function Freelancers({ setPage }) {
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">Your math</div>
-            <h2 className="ret-h2" style={{ marginTop: 12 }}>
+            <h2 className="ret-h2">
               The math is <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>not</span> subtle.
             </h2>
           </div>
@@ -4790,7 +5017,7 @@ function Freelancers({ setPage }) {
       {/* FINAL CTA */}
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingBottom: 88 }}>
         <div className="ret-section-inner" style={{ maxWidth: 720 }}>
-          <h2 className="ret-h2" style={{ marginTop: 12 }}>
+          <h2 className="ret-h2">
             Stop carrying your whole book <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>in your head.</span>
           </h2>
           <button className="cta-btn" onClick={() => setPage("signup")} style={{ marginTop: 24, padding: "16px 36px", fontSize: 16, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
@@ -4860,10 +5087,10 @@ function Agencies({ setPage }) {
       `}</style>
 
       {/* HERO */}
-      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingBottom: 40 }}>
+      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingTop: HERO_TOP, paddingBottom: 40 }}>
         <div className="ret-section-inner" style={{ maxWidth: 940 }}>
           <div className="ret-eyebrow">For agencies & studios</div>
-          <h1 className="ret-h1" style={{ marginTop: 16 }}>
+          <h1 className="ret-h1">
             Know which clients <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>need</span> you before they go dark.
           </h1>
           <p style={{ marginTop: 22, fontSize: 17, color: C.textSec, lineHeight: 1.6, maxWidth: 660, marginInline: "auto" }}>
@@ -4883,7 +5110,7 @@ function Agencies({ setPage }) {
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">The handoff problem</div>
-            <h2 className="ret-h2" style={{ marginTop: 12 }}>
+            <h2 className="ret-h2">
               What walks out the door <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>when an AM does.</span>
             </h2>
           </div>
@@ -4930,7 +5157,7 @@ function Agencies({ setPage }) {
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">The portfolio view</div>
-            <h2 className="ret-h2" style={{ marginTop: 12 }}>
+            <h2 className="ret-h2">
               One screen. <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>All your AMs, all their books.</span>
             </h2>
           </div>
@@ -4981,7 +5208,7 @@ function Agencies({ setPage }) {
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">The agency rhythm</div>
-            <h2 className="ret-h2" style={{ marginTop: 12 }}>
+            <h2 className="ret-h2">
               A heartbeat for your <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>book of business.</span>
             </h2>
           </div>
@@ -5009,7 +5236,7 @@ function Agencies({ setPage }) {
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">Agency math</div>
-            <h2 className="ret-h2" style={{ marginTop: 12 }}>
+            <h2 className="ret-h2">
               8 AMs. <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>$156/mo.</span>
             </h2>
           </div>
@@ -5063,7 +5290,7 @@ function Agencies({ setPage }) {
       {/* FINAL CTA */}
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingBottom: 88 }}>
         <div className="ret-section-inner" style={{ maxWidth: 760 }}>
-          <h2 className="ret-h2" style={{ marginTop: 12 }}>
+          <h2 className="ret-h2">
             Run the whole book from <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>one place.</span>
           </h2>
           <div style={{ marginTop: 24, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
@@ -5142,7 +5369,7 @@ function Enterprise({ setPage }) {
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
-            <h2 className="ret-h2" style={{ marginTop: 12, maxWidth: 820, marginInline: "auto" }}>
+            <h2 className="ret-h2" style={{ maxWidth: 820, marginInline: "auto" }}>
               One brain reads the book. <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>You decide who acts.</span>
             </h2>
             <p style={{ marginTop: 18, fontSize: 16, color: C.textSec, lineHeight: 1.6, maxWidth: 660, marginInline: "auto" }}>
@@ -5172,7 +5399,7 @@ function Enterprise({ setPage }) {
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">Built like infrastructure</div>
-            <h2 className="ret-h2" style={{ marginTop: 12 }}>
+            <h2 className="ret-h2">
               Account management with <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>an API.</span>
             </h2>
             <p style={{ marginTop: 16, fontSize: 16, color: C.textSec, lineHeight: 1.6, maxWidth: 660, marginInline: "auto" }}>
@@ -5232,7 +5459,7 @@ function Enterprise({ setPage }) {
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">The cadence</div>
-            <h2 className="ret-h2" style={{ marginTop: 12 }}>
+            <h2 className="ret-h2">
               Quarterly retention <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>pulse.</span>
             </h2>
           </div>
@@ -5260,7 +5487,7 @@ function Enterprise({ setPage }) {
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">Enterprise math</div>
-            <h2 className="ret-h2" style={{ marginTop: 12 }}>
+            <h2 className="ret-h2">
               One retained account at <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>$120k ARR</span> covers the year.
             </h2>
           </div>
@@ -6713,10 +6940,11 @@ export default function RetaynedSite() {
           background: rgba(255,255,255,0.9);
           border: 1px solid rgba(216,223,216,0.8);
           box-shadow: 0 4px 16px rgba(0,0,0,0.04);
-          font-size: clamp(13px, 0.95vw, 14.5px); font-weight: 600;
+          font-size: 14.5px; font-weight: 600;
           color: ${C.text};
           margin-bottom: clamp(8px, 0.5vw, 10px);
           animation: subtleBob 4s ease-in-out infinite;
+          max-width: 100%; white-space: nowrap;
         }
         .v2-trust-dot { flex-shrink: 0; display: block; }
         .v2-hero-h1 {
@@ -6952,7 +7180,7 @@ export default function RetaynedSite() {
           padding: 14px 18px;
           display: flex; align-items: center; gap: 14px;
           font-size: 14px;
-          min-height: 56px;
+          height: 72px;
           overflow: hidden;
         }
         .v2tf-avatar {
@@ -7023,7 +7251,7 @@ export default function RetaynedSite() {
           font-size: 12px; font-weight: 700;
           color: ${C.primary};
           text-transform: uppercase; letter-spacing: 0.14em;
-          margin-bottom: 20px;
+          margin-bottom: ${EYEBROW_GAP}px;
           padding: 6px 14px;
           background: ${C.primarySoft};
           border-radius: 6px;
