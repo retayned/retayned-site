@@ -513,7 +513,6 @@ function Nav({ page, setPage }) {
           }}>
             Try Free Now
           </button>
-          <div style={{ marginTop: 24, fontSize: 12, color: C.textMuted }}>There's no "i" in Retayned.</div>
         </div>
       </SwipeDrawer>
     </>
@@ -975,7 +974,7 @@ function V2TodayFeed() {
                   }}
                 >
                   <div className="v2tf-row1">
-                    <div className={"v2tf-label v2tf-label-" + t.kind}>{t.kind}</div>
+                    <div className={"v2tf-label v2tf-label-" + t.kind}>{({ develop: "at-risk", nurture: "stable", deepen: "strong" })[t.kind] || t.kind}</div>
                     <div className={"v2tf-score v2tf-score-" + t.kind}>{t.score}</div>
                   </div>
                   <div className="v2tf-title">
@@ -4856,6 +4855,67 @@ function FreelancerWeb() {
   );
 }
 
+function FrDayTimeline() {
+  const wrapRef = useRef(null);
+  const [progress, setProgress] = useState(0); // 0..1 how far the spine has "drawn"
+  const moments = [
+    { t: "08:47", h: "Open Today.", b: "Six tasks ranked by impact. The most expensive one — Rachel — is right at the top.", dot: C.btn },
+    { t: "09:02", h: "Fix Rachel.", b: "Open Rai. Get four script options. Send the second one in your voice.", dot: C.btn },
+    { t: "09:14", h: "Self-assigned tasks.", b: "A few of these may have slipped your mind last month. But today, you have Retayned.", dot: C.primary },
+    { t: "12:30", h: "Lunch.", b: "A reply comes in from Rachel. The score moves on its own. Logged automatically.", dot: C.primary, chip: "38 → 46" },
+    { t: "15:40", h: "A signal.", b: "Wes's renewal moved to 14 days. New task added to tomorrow with a checkup later.", dot: C.btn },
+    { t: "18:00", h: "Close the laptop.", b: "Tomorrow's seven tasks will be ranked along with Rai's brief at midnight.", dot: C.primary },
+  ];
+
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    let raf = 0;
+    const compute = () => {
+      raf = 0;
+      const rect = el.getBoundingClientRect();
+      const vh = window.innerHeight || 800;
+      const start = vh * 0.78;
+      const end = vh * 0.40;
+      const span = rect.height + (start - end);
+      const scrolled = start - rect.top;
+      const p = Math.max(0, Math.min(1, scrolled / span));
+      setProgress(p);
+    };
+    const onScroll = () => { if (!raf) raf = window.requestAnimationFrame(compute); };
+    compute();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => { window.removeEventListener("scroll", onScroll); window.removeEventListener("resize", onScroll); if (raf) cancelAnimationFrame(raf); };
+  }, []);
+
+  const n = moments.length;
+  return (
+    <div ref={wrapRef} className="fr-timeline" style={{ maxWidth: 640, margin: "0 auto", position: "relative" }}>
+      <div className="fr-timeline-spine" style={{ position: "absolute", left: 75, top: 14, bottom: 14, width: 2, background: C.border }} />
+      <div className="fr-timeline-fill" style={{ position: "absolute", left: 75, top: 14, width: 2, background: C.primary, height: `calc((100% - 28px) * ${progress})`, transition: "height 120ms linear" }} />
+      {moments.map((m, i) => {
+        const lit = progress >= (i + 0.5) / n;
+        return (
+          <div key={i} className="fr-timeline-row" style={{ display: "grid", gridTemplateColumns: "64px 24px 1fr", alignItems: "start", padding: "16px 0" }}>
+            <div style={{ fontFamily: "'Courier New', monospace", fontSize: 13, fontWeight: 800, color: C.btn, textAlign: "right", paddingTop: 2, letterSpacing: "0.02em" }}>{m.t}</div>
+            <div style={{ display: "flex", justifyContent: "center", paddingTop: 5 }}>
+              <div style={{ width: 11, height: 11, borderRadius: "50%", background: lit ? m.dot : C.card, border: `2px solid ${C.bg}`, boxShadow: `0 0 0 2px ${lit ? m.dot : C.border}`, transition: "background 200ms ease, box-shadow 200ms ease", zIndex: 2 }} />
+            </div>
+            <div style={{ paddingLeft: 10 }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap" }}>
+                <span style={{ fontWeight: 800, fontSize: 16, color: C.text, letterSpacing: "-0.01em" }}>{m.h}</span>
+                {m.chip && <span style={{ display: "inline-flex", alignItems: "center", gap: 4, background: C.primarySoft, borderRadius: 100, padding: "3px 10px", fontSize: 12, fontWeight: 800, fontFamily: "'Courier New', monospace", color: C.success }}>{m.chip} ▲</span>}
+              </div>
+              <div style={{ fontSize: 14, color: C.textSec, marginTop: 5, lineHeight: 1.6 }}>{m.b}</div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 function Freelancers({ setPage }) {
   return (
     <div className="freelancer-page">
@@ -4863,7 +4923,8 @@ function Freelancers({ setPage }) {
       <style>{`
         @media (max-width: 760px) {
           .fr-week-grid { grid-template-columns: 1fr 1fr !important; }
-          .fr-day-grid { grid-template-columns: 60px 1fr !important; gap: 18px !important; }
+          .fr-timeline-row { grid-template-columns: 52px 22px 1fr !important; }
+          .fr-timeline-spine, .fr-timeline-fill { left: 62px !important; }
         }
         @media (max-width: 480px) {
           .fr-week-grid { grid-template-columns: 1fr !important; }
@@ -4908,8 +4969,21 @@ function Freelancers({ setPage }) {
         </div>
       </section>
 
-      {/* WEEKLY RHYTHM */}
+      {/* DAY IN THE LIFE */}
       <section className="ret-section r-full-bleed" style={{ background: C.bg, paddingTop: 24 }}>
+        <div className="ret-section-inner">
+          <div className="ret-section-head">
+            <div className="ret-eyebrow">A day in the life</div>
+            <h2 className="ret-h2">A Monday with Retayned, hour by hour.</h2>
+          </div>
+          <FrDayTimeline />
+        </div>
+      </section>
+
+      <RetCurve from={C.bg} to="#F2EEE8" variant="leftCrest" />
+
+      {/* WEEKLY RHYTHM */}
+      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8" }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">A week with Retayned</div>
@@ -4919,10 +4993,10 @@ function Freelancers({ setPage }) {
           </div>
           <div className="fr-week-grid" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 14, maxWidth: 1100, margin: "0 auto" }}>
             {[
-              { d: "MON", t: "Read the brief", b: "Rai swept your whole book overnight. Open Today to a ranked list and her read on who moved and why.", tag: "Today · Rai" },
+              { d: "MON", t: "Read the brief", b: "Rai swept your whole book overnight. Open Today to a ranked list and more on who moved and why.", tag: "Today" },
               { d: "TUE", t: "Send two scripts", b: "Two relationships need words, not work. Rai drafts them in your voice. You edit a line and send.", tag: "Rai" },
               { d: "WED", t: "Ask while it's warm", b: "A client's referral-readiness crossed the line. Make the intro now, before the moment cools.", tag: "Referrals" },
-              { d: "THU", t: "Run a health check", b: "Pick the account. A few honest questions re-score the relationship and surface the drift.", tag: "Health" },
+              { d: "THU", t: "Run a health check", b: "Pick the account. A few honest questions re-score the relationship and surface the drift.", tag: "Clients" },
               { d: "FRI", t: "Work the pipeline", b: "Revisit the Rolodex. A former client just hit a trigger worth a no-pressure reconnect.", tag: "Rolodex" },
             ].map(d => (
               <div key={d.d} className="ret-card" style={{ padding: "22px 20px" }}>
@@ -4938,43 +5012,13 @@ function Freelancers({ setPage }) {
         </div>
       </section>
 
-      <RetCurve from={C.bg} to="#F2EEE8" variant="leftCrest" />
-
-      {/* DAY IN THE LIFE */}
-      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8" }}>
-        <div className="ret-section-inner">
-          <div className="ret-section-head">
-            <div className="ret-eyebrow">A day in the life</div>
-            <h2 className="ret-h2">A Monday with Retayned, hour by hour.</h2>
-          </div>
-          <div style={{ maxWidth: 920, margin: "0 auto" }}>
-            {[
-              { t: "08:47", h: "Open Today.", b: "Six tasks ranked by impact. The most expensive one — Rachel — is right at the top." },
-              { t: "09:02", h: "Fix Rachel.", b: "Open Rai. Get four script options. Send the second one in your voice." },
-              { t: "09:14", h: "Four new tasks.", b: "A few of these may have slipped your mind last month. But today, you have Retayned." },
-              { t: "12:30", h: "Lunch.", b: "A reply comes in from Rachel. Score moves from 38 to 46. Logged automatically." },
-              { t: "15:40", h: "A signal.", b: "Push notification: Wes's renewal moved to 14 days. New task added to tomorrow." },
-              { t: "18:00", h: "Close the laptop.", b: "Tomorrow's seven tasks are already ranked. You don't carry it home." },
-            ].map((m, i, a) => (
-              <div key={i} className="fr-day-grid" style={{ display: "grid", gridTemplateColumns: "80px 1fr", gap: 32, padding: "16px 0", borderBottom: i < a.length - 1 ? "1px solid " + C.borderLight : "none", alignItems: "baseline" }}>
-                <div style={{ fontFamily: "'Courier New', monospace", fontSize: 13.5, fontWeight: 800, color: C.btn, letterSpacing: "0.05em" }}>{m.t}</div>
-                <div>
-                  <div style={{ fontWeight: 800, fontSize: 16, color: C.text, letterSpacing: "-0.01em" }}>{m.h}</div>
-                  <div style={{ fontSize: 14, color: C.textSec, marginTop: 6, lineHeight: 1.6 }}>{m.b}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       <RetCurve from="#F2EEE8" to={C.bg} variant="rightRise" />
 
       {/* ROI */}
       <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
-            <div className="ret-eyebrow">Your math</div>
+            <div className="ret-eyebrow">The numbers</div>
             <h2 className="ret-h2">
               The math is <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>not</span> subtle.
             </h2>
@@ -5566,11 +5610,9 @@ function FeatureToday({ setPage }) {
       <RetHero
         eyebrow="Today"
         h1="Your highest-value move is always first."
-        sub="Today tells you who needs you most — right now. Tasks are sorted by an invisible priority engine that weighs relationship health against business value."
+        sub="Today tells you who needs you most — right now. Tasks are sorted by an AI-enhanced priority engine that weighs relationship health, business value, and several other dynamic factors."
         primaryCta="Start Free Trial"
         primaryAction="signup"
-        secondaryCta="See Features"
-        secondaryAction="home"
         setPage={setPage}
       />
 
@@ -5580,13 +5622,13 @@ function FeatureToday({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
             <h2 className="ret-h2">The priority engine, in three moves.</h2>
-            <p className="ret-sub" style={{ margin: "0 auto" }}>Today isn't a to-do list. It's a ranked ladder of what to do next — calculated every night, updated every morning.</p>
+            <p className="ret-sub" style={{ margin: "0 auto" }}>Today isn't a to-do list. It's a custom-ranked ladder of what to do next — calculated with real-time data.</p>
           </div>
           <div className="ret-grid-3">
             {[
-              { h: "Score the relationships", p: "Every client's Retention Score updates overnight based on Health Checks, velocity, billing patterns, and 20 combination signals." },
-              { h: "Weigh by impact", p: "A task for a $200/mo client at-risk doesn't outrank an $8,000/mo green client who's ready to refer. Priority factors in revenue, tenure, and upside." },
-              { h: "Surface the one action", p: "You open Retayned in the morning and see the move that matters most. Not fifty tasks. The one task that will save or grow the most revenue today." },
+              { h: "Score relationships", p: "Every client carries a Retention Score, set from Health Checks, velocity, billing patterns, and 20 combination signals." },
+              { h: "Weigh by impact", p: "A task for a $200/mo at-risk client doesn't outrank an $8,000/mo green client who's ready to refer. Priority factors in revenue, tenure, and upside." },
+              { h: "Surface the one action", p: "You open Retayned in the morning and see the move that matters most. Not fifty tasks. The one that will save or grow the most revenue today." },
             ].map((s, i) => (
               <div key={i} className="ret-card">
                 <div style={{ fontSize: 11, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>Step {i + 1}</div>
@@ -5635,10 +5677,10 @@ function FeatureToday({ setPage }) {
                 )}
               </div>
             ))}
-            <div style={{ marginTop: 16, padding: "12px 14px", background: C.primarySoft, borderRadius: 10, display: "flex", alignItems: "flex-start", gap: 10 }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={C.primary} strokeWidth="2" style={{ flexShrink: 0, marginTop: 2 }}><path d="M12 2L9.5 9.5 2 12l7.5 2.5L12 22l2.5-7.5L22 12l-7.5-2.5z" strokeLinejoin="round" fill="none"/></svg>
+            <div style={{ marginTop: 16, padding: "12px 14px", background: "#EFE9FB", borderRadius: 10, display: "flex", alignItems: "flex-start", gap: 10 }}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={C.btn} strokeWidth="2" style={{ flexShrink: 0, marginTop: 2 }}><path d="M12 2L9.5 9.5 2 12l7.5 2.5L12 22l2.5-7.5L22 12l-7.5-2.5z" strokeLinejoin="round" fill="none"/></svg>
               <div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: C.primary, textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 3 }}>Rai's note</div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 3 }}>Rai's note</div>
                 <div style={{ fontSize: 13, color: C.text, lineHeight: 1.55 }}>Broadleaf dropped into "No Room to Operate." Don't email. Call. Lead with the specific concern — her silence is the answer.</div>
               </div>
             </div>
@@ -5695,8 +5737,6 @@ function FeatureScoring({ setPage }) {
         sub="Every client gets a score from 1–99. It tells you exactly where the relationship stands — not where you hope it is."
         primaryCta="Start Free Trial"
         primaryAction="signup"
-        secondaryCta="See Features"
-        secondaryAction="home"
         setPage={setPage}
       />
 
@@ -5845,8 +5885,6 @@ function FeatureHealth({ setPage }) {
         sub="Structured check-ins that surface what you already sense but haven't said out loud. They keep the relationship dimensions current — and those dimensions are the score, so an honest answer moves the number."
         primaryCta="Start Free Trial"
         primaryAction="signup"
-        secondaryCta="See Features"
-        secondaryAction="home"
         setPage={setPage}
       />
 
@@ -5978,8 +6016,6 @@ function FeatureRai({ setPage }) {
         sub="Rai is an AI advisor calibrated to your specific relationships. When you don't know what to say — the opening line, the tone, whether to call or email — Rai gives you the script."
         primaryCta="Start Free Trial"
         primaryAction="signup"
-        secondaryCta="See Features"
-        secondaryAction="home"
         setPage={setPage}
       />
 
@@ -6116,8 +6152,6 @@ function FeatureRolodex({ setPage }) {
         sub="The Rolodex tracks who left, how it ended, and whether they'd come back. One-off projects become re-engagement opportunities. Your pipeline is forward-looking."
         primaryCta="Start Free Trial"
         primaryAction="signup"
-        secondaryCta="See Features"
-        secondaryAction="home"
         setPage={setPage}
       />
 
@@ -6254,8 +6288,6 @@ function FeatureReferrals({ setPage }) {
         sub="Retayned tracks referral readiness based on loyalty, trust, and relationship depth. When a client is ready to refer, the system knows before you do."
         primaryCta="Start Free Trial"
         primaryAction="signup"
-        secondaryCta="See Features"
-        secondaryAction="home"
         setPage={setPage}
       />
 
@@ -6434,8 +6466,6 @@ function FeatureWorkers({ setPage }) {
         sub="You don't do every piece of the work yourself — but the contractor doing one task doesn't need the keys to your whole book. Workers is the lightweight bridge: hand off a single task with one secure link, and stay the hub for everything else."
         primaryCta="Start Free Trial"
         primaryAction="signup"
-        secondaryCta="See Features"
-        secondaryAction="home"
         setPage={setPage}
       />
 
