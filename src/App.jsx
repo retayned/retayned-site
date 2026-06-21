@@ -1718,8 +1718,7 @@ function HomeV2({ setPage }) {
               <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#92A596", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: 14, fontWeight: 700, color: "#fff" }}>JD</div>
               <div>
                 <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontSize: 15, fontWeight: 700, color: C.text }}>Healthcare consultant</span>
-                  <span style={{ fontSize: 10, fontWeight: 700, padding: "2px 8px", borderRadius: 4, background: C.primarySoft, color: C.primary, textTransform: "uppercase", letterSpacing: ".04em" }}>From our beta</span>
+                  <span style={{ fontSize: 15, fontWeight: 700, color: C.text }}>Healthcare Consultant</span>
                 </div>
                 <div style={{ fontSize: 13, color: C.textMuted, marginTop: 2 }}>15 Clients</div>
               </div>
@@ -2148,13 +2147,13 @@ function About({ setPage }) {
   const values = [
     { n: "01", t: "A 5% lift in retention beats every growth hack.", b: "Run the math. We do, and it's really not even close." },
     { n: "02", t: "AI can't do what you can.", b: "Rai drafts, reminds, and supports. You preserve and grow relationships." },
-    { n: "03", t: "Water your flowers before your weeds.", b: "Your best clients shouldn't get neglected because of new, subpar business." },
+    { n: "03", t: "Water your flowers, not your weeds.", b: "Your best clients shouldn't get neglected because of new, risky business." },
     { n: "04", t: "Tools should be cheap.", b: "It's easier than ever to build world-class software. Our pricing is deliberate." },
-    { n: "05", t: "CRMs shouldn't make you feel dumb.", b: "If you need onboarding calls to understand Retayned, we have failed." },
+    { n: "05", t: "CRMs shouldn't make you feel dumb.", b: "If you need onboarding calls to understand Retayned, we've failed." },
   ];
 
   const timeline = [
-    { y: "2014", label: "First retained client.", sub: "A restaurant. Kept for four years and counting." },
+    { y: "2014", label: "First retained client.", sub: "A restaurant. Kept for four years, still friends." },
     { y: "2018", label: "The pattern emerges.", sub: "We rarely lost accounts. We started asking why." },
     { y: "2021", label: "Retention pays off.", sub: "Five-year clients. Referrals everywhere. Real growth." },
     { y: "2025", label: "A founder moment.", sub: "\"You're not in paid social. You're in retention.\"" },
@@ -2174,7 +2173,7 @@ function About({ setPage }) {
       {/* ─── HERO ─── */}
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", paddingTop: HERO_TOP, paddingBottom: 24, textAlign: "center" }}>
         <div className="ret-section-inner" style={{ maxWidth: 880 }}>
-          <div className="ret-eyebrow">About Retayned</div>
+          <div className="ret-eyebrow">About</div>
           <h1 className="ret-h1" style={{ maxWidth: 880, marginInline: "auto" }}>
             We didn't set out to build a CRM. It just made cents.
           </h1>
@@ -2200,7 +2199,7 @@ function About({ setPage }) {
               We think the deal is the <em style={{ fontStyle: "italic" }}>least</em> interesting moment in a client relationship.
             </p>
             <p style={{ marginTop: 22 }}>
-              It's the part everyone celebrates yet nobody protects. The real work — and the real growth — is in what comes after: the relationships you keep, renew, and refer while your competitors are still chasing strangers.
+              It's the part everyone celebrates yet nobody protects. The real work — and the real growth — is in what comes after: the relationships you keep, renew, and strengthen while your competitors are still chasing strangers.
             </p>
             <p style={{ marginTop: 22 }}>
               It isn't flashy. <strong style={{ fontWeight: 900, color: "#fff" }}>It's just better business.</strong>
@@ -4861,7 +4860,7 @@ function Freelancers({ setPage }) {
       {/* HERO */}
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingTop: HERO_TOP, paddingBottom: 40 }}>
         <div className="ret-section-inner" style={{ maxWidth: 880 }}>
-          <div className="ret-eyebrow">For freelancers & consultants</div>
+          <div className="ret-eyebrow">For freelancers, consultants & coaches</div>
           <h1 className="ret-h1">
             Open the app at 8:47am. Know exactly who needs you today.
           </h1>
@@ -5327,16 +5326,16 @@ function Enterprise({ setPage }) {
         @media (max-width: 480px) {
           .ent-rhythm-grid { grid-template-columns: 1fr !important; }
         }
-        .ent-hero { padding: 112px 48px 56px; }
+        .ent-hero { padding: ${HERO_TOP}px 48px 56px; }
         @media (max-width: 760px) {
-          .ent-hero { padding: 72px 24px 48px; }
+          .ent-hero { padding: ${HERO_TOP}px 24px 48px; }
         }
       `}</style>
 
       {/* HERO ON DARK */}
       <section className="r-full-bleed ent-hero" style={{ background: C.primaryDeep, color: "#fff", textAlign: "center" }}>
-        <div className="ret-eyebrow ret-eyebrow-light">Retayned Enterprise · Coming Soon</div>
-        <h1 className="ret-h1" style={{ color: "#fff", maxWidth: 920, margin: "16px auto 0" }}>
+        <div className="ret-eyebrow ret-eyebrow-light">For large enterprises</div>
+        <h1 className="ret-h1" style={{ color: "#fff", maxWidth: 920, marginInline: "auto" }}>
           A managed agent that tells your team the <span style={{ fontFamily: "'Caveat', cursive", color: C.primaryLight, fontWeight: 700, fontSize: "1.05em" }}>next right thing</span> to do.
         </h1>
         <p style={{ color: "rgba(255,255,255,0.78)", fontSize: 17.5, lineHeight: 1.6, marginTop: 22, maxWidth: 700, marginInline: "auto" }}>
@@ -5452,43 +5451,15 @@ function Enterprise({ setPage }) {
         </div>
       </section>
 
-      <RetCurve from={C.bg} to="#F2EEE8" variant="leftCrest" />
-
-      {/* QUARTERLY PULSE */}
-      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8" }}>
-        <div className="ret-section-inner">
-          <div className="ret-section-head">
-            <div className="ret-eyebrow">The cadence</div>
-            <h2 className="ret-h2">
-              Quarterly retention <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>pulse.</span>
-            </h2>
-          </div>
-          <div className="ent-rhythm-grid" style={{ maxWidth: 940, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
-            {[
-              { c: "Q+1 wk", t: "Drift sweep", b: "Every account re-scored. The accounts that moved get routed — to an AM or to an agent, your call." },
-              { c: "Q+3 wk", t: "Health checks", b: "Structured pulse on each relationship. Handled by agents at scale, with crafted briefs where a human is leading." },
-              { c: "Q+8 wk", t: "Renewal forecast", b: "Readiness and churn risk for the next 90 days, sliced by team, by vertical, by ARR band." },
-              { c: "Q+12 wk", t: "Strategic review", b: "Board-ready retention narrative. Cohort drift. Save vs. churn. ARR retained." },
-            ].map(d => (
-              <div key={d.c} className="ret-card" style={{ padding: "22px 20px" }}>
-                <div style={{ fontFamily: "'Courier New', monospace", fontSize: 11, letterSpacing: "0.16em", color: C.btn, fontWeight: 800, textTransform: "uppercase" }}>{d.c}</div>
-                <div style={{ fontWeight: 800, fontSize: 16, marginTop: 12, color: C.text, letterSpacing: "-0.01em" }}>{d.t}</div>
-                <div style={{ fontSize: 13, color: C.textSec, marginTop: 6, lineHeight: 1.55 }}>{d.b}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <RetCurve from="#F2EEE8" to={C.bg} variant="rightRise" />
+      <RetCurve from={C.bg} to={C.primaryDeep} variant="rightCrest" />
 
       {/* ENTERPRISE MATH */}
-      <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
+      <section className="ret-section r-full-bleed" style={{ background: C.primaryDeep, color: "#fff" }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
-            <div className="ret-eyebrow">Enterprise math</div>
-            <h2 className="ret-h2">
-              One retained account at <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>$120k ARR</span> covers the year.
+            <div className="ret-eyebrow ret-eyebrow-light">Enterprise math</div>
+            <h2 className="ret-h2" style={{ color: "#fff" }}>
+              One retained account at <span style={{ fontFamily: "'Caveat', cursive", color: C.primaryLight, fontWeight: 700, fontSize: "1.05em" }}>$120k ARR</span> covers the year.
             </h2>
           </div>
           <div className="ret-card" style={{ maxWidth: 660, margin: "0 auto", padding: "30px 36px" }}>
@@ -5512,13 +5483,13 @@ function Enterprise({ setPage }) {
               <div style={{ fontWeight: 900, fontSize: 18, color: C.primary, letterSpacing: "-0.01em" }}>= 2× ROI in year one</div>
             </div>
           </div>
-          <div style={{ textAlign: "center", marginTop: 16, fontSize: 12.5, color: C.textSec }}>
+          <div style={{ textAlign: "center", marginTop: 16, fontSize: 12.5, color: "rgba(255,255,255,0.6)" }}>
             Indicative. Real pricing scales with account volume and integration scope.
           </div>
         </div>
       </section>
 
-      <RetCurve from={C.bg} to="#F2EEE8" variant="leftRise" />
+      <RetCurve from={C.primaryDeep} to="#F2EEE8" variant="leftRise" />
 
       {/* GRAPHIC */}
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8" }}>
@@ -5547,21 +5518,19 @@ function Enterprise({ setPage }) {
         </div>
       </section>
 
-      <RetCurve from="#F2EEE8" to={C.primaryDeep} variant="leftCrest" />
-
-      {/* FINAL CTA ON DARK */}
-      <section className="r-full-bleed" style={{ background: C.primaryDeep, color: "#fff", padding: "80px 48px", textAlign: "center" }}>
-        <div className="ret-eyebrow ret-eyebrow-light">Retayned Enterprise · Coming Soon</div>
-        <h2 className="ret-h2" style={{ color: "#fff", maxWidth: 780, margin: "18px auto 0" }}>
+      {/* FINAL CTA */}
+      <section className="r-full-bleed" style={{ background: "#F2EEE8", color: C.text, padding: "80px 48px", textAlign: "center" }}>
+        <div className="ret-eyebrow">Retayned Enterprise · Coming Soon</div>
+        <h2 className="ret-h2" style={{ color: C.text, maxWidth: 780, marginInline: "auto" }}>
           One brain for the book.<br />
-          <span style={{ fontFamily: "'Caveat', cursive", color: C.primaryLight, fontWeight: 700, fontSize: "1.05em" }}>Your people, your agents, or both.</span>
+          <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>Your people, your agents, or both.</span>
         </h2>
-        <p style={{ color: "rgba(255,255,255,0.72)", fontSize: 15.5, marginTop: 20, maxWidth: 600, marginInline: "auto", lineHeight: 1.6 }}>
+        <p style={{ color: C.textSec, fontSize: 15.5, marginTop: 20, maxWidth: 600, marginInline: "auto", lineHeight: 1.6 }}>
           We're onboarding a small group of design partners now. White-glove deployment, a dedicated solutions engineer, and direct access to the team that builds Retayned.
         </p>
         <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 32, flexWrap: "wrap" }}>
-          <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: "#fff", color: C.primaryDeep, border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Request Early Access</button>
-          <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: "transparent", color: "#fff", border: "1px solid rgba(255,255,255,0.25)", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Talk to founders</button>
+          <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Request Early Access</button>
+          <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: "transparent", color: C.text, border: "1px solid " + C.border, borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Talk to founders</button>
         </div>
       </section>
 
