@@ -3716,7 +3716,7 @@ function Blog({ setPage }) {
           <div style={{ maxWidth: 760, margin: "0 auto" }}>
             <div className="ret-eyebrow">Resources</div>
             <h1 className="ret-h1">
-              Field notes from the <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>retention business.</span>
+              Field notes from the retention business.
             </h1>
             <p style={{ marginTop: 18, fontSize: 17, color: C.textSec, lineHeight: 1.55 }}>Articles, tools, guides, and webinars. Free. No sign-up required.</p>
           </div>
@@ -3836,7 +3836,7 @@ function Blog({ setPage }) {
                 <div style={{ fontFamily: "'Courier New', monospace", fontSize: 11.5, color: C.primaryLight, marginTop: 10, fontWeight: 600 }}>{w.date} · {w.kind}</div>
                 <h4 style={{ fontSize: 17, fontWeight: 800, marginTop: 10, color: "#fff", letterSpacing: "-0.01em" }}>{w.title}</h4>
                 <p style={{ fontSize: 13.5, color: "rgba(255,255,255,0.7)", marginTop: 6, lineHeight: 1.55 }}>{w.sub}</p>
-                <span style={{ color: C.primaryLight, fontSize: 13.5, fontWeight: 800, marginTop: 12, display: "inline-block" }}>{w.kind === "Coming soon" ? "Notify me →" : w.kind === "Upcoming" ? "Reserve a seat →" : "Watch →"}</span>
+                <span onClick={() => { const el = document.getElementById("newsletter"); if (el) el.scrollIntoView({ behavior: "smooth" }); }} style={{ color: C.primaryLight, fontSize: 13.5, fontWeight: 800, marginTop: 12, display: "inline-block", cursor: "pointer" }}>{w.kind === "Coming soon" ? "Notify me →" : w.kind === "Upcoming" ? "Reserve a seat →" : "Watch →"}</span>
               </div>
             ))}
           </div>
@@ -3848,18 +3848,18 @@ function Blog({ setPage }) {
       <RetCurve from={C.bg} to="#F2EEE8" variant="leftCrest" />
 
       {/* ─── NEWSLETTER ─── */}
-      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingBottom: 88 }}>
+      <section id="newsletter" className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingBottom: 88 }}>
         <div className="ret-section-inner" style={{ maxWidth: 760 }}>
           <div className="ret-eyebrow">Stay in the loop</div>
           <h3 className="ret-h2" style={{ fontSize: "clamp(28px, 3.5vw, 48px)", fontWeight: 900, lineHeight: 1.05, letterSpacing: "-0.03em" }}>Get notified when we publish.</h3>
-          <div className="res-newsletter-row" style={{ marginTop: 22, display: "inline-flex", gap: 8, alignItems: "center", background: C.card, padding: 6, borderRadius: 999, border: "1px solid " + C.borderLight, maxWidth: "100%", boxSizing: "border-box" }}>
+          <div className="res-newsletter-row" style={{ marginTop: 22, display: "inline-flex", gap: 8, alignItems: "stretch", background: C.card, padding: 6, borderRadius: 999, border: "1px solid " + C.borderLight, maxWidth: "100%", boxSizing: "border-box" }}>
             <input
               type="email"
               placeholder="you@agency.com"
               className="res-newsletter-input"
-              style={{ background: "transparent", border: "none", outline: "none", padding: "10px 18px", width: 280, maxWidth: "100%", minWidth: 0, flex: "1 1 auto", boxSizing: "border-box", fontSize: 14.5, color: C.text, fontFamily: "inherit" }}
+              style={{ background: "transparent", border: "none", outline: "none", margin: 0, padding: "12px 18px", width: 280, maxWidth: "100%", minWidth: 0, flex: "1 1 auto", boxSizing: "border-box", fontSize: 14.5, lineHeight: "20px", color: C.text, fontFamily: "inherit", borderRadius: 999, appearance: "none", WebkitAppearance: "none" }}
             />
-            <button className="cta-btn" style={{ padding: "10px 22px", fontSize: 14, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 999, cursor: "pointer", fontFamily: "inherit", flexShrink: 0 }}>Subscribe</button>
+            <button className="cta-btn" style={{ padding: "12px 22px", fontSize: 14, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 999, cursor: "pointer", fontFamily: "inherit", flexShrink: 0, lineHeight: "20px" }}>Subscribe</button>
           </div>
           <div style={{ fontSize: 12.5, color: C.textSec, marginTop: 12 }}>One email a month. Unsubscribe with one click.</div>
         </div>
@@ -4202,16 +4202,16 @@ function RetHero({ eyebrow, h1, sub, primaryCta = "Start Free Trial", primaryAct
   );
 }
 
-function RetFinalCTA({ h2, sub, setPage, primaryCta = "Start Free Trial", primaryAction = "signup" }) {
+function RetFinalCTA({ h2, sub, setPage, primaryCta = "Start Free Trial", primaryAction = "signup", mailto = null, fine = "14-day free trial. Cancel anytime." }) {
   return (
     <section className="ret-section ret-bg-cream r-full-bleed" style={{ textAlign: "center" }}>
       <div className="ret-section-inner">
         <h2 className="ret-h2">{h2}</h2>
         {sub && <p className="ret-sub" style={{ margin: "0 auto 28px" }}>{sub}</p>}
         <div className="ret-cta-row">
-          <button className="ret-btn-primary" onClick={() => setPage(primaryAction)}>{primaryCta}</button>
+          <button className="ret-btn-primary" onClick={() => { if (mailto) { window.location.href = `mailto:${mailto}`; } else { setPage(primaryAction); } }}>{primaryCta}</button>
         </div>
-        <p className="ret-hero-fine">14-day free trial. Cancel anytime.</p>
+        {fine && <p className="ret-hero-fine">{fine}</p>}
       </div>
     </section>
   );
@@ -4240,6 +4240,7 @@ function Contact({ setPage }) {
                 <label style={{ display: "block", fontSize: 14, fontWeight: 700, color: C.text, marginBottom: 8 }}>Name</label>
                 <input
                   type="text"
+                  id="contact-name"
                   placeholder="Your name"
                   style={{ width: "100%", padding: "14px 16px", border: "1.5px solid " + C.borderLight, borderRadius: 12, fontSize: 15, fontFamily: "inherit", outline: "none", boxSizing: "border-box", background: "#fff" }}
                 />
@@ -4248,6 +4249,7 @@ function Contact({ setPage }) {
                 <label style={{ display: "block", fontSize: 14, fontWeight: 700, color: C.text, marginBottom: 8 }}>Email</label>
                 <input
                   type="email"
+                  id="contact-email"
                   placeholder="you@agency.com"
                   style={{ width: "100%", padding: "14px 16px", border: "1.5px solid " + C.borderLight, borderRadius: 12, fontSize: 15, fontFamily: "inherit", outline: "none", boxSizing: "border-box", background: "#fff" }}
                 />
@@ -4256,11 +4258,19 @@ function Contact({ setPage }) {
                 <label style={{ display: "block", fontSize: 14, fontWeight: 700, color: C.text, marginBottom: 8 }}>Message</label>
                 <textarea
                   placeholder="What's on your mind?"
+                  id="contact-message"
                   rows={5}
                   style={{ width: "100%", padding: "14px 16px", border: "1.5px solid " + C.borderLight, borderRadius: 12, fontSize: 15, fontFamily: "inherit", outline: "none", boxSizing: "border-box", background: "#fff", resize: "vertical", minHeight: 120 }}
                 />
               </div>
-              <button className="ret-btn-primary" style={{ width: "100%", marginTop: 4 }}>Send Message</button>
+              <button className="ret-btn-primary" style={{ width: "100%", marginTop: 4 }} onClick={() => {
+                const name = (document.getElementById("contact-name") || {}).value || "";
+                const email = (document.getElementById("contact-email") || {}).value || "";
+                const message = (document.getElementById("contact-message") || {}).value || "";
+                const subject = encodeURIComponent(name ? `Message from ${name}` : "Message from the Retayned site");
+                const body = encodeURIComponent(`${message}\n\n— ${name}${email ? ` (${email})` : ""}`);
+                window.location.href = `mailto:hello@retayned.com?subject=${subject}&body=${body}`;
+              }}>Send Message</button>
             </div>
           </div>
 
@@ -4304,7 +4314,7 @@ function Login({ setPage }) {
                 fontFamily: "system-ui, -apple-system, sans-serif",
               }}
             >
-              Retayned.
+              R.
             </span>
           </div>
 
@@ -4392,7 +4402,7 @@ function Signup({ setPage }) {
                 fontFamily: "system-ui, -apple-system, sans-serif",
               }}
             >
-              Retayned.
+              R.
             </span>
           </div>
 
@@ -4548,6 +4558,9 @@ function FAQPage({ setPage }) {
       <RetFinalCTA
         h2="Still have questions?"
         sub="Email us directly — we respond within a business day."
+        primaryCta="Send Message"
+        mailto="hello@retayned.com"
+        fine={null}
         setPage={setPage}
       />
       <Footer setPage={setPage} />
@@ -4564,7 +4577,7 @@ function Privacy({ setPage }) {
       <RetPageStyles />
       <RetHero
         eyebrow="Legal"
-        h1="Privacy Policy."
+        h1="Privacy Policy"
         sub="Last updated: May 23, 2026."
         primaryCta={null}
         secondaryCta={null}
@@ -4694,7 +4707,7 @@ function Terms({ setPage }) {
       <RetPageStyles />
       <RetHero
         eyebrow="Legal"
-        h1="Terms of Service."
+        h1="Terms of Service"
         sub="Last updated: May 23, 2026."
         primaryCta={null}
         secondaryCta={null}
@@ -4862,7 +4875,7 @@ function Freelancers({ setPage }) {
         <div className="ret-section-inner" style={{ maxWidth: 880 }}>
           <div className="ret-eyebrow">For freelancers, consultants & coaches</div>
           <h1 className="ret-h1">
-            Open the app at 8:47am. Know exactly who needs you today.
+            Open the app at 8:47am. Know who needs you first.
           </h1>
           <p style={{ marginTop: 22, fontSize: 17, color: C.textSec, lineHeight: 1.6, maxWidth: 620, marginInline: "auto" }}>
             Retayned is the operating system you didn't know was missing — the one that watches all your client relationships while you focus on the work.
@@ -4882,13 +4895,13 @@ function Freelancers({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">The freelancer reality</div>
             <h2 className="ret-h2">
-              You carry 25 clients in your head.
+              You carry 22 clients in your head.
             </h2>
             <p style={{ marginTop: 16, fontSize: 16, color: C.textSec, lineHeight: 1.6, maxWidth: 640, marginInline: "auto" }}>
-              You remember Rachel's daughter just started kindergarten. You remember James hates phone calls before 11. By Thursday, you've been in 14 Zooms, written 3 proposals, and three of those details have gone missing.
+              You remember Rachel's daughter just started kindergarten. You remember James hates phone calls before 11. By Thursday, you've been in 14 Zooms, written 3 proposals, and just have to get that report out before it's too late.
             </p>
             <p style={{ marginTop: 16, fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: 22, lineHeight: 1.4, maxWidth: 640, marginInline: "auto" }}>
-              You're not forgetting because you don't care. You're forgetting because no brain holds 25 relationships at this fidelity.
+              You're not forgetting because you don't care. You're forgetting because no brain holds 22 relationships at this fidelity.
             </p>
           </div>
           <FreelancerWeb />
@@ -4899,18 +4912,18 @@ function Freelancers({ setPage }) {
       <section className="ret-section r-full-bleed" style={{ background: C.bg, paddingTop: 24 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
-            <div className="ret-eyebrow">Your weekly rhythm</div>
+            <div className="ret-eyebrow">A week with Retayned</div>
             <h2 className="ret-h2">
-              A small move every day. Nothing burns down.
+              The operating system for solopreneurs.
             </h2>
           </div>
           <div className="fr-week-grid" style={{ display: "grid", gridTemplateColumns: "repeat(5, 1fr)", gap: 14, maxWidth: 1100, margin: "0 auto" }}>
             {[
-              { d: "MON", t: "Read the Brief", b: "Rai swept your whole book overnight. Open Today to a ranked list and her read on who moved and why.", tag: "Today · Rai" },
+              { d: "MON", t: "Read the brief", b: "Rai swept your whole book overnight. Open Today to a ranked list and her read on who moved and why.", tag: "Today · Rai" },
               { d: "TUE", t: "Send two scripts", b: "Two relationships need words, not work. Rai drafts them in your voice. You edit a line and send.", tag: "Rai" },
               { d: "WED", t: "Ask while it's warm", b: "A client's referral-readiness crossed the line. Make the intro now, before the moment cools.", tag: "Referrals" },
-              { d: "THU", t: "Run a health check", b: "Pick the account your gut flags. A few honest questions re-score the relationship and surface the drift.", tag: "Health" },
-              { d: "FRI", t: "Work the warm pipeline", b: "Revisit the Rolodex. A former client just hit a trigger worth a no-pressure reconnect.", tag: "Rolodex" },
+              { d: "THU", t: "Run a health check", b: "Pick the account. A few honest questions re-score the relationship and surface the drift.", tag: "Health" },
+              { d: "FRI", t: "Work the pipeline", b: "Revisit the Rolodex. A former client just hit a trigger worth a no-pressure reconnect.", tag: "Rolodex" },
             ].map(d => (
               <div key={d.d} className="ret-card" style={{ padding: "22px 20px" }}>
                 <div style={{ fontFamily: "'Courier New', monospace", fontSize: 11, letterSpacing: "0.16em", color: C.btn, fontWeight: 800 }}>{d.d}</div>
@@ -4938,8 +4951,8 @@ function Freelancers({ setPage }) {
             {[
               { t: "08:47", h: "Open Today.", b: "Six tasks ranked by impact. The most expensive one — Rachel — is right at the top." },
               { t: "09:02", h: "Fix Rachel.", b: "Open Rai. Get four script options. Send the second one in your voice." },
-              { t: "09:14", h: "Two referrals.", b: "Nika is at 89 referral-readiness. You ask for the intro before getting on the work." },
-              { t: "12:30", h: "Lunch.", b: "A reply comes in from Rachel. Score moves from 38 to 56. Logged automatically." },
+              { t: "09:14", h: "Four new tasks.", b: "A few of these may have slipped your mind last month. But today, you have Retayned." },
+              { t: "12:30", h: "Lunch.", b: "A reply comes in from Rachel. Score moves from 38 to 46. Logged automatically." },
               { t: "15:40", h: "A signal.", b: "Push notification: Wes's renewal moved to 14 days. New task added to tomorrow." },
               { t: "18:00", h: "Close the laptop.", b: "Tomorrow's seven tasks are already ranked. You don't carry it home." },
             ].map((m, i, a) => (
@@ -5017,7 +5030,7 @@ function Freelancers({ setPage }) {
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingBottom: 88 }}>
         <div className="ret-section-inner" style={{ maxWidth: 720 }}>
           <h2 className="ret-h2">
-            Stop carrying your whole book <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>in your head.</span>
+            Stop carrying your whole book in your head.
           </h2>
           <button className="cta-btn" onClick={() => setPage("signup")} style={{ marginTop: 24, padding: "16px 36px", fontSize: 16, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
           <div style={{ fontSize: 13, color: C.textSec, marginTop: 12 }}>14-day free trial. Cancel anytime.</div>
@@ -5090,10 +5103,10 @@ function Agencies({ setPage }) {
         <div className="ret-section-inner" style={{ maxWidth: 940 }}>
           <div className="ret-eyebrow">For agencies & studios</div>
           <h1 className="ret-h1">
-            Know which clients <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>need</span> you before they go dark.
+            Know which clients need you before they go dark.
           </h1>
           <p style={{ marginTop: 22, fontSize: 17, color: C.textSec, lineHeight: 1.6, maxWidth: 660, marginInline: "auto" }}>
-            Retayned is the operating system for your agency's client relationships. Every account scored, every AM's book in one view, every at-risk relationship surfaced early.
+            Retayned is the OS for your agency's client relationships. Every account scored, every AM's book in one view, every at-risk relationship surfaced early.
           </p>
           <div style={{ marginTop: 28, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <button className="cta-btn" onClick={() => setPage("signup")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
@@ -5110,7 +5123,7 @@ function Agencies({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">The handoff problem</div>
             <h2 className="ret-h2">
-              What walks out the door <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>when an AM does.</span>
+              What walks out the door when an AM does.
             </h2>
           </div>
           <div className="ret-card ag-handoff-grid" style={{ maxWidth: 880, margin: "0 auto", padding: 0, overflow: "hidden", display: "grid", gridTemplateColumns: "1fr 1fr", position: "relative" }}>
@@ -5131,20 +5144,20 @@ function Agencies({ setPage }) {
               <div style={{ fontSize: 11, letterSpacing: "0.18em", color: C.textSec, textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>Without Retayned</div>
               <div style={{ fontWeight: 800, fontSize: 18, marginBottom: 16, color: C.text, letterSpacing: "-0.01em" }}>The brain leaves with the person.</div>
               <ul style={{ margin: 0, padding: 0, listStyle: "none", fontSize: 14, color: C.textSec, lineHeight: 1.7 }}>
-                <li>— "What was Rachel's husband's name again?"</li>
+                <li>— "Wait, what was the client's wife's name?"</li>
                 <li>— Two weeks of Slack archaeology per account</li>
-                <li>— Three accounts soft-churn during transition</li>
-                <li>— New AM rebuilds rapport from zero</li>
+                <li>— Quiet accounts slip away mid-handoff</li>
+                <li>— The new AM starts from a cold zero</li>
               </ul>
             </div>
             <div style={{ padding: "30px 32px", background: C.primarySoft }}>
               <div style={{ fontSize: 11, letterSpacing: "0.18em", color: C.primary, textTransform: "uppercase", marginBottom: 14, fontWeight: 700 }}>With Retayned</div>
               <div style={{ fontWeight: 800, fontSize: 18, marginBottom: 16, color: C.primaryDeep, letterSpacing: "-0.01em" }}>The brain belongs to the agency.</div>
               <ul style={{ margin: 0, padding: 0, listStyle: "none", fontSize: 14, color: C.primaryDeep, lineHeight: 1.7 }}>
-                <li>+ Every account, scored across 12 dimensions</li>
-                <li>+ Handoff brief generated in 30 seconds</li>
-                <li>+ Continuity from day one for the new AM</li>
-                <li>+ The relationship holds steady through the transition</li>
+                <li>+ Every relationship scored and on record</li>
+                <li>+ A full handoff brief in thirty seconds</li>
+                <li>+ The account never feels the transition</li>
+                <li>+ The new AM picks up exactly where it left off</li>
               </ul>
             </div>
           </div>
@@ -5157,7 +5170,7 @@ function Agencies({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">The portfolio view</div>
             <h2 className="ret-h2">
-              One screen. <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>All your AMs, all their books.</span>
+              One screen. All your AMs, all their books.
             </h2>
           </div>
           <div className="ret-card" style={{ maxWidth: 1000, margin: "0 auto", padding: 0, overflow: "hidden" }}>
@@ -5208,7 +5221,7 @@ function Agencies({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">The agency rhythm</div>
             <h2 className="ret-h2">
-              A heartbeat for your <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>book of business.</span>
+              A heartbeat for your book of business.
             </h2>
           </div>
           <div className="ag-rhythm-grid" style={{ maxWidth: 940, margin: "0 auto", display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 14 }}>
@@ -5236,7 +5249,7 @@ function Agencies({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">Agency math</div>
             <h2 className="ret-h2">
-              8 AMs. <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>$156/mo.</span>
+              8 AMs. $156/mo.
             </h2>
           </div>
           <div className="ret-card" style={{ maxWidth: 620, margin: "0 auto", padding: "30px 36px" }}>
@@ -5272,7 +5285,7 @@ function Agencies({ setPage }) {
           <div className="ret-section-head"><div className="ret-eyebrow">Agency FAQ</div></div>
           <div>
             {[
-              ["How does AM-level permissioning work?", "AMs see their own book by default. Managers see the full portfolio. Owners see the financials. Granular roles available on Enterprise."],
+              ["How does AM-level permissioning work?", "AMs see their own book by default. Owners and managers see the full portfolio. More granular roles will be available on Enterprise."],
               ["Can we white-label client-facing artifacts?", "Yes — health-check exports and QBR briefs ship with your agency mark on Enterprise. Retayned itself stays internal-only."],
               ["How does seat pricing work?", "Team is $99/mo and includes 5 seats. Each additional seat is $19/mo — add or remove them as your team changes. There's no per-client fee and no client cap, so your book can grow without your bill tracking it."],
               ["How does this fit alongside our existing CRM?", "Most agencies keep their CRM as the system of record for deals. Retayned plugs into it as the relationship-intelligence layer above. Two-way sync with HubSpot, Salesforce, Pipedrive, and Folk."],
@@ -5290,7 +5303,7 @@ function Agencies({ setPage }) {
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", textAlign: "center", paddingBottom: 88 }}>
         <div className="ret-section-inner" style={{ maxWidth: 760 }}>
           <h2 className="ret-h2">
-            Run the whole book from <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>one place.</span>
+            Run the whole book from one place.
           </h2>
           <div style={{ marginTop: 24, display: "flex", gap: 12, justifyContent: "center", flexWrap: "wrap" }}>
             <button className="cta-btn" onClick={() => setPage("signup")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Start Free Trial</button>
@@ -5336,7 +5349,7 @@ function Enterprise({ setPage }) {
       <section className="r-full-bleed ent-hero" style={{ background: C.primaryDeep, color: "#fff", textAlign: "center" }}>
         <div className="ret-eyebrow ret-eyebrow-light">For large enterprises</div>
         <h1 className="ret-h1" style={{ color: "#fff", maxWidth: 920, marginInline: "auto" }}>
-          A managed agent that tells your team the <span style={{ fontFamily: "'Caveat', cursive", color: C.primaryLight, fontWeight: 700, fontSize: "1.05em" }}>next right thing</span> to do.
+          A managed agent that gives your team the next right move.
         </h1>
         <p style={{ color: "rgba(255,255,255,0.78)", fontSize: 17.5, lineHeight: 1.6, marginTop: 22, maxWidth: 700, marginInline: "auto" }}>
           Retayned watches every account, scores every relationship, and surfaces the one move that matters most for each one. The only question is who acts on it: your people, your AI agents, or both. Same brain underneath.
@@ -5369,10 +5382,10 @@ function Enterprise({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
             <h2 className="ret-h2" style={{ maxWidth: 820, marginInline: "auto" }}>
-              One brain reads the book. <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>You decide who acts.</span>
+              Our brain reads the book.<br /><span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>You decide who acts.</span>
             </h2>
             <p style={{ marginTop: 18, fontSize: 16, color: C.textSec, lineHeight: 1.6, maxWidth: 660, marginInline: "auto" }}>
-              Retayned scores every account and figures out the next right action for each relationship. From there, the work flows wherever you point it — to a person, to an agent, or to both at once.
+              Retayned scores every account and figures out the next right action for each relationship. From there, the work flows wherever you point it — to a person, an agent, or both.
             </p>
           </div>
           <div className="ret-grid-3">
@@ -5399,7 +5412,7 @@ function Enterprise({ setPage }) {
           <div className="ret-section-head">
             <div className="ret-eyebrow">Built like infrastructure</div>
             <h2 className="ret-h2">
-              Account management with <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>an API.</span>
+              Account Management as a Service <span style={{ fontFamily: "'Caveat', cursive", color: C.primary, fontWeight: 700, fontSize: "1.05em" }}>(or AMaaS if that's your thing).</span>
             </h2>
             <p style={{ marginTop: 16, fontSize: 16, color: C.textSec, lineHeight: 1.6, maxWidth: 660, marginInline: "auto" }}>
               Score any account on demand. Pipe signals from your data warehouse. Trigger Rai actions from any system in your stack. Webhook out the moment a relationship cools.
@@ -5433,15 +5446,12 @@ function Enterprise({ setPage }) {
                   <div style={{ fontSize: 13.5, color: C.textSec, marginTop: 6, lineHeight: 1.55 }}>{r.d}</div>
                 </div>
               ))}
-              <div style={{ marginTop: 20 }}>
-                <span style={{ fontSize: 13.5, color: C.btn, fontWeight: 800, cursor: "pointer" }}>Read the API reference →</span>
-              </div>
             </div>
           </div>
 
           {/* INTEGRATIONS */}
           <div style={{ maxWidth: 1100, margin: "44px auto 0", paddingTop: 32, borderTop: "1px solid " + C.borderLight }}>
-            <div style={{ fontSize: 11, letterSpacing: "0.18em", color: C.textSec, textTransform: "uppercase", textAlign: "center", marginBottom: 20, fontWeight: 700 }}>Integrates with the stack you already run</div>
+            <div style={{ fontSize: 11, letterSpacing: "0.18em", color: C.textSec, textTransform: "uppercase", textAlign: "center", marginBottom: 20, fontWeight: 700 }}>Planned integrations with the stack you already run</div>
             <div style={{ display: "flex", gap: 12, flexWrap: "wrap", justifyContent: "center" }}>
               {["Salesforce", "HubSpot", "Snowflake", "Segment", "Slack", "Gong", "Zendesk", "Intercom", "Linear", "Notion", "Google Workspace", "Microsoft 365"].map(n => (
                 <div key={n} style={{ padding: "10px 18px", background: C.card, border: "1px solid " + C.borderLight, borderRadius: 10, fontSize: 13, fontWeight: 600, color: C.text }}>{n}</div>
@@ -5451,9 +5461,13 @@ function Enterprise({ setPage }) {
         </div>
       </section>
 
+      <RetCurve from={C.bg} to="#F2EEE8" variant="rightCrest" />
+
+      {/* ENTERPRISE MATH — hidden until pricing is ready */}
+      {false && (
+      <>
       <RetCurve from={C.bg} to={C.primaryDeep} variant="rightCrest" />
 
-      {/* ENTERPRISE MATH */}
       <section className="ret-section r-full-bleed" style={{ background: C.primaryDeep, color: "#fff" }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
@@ -5490,6 +5504,8 @@ function Enterprise({ setPage }) {
       </section>
 
       <RetCurve from={C.primaryDeep} to="#F2EEE8" variant="leftRise" />
+      </>
+      )}
 
       {/* GRAPHIC */}
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8" }}>
@@ -5502,12 +5518,15 @@ function Enterprise({ setPage }) {
       <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8", paddingTop: 32 }}>
         <div className="ret-section-inner" style={{ maxWidth: 760 }}>
           <div className="ret-section-head"><div className="ret-eyebrow">Enterprise FAQ</div></div>
+          <div style={{ background: C.primarySoft, border: "1px solid " + C.borderLight, borderRadius: 12, padding: "16px 20px", marginBottom: 24, fontSize: 14, color: C.primary, lineHeight: 1.6 }}>
+            <strong>Retayned Enterprise is pre-launch.</strong> We're sharing the planned design and gauging interest with a small group of design partners who want to shape it before it ships. The answers below describe where we're headed, not features you can buy today.
+          </div>
           <div>
             {[
-              ["What's the deployment model?", "Cloud (US, EU, APAC) or VPC-isolated. SOC 2 Type II, GDPR, and HIPAA-compatible. SSO via SAML 2.0 + SCIM. Data residency configurable."],
-              ["How does Rai stay in our voice?", "You provision Rai with brand voice samples, approved scripts, and escalation rules. Every action goes through your approval workflow until you trust it. Then you tune the autonomy slider."],
-              ["What signals does it ingest?", "Email + calendar (M365, Google), CRM (Salesforce, HubSpot, Pipedrive), product usage (Snowflake, Segment, Heap), support (Zendesk, Intercom), and custom events via API. Anything you can stream, Retayned can score."],
-              ["What's the rollout look like?", "Two-week deployment for the platform layer. Six-week ramp for Rai with shadow mode → assisted mode → autonomous mode on a per-segment basis. White-glove onboarding included."],
+              ["What deployment model are you planning?", "We're designing for cloud or VPC-isolated deployment with configurable data residency, and we're building toward SOC 2, GDPR, and HIPAA alignment with SSO via SAML and SCIM. Design partners help us prioritize which of these lands first. We won't claim a certification until we've actually earned it."],
+              ["How will Rai stay in our voice?", "The plan is for you to provision Rai with your brand voice samples, approved scripts, and escalation rules, with every action routed through your approval workflow until you choose to give it more autonomy. Nothing acts on your clients without your sign-off — that principle is fixed, the exact controls are still being shaped with early partners."],
+              ["What signals will it ingest?", "We're planning connectors for email and calendar (Microsoft 365, Google), major CRMs, product-usage and data warehouses, support tools, and custom events via API. These are planned integrations, not live ones — design partners tell us which sources to build first."],
+              ["What will rollout look like?", "We're designing a phased rollout: platform layer first, then Rai ramping through shadow mode to assisted to autonomous on a per-segment basis, so you expand trust at your own pace. Early partners get white-glove onboarding and a direct line to the team building it."],
             ].map(([q, a]) => (
               <div key={q} style={{ padding: "18px 0", borderBottom: "1px solid " + C.borderLight }}>
                 <div style={{ fontWeight: 800, fontSize: 15, color: C.text, letterSpacing: "-0.01em" }}>{q}</div>
@@ -5530,7 +5549,6 @@ function Enterprise({ setPage }) {
         </p>
         <div style={{ display: "flex", gap: 12, justifyContent: "center", marginTop: 32, flexWrap: "wrap" }}>
           <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: C.btn, color: "#fff", border: "none", borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Request Early Access</button>
-          <button className="cta-btn" onClick={() => setPage("contact")} style={{ padding: "14px 28px", fontSize: 15, fontWeight: 700, background: "transparent", color: C.text, border: "1px solid " + C.border, borderRadius: 12, cursor: "pointer", fontFamily: "inherit" }}>Talk to founders</button>
         </div>
       </section>
 
