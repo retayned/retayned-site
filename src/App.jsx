@@ -200,7 +200,7 @@ function Nav({ page, setPage }) {
   };
 
   const features = [
-    { id: "feature-today", label: "Today", desc: "Rai ranks the day's work.", icon: "today" },
+    { id: "feature-today", label: "Today", desc: "The dash to keep more business", icon: "today" },
     { id: "feature-scoring", label: "Clients", desc: "Scored and sorted by what matters.", icon: "retention-score" },
     { id: "feature-health", label: "Health", desc: "Catch drift before damage.", icon: "health-checks" },
     { id: "feature-rolodex", label: "Rolodex", desc: "Forward-looking pipeline.", icon: "rolodex" },
@@ -988,7 +988,7 @@ function V2TodayFeed() {
                   {(t.id === "hollis" || t.id === "baxter") ? (
                     <div style={{ display: "flex", alignItems: "baseline", gap: 10, flexWrap: "wrap" }}>
                       <span className="v2tf-meta">{t.meta}</span>
-                      <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontSize: 16, fontWeight: 700, lineHeight: 1, whiteSpace: "nowrap" }}>(Rai can draft this for you)</span>
+                      <span style={{ fontFamily: "'Caveat', cursive", color: C.btn, fontSize: 16, fontWeight: 700, lineHeight: 1.1 }}>(Rai can draft this for you with context)</span>
                     </div>
                   ) : (
                     <div className="v2tf-meta">{t.meta}</div>
@@ -3880,6 +3880,19 @@ function Blog({ setPage }) {
 function RetPageStyles() {
   return (
     <style>{`
+      .trd-chip { font-family: inherit; font-size: 12.5px; font-weight: 700; padding: 9px 15px; border-radius: 100px; border: 1px solid ${C.border}; background: ${C.card}; cursor: pointer; color: ${C.text}; transition: all 0.18s; }
+      .trd-chip:hover { border-color: ${C.primary}; color: ${C.primary}; transform: translateY(-1px); }
+      .trd-chip-muted { color: ${C.textMuted}; }
+      .trd-chip-on { background: ${C.primary}; border-color: ${C.primary}; color: #fff; }
+      .trd-chip-on:hover { background: ${C.primaryDark}; border-color: ${C.primaryDark}; color: #fff; }
+      .sdemo-range { -webkit-appearance: none; appearance: none; height: 6px; border-radius: 100px; background: ${C.borderLight}; outline: none; }
+      .sdemo-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%; background: ${C.primary}; cursor: pointer; border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.18); }
+      .sdemo-range::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: ${C.primary}; cursor: pointer; border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.18); }
+      @media (max-width: 640px) { .sdemo-grid { grid-template-columns: 1fr !important; } }
+      .feat-cine-hero { background: ${C.sidebar || "#1E261F"}; color: #F4F0E6; padding: ${HERO_TOP + 24}px 32px 72px; position: relative; overflow: hidden; }
+      .feat-cine-inner { max-width: 720px; margin: 0 auto; }
+      .feat-cine-h1 { font-size: clamp(34px, 5.5vw, 60px); font-weight: 900; letter-spacing: -0.035em; line-height: 1.08; margin: 0 0 22px; }
+      .feat-cine-sub { font-size: clamp(16px, 2vw, 19px); line-height: 1.6; color: #C8D2C9; max-width: 560px; }
       .ret-hero { background: #F2EEE8; padding: ${HERO_TOP}px 48px 72px; position: relative; overflow: hidden; }
       .ret-hero-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
       .ret-hero-left { max-width: 1100px; margin: 0 auto; text-align: left; }
@@ -4980,10 +4993,10 @@ function Freelancers({ setPage }) {
         </div>
       </section>
 
-      <RetCurve from={C.bg} to="#F2EEE8" variant="leftCrest" />
+      <RetCurve from={C.bg} to="#EAE4D6" variant="leftCrest" />
 
       {/* WEEKLY RHYTHM */}
-      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8" }}>
+      <section className="ret-section r-full-bleed" style={{ background: "#EAE4D6" }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">A week with Retayned</div>
@@ -5012,7 +5025,7 @@ function Freelancers({ setPage }) {
         </div>
       </section>
 
-      <RetCurve from="#F2EEE8" to={C.bg} variant="rightRise" />
+      <RetCurve from="#EAE4D6" to={C.bg} variant="rightRise" />
 
       {/* ROI */}
       <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
@@ -5257,10 +5270,10 @@ function Agencies({ setPage }) {
         </div>
       </section>
 
-      <RetCurve from={C.bg} to="#F2EEE8" variant="leftCrest" />
+      <RetCurve from={C.bg} to="#EAE4D6" variant="leftCrest" />
 
       {/* AGENCY RHYTHM */}
-      <section className="ret-section r-full-bleed" style={{ background: "#F2EEE8" }}>
+      <section className="ret-section r-full-bleed" style={{ background: "#EAE4D6" }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">The agency rhythm</div>
@@ -5285,7 +5298,7 @@ function Agencies({ setPage }) {
         </div>
       </section>
 
-      <RetCurve from="#F2EEE8" to={C.bg} variant="rightRise" />
+      <RetCurve from="#EAE4D6" to={C.bg} variant="rightRise" />
 
       {/* AGENCY MATH */}
       <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
@@ -5602,6 +5615,100 @@ function Enterprise({ setPage }) {
 }
 
 
+function TodayRankDemo() {
+  const ROW_H = 70;
+  // Your tasks, in the order you entered them (Manual view)
+  const base = [
+    { id: "o", n: "Review Oakline Q1 numbers", m: "QBR in 6 days", s: 73, entry: 1 },
+    { id: "r", n: "Call Rachel at Broadleaf", m: "at-risk · 11 days silent", s: 65, entry: 2 },
+    { id: "n", n: "Plan Northvane anniversary", m: "referral-ready", s: 91, entry: 3 },
+    { id: "f", n: "Complete Foxglove Health Check", m: "12 days overdue", s: 42, entry: 4 },
+  ];
+  // Tasks Rai suggests adding (only appear in "Rai Task & Rank")
+  const suggested = [
+    { id: "s1", n: "Check in with Wes before renewal", m: "renewal in 14 days · Rai spotted this", s: 58, suggested: true },
+    { id: "s2", n: "Thank Marisol for the referral", m: "referred you Tuesday · strike while warm", s: 88, suggested: true },
+  ];
+
+  const MODES = [
+    { id: "taskrank", label: "Rai Task & Rank", desc: "Rai ranks your list + adds suggested tasks.", icons: 2 },
+    { id: "rank", label: "Rai Rank", desc: "Rai ranks your task list.", icons: 1 },
+    { id: "manual", label: "Manual", desc: "Your tasks, your way. No Rai.", icons: 0 },
+  ];
+  const [mode, setMode] = useState("taskrank");
+  const scoreColor = (s) => (s < 55 ? C.danger : s < 78 ? C.warning : C.success);
+
+  // Build the visible list for the current mode
+  let list;
+  if (mode === "manual") {
+    list = [...base].sort((a, b) => a.entry - b.entry);
+  } else if (mode === "rank") {
+    list = [...base].sort((a, b) => b.s - a.s);
+  } else {
+    list = [...base, ...suggested].sort((a, b) => b.s - a.s);
+  }
+  const showScores = mode !== "manual";
+  const pos = {}; list.forEach((t, i) => { pos[t.id] = i; });
+  const allRows = [...base, ...suggested];
+  const raiLine = mode === "manual"
+    ? "Manual mode: your list, exactly as you left it. No ranking, no suggestions — you're driving."
+    : mode === "rank"
+    ? "Rai Rank: same tasks, sorted by what matters most today. Rachel's risk now sits above the routine QBR prep."
+    : "Rai Task & Rank: ranked, plus two moves you'd have missed — Wes's renewal window and a referral worth thanking while it's warm.";
+
+  return (
+    <div className="trd-wrap" style={{ maxWidth: 540, margin: "0 auto" }}>
+      <div style={{ display: "flex", justifyContent: "center", gap: 9, marginBottom: 22, flexWrap: "wrap" }}>
+        {MODES.map(md => (
+          <button key={md.id} onClick={() => setMode(md.id)} className={"trd-chip" + (mode === md.id ? " trd-chip-on" : "")}>
+            {md.icons > 0 && <span style={{ color: mode === md.id ? "#fff" : C.btn, marginRight: 5 }}>{md.icons === 2 ? "✦✦" : "✦"}</span>}
+            {md.label}
+          </button>
+        ))}
+      </div>
+      <div style={{ background: C.card, border: "1px solid " + C.borderLight, borderRadius: 18, padding: 8, boxShadow: "0 20px 60px rgba(0,0,0,0.07)" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 14px 10px" }}>
+          <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: C.text }}>today</span>
+          <span style={{ fontSize: 11, color: mode === "manual" ? C.textMuted : C.btn, fontWeight: 800, letterSpacing: "0.04em", transition: "color 0.3s" }}>{mode === "manual" ? "MANUAL" : mode === "rank" ? "✦ RAI RANKED" : "✦✦ RAI TASK & RANK"}</span>
+        </div>
+        <div style={{ position: "relative", height: list.length * ROW_H, transition: "height 0.5s cubic-bezier(.4,0,.2,1)" }}>
+          {allRows.map(t => {
+            const i = pos[t.id];
+            const visible = i !== undefined;
+            const top = i === 0;
+            return (
+              <div key={t.id} style={{
+                position: "absolute", left: 0, right: 0,
+                transform: `translateY(${(visible ? i : list.length) * ROW_H}px)`,
+                opacity: visible ? 1 : 0,
+                pointerEvents: visible ? "auto" : "none",
+                transition: "transform 0.6s cubic-bezier(.4,0,.2,1), opacity 0.45s, background 0.4s",
+                display: "flex", alignItems: "center", gap: 13, padding: "13px 14px",
+                borderRadius: 11, background: top && showScores ? "#EFE9FB" : "transparent",
+              }}>
+                <div style={{ width: 22, height: 22, borderRadius: 6, border: "1.5px solid " + (top && showScores ? C.btn : C.borderLight), display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 800, color: top && showScores ? C.btn : C.textMuted, flexShrink: 0 }}>{visible ? i + 1 : ""}</div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 14.5, fontWeight: 700, color: C.text, display: "flex", alignItems: "center", gap: 7 }}>
+                    {t.n}
+                    {t.suggested && <span style={{ fontSize: 9.5, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: C.btn, background: "#EFE9FB", padding: "2px 7px", borderRadius: 100, flexShrink: 0 }}>✦ suggested</span>}
+                  </div>
+                  <div style={{ fontSize: 11.5, color: C.textMuted, marginTop: 2 }}>{t.m}</div>
+                </div>
+                <div style={{ width: 36, height: 36, borderRadius: "50%", background: scoreColor(t.s) + "1f", border: "1.5px solid " + scoreColor(t.s) + "55", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800, color: scoreColor(t.s), flexShrink: 0, opacity: showScores ? 1 : 0, transform: showScores ? "scale(1)" : "scale(0.7)", transition: "opacity 0.4s, transform 0.4s" }}>{t.s}</div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      <div style={{ maxWidth: 540, margin: "14px auto 0", padding: "13px 16px", background: "#EFE9FB", borderRadius: 12, fontSize: 13, color: "#3e2f72", lineHeight: 1.55, display: "flex", gap: 10, alignItems: "flex-start" }}>
+        <span style={{ color: C.btn, fontSize: 15, flexShrink: 0 }}>✦</span>
+        <span>{raiLine}</span>
+      </div>
+      <div style={{ textAlign: "center", fontSize: 12.5, color: C.textMuted, marginTop: 14, fontStyle: "italic" }}>Switch modes — you decide how much Rai does.</div>
+    </div>
+  );
+}
+
 function FeatureToday({ setPage }) {
   const otherFeatures = PLATFORM_FEATURES.filter(f => f.id !== "feature-today").slice(0, 3);
   return (
@@ -5616,8 +5723,21 @@ function FeatureToday({ setPage }) {
         setPage={setPage}
       />
 
-      <RetCurve from="#F2EEE8" to="#EAE4D6" variant="default" />
-      <section className="ret-section ret-bg-beige r-full-bleed">
+      {/* INTERACTIVE — PRODUCT IN MOTION */}
+      <RetCurve from="#F2EEE8" to={C.bg} variant="dome" />
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 64 }}>
+        <div className="ret-section-inner">
+          <div className="ret-section-head">
+            <div className="ret-eyebrow">See it work</div>
+            <h2 className="ret-h2">You decide how much Rai does.</h2>
+            <p className="ret-sub" style={{ margin: "0 auto" }}>Every night, Rai studies your whole book and sets the next morning's order. Choose your mode and watch what changes — from your raw list to a ranked, Rai-suggested day.</p>
+          </div>
+          <TodayRankDemo />
+        </div>
+      </section>
+
+      {/* HOW IT WORKS — three moves (connected to interactive above, same bg) */}
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 24 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
@@ -5626,9 +5746,9 @@ function FeatureToday({ setPage }) {
           </div>
           <div className="ret-grid-3">
             {[
-              { h: "Score relationships", p: "Every client carries a Retention Score, set from Health Checks, velocity, billing patterns, and 20 combination signals." },
+              { h: "Score relationships", p: "Every client carries a Retention Score, set from Health Checks, velocity, billing patterns, LTV, past revenue, revenue potential, and more." },
               { h: "Weigh by impact", p: "A task for a $200/mo at-risk client doesn't outrank an $8,000/mo green client who's ready to refer. Priority factors in revenue, tenure, and upside." },
-              { h: "Surface the one action", p: "You open Retayned in the morning and see the move that matters most. Not fifty tasks. The one that will save or grow the most revenue today." },
+              { h: "Surface the big one", p: "You open Retayned in the morning and see the move that matters most. Not fifty tasks. The one that will save or grow the most revenue today." },
             ].map((s, i) => (
               <div key={i} className="ret-card">
                 <div style={{ fontSize: 11, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>Step {i + 1}</div>
@@ -5640,64 +5760,21 @@ function FeatureToday({ setPage }) {
         </div>
       </section>
 
-      <RetCurve from="#EAE4D6" to={C.bg} variant="dome" />
-      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 64, paddingBottom: 64 }}>
-        <div className="ret-section-inner" style={{ maxWidth: 720 }}>
-          <div style={{ background: C.card, borderRadius: 20, border: "1px solid " + C.borderLight, padding: 28, boxShadow: "0 20px 60px rgba(0,0,0,0.08)" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18, paddingBottom: 14, borderBottom: "1px solid " + C.borderLight }}>
-              <div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: 2 }}>Tuesday · October 14</div>
-                <div style={{ fontSize: 17, fontWeight: 800, letterSpacing: "-0.02em" }}>Your Today</div>
-              </div>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 11px", borderRadius: 100, background: C.primarySoft, fontSize: 11, fontWeight: 700, color: C.primary }}>
-                <span style={{ width: 5, height: 5, borderRadius: "50%", background: C.primary }} />5 priorities
-              </div>
-            </div>
-            {[
-              { rank: 1, text: "Call Rachel at Broadleaf", meta: "Score dropped 78 → 65 · 11 days since contact", score: 65, scoreColor: C.danger, highlight: true },
-              { rank: 2, text: "Complete Foxglove Health Check", meta: "12 days overdue · Last drift: moderate", score: 42, scoreColor: C.danger },
-              { rank: 3, text: "Review Slack for client messages", meta: "3 channels with unread · mixed priority", score: null },
-              { rank: 4, text: "Review Oakline Q1 numbers", meta: "Upcoming QBR in 6 days", score: 73, scoreColor: C.warning },
-              { rank: 5, text: "Plan Northvane anniversary", meta: "Referral-ready · loyalty score 91", score: 91, scoreColor: C.success },
-            ].map((t, i) => (
-              <div key={i} style={{
-                display: "flex", alignItems: "center", gap: 14, padding: "14px",
-                borderBottom: i < 4 ? "1px solid " + C.borderLight : "none",
-                background: t.highlight ? C.primarySoft + "40" : "transparent",
-                borderRadius: t.highlight ? 10 : 0,
-                margin: t.highlight ? "0 -14px" : "0",
-              }}>
-                <div style={{ width: 22, height: 22, borderRadius: 5, border: "1.5px solid " + C.borderLight, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11, fontWeight: 700, color: C.textMuted }}>{t.rank}</div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 14.5, fontWeight: 700, color: C.text, marginBottom: 3 }}>{t.text}</div>
-                  <div style={{ fontSize: 12, color: C.textMuted, lineHeight: 1.4 }}>{t.meta}</div>
-                </div>
-                {t.score !== null && (
-                  <div style={{ width: 38, height: 38, borderRadius: "50%", background: t.scoreColor + "18", border: "1.5px solid " + t.scoreColor + "40", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800, color: t.scoreColor, flexShrink: 0 }}>{t.score}</div>
-                )}
-              </div>
-            ))}
-            <div style={{ marginTop: 16, padding: "12px 14px", background: "#EFE9FB", borderRadius: 10, display: "flex", alignItems: "flex-start", gap: 10 }}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke={C.btn} strokeWidth="2" style={{ flexShrink: 0, marginTop: 2 }}><path d="M12 2L9.5 9.5 2 12l7.5 2.5L12 22l2.5-7.5L22 12l-7.5-2.5z" strokeLinejoin="round" fill="none"/></svg>
-              <div>
-                <div style={{ fontSize: 11, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: ".06em", marginBottom: 3 }}>Rai's note</div>
-                <div style={{ fontSize: 13, color: C.text, lineHeight: 1.55 }}>Broadleaf dropped into "No Room to Operate." Don't email. Call. Lead with the specific concern — her silence is the answer.</div>
-              </div>
-            </div>
+      {/* RAI VOICE MOMENT */}
+      <RetCurve from={C.bg} to={C.sidebar} variant="leftRise" />
+      <section className="r-full-bleed" style={{ background: C.sidebar, color: "#F4F0E6", padding: "84px 32px" }}>
+        <div style={{ maxWidth: 640, margin: "0 auto" }}>
+          <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: "#9DC4AC", marginBottom: 18 }}>How Rai thinks.</div>
+          <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "clamp(20px, 3vw, 27px)", lineHeight: 1.55, color: "#E8E4D8", borderLeft: "2px solid " + C.primaryLight, paddingLeft: 22 }}>
+            "I've spent more hours than I can count watching how client relationships actually end. <span style={{ color: "#fff" }}>It's almost never the work. It's the email that didn't get sent, the check-in that slipped a month, the quiet client nobody worried about.</span> I read your whole book every day, so the small thing has to get through me before it ever becomes the big one."
           </div>
+          <p style={{ fontSize: 16, lineHeight: 1.65, color: "#C8D2C9", marginTop: 36, maxWidth: 560 }}>The point was never to replace your judgment. It's to make sure nothing reaches it too late while there's still time to act. I watch every relationship with the same care you'd watch your most important one 24/7.</p>
         </div>
       </section>
 
-      <RetCurve from={C.bg} to="#F2EEE8" variant="leftRise" />
-      <section className="ret-section ret-bg-cream r-full-bleed">
-        <div className="ret-section-inner" style={{ maxWidth: 720, textAlign: "center" }}>
-          <h2 className="ret-h2">Every other CRM makes you decide.</h2>
-          <p className="ret-sub" style={{ margin: "0 auto" }}>Most systems show you tasks in the order they were created, or by due date, or alphabetically. That's not help. That's filing.<br /><br />Today ranks by <strong style={{ color: C.text }}>what moves your book forward</strong>. The rules are invisible. The result is one screen that tells you exactly where to start.</p>
-        </div>
-      </section>
-
-      <RetCurve from="#F2EEE8" to="#EAE4D6" variant="rightRise" />
-      <section className="ret-section ret-bg-beige r-full-bleed">
+      {/* RELATED — connected to final CTA below, same cream bg */}
+      <RetCurve from={C.sidebar} to="#F2EEE8" variant="leftRise" />
+      <section className="ret-section ret-bg-cream r-full-bleed" style={{ paddingBottom: 24 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">Related features</div>
@@ -5716,13 +5793,65 @@ function FeatureToday({ setPage }) {
         </div>
       </section>
 
-      <RetCurve from="#EAE4D6" to="#F2EEE8" variant="leftRise" />
       <RetFinalCTA
         h2="Know what to do first. Every single day."
         sub="Start free. See your first prioritized Today in 60 seconds."
         setPage={setPage}
       />
       <Footer setPage={setPage} />
+    </div>
+  );
+}
+
+function ScoringDemo() {
+  const [dims, setDims] = useState({ Trust: 6, Loyalty: 7, Expectations: 7, Grace: 5 });
+  const keys = ["Trust", "Loyalty", "Expectations", "Grace"];
+  const avg = keys.reduce((a, k) => a + dims[k], 0) / keys.length;
+  // map 0-10 avg to a 1-99 score, weighted slightly toward trust+grace
+  const weighted = (dims.Trust * 1.4 + dims.Grace * 1.3 + dims.Loyalty + dims.Expectations) / 4.7;
+  const score = Math.max(1, Math.min(99, Math.round(weighted * 9.6)));
+  const band = score >= 90 ? ["Thriving", C.success, "Don't upsell. Don't ask for referrals. Leave it alone and let it compound."]
+    : score >= 75 ? ["Healthy", C.primary, "Stable. Maintain cadence. Watch for drift without over-correcting."]
+    : score >= 55 ? ["At risk", C.warning, "The most actionable band. Still salvageable — move fast."]
+    : score >= 30 ? ["Critical", C.danger, "Something already broke. Call, don't email. Use Rai's scripts."]
+    : ["Exiting", "#6B7280", "A \"pause\" is almost always an exit. Plan the offboard, protect the referral."];
+  // combination signals fire on specific low pairs
+  const combos = [];
+  if (dims.Trust <= 5 && dims.Grace <= 5) combos.push("No Room to Operate");
+  if (dims.Trust <= 4 && dims.Expectations <= 5) combos.push("Ice Wall");
+  if (dims.Loyalty <= 4 && dims.Grace <= 4) combos.push("Silent Exit");
+  const set = (k, v) => setDims(d => ({ ...d, [k]: v }));
+
+  return (
+    <div style={{ maxWidth: 720, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, alignItems: "stretch" }} className="sdemo-grid">
+      <div style={{ background: C.card, border: "1px solid " + C.borderLight, borderRadius: 18, padding: "22px 24px", boxShadow: "0 18px 50px rgba(0,0,0,0.06)" }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: ".1em", marginBottom: 16 }}>Adjust the dimensions</div>
+        {keys.map(k => (
+          <div key={k} style={{ marginBottom: 16 }}>
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13.5, marginBottom: 6 }}>
+              <span style={{ color: C.textSec, fontWeight: 600 }}>{k}</span>
+              <span style={{ fontWeight: 800, color: dims[k] <= 4 ? C.danger : dims[k] <= 6 ? C.warning : C.primary }}>{dims[k]}/10</span>
+            </div>
+            <input type="range" min="1" max="10" value={dims[k]} onChange={e => set(k, +e.target.value)} className="sdemo-range" style={{ width: "100%" }} />
+          </div>
+        ))}
+      </div>
+      <div style={{ background: C.card, border: "1px solid " + C.borderLight, borderRadius: 18, padding: "22px 24px", boxShadow: "0 18px 50px rgba(0,0,0,0.06)", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center" }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: ".1em", marginBottom: 14 }}>Retention Score</div>
+        <div style={{ width: 130, height: 130, borderRadius: "50%", background: band[1] + "18", border: "4px solid " + band[1] + "40", display: "flex", alignItems: "center", justifyContent: "center", transition: "all 0.4s" }}>
+          <span style={{ fontSize: 46, fontWeight: 900, color: band[1], lineHeight: 1, transition: "color 0.4s" }}>{score}</span>
+        </div>
+        <div style={{ marginTop: 14, fontSize: 12, fontWeight: 800, color: band[1], textTransform: "uppercase", letterSpacing: ".08em" }}>{band[0]}</div>
+        <div style={{ marginTop: 8, fontSize: 13, color: C.textSec, lineHeight: 1.5, maxWidth: 240, minHeight: 58 }}>{band[2]}</div>
+        <div style={{ marginTop: combos.length ? 16 : 0, display: "flex", flexWrap: "wrap", gap: 7, justifyContent: "center", alignItems: "flex-start" }}>
+          {combos.map(c => (
+                <span key={c} style={{ padding: "6px 12px", background: C.danger + "15", borderRadius: 8, fontSize: 12, color: C.danger, fontWeight: 700, display: "inline-flex", alignItems: "center", gap: 6 }}>
+                  <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.danger }} />{c}
+                </span>
+              ))}
+        </div>
+      </div>
+      <div style={{ gridColumn: "1 / -1", textAlign: "center", fontSize: 12.5, color: C.textMuted, fontStyle: "italic" }}>Drag a dimension down — watch the score fall and the risk patterns fire.</div>
     </div>
   );
 }
@@ -5740,10 +5869,21 @@ function FeatureScoring({ setPage }) {
         setPage={setPage}
       />
 
-      <RetCurve from="#F2EEE8" to="#EAE4D6" variant="rightRise" />
+      {/* DEMO + connected explanation (same bg) */}
+      <RetCurve from="#F2EEE8" to={C.bg} variant="dome" />
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 40 }}>
+        <div className="ret-section-inner">
+          <div className="ret-section-head">
+            <div className="ret-eyebrow">See it work</div>
+            <h2 className="ret-h2">Twelve dimensions. One honest number.</h2>
+            <p className="ret-sub" style={{ margin: "0 auto" }}>Move a relationship dimension and watch the Retention Score recalculate — and the risk patterns fire when the wrong things go low together.</p>
+          </div>
+          <ScoringDemo />
+        </div>
+      </section>
 
-      {/* How the score is built */}
-      <section className="ret-section ret-bg-beige r-full-bleed">
+      {/* How the score is built — connected tiles */}
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 24 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
@@ -5752,11 +5892,10 @@ function FeatureScoring({ setPage }) {
               The Retention Score isn't a gut feeling. It's the weighted output of how every relationship dimension is scored, adjusted for the facts that move risk, and updated every time you keep a profile current.
             </p>
           </div>
-          <div className="ret-grid-2">
+          <div className="ret-grid-3">
             {[
-              { h: "12 weighted dimensions", p: "Trust, loyalty, expectations, grace — and eight more. Each client is scored on all twelve. A core few carry the most weight; the rest refine the read." },
-              { h: "20 combination signals", p: "When specific pairs of low dimensions show up together — like low trust plus low grace — a combination fires. \"No Room to Operate.\" \"Ice Wall.\" \"Silent Exit.\" Patterns no single metric catches." },
-              { h: "Qualifying facts + tenure", p: "Hard facts adjust the number directly — late payments, a prior termination, competing vendors pull it down; a referral origin and every year of tenure nudge it up." },
+              { h: "Dimensional profiling", p: "Each client is scored on twelve dimensions — trust, loyalty, grace, and more. When the wrong pairs go low together, a combination fires to catch patterns no single metric can." },
+              { h: "Qualifying info", p: "Hard facts adjust the number directly — late payments, a prior termination, competing vendors pull it down; a referral origin and every year of tenure nudge it up." },
               { h: "Profile context", p: "Revenue concentration, LTV, and tenure act as a multiplier on the Today page's sort — so the score you see reflects business impact, not just relationship state." },
             ].map((s, i) => (
               <div key={i} className="ret-card">
@@ -5769,84 +5908,21 @@ function FeatureScoring({ setPage }) {
         </div>
       </section>
 
-      <RetCurve from="#EAE4D6" to={C.bg} variant="leftRise" />
-
-      {/* Mockup: Broadleaf score card */}
-      <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
-        <div className="ret-section-inner">
-          <div style={{ maxWidth: 720, margin: "0 auto", background: C.card, borderRadius: 20, border: "1px solid " + C.border, padding: 32, boxShadow: "0 20px 60px rgba(0,0,0,0.08)" }}>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: 32, alignItems: "center", marginBottom: 28 }}>
-              <div style={{ textAlign: "center", flex: "0 0 auto" }}>
-                <div style={{ width: 130, height: 130, borderRadius: "50%", background: "linear-gradient(135deg, #FEF3C7, #FDE68A)", border: "4px solid #92400E20", display: "inline-flex", alignItems: "center", justifyContent: "center", position: "relative" }}>
-                  <span style={{ fontSize: 48, fontWeight: 900, color: "#92400E", fontFamily: "inherit", lineHeight: 1 }}>67</span>
-                  <div style={{ position: "absolute", bottom: -10, background: "#fff", padding: "3px 10px", border: "1px solid #92400E30", borderRadius: 100, fontSize: 10, fontWeight: 700, color: "#92400E", textTransform: "uppercase", letterSpacing: ".08em" }}>At risk</div>
-                </div>
-              </div>
-              <div style={{ flex: "1 1 240px" }}>
-                <div style={{ fontSize: 19, fontWeight: 800, letterSpacing: "-0.02em" }}>Broadleaf Media</div>
-                <div style={{ fontSize: 13.5, color: C.textMuted, marginTop: 3 }}>Rachel Chen · Account Lead · 14 months</div>
-                <div style={{ marginTop: 14, display: "flex", alignItems: "center", gap: 8 }}>
-                  <span style={{ fontSize: 12.5, color: C.danger, fontWeight: 700 }}>↓ Dropped 11 points in 2 weeks</span>
-                </div>
-              </div>
-            </div>
-
-            <div style={{ fontSize: 10.5, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: 10 }}>Core dimensions</div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, marginBottom: 16 }}>
-              {[["Trust", 6, C.warning], ["Loyalty", 7, C.primaryLight], ["Expectations", 7, C.primaryLight], ["Grace", 5, C.warning]].map(([name, val, color]) => (
-                <div key={name} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 14px", background: C.bg, borderRadius: 8, fontSize: 13.5 }}>
-                  <span style={{ color: C.textSec, fontWeight: 600 }}>{name}</span>
-                  <span style={{ fontWeight: 800, color, fontFamily: "inherit" }}>{val}/10</span>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ fontSize: 10.5, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: 10 }}>Active combinations</div>
-            <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-              <div style={{ padding: "8px 14px", background: C.danger + "15", borderRadius: 8, fontSize: 12.5, color: C.danger, fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}>
-                <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.danger }} />
-                No Room to Operate
-              </div>
-              <div style={{ padding: "8px 14px", background: C.warning + "15", borderRadius: 8, fontSize: 12.5, color: C.warning, fontWeight: 700, display: "flex", alignItems: "center", gap: 6 }}>
-                <span style={{ width: 6, height: 6, borderRadius: "50%", background: C.warning }} />
-                Ice Wall
-              </div>
-            </div>
+      {/* RAI VOICE MOMENT */}
+      <RetCurve from={C.bg} to={C.sidebar} variant="leftRise" />
+      <section className="r-full-bleed" style={{ background: C.sidebar, color: "#F4F0E6", padding: "84px 32px" }}>
+        <div style={{ maxWidth: 640, margin: "0 auto" }}>
+          <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: "#9DC4AC", marginBottom: 18 }}>How Rai thinks.</div>
+          <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "clamp(20px, 3vw, 27px)", lineHeight: 1.55, color: "#E8E4D8", borderLeft: "2px solid " + C.primaryLight, paddingLeft: 22 }}>
+            "I've spent more hours than I can count watching how client relationships actually end. <span style={{ color: "#fff" }}>It's almost never the work. It's the email that didn't get sent, the check-in that slipped a month, the quiet client nobody worried about.</span> I read your whole book every day, so the small thing has to get through me before it ever becomes the big one."
           </div>
+          <p style={{ fontSize: 16, lineHeight: 1.65, color: "#C8D2C9", marginTop: 36, maxWidth: 560 }}>The point was never to replace your judgment. It's to make sure nothing reaches it too late while there's still time to act. I watch every relationship with the same care you'd watch your most important one 24/7.</p>
         </div>
       </section>
 
-      {/* Score bands */}
-      <section className="ret-section r-full-bleed" style={{ background: C.bg, paddingTop: 0 }}>
-        <div className="ret-section-inner">
-          <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto 32px" }}>
-            <h2 className="ret-h2" style={{ marginBottom: 10 }}>Five bands. One truth per client.</h2>
-            <p style={{ fontSize: 16, color: C.textSec, lineHeight: 1.65 }}>Scores aren't abstract. They map to action.</p>
-          </div>
-          <div style={{ maxWidth: 820, margin: "0 auto", display: "flex", flexDirection: "column", gap: 10 }}>
-            {[
-              { band: "90–99", label: "Thriving", desc: "Don't upsell them. Don't ask for referrals. Leave the relationship alone and let it compound.", bg: C.success + "15", fg: C.success },
-              { band: "75–89", label: "Healthy", desc: "Stable. Maintain cadence. Watch for drift without over-correcting.", bg: C.primarySoft, fg: C.primary },
-              { band: "55–74", label: "At risk", desc: "The most actionable band. Still salvageable. Move fast.", bg: C.warning + "15", fg: C.warning },
-              { band: "30–54", label: "Critical", desc: "Something already broke. Call — don't email. Use Rai's scripts.", bg: C.danger + "12", fg: C.danger },
-              { band: "1–29", label: "Exiting", desc: "A \"pause\" is almost always an exit. Plan the offboard. Protect the referral.", bg: "#6B7280" + "15", fg: "#6B7280" },
-            ].map(b => (
-              <div key={b.band} style={{ display: "flex", gap: 18, alignItems: "center", padding: "16px 20px", background: b.bg, borderRadius: 12 }}>
-                <div style={{ flex: "0 0 80px" }}>
-                  <div style={{ fontSize: 18, fontWeight: 900, color: b.fg, fontFamily: "inherit" }}>{b.band}</div>
-                  <div style={{ fontSize: 11, fontWeight: 700, color: b.fg, textTransform: "uppercase", letterSpacing: ".08em" }}>{b.label}</div>
-                </div>
-                <div style={{ flex: 1, fontSize: 14, color: C.text, lineHeight: 1.55 }}>{b.desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <RetCurve from={C.bg} to="#F2EEE8" variant="rightRise" />
-
-      {/* Related features */}
-      <section className="ret-section ret-bg-cream r-full-bleed">
+      {/* RELATED + CTA connected on cream */}
+      <RetCurve from={C.sidebar} to="#F2EEE8" variant="leftRise" />
+      <section className="ret-section ret-bg-cream r-full-bleed" style={{ paddingBottom: 24 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">Related features</div>
@@ -5875,35 +5951,313 @@ function FeatureScoring({ setPage }) {
   );
 }
 
+function HealthCheckDemo() {
+  const observations = [
+    {
+      id: "compounder", chip: "The Quiet Compounder", accent: C.btn,
+      eyebrow: "THE QUIET COMPOUNDER", headline: "Six years of steady work is a statement.",
+      read: "Hartwell & Cole is sitting at a 90 with 15 logged activities in the last 30 days. Tasks completing, meetings landing, notes written. No fanfare, just work.",
+      stats: [["1", "CLIENTS"], ["90", "AVG SCORE"], ["15", "AVG ACTIVITY 30D"]],
+    },
+    {
+      id: "drift", chip: "Quiet Drift", accent: C.warning,
+      eyebrow: "QUIET DRIFT", headline: "Two of your strongest just went quiet at once.",
+      read: "Oakline and Maplewood both crossed 21 days without contact this week — and both were 80+ a month ago. Nothing's broken yet. That's why it's worth a look.",
+      stats: [["2", "CLIENTS"], ["83", "AVG SCORE"], ["21d", "SINCE CONTACT"]],
+    },
+    {
+      id: "win", chip: "Unclaimed Win", accent: C.success,
+      eyebrow: "UNCLAIMED WIN", headline: "You delivered. Nobody asked what's next.",
+      read: "Northvane's project wrapped 9 days ago at a 91, and the thread's been silent since. A finished win with no follow-up is where renewals quietly go to die.",
+      stats: [["1", "CLIENTS"], ["91", "AVG SCORE"], ["9d", "SINCE DELIVERY"]],
+    },
+    {
+      id: "fragile", chip: "Fragile High", accent: C.danger,
+      eyebrow: "FRAGILE HIGH", headline: "High score, thin foundation.",
+      read: "Broadleaf reads 76, but it's resting almost entirely on tenure — trust and grace are both soft underneath. The number looks fine. The structure under it is the story.",
+      stats: [["1", "CLIENTS"], ["76", "AVG SCORE"], ["2", "SOFT DIMENSIONS"]],
+    },
+  ];
+  const [active, setActive] = useState("compounder");
+  const obs = observations.find(o => o.id === active);
+
+  return (
+    <div style={{ maxWidth: 720, margin: "0 auto" }}>
+      <div style={{ display: "flex", justifyContent: "center", gap: 9, marginBottom: 20, flexWrap: "wrap" }}>
+        {observations.map(o => (
+          <button key={o.id} onClick={() => setActive(o.id)} className={"trd-chip" + (active === o.id ? " trd-chip-on" : "")}>{o.chip}</button>
+        ))}
+      </div>
+      <div style={{ background: C.primarySoft, border: "1px solid " + C.primary + "22", borderRadius: 20, padding: "26px 30px", boxShadow: "0 18px 50px rgba(0,0,0,0.05)" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 18 }}>
+          <span style={{ width: 8, height: 8, borderRadius: "50%", background: obs.accent, flexShrink: 0 }} />
+          <span style={{ fontFamily: "'Courier New', monospace", fontSize: 12.5, fontWeight: 800, letterSpacing: "0.18em", color: C.text }}>{obs.eyebrow}</span>
+          <span style={{ marginLeft: "auto", fontFamily: "'Courier New', monospace", fontSize: 12, letterSpacing: "0.12em", color: C.textMuted }}>№ 11 / WK 25</span>
+        </div>
+        <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "clamp(20px, 3vw, 26px)", fontWeight: 700, color: C.text, lineHeight: 1.2, letterSpacing: "-0.01em", marginBottom: 14 }}>{obs.headline}</div>
+        <div style={{ fontSize: 15, color: C.textSec, lineHeight: 1.6, maxWidth: 560, marginBottom: 22 }}>{obs.read}</div>
+        <div style={{ display: "flex", alignItems: "flex-end", gap: 32, flexWrap: "wrap" }}>
+          {obs.stats.map(([n, label]) => (
+            <div key={label}>
+              <div style={{ fontSize: 28, fontWeight: 900, color: C.text, lineHeight: 1 }}>{n}</div>
+              <div style={{ fontFamily: "'Courier New', monospace", fontSize: 10.5, letterSpacing: "0.1em", color: C.textMuted, marginTop: 6 }}>{label}</div>
+            </div>
+          ))}
+          <div style={{ marginLeft: "auto", display: "flex", alignItems: "center", gap: 18 }}>
+            <span style={{ fontSize: 14, fontWeight: 700, color: C.btn }}>Unpack with Rai</span>
+            <span style={{ fontSize: 14, color: C.textMuted }}>Dismiss</span>
+          </div>
+        </div>
+      </div>
+      <div style={{ textAlign: "center", fontSize: 12.5, color: C.textMuted, marginTop: 14, fontStyle: "italic" }}>Each week, Rai surfaces the patterns you'd never have time to find.</div>
+    </div>
+  );
+}
+
+function RaiScriptDemo() {
+  const scenarios = [
+    {
+      id: "email", label: "Complete this task",
+      variants: {
+        default: "Hi Rachel, wanted to check in before the week gets away from me. How are things looking on your end with the Q2 rollout? If it's useful, I've got time Thursday or Friday to talk through anything. No rush if all's quiet.",
+        warmer: "Hi Rachel, you've been on my mind this week. I know Q2 has been a lot, and I want to make sure you've got what you need from us. Would love to catch up properly. Thursday or Friday work? Even just to say hi.",
+        shorter: "Hi Rachel, checking in on the Q2 rollout. Free Thursday or Friday if you want to talk it through. No rush.",
+      },
+    },
+    {
+      id: "quiet", label: "They've gone quiet",
+      variants: {
+        default: "Hi Rachel, noticed it's been a few weeks and didn't want to let that slide. No agenda. I just want to make sure things are landing the way you need. Got 15 minutes this week for a quick call?",
+        warmer: "Hi Rachel, it's been a little too quiet and I miss the regular rhythm we had. Nothing's wrong on my end, I just value the relationship and want to keep it close. Free for a quick call this week?",
+        shorter: "Hi Rachel, it's been a few weeks. Everything good? Happy to grab 15 minutes this week if useful.",
+      },
+    },
+    {
+      id: "late", label: "Late payment, again",
+      variants: {
+        default: "Hey Marcus, quick one. The last two invoices have run past terms, and rather than let it become a thing, I'd rather just ask directly. Is everything okay on your end? Happy to find a cadence that works better for you.",
+        warmer: "Hey Marcus, I hope things are okay. The last couple invoices ran late and I'd rather check in than assume anything. If there's a billing rhythm that fits your side better, let's set it up. No stress either way.",
+        shorter: "Hey Marcus, the last two invoices are past terms. Everything okay? Happy to adjust the schedule if that helps.",
+      },
+    },
+  ];
+  const [active, setActive] = useState("email");
+  const [tone, setTone] = useState("default");
+  const sc = scenarios.find(s => s.id === active);
+  const pick = (id) => { setActive(id); setTone("default"); };
+  const toneLabel = { default: "Rai's draft", warmer: "Warmer", shorter: "Shorter" };
+
+  return (
+    <div style={{ maxWidth: 640, margin: "0 auto" }}>
+      <div style={{ display: "flex", justifyContent: "center", gap: 9, marginBottom: 18, flexWrap: "wrap" }}>
+        {scenarios.map(s => (
+          <button key={s.id} onClick={() => pick(s.id)} className={"trd-chip" + (active === s.id ? " trd-chip-on" : "")}>{s.label}</button>
+        ))}
+      </div>
+      <div style={{ background: C.card, border: "1px solid " + C.borderLight, borderRadius: 18, padding: "8px", boxShadow: "0 18px 50px rgba(0,0,0,0.06)" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, padding: "14px 16px 12px", borderBottom: "1px solid " + C.borderLight }}>
+          <div style={{ width: 26, height: 26, borderRadius: "50%", background: C.btn, display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: 13 }}>✦</div>
+          <span style={{ fontSize: 13, fontWeight: 800, color: C.text }}>{tone === "default" ? "Rai drafted this for you" : toneLabel[tone] + " version"}</span>
+          <span style={{ marginLeft: "auto", fontSize: 11, color: C.textMuted, fontStyle: "italic" }}>in your voice</span>
+        </div>
+        <div style={{ padding: "18px 18px", fontSize: 15, color: C.text, lineHeight: 1.65, minHeight: 92 }}>{sc.variants[tone]}</div>
+        <div style={{ display: "flex", gap: 8, padding: "0 16px 14px", flexWrap: "wrap" }}>
+          <button onClick={() => setTone("warmer")} className="trd-chip" style={{ fontSize: 12.5, padding: "7px 14px" }} aria-pressed={tone === "warmer"}>{tone === "warmer" ? "✓ Warmer" : "Make it warmer"}</button>
+          <button onClick={() => setTone("shorter")} className="trd-chip" style={{ fontSize: 12.5, padding: "7px 14px" }} aria-pressed={tone === "shorter"}>{tone === "shorter" ? "✓ Shorter" : "Make it shorter"}</button>
+          {tone !== "default" && (
+            <button onClick={() => setTone("default")} className="trd-chip trd-chip-muted" style={{ fontSize: 12.5, padding: "7px 14px" }}>↺ Reset</button>
+          )}
+          <span style={{ marginLeft: "auto", display: "inline-flex", alignItems: "center", gap: 8, fontSize: 12.5, fontWeight: 700, color: C.primary, padding: "7px 14px", border: "1px solid " + C.primary + "55", borderRadius: 100 }}>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            Send as text or email
+          </span>
+        </div>
+      </div>
+      <div style={{ textAlign: "center", fontSize: 12.5, color: C.textMuted, marginTop: 14, fontStyle: "italic" }}>Pick a situation, shape the tone, send it straight from Retayned.</div>
+    </div>
+  );
+}
+
+function RolodexDemo() {
+  const ROW_H = 68;
+  const base = [
+    { id: "d", n: "Devi Kapoor", m: "former client · quiet 14 months", tag: "cold", b: 20 },
+    { id: "m", n: "Marcus Hale", m: "referred you twice · quiet 8 mo", tag: "warm", b: 55 },
+    { id: "p", n: "Priya Nair", m: "left on great terms · 6 mo", tag: "warm", b: 60 },
+    { id: "j", n: "Jonah Reed", m: "price walk-away · 19 mo", tag: "cold", b: 18 },
+  ];
+  const [rows, setRows] = useState(base);
+  const [rai, setRai] = useState("");
+  const tagColor = (t) => (t === "hot" ? C.btn : t === "warm" ? C.warning : C.textMuted);
+  const sorted = [...rows].sort((a, b) => b.b - a.b);
+  const pos = {}; sorted.forEach((t, i) => { pos[t.id] = i; });
+
+  const fireDevi = () => {
+    setRows(rs => rs.map(t => t.id === "d" ? { ...t, tag: "hot", b: 99, m: "startup raised $4M · 2 days ago" } : t));
+    setRai("Devi's company just raised. She knew your work cold — this is the warmest she'll ever be. Reach out today, no pitch.");
+  };
+  const fireMarcus = () => {
+    setRows(rs => rs.map(t => t.id === "m" ? { ...t, tag: "hot", b: 98, m: "new VP role · bigger budget" } : t));
+    setRai("Marcus just landed a VP role with real budget. He referred you twice before — congratulate him first. The opening will come.");
+  };
+  const reset = () => { setRows(base); setRai(""); };
+
+  return (
+    <div style={{ maxWidth: 540, margin: "0 auto" }}>
+      <div style={{ display: "flex", justifyContent: "center", gap: 9, marginBottom: 20, flexWrap: "wrap" }}>
+        <button onClick={fireDevi} className="trd-chip">💰 Devi's startup raises</button>
+        <button onClick={fireMarcus} className="trd-chip">👔 Marcus changes jobs</button>
+        <button onClick={reset} className="trd-chip trd-chip-muted">↺ Reset</button>
+      </div>
+      <div style={{ background: C.card, border: "1px solid " + C.borderLight, borderRadius: 18, padding: 8, boxShadow: "0 18px 50px rgba(0,0,0,0.06)" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 14px 10px" }}>
+          <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: C.text }}>rolodex · dormant</span>
+          <span style={{ fontSize: 11, color: C.btn, fontWeight: 800, letterSpacing: "0.04em" }}>✦ TRIGGER WATCH</span>
+        </div>
+        <div style={{ position: "relative", height: rows.length * ROW_H }}>
+          {rows.map(t => {
+            const i = pos[t.id];
+            const hot = t.tag === "hot";
+            return (
+              <div key={t.id} style={{ position: "absolute", left: 0, right: 0, transform: `translateY(${i * ROW_H}px)`, transition: "transform 0.6s cubic-bezier(.4,0,.2,1), background 0.4s", display: "flex", alignItems: "center", gap: 13, padding: "14px", borderRadius: 11, background: hot ? "#EFE9FB" : "transparent" }}>
+                <div style={{ width: 34, height: 34, borderRadius: "50%", background: hot ? C.btn : "#EEF1ED", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800, color: hot ? "#fff" : C.textMuted, flexShrink: 0 }}>{t.n.split(" ").map(w => w[0]).join("")}</div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 14.5, fontWeight: 700, color: C.text }}>{t.n}</div>
+                  <div style={{ fontSize: 11.5, color: C.textMuted, marginTop: 2 }}>{t.m}</div>
+                </div>
+                <span style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: tagColor(t.tag), background: tagColor(t.tag) + "18", padding: "4px 9px", borderRadius: 100, flexShrink: 0, transition: "all 0.4s" }}>{t.tag}</span>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+      {rai && (
+        <div style={{ marginTop: 14, padding: "13px 16px", background: "#EFE9FB", borderRadius: 12, fontSize: 13, color: "#3e2f72", lineHeight: 1.55, display: "flex", gap: 10, alignItems: "flex-start" }}>
+          <span style={{ color: C.btn, fontSize: 15, flexShrink: 0 }}>✦</span><span>{rai}</span>
+        </div>
+      )}
+      <div style={{ textAlign: "center", fontSize: 12.5, color: C.textMuted, marginTop: 14, fontStyle: "italic" }}>A trigger fires — a dormant client rises, warm and ready.</div>
+    </div>
+  );
+}
+
+function ReferralsDemo() {
+  const [readiness, setReadiness] = useState(48);
+  const ready = readiness >= 75;
+  const barColor = ready ? C.success : readiness >= 50 ? C.warning : C.textMuted;
+  const factors = [
+    ["Loyalty", Math.min(10, Math.round(readiness / 10))],
+    ["Trust depth", Math.min(10, Math.round(readiness / 11))],
+    ["Recent win", readiness >= 70 ? 9 : readiness >= 50 ? 6 : 3],
+  ];
+  return (
+    <div style={{ maxWidth: 560, margin: "0 auto" }}>
+      <div style={{ background: C.card, border: "1px solid " + C.borderLight, borderRadius: 18, padding: "24px 26px", boxShadow: "0 18px 50px rgba(0,0,0,0.06)" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 6 }}>
+          <span style={{ fontSize: 15, fontWeight: 800, color: C.text }}>Northvane Studio</span>
+          <span style={{ fontSize: 13, fontWeight: 800, color: barColor }}>{readiness} / 100</span>
+        </div>
+        <div style={{ fontSize: 11.5, color: C.textMuted, marginBottom: 16 }}>Referral readiness</div>
+        <div style={{ height: 12, borderRadius: 100, background: C.surfaceWarm, overflow: "hidden", marginBottom: 4 }}>
+          <div style={{ height: "100%", width: readiness + "%", background: barColor, borderRadius: 100, transition: "width 0.4s, background 0.4s" }} />
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between", fontSize: 10.5, color: C.textMuted, marginBottom: 18 }}>
+          <span>Too soon</span><span>Ready to ask →</span>
+        </div>
+        <input type="range" min="10" max="98" value={readiness} onChange={e => setReadiness(+e.target.value)} className="sdemo-range" style={{ width: "100%", marginBottom: 18 }} />
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginBottom: 16 }}>
+          {factors.map(([name, v]) => (
+            <div key={name} style={{ background: C.bg, borderRadius: 8, padding: "10px 12px", textAlign: "center" }}>
+              <div style={{ fontSize: 17, fontWeight: 900, color: v >= 7 ? C.success : v >= 5 ? C.warning : C.textMuted }}>{v}/10</div>
+              <div style={{ fontSize: 10.5, color: C.textMuted, marginTop: 2 }}>{name}</div>
+            </div>
+          ))}
+        </div>
+        <div style={{ padding: "14px 16px", borderRadius: 12, background: ready ? C.primarySoft : C.surfaceWarm, transition: "background 0.4s", display: "flex", gap: 10, alignItems: "flex-start" }}>
+          <span style={{ color: ready ? C.btn : C.textMuted, fontSize: 15, flexShrink: 0 }}>✦</span>
+          <span style={{ fontSize: 13, color: ready ? "#3e2f72" : C.textMuted, lineHeight: 1.55 }}>{ready ? "Northvane crossed the line. Rai drafted the ask — make the intro while the trust is high." : "Not yet. Asking now would cost you more than the referral is worth. Rai will tell you the moment it's time."}</span>
+        </div>
+      </div>
+      <div style={{ textAlign: "center", fontSize: 12.5, color: C.textMuted, marginTop: 14, fontStyle: "italic" }}>Slide the readiness up — the ask unlocks only when it should.</div>
+    </div>
+  );
+}
+
+function WorkersDemo() {
+  const [delegated, setDelegated] = useState(false);
+  const canSee = ["The one task you assigned", "The single client it's for", "A due date and your note"];
+  const cantSee = ["The rest of your book", "Retention scores & health", "Revenue, notes, or history"];
+  return (
+    <div style={{ maxWidth: 600, margin: "0 auto" }}>
+      <div style={{ display: "flex", justifyContent: "center", marginBottom: 18 }}>
+        <button onClick={() => setDelegated(d => !d)} className={"trd-chip" + (delegated ? " trd-chip-on" : "")} style={{ fontSize: 13.5, padding: "11px 20px" }}>
+          {delegated ? "✓ Task handed off to a worker" : "→ Hand this task to a worker"}
+        </button>
+      </div>
+      <div style={{ background: C.card, border: "1px solid " + C.borderLight, borderRadius: 18, padding: "22px 24px", boxShadow: "0 18px 50px rgba(0,0,0,0.06)" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 12, paddingBottom: 16, borderBottom: "1px solid " + C.borderLight, marginBottom: 16 }}>
+          <div style={{ width: 38, height: 38, borderRadius: 10, background: delegated ? C.primarySoft : C.surfaceWarm, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 17, transition: "background 0.3s" }}>{delegated ? "🔗" : "📋"}</div>
+          <div>
+            <div style={{ fontSize: 14.5, fontWeight: 800, color: C.text }}>Design the Q3 onboarding deck</div>
+            <div style={{ fontSize: 12, color: C.textMuted, marginTop: 2 }}>{delegated ? "Sent to Jordan (VA) via secure link · no login" : "Assigned to you"}</div>
+          </div>
+        </div>
+        <div style={{ fontSize: 10.5, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: ".1em", marginBottom: 12, opacity: delegated ? 1 : 0.5, transition: "opacity 0.3s" }}>{delegated ? "What Jordan can see" : "Toggle the handoff to see scoped access"}</div>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14, opacity: delegated ? 1 : 0.35, transition: "opacity 0.4s" }} className="sdemo-grid">
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 800, color: C.success, marginBottom: 8, display: "flex", alignItems: "center", gap: 5 }}>✓ Can see</div>
+            {canSee.map(x => <div key={x} style={{ fontSize: 12.5, color: C.textSec, padding: "6px 0", borderBottom: "1px dashed " + C.borderLight, lineHeight: 1.4 }}>{x}</div>)}
+          </div>
+          <div>
+            <div style={{ fontSize: 11, fontWeight: 800, color: C.danger, marginBottom: 8, display: "flex", alignItems: "center", gap: 5 }}>✕ Can't see</div>
+            {cantSee.map(x => <div key={x} style={{ fontSize: 12.5, color: C.textMuted, padding: "6px 0", borderBottom: "1px dashed " + C.borderLight, lineHeight: 1.4 }}>{x}</div>)}
+          </div>
+        </div>
+      </div>
+      <div style={{ textAlign: "center", fontSize: 12.5, color: C.textMuted, marginTop: 14, fontStyle: "italic" }}>Hand off the task — never the keys to your book.</div>
+    </div>
+  );
+}
+
 function FeatureHealth({ setPage }) {
   return (
     <div>
       <RetPageStyles />
       <RetHero
         eyebrow="Health"
-        h1="Catch the drift before it becomes damage."
-        sub="Structured check-ins that surface what you already sense but haven't said out loud. They keep the relationship dimensions current — and those dimensions are the score, so an honest answer moves the number."
+        h1="The patterns you'd never have time to find."
+        sub="Every week, Rai studies your whole book and surfaces what's quietly working, quietly slipping, or quietly overlooked — the high-level reads a frontier model catches that you'd miss in the day-to-day. Keep profiles current, and the reads stay sharp."
         primaryCta="Start Free Trial"
         primaryAction="signup"
         setPage={setPage}
       />
 
-      <RetCurve from="#F2EEE8" to="#EAE4D6" variant="leftRise" />
+      <RetCurve from="#F2EEE8" to={C.bg} variant="dome" />
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 40 }}>
+        <div className="ret-section-inner">
+          <div className="ret-section-head">
+            <div className="ret-eyebrow">See it work</div>
+            <h2 className="ret-h2">Rai's weekly read on your book.</h2>
+            <p className="ret-sub" style={{ margin: "0 auto" }}>Each week brings a new observation — a thriving client you've stopped noticing, a quiet drift, an unclaimed win. Cycle through the kinds of patterns Rai surfaces.</p>
+          </div>
+          <HealthCheckDemo />
+        </div>
+      </section>
 
-      <section className="ret-section ret-bg-beige r-full-bleed">
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 24 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
-            <h2 className="ret-h2">Why Health Checks work when surveys don't.</h2>
+            <h2 className="ret-h2">A second set of eyes, every week.</h2>
             <p className="ret-sub" style={{ maxWidth: 700, marginTop: 12 }}>
-              Traditional NPS asks the client. Health Checks ask you — because you see things they'll never admit in a survey.
+              You can't re-read your whole book every Monday. Rai does — and tells you the few things actually worth your attention, plus when a profile's gone stale enough to dull the read.
             </p>
           </div>
           <div className="ret-grid-3">
             {[
-              { h: "Questions built for honesty", p: "Not \"how is the relationship?\" — that's too abstract to answer honestly. We ask about specific observable changes: tone, cadence, signals of stress, things that have shifted since baseline." },
-              { h: "Cadence that matches reality", p: "Monthly for your critical accounts. Quarterly for your stable ones. Yearly for your thriving. You don't get pinged on a schedule that makes you lie to clear the queue." },
-              { h: "Answers update the score directly", p: "A check-in re-scores the relationship dimensions — and those twelve dimensions are the Retention Score itself. There's no separate, weaker signal to dilute it; honest answers move the number on impact." },
+              { h: "Rai watches the book", p: "Scores, activity, cadence, the patterns across every relationship at once. Each week Rai surfaces a handful of observations before they become business-wide problems." },
+              { h: "Frontier-model reads", p: "Not a rules engine — a frontier model reading your book the way a sharp partner would. It catches the high-level things no single metric flags: fragile highs, unclaimed wins, the slow fade." },
+              { h: "Keep profiles current", p: "When a relationship's changed — scope, contacts, pace — a quick profile update keeps Rai's scoring honest. The observations are only as sharp as the profiles behind them." },
             ].map((s, i) => (
               <div key={i} className="ret-card">
                 <div style={{ fontSize: 11, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>0{i + 1}</div>
@@ -5915,69 +6269,19 @@ function FeatureHealth({ setPage }) {
         </div>
       </section>
 
-      <RetCurve from="#EAE4D6" to={C.bg} variant="rightRise" />
-
-      {/* Mockup: Health Check question 2 of 5 */}
-      <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
-        <div className="ret-section-inner">
-          <div style={{ maxWidth: 520, margin: "0 auto", background: C.card, borderRadius: 20, border: "1px solid " + C.border, padding: 28, boxShadow: "0 20px 60px rgba(0,0,0,0.08)" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18 }}>
-              <div>
-                <div style={{ fontSize: 10.5, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: 2 }}>Health Check</div>
-                <div style={{ fontSize: 15, fontWeight: 800, letterSpacing: "-0.01em" }}>Broadleaf Media</div>
-              </div>
-              <div style={{ fontSize: 11.5, color: C.textMuted, fontWeight: 600 }}>2 of 5</div>
-            </div>
-
-            <div style={{ display: "flex", gap: 5, marginBottom: 20 }}>
-              {[1,2,3,4,5].map(i => <div key={i} style={{ flex: 1, height: 4, borderRadius: 2, background: i <= 2 ? C.primary : C.borderLight }} />)}
-            </div>
-
-            <p style={{ fontSize: 16, fontWeight: 700, marginBottom: 14, lineHeight: 1.4 }}>Has anything changed with how they communicate with you?</p>
-            <div style={{ fontSize: 12.5, color: C.textMuted, marginBottom: 14, lineHeight: 1.5 }}>Think response times, channel preference, tone, who's in the thread. Compare against the last 2–3 months.</div>
-
-            {[
-              { text: "Nothing — same as always", selected: false },
-              { text: "Something minor, could be nothing", selected: false },
-              { text: "Noticeably different from before", selected: true },
-              { text: "Something has clearly changed", selected: false },
-            ].map((opt, i) => (
-              <div key={i} style={{
-                padding: "13px 16px", borderRadius: 10, marginBottom: 6,
-                background: opt.selected ? C.primarySoft : C.bg,
-                border: "1.5px solid " + (opt.selected ? C.primary : C.borderLight),
-                fontSize: 14, color: opt.selected ? C.primary : C.textSec,
-                fontWeight: opt.selected ? 600 : 400,
-              }}>
-                {opt.text}
-              </div>
-            ))}
-
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: 18 }}>
-              <span style={{ fontSize: 12, color: C.textMuted }}>← Back</span>
-              <div style={{ padding: "10px 22px", background: C.primary, color: "#fff", borderRadius: 10, fontWeight: 700, fontSize: 13.5 }}>Next</div>
-            </div>
+      <RetCurve from={C.bg} to={C.sidebar} variant="leftRise" />
+      <section className="r-full-bleed" style={{ background: C.sidebar, color: "#F4F0E6", padding: "84px 32px" }}>
+        <div style={{ maxWidth: 640, margin: "0 auto" }}>
+          <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: "#9DC4AC", marginBottom: 18 }}>How Rai thinks.</div>
+          <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "clamp(20px, 3vw, 27px)", lineHeight: 1.55, color: "#E8E4D8", borderLeft: "2px solid " + C.primaryLight, paddingLeft: 22 }}>
+            "I've spent more hours than I can count watching how client relationships actually end. <span style={{ color: "#fff" }}>It's almost never the work. It's the email that didn't get sent, the check-in that slipped a month, the quiet client nobody worried about.</span> I read your whole book every day, so the small thing has to get through me before it ever becomes the big one."
           </div>
+          <p style={{ fontSize: 16, lineHeight: 1.65, color: "#C8D2C9", marginTop: 36, maxWidth: 560 }}>The point was never to replace your judgment. It's to make sure nothing reaches it too late while there's still time to act. I watch every relationship with the same care you'd watch your most important one 24/7.</p>
         </div>
       </section>
 
-      {/* Honesty section */}
-      <section className="ret-section r-full-bleed" style={{ background: C.bg, paddingTop: 0 }}>
-        <div className="ret-section-inner">
-          <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
-            <h2 className="ret-h2" style={{ marginBottom: 14 }}>When the answer is honest, the system works.</h2>
-            <p style={{ fontSize: 16, color: C.textSec, lineHeight: 1.75 }}>
-              A two-minute Health Check that moves the Retention Score tonight is worth more than a 20-question quarterly review you filled out to get it off your plate.
-              <br /><br />
-              We designed the questions to be answerable in the elevator. <strong style={{ color: C.text }}>The honesty is the whole product.</strong>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <RetCurve from={C.bg} to="#F2EEE8" variant="leftRise" />
-
-      <section className="ret-section ret-bg-cream r-full-bleed">
+      <RetCurve from={C.sidebar} to="#F2EEE8" variant="leftRise" />
+      <section className="ret-section ret-bg-cream r-full-bleed" style={{ paddingBottom: 24 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">Related features</div>
@@ -5997,8 +6301,8 @@ function FeatureHealth({ setPage }) {
       </section>
 
       <RetFinalCTA
-        h2="Catch drift before it's damage. Two minutes at a time."
-        sub="Start free. Your first Health Check goes live in minutes."
+        h2="Let Rai read the book you don't have time to."
+        sub="Start free. Get your first weekly observations in days."
         setPage={setPage}
       />
       <Footer setPage={setPage} />
@@ -6019,9 +6323,19 @@ function FeatureRai({ setPage }) {
         setPage={setPage}
       />
 
-      <RetCurve from="#F2EEE8" to="#EAE4D6" variant="rightRise" />
+      <RetCurve from="#F2EEE8" to={C.bg} variant="dome" />
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 40 }}>
+        <div className="ret-section-inner">
+          <div className="ret-section-head">
+            <div className="ret-eyebrow">See it work</div>
+            <h2 className="ret-h2">You name the moment. Rai writes the words.</h2>
+            <p className="ret-sub" style={{ margin: "0 auto" }}>Pick a situation you've been avoiding — Rai drafts the message in your voice, ready to send or soften.</p>
+          </div>
+          <RaiScriptDemo />
+        </div>
+      </section>
 
-      <section className="ret-section ret-bg-beige r-full-bleed">
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 24 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
@@ -6032,9 +6346,9 @@ function FeatureRai({ setPage }) {
           </div>
           <div className="ret-grid-3">
             {[
-              { h: "She reads the score first", p: "Every time you Talk to Rai about a client, she pulls the current Retention Score, the active combinations, the last Health Check, the velocity trend — then writes." },
-              { h: "She writes like a senior advisor", p: "Warm, steady tone. Specific, not vague. \"Call her — not email\" rather than \"consider reaching out.\" Rai tells you exactly what to do and exactly what to say." },
-              { h: "She adapts to the client", p: "Your blunt client gets a blunt script. Your formal client gets a formal one. Rai knows each relationship's communication style — she doesn't talk to Rachel the way she talks to Jordan." },
+              { h: "She has context", p: "Every time you Talk to Rai about a client, she pulls the current Retention Score, the active combinations, the last Health Check, the velocity trend — then writes." },
+              { h: "She knows your tone", p: "Warm, steady tone. Specific, not vague. \"Call her — not email\" rather than \"consider reaching out.\" Rai tells you exactly what to do and exactly what to say." },
+              { h: "She adapts with time", p: "Your blunt client gets a blunt script. Your formal client gets a formal one. Rai knows each relationship's style — she doesn't talk to Rachel the way she talks to Jordan." },
             ].map((s, i) => (
               <div key={i} className="ret-card">
                 <div style={{ fontSize: 11, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>0{i + 1}</div>
@@ -6046,74 +6360,19 @@ function FeatureRai({ setPage }) {
         </div>
       </section>
 
-      <RetCurve from="#EAE4D6" to={C.bg} variant="leftRise" />
-
-      {/* Chat mockup */}
-      <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
-        <div className="ret-section-inner">
-          <div style={{ maxWidth: 620, margin: "0 auto", background: C.card, borderRadius: 20, border: "1px solid " + C.border, padding: 28, boxShadow: "0 20px 60px rgba(0,0,0,0.08)" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 20, paddingBottom: 14, borderBottom: "1px solid " + C.borderLight }}>
-              <div style={{ width: 36, height: 36, borderRadius: "50%", background: "linear-gradient(135deg, " + C.primary + ", " + C.primaryLight + ")", display: "inline-flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: 16, fontWeight: 800 }}>✦</div>
-              <div>
-                <div style={{ fontSize: 14, fontWeight: 800 }}>Rai</div>
-                <div style={{ fontSize: 11.5, color: C.textMuted }}>Senior retention advisor</div>
-              </div>
-            </div>
-
-            <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
-              <div style={{ alignSelf: "flex-end", maxWidth: "80%", padding: "12px 16px", background: C.primary, color: "#fff", borderRadius: "16px 16px 4px 16px", fontSize: 13.5, lineHeight: 1.55 }}>
-                Rachel at Broadleaf has been different lately. What should I do?
-              </div>
-
-              <div style={{ alignSelf: "flex-start", maxWidth: "92%", padding: "14px 16px", background: C.bg, borderRadius: "16px 16px 16px 4px", fontSize: 13.5, lineHeight: 1.65, border: "1px solid " + C.borderLight }}>
-                <div style={{ fontWeight: 800, color: C.primary, marginBottom: 6, fontSize: 10.5, letterSpacing: "0.06em", textTransform: "uppercase", display: "flex", alignItems: "center", gap: 5 }}>
-                  <span>✦</span> Rai
-                </div>
-                Rachel's score dropped from 78 to 67 over two check-ins. "No Room to Operate" just triggered. This isn't performance — it's relationship.<br /><br />
-                <strong style={{ color: C.text }}>Call her. Not email.</strong> Open with something specific: <em>"I've noticed things have felt different the last few weeks. I wanted to check in before we did our next review — what's on your mind?"</em>
-              </div>
-
-              <div style={{ alignSelf: "flex-start", maxWidth: "82%", padding: "10px 14px", background: C.primarySoft, borderRadius: "14px 14px 14px 4px", fontSize: 12.5, color: C.primary, fontStyle: "italic", border: "1px solid " + C.primarySoft }}>
-                I've flagged a profile re-evaluation for Broadleaf. Want me to queue that up after the call?
-              </div>
-
-              <div style={{ alignSelf: "flex-end", maxWidth: "70%", padding: "10px 14px", background: C.primary + "15", color: C.primary, borderRadius: "14px 14px 4px 14px", fontSize: 12.5, fontWeight: 600 }}>
-                Yes, queue it.
-              </div>
-            </div>
-
-            <div style={{ marginTop: 20, padding: "11px 14px", background: C.surface, borderRadius: 10, fontSize: 12.5, color: C.textMuted }}>
-              Ask Rai anything about your book...
-            </div>
+      <RetCurve from={C.bg} to={C.sidebar} variant="leftRise" />
+      <section className="r-full-bleed" style={{ background: C.sidebar, color: "#F4F0E6", padding: "84px 32px" }}>
+        <div style={{ maxWidth: 640, margin: "0 auto" }}>
+          <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: "#9DC4AC", marginBottom: 18 }}>How Rai thinks.</div>
+          <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "clamp(20px, 3vw, 27px)", lineHeight: 1.55, color: "#E8E4D8", borderLeft: "2px solid " + C.primaryLight, paddingLeft: 22 }}>
+            "I've spent more hours than I can count watching how client relationships actually end. <span style={{ color: "#fff" }}>It's almost never the work. It's the email that didn't get sent, the check-in that slipped a month, the quiet client nobody worried about.</span> I read your whole book every day, so the small thing has to get through me before it ever becomes the big one."
           </div>
+          <p style={{ fontSize: 16, lineHeight: 1.65, color: "#C8D2C9", marginTop: 36, maxWidth: 560 }}>The point was never to replace your judgment. It's to make sure nothing reaches it too late while there's still time to act. I watch every relationship with the same care you'd watch your most important one 24/7.</p>
         </div>
       </section>
 
-      {/* What you ask her */}
-      <section className="ret-section r-full-bleed" style={{ background: C.bg, paddingTop: 0 }}>
-        <div className="ret-section-inner">
-          <div style={{ textAlign: "center", maxWidth: 640, margin: "0 auto 32px" }}>
-            <h2 className="ret-h2" style={{ marginBottom: 10 }}>What you ask her.</h2>
-            <p style={{ fontSize: 16, color: C.textSec, lineHeight: 1.65 }}>Real questions, real situations.</p>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 14, maxWidth: 1000, margin: "0 auto" }}>
-            {[
-              "\"Should I bring up the rate increase with Maplewood now or wait?\"",
-              "\"Foxglove went quiet for three weeks. What do I say to re-open without being weird?\"",
-              "\"Is Northvane ready to ask for a referral? How do I ask?\"",
-              "\"Our point of contact at Oakline just got promoted. Do I congratulate her or pivot to the new AM?\"",
-            ].map((q, i) => (
-              <div key={i} style={{ padding: "18px 20px", background: C.card, border: "1px solid " + C.borderLight, borderRadius: 12, fontSize: 14, color: C.text, lineHeight: 1.55, fontStyle: "italic" }}>
-                {q}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <RetCurve from={C.bg} to="#F2EEE8" variant="rightRise" />
-
-      <section className="ret-section ret-bg-cream r-full-bleed">
+      <RetCurve from={C.sidebar} to="#F2EEE8" variant="leftRise" />
+      <section className="ret-section ret-bg-cream r-full-bleed" style={{ paddingBottom: 24 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">Related features</div>
@@ -6133,8 +6392,8 @@ function FeatureRai({ setPage }) {
       </section>
 
       <RetFinalCTA
-        h2="Stop drafting hard emails alone. Rai is on the other side."
-        sub="Start free. Talk to Rai about your first real client in minutes."
+        h2="Never stare at a blank message again."
+        sub="Start free. Ask Rai your first hard question in minutes."
         setPage={setPage}
       />
       <Footer setPage={setPage} />
@@ -6155,22 +6414,32 @@ function FeatureRolodex({ setPage }) {
         setPage={setPage}
       />
 
-      <RetCurve from="#F2EEE8" to="#EAE4D6" variant="default" />
+      <RetCurve from="#F2EEE8" to={C.bg} variant="dome" />
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 40 }}>
+        <div className="ret-section-inner">
+          <div className="ret-section-head">
+            <div className="ret-eyebrow">See it work</div>
+            <h2 className="ret-h2">A signal fires. A cold name turns warm.</h2>
+            <p className="ret-sub" style={{ margin: "0 auto" }}>The Rolodex watches former clients for the moments worth a reconnect. Trigger one and watch a dormant name rise to the top.</p>
+          </div>
+          <RolodexDemo />
+        </div>
+      </section>
 
-      <section className="ret-section ret-bg-beige r-full-bleed">
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 24 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
-            <h2 className="ret-h2">Every CRM has a graveyard. Rolodex has a garden.</h2>
+            <h2 className="ret-h2">A pipeline that looks backward to move forward.</h2>
             <p className="ret-sub" style={{ maxWidth: 700, marginTop: 12 }}>
-              Most tools archive old clients. We track them, score them for return-readiness, and surface them when the timing's right.
+              Most CRMs forget a client the day the contract ends. The Rolodex keeps the relationship alive — and tells you when it's worth reviving.
             </p>
           </div>
           <div className="ret-grid-3">
             {[
-              { h: "Every exit gets recorded", p: "When a client offboards, you note the context — budget cut, scope done, pivoted away, never replied. The Rolodex remembers why they left, not just that they did." },
-              { h: "Return-readiness is scored", p: "Based on how the relationship ended, how much time has passed, and signals we pick up (LinkedIn moves, funding events, public news), each former client gets a readiness score for re-engagement." },
-              { h: "The right moment surfaces the right name", p: "Someone leaves their old job and starts a new one? They pop up. You wrap a great win with Client A that could fit Client B's old pain? Rolodex flags it. You don't forget them — the system reminds you." },
+              { h: "Remembers the end", p: "Every former client carries the context — why they left, on what terms, whether the door's open. A price walk-away isn't a falling-out, and the Rolodex knows the difference." },
+              { h: "Watches for triggers", p: "A funding round, a new role, a job change — the events that make a dormant client suddenly reachable again. The Rolodex surfaces them so you reach out at the right moment, not a random one." },
+              { h: "Warms the cold ones", p: "When a trigger fires, the name moves up and the tag turns warm. Rai drafts the no-pressure reconnect — we help the opening come to you by always being there at the right time." },
             ].map((s, i) => (
               <div key={i} className="ret-card">
                 <div style={{ fontSize: 11, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>0{i + 1}</div>
@@ -6182,74 +6451,19 @@ function FeatureRolodex({ setPage }) {
         </div>
       </section>
 
-      <RetCurve from="#EAE4D6" to={C.bg} variant="dome" />
-
-      {/* Rolodex mockup */}
-      <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
-        <div className="ret-section-inner">
-          <div style={{ maxWidth: 720, margin: "0 auto", background: C.card, borderRadius: 20, border: "1px solid " + C.border, padding: 28, boxShadow: "0 20px 60px rgba(0,0,0,0.08)" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18, paddingBottom: 14, borderBottom: "1px solid " + C.borderLight }}>
-              <div>
-                <div style={{ fontSize: 10.5, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: 2 }}>Rolodex</div>
-                <div style={{ fontSize: 17, fontWeight: 800, letterSpacing: "-0.02em" }}>12 former clients</div>
-              </div>
-              <div style={{ display: "inline-flex", alignItems: "center", gap: 6, padding: "5px 11px", borderRadius: 100, background: C.primarySoft, fontSize: 11, fontWeight: 700, color: C.primary }}>
-                <span style={{ width: 5, height: 5, borderRadius: "50%", background: C.primary }} />3 ready now
-              </div>
-            </div>
-
-            {[
-              { name: "Maplewood Agency", type: "Former", months: "14 months together", reason: "Budget cut Q3 2024", tags: ["Would refer", "Would come back"], readiness: 88, signal: "Just raised Series A" },
-              { name: "Clearpoint Digital", type: "One-off", months: "Site audit, Feb 2024", reason: "Project-scoped", tags: ["Would refer"], readiness: 74, signal: "Expanded team 3x" },
-              { name: "Harlow & Associates", type: "Former", months: "8 months together", reason: "Internal hire", tags: ["Would come back"], readiness: 82, signal: "Their hire just left" },
-            ].map((r, i) => (
-              <div key={i} style={{ padding: "16px 0", borderTop: i > 0 ? "1px solid " + C.borderLight : "none" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: 8 }}>
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ display: "flex", alignItems: "center", gap: 8, flexWrap: "wrap", marginBottom: 3 }}>
-                      <span style={{ fontWeight: 700, fontSize: 14.5 }}>{r.name}</span>
-                      <span style={{ fontSize: 11.5, color: C.textMuted }}>{r.type} · {r.months}</span>
-                    </div>
-                    <div style={{ fontSize: 12.5, color: C.textMuted, marginBottom: 6 }}>Ended: {r.reason}</div>
-                    <div style={{ display: "flex", gap: 6, flexWrap: "wrap" }}>
-                      {r.tags.map(t => (
-                        <span key={t} style={{ fontSize: 10.5, fontWeight: 600, padding: "3px 9px", borderRadius: 5, background: C.primarySoft, color: C.primary }}>{t}</span>
-                      ))}
-                    </div>
-                  </div>
-                  <div style={{ textAlign: "center", flexShrink: 0 }}>
-                    <div style={{ width: 44, height: 44, borderRadius: "50%", background: C.success + "15", border: "1.5px solid " + C.success + "40", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, fontWeight: 800, color: C.success }}>{r.readiness}</div>
-                    <div style={{ fontSize: 9.5, color: C.textMuted, marginTop: 4, fontWeight: 600, textTransform: "uppercase", letterSpacing: ".06em" }}>ready</div>
-                  </div>
-                </div>
-                <div style={{ padding: "8px 12px", background: C.primarySoft + "60", borderRadius: 8, fontSize: 12.5, color: C.primary }}>
-                  <strong>Signal:</strong> {r.signal}
-                </div>
-              </div>
-            ))}
-
-            <div style={{ marginTop: 16, fontSize: 13, color: C.btn, fontWeight: 700, textAlign: "center" }}>3 re-engagement opportunities this week</div>
+      <RetCurve from={C.bg} to={C.sidebar} variant="leftRise" />
+      <section className="r-full-bleed" style={{ background: C.sidebar, color: "#F4F0E6", padding: "84px 32px" }}>
+        <div style={{ maxWidth: 640, margin: "0 auto" }}>
+          <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: "#9DC4AC", marginBottom: 18 }}>How Rai thinks.</div>
+          <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "clamp(20px, 3vw, 27px)", lineHeight: 1.55, color: "#E8E4D8", borderLeft: "2px solid " + C.primaryLight, paddingLeft: 22 }}>
+            "I've spent more hours than I can count watching how client relationships actually end. <span style={{ color: "#fff" }}>It's almost never the work. It's the email that didn't get sent, the check-in that slipped a month, the quiet client nobody worried about.</span> I read your whole book every day, so the small thing has to get through me before it ever becomes the big one."
           </div>
+          <p style={{ fontSize: 16, lineHeight: 1.65, color: "#C8D2C9", marginTop: 36, maxWidth: 560 }}>The point was never to replace your judgment. It's to make sure nothing reaches it too late while there's still time to act. I watch every relationship with the same care you'd watch your most important one 24/7.</p>
         </div>
       </section>
 
-      {/* Reframe */}
-      <section className="ret-section r-full-bleed" style={{ background: C.bg, paddingTop: 0 }}>
-        <div className="ret-section-inner">
-          <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
-            <h2 className="ret-h2" style={{ marginBottom: 14 }}>The easiest new client is an old one.</h2>
-            <p style={{ fontSize: 16, color: C.textSec, lineHeight: 1.75 }}>
-              Getting a new client costs 5–7x more than keeping one. Getting back an old one who liked you? Cheaper still.
-              <br /><br />
-              Most consultants lose touch within 6 months of an engagement ending. By 12 months, the relationship is effectively cold. <strong style={{ color: C.text }}>Rolodex keeps them warm without making you a stalker.</strong>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <RetCurve from={C.bg} to="#F2EEE8" variant="default" />
-
-      <section className="ret-section ret-bg-cream r-full-bleed">
+      <RetCurve from={C.sidebar} to="#F2EEE8" variant="leftRise" />
+      <section className="ret-section ret-bg-cream r-full-bleed" style={{ paddingBottom: 24 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">Related features</div>
@@ -6269,8 +6483,8 @@ function FeatureRolodex({ setPage }) {
       </section>
 
       <RetFinalCTA
-        h2="Stop letting old wins die. Turn them into next quarter."
-        sub="Start free. Add your first former client to the Rolodex in 30 seconds."
+        h2="Your next client might be an old one."
+        sub="Start free. Bring your former clients back into view."
         setPage={setPage}
       />
       <Footer setPage={setPage} />
@@ -6291,22 +6505,32 @@ function FeatureReferrals({ setPage }) {
         setPage={setPage}
       />
 
-      <RetCurve from="#F2EEE8" to="#EAE4D6" variant="leftCrest" />
+      <RetCurve from="#F2EEE8" to={C.bg} variant="dome" />
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 40 }}>
+        <div className="ret-section-inner">
+          <div className="ret-section-head">
+            <div className="ret-eyebrow">See it work</div>
+            <h2 className="ret-h2">The ask unlocks only when it should.</h2>
+            <p className="ret-sub" style={{ margin: "0 auto" }}>Ask too early and you spend trust you haven't earned. Slide a client's readiness and watch the moment the ask becomes the right move.</p>
+          </div>
+          <ReferralsDemo />
+        </div>
+      </section>
 
-      <section className="ret-section ret-bg-beige r-full-bleed">
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 24 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
-            <h2 className="ret-h2">Why asking for referrals backfires 80% of the time.</h2>
+            <h2 className="ret-h2">Timing is the whole game.</h2>
             <p className="ret-sub" style={{ maxWidth: 700, marginTop: 12 }}>
-              Most consultants ask everyone, or no one. Both are wrong. Readiness is a state — and it's measurable.
+              A referral asked at the wrong time costs you more than the referral is worth. Retayned watches for the right one so you never have to guess.
             </p>
           </div>
           <div className="ret-grid-3">
             {[
-              { h: "Readiness is a combination", p: "High loyalty + high trust + deep relationship + recent positive moment = referral-ready. We score every client against this profile continuously." },
-              { h: "Timing is the entire game", p: "Ask too early and you look needy. Ask too late and the moment's gone. Referrals has a narrow window after a clear win — and we flag it for you." },
-              { h: "The right client, the right ask", p: "Rai doesn't just tell you who's ready — she tells you how to ask. The script for a formal client is different from the script for a casual one. You get both." },
+              { h: "A unique algo", p: "Loyalty, trust depth, and a recent win combine into a single readiness read. It's not whether you want the referral — it's whether the relationship can carry the ask." },
+              { h: "Waits for the win", p: "The best moment to ask is right after you've delivered something they're thrilled about. Retayned catches that window and tells you it's open." },
+              { h: "Hands you the words", p: "When readiness crosses the line, Rai drafts the ask — specific, low-pressure, and easy to say yes to. You make the intro; the system made the timing." },
             ].map((s, i) => (
               <div key={i} className="ret-card">
                 <div style={{ fontSize: 11, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>0{i + 1}</div>
@@ -6318,70 +6542,19 @@ function FeatureReferrals({ setPage }) {
         </div>
       </section>
 
-      <RetCurve from="#EAE4D6" to={C.bg} variant="rightCrest" />
-
-      {/* Mockup: Referral Intelligence */}
-      <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
-        <div className="ret-section-inner">
-          <div style={{ maxWidth: 720, margin: "0 auto", background: C.card, borderRadius: 20, border: "1px solid " + C.border, padding: 28, boxShadow: "0 20px 60px rgba(0,0,0,0.08)" }}>
-            <div style={{ fontSize: 10.5, fontWeight: 700, color: C.textMuted, textTransform: "uppercase", letterSpacing: ".08em", marginBottom: 14 }}>Referral Intelligence · Last 90 days</div>
-
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 10, marginBottom: 22 }}>
-              {[["Asked", "7"], ["Converted", "4"], ["Revenue added", "$18.4k"]].map(([label, val]) => (
-                <div key={label} style={{ background: C.bg, borderRadius: 11, padding: 14, textAlign: "center" }}>
-                  <div style={{ fontSize: 24, fontWeight: 900, color: C.primary, fontFamily: "inherit", lineHeight: 1 }}>{val}</div>
-                  <div style={{ fontSize: 10.5, color: C.textMuted, marginTop: 4, fontWeight: 600, textTransform: "uppercase", letterSpacing: ".06em" }}>{label}</div>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ fontSize: 13.5, fontWeight: 800, marginBottom: 12, color: C.text }}>Ready to refer this week</div>
-            {[
-              { name: "Northvane Studios", contact: "Sarah Chen", readiness: 94, note: "Just wrapped their anniversary retainer renewal." },
-              { name: "Oakline Outdoors", contact: "James Park", readiness: 86, note: "Loyalty score hit 95 after Q1 campaign success." },
-              { name: "Cedarwood Strategy", contact: "Alex Rivera", readiness: 79, note: "Asked twice about 'people like us.'" },
-            ].map((r, i) => (
-              <div key={i} style={{ display: "flex", alignItems: "center", gap: 14, padding: "14px 0", borderTop: i > 0 ? "1px solid " + C.borderLight : "none" }}>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4, flexWrap: "wrap" }}>
-                    <span style={{ fontWeight: 700, fontSize: 14 }}>{r.name}</span>
-                    <span style={{ fontSize: 11.5, color: C.textMuted }}>· {r.contact}</span>
-                  </div>
-                  <div style={{ fontSize: 12.5, color: C.textSec, lineHeight: 1.45 }}>{r.note}</div>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 10, flexShrink: 0 }}>
-                  <div style={{ width: 62, height: 6, borderRadius: 3, background: C.borderLight, overflow: "hidden" }}>
-                    <div style={{ width: r.readiness + "%", height: "100%", background: "linear-gradient(90deg, " + C.primaryLight + ", " + C.success + ")" }} />
-                  </div>
-                  <span style={{ fontSize: 13, fontWeight: 800, color: C.success, minWidth: 30 }}>{r.readiness}</span>
-                </div>
-              </div>
-            ))}
-
-            <div style={{ marginTop: 18, padding: "12px 14px", background: C.primarySoft, borderRadius: 10, fontSize: 13, color: C.text, lineHeight: 1.55 }}>
-              <strong style={{ color: C.primary }}>Rai says:</strong> Sarah at Northvane is textbook ready. Ask in-person at Thursday's sync — not by email. Frame it as "people like you."
-            </div>
+      <RetCurve from={C.bg} to={C.sidebar} variant="leftRise" />
+      <section className="r-full-bleed" style={{ background: C.sidebar, color: "#F4F0E6", padding: "84px 32px" }}>
+        <div style={{ maxWidth: 640, margin: "0 auto" }}>
+          <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: "#9DC4AC", marginBottom: 18 }}>How Rai thinks.</div>
+          <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "clamp(20px, 3vw, 27px)", lineHeight: 1.55, color: "#E8E4D8", borderLeft: "2px solid " + C.primaryLight, paddingLeft: 22 }}>
+            "I've spent more hours than I can count watching how client relationships actually end. <span style={{ color: "#fff" }}>It's almost never the work. It's the email that didn't get sent, the check-in that slipped a month, the quiet client nobody worried about.</span> I read your whole book every day, so the small thing has to get through me before it ever becomes the big one."
           </div>
+          <p style={{ fontSize: 16, lineHeight: 1.65, color: "#C8D2C9", marginTop: 36, maxWidth: 560 }}>The point was never to replace your judgment. It's to make sure nothing reaches it too late while there's still time to act. I watch every relationship with the same care you'd watch your most important one 24/7.</p>
         </div>
       </section>
 
-      {/* Don't ask thriving clients */}
-      <section className="ret-section r-full-bleed" style={{ background: C.bg, paddingTop: 0 }}>
-        <div className="ret-section-inner">
-          <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
-            <h2 className="ret-h2" style={{ marginBottom: 14 }}>One rule most consultants get wrong.</h2>
-            <p style={{ fontSize: 16, color: C.textSec, lineHeight: 1.75 }}>
-              Thriving clients (90+ score) — don't ask them for referrals unless they offer. The best clients will send you people organically. Asking disrupts the relationship.
-              <br /><br />
-              <strong style={{ color: C.text }}>The sweet spot is healthy clients (75–89) coming off a clear win.</strong> They're invested enough to vouch, not so enmeshed that asking feels like transactional debt. Retayned flags them specifically.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <RetCurve from={C.bg} to="#F2EEE8" variant="leftCrest" />
-
-      <section className="ret-section ret-bg-cream r-full-bleed">
+      <RetCurve from={C.sidebar} to="#F2EEE8" variant="leftRise" />
+      <section className="ret-section ret-bg-cream r-full-bleed" style={{ paddingBottom: 24 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">Related features</div>
@@ -6401,58 +6574,12 @@ function FeatureReferrals({ setPage }) {
       </section>
 
       <RetFinalCTA
-        h2="The right ask. At the exact right moment."
-        sub="Start free. See who's ready to refer in your book right now."
+        h2="Ask at the right time. Every time."
+        sub="Start free. See which clients are ready to refer."
         setPage={setPage}
       />
       <Footer setPage={setPage} />
     </div>
-  );
-}
-
-function WorkersFlowGraphic() {
-  return (
-    <svg viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" style={{ width: "100%", height: "auto", display: "block" }} role="img" aria-label="A task flows from the operator out to a worker via a secure link, and the completed result flows back.">
-      {/* connecting flow line */}
-      <line x1="170" y1="140" x2="350" y2="140" stroke={C.btnLight} strokeWidth="2" strokeDasharray="5 5" />
-      <line x1="490" y1="140" x2="560" y2="140" stroke={C.primaryLight} strokeWidth="2" strokeDasharray="5 5" />
-      {/* arrowheads */}
-      <path d="M348 134 L360 140 L348 146 Z" fill={C.btn} />
-      <path d="M558 134 L570 140 L558 146 Z" fill={C.primary} />
-
-      {/* OPERATOR (hub) */}
-      <g>
-        <circle cx="100" cy="140" r="52" fill={C.primarySoft} stroke={C.primary} strokeWidth="2" />
-        <circle cx="100" cy="118" r="15" fill={C.primary} />
-        <path d="M76 168 a24 22 0 0 1 48 0 Z" fill={C.primary} />
-        <text x="100" y="218" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="800" fill={C.text}>You</text>
-        <text x="100" y="236" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="11" fill={C.textSec}>The hub. Full picture.</text>
-      </g>
-
-      {/* SECURE LINK (middle) */}
-      <g>
-        <rect x="262" y="104" width="166" height="72" rx="14" fill={C.card} stroke={C.btn} strokeWidth="1.5" />
-        <circle cx="290" cy="140" r="15" fill="#EFE9FB" />
-        <path d="M285 139 v-4 a5 5 0 0 1 10 0 v4" fill="none" stroke={C.btn} strokeWidth="2" />
-        <rect x="284" y="139" width="12" height="9" rx="2" fill={C.btn} />
-        <text x="312" y="133" fontFamily="system-ui, sans-serif" fontSize="12.5" fontWeight="800" fill={C.text}>Secure link</text>
-        <text x="312" y="150" fontFamily="system-ui, sans-serif" fontSize="10.5" fill={C.textSec}>No login. No password.</text>
-        <text x="312" y="165" fontFamily="system-ui, sans-serif" fontSize="10.5" fill={C.btn} fontWeight="700">Expires in 7 days</text>
-        <text x="345" y="92" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="11" fill={C.textSec}>one task only →</text>
-      </g>
-
-      {/* WORKER */}
-      <g>
-        <circle cx="620" cy="140" r="52" fill={C.primaryGhost} stroke={C.primaryLight} strokeWidth="2" />
-        <circle cx="620" cy="118" r="15" fill={C.primaryLight} />
-        <path d="M596 168 a24 22 0 0 1 48 0 Z" fill={C.primaryLight} />
-        {/* check badge */}
-        <circle cx="652" cy="112" r="13" fill={C.success} />
-        <path d="M646 112 l4 4 l8 -8" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" />
-        <text x="620" y="218" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="800" fill={C.text}>Worker</text>
-        <text x="620" y="236" textAnchor="middle" fontFamily="system-ui, sans-serif" fontSize="11" fill={C.textSec}>Sees one task. Marks done.</text>
-      </g>
-    </svg>
   );
 }
 
@@ -6469,22 +6596,32 @@ function FeatureWorkers({ setPage }) {
         setPage={setPage}
       />
 
-      <RetCurve from="#F2EEE8" to="#EAE4D6" variant="default" />
+      <RetCurve from="#F2EEE8" to={C.bg} variant="dome" />
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 40 }}>
+        <div className="ret-section-inner">
+          <div className="ret-section-head">
+            <div className="ret-eyebrow">See it work</div>
+            <h2 className="ret-h2">One task out. Your whole book stays in.</h2>
+            <p className="ret-sub" style={{ margin: "0 auto" }}>Hand off a task and watch exactly what a worker can — and can't — see. They get the job, never the relationship.</p>
+          </div>
+          <WorkersDemo />
+        </div>
+      </section>
 
-      <section className="ret-section ret-bg-beige r-full-bleed">
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 24 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
-            <h2 className="ret-h2">Send work out. Keep control in.</h2>
+            <h2 className="ret-h2">Help that doesn't cost you the relationship.</h2>
             <p className="ret-sub" style={{ maxWidth: 700, marginTop: 12 }}>
-              Add a Worker with just a name and email. Assign them a task. They get a secure link, do the one thing, and that's it — no account, no access to the rest of your clients.
+              Delegation usually means handing someone access to your clients. Workers flips that — they get the work, you keep the book.
             </p>
           </div>
           <div className="ret-grid-3">
             {[
-              { h: "Add a Worker in seconds", p: "A name and an email — that's the whole setup. No invitation to accept, no seat to provision. A Worker isn't a user of Retayned; they're someone you send a piece of work to." },
-              { h: "One task, one secure link", p: "Assign a task to a Worker and Retayned emails them a magic link. They click it and see only that task — nothing about your other clients, your scores, or your book. The link expires after 7 days." },
-              { h: "They mark it done — you stay the hub", p: "The Worker completes the task and marks it done. The result flows back to you. You keep the full relationship picture; they got exactly what they needed and nothing more." },
+              { h: "One link, one task", p: "No account, no login, no onboarding. The worker opens a secure link, sees the single task you assigned, and gets to work. Nothing else is reachable." },
+              { h: "Scoped appropriately", p: "They see what the task needs — the client it's for, your note, a due date — and nothing of your scores, revenue, history, or the rest of your relationships." },
+              { h: "You stay the hub", p: "The client never deals with a stranger. The work flows outward, the relationship stays with you, and you remain the only point of contact that matters." },
             ].map((s, i) => (
               <div key={i} className="ret-card">
                 <div style={{ fontSize: 11, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>0{i + 1}</div>
@@ -6496,63 +6633,19 @@ function FeatureWorkers({ setPage }) {
         </div>
       </section>
 
-      <RetCurve from="#EAE4D6" to={C.bg} variant="dome" />
-
-      {/* Flow graphic */}
-      <section className="ret-section r-full-bleed" style={{ background: C.bg }}>
-        <div className="ret-section-inner">
-          <div style={{ maxWidth: 760, margin: "0 auto", background: C.card, borderRadius: 20, border: "1px solid " + C.border, padding: "36px 32px", boxShadow: "0 20px 60px rgba(0,0,0,0.08)" }}>
-            <WorkersFlowGraphic />
+      <RetCurve from={C.bg} to={C.sidebar} variant="leftRise" />
+      <section className="r-full-bleed" style={{ background: C.sidebar, color: "#F4F0E6", padding: "84px 32px" }}>
+        <div style={{ maxWidth: 640, margin: "0 auto" }}>
+          <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: "#9DC4AC", marginBottom: 18 }}>How Rai thinks.</div>
+          <div style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: "clamp(20px, 3vw, 27px)", lineHeight: 1.55, color: "#E8E4D8", borderLeft: "2px solid " + C.primaryLight, paddingLeft: 22 }}>
+            "I've spent more hours than I can count watching how client relationships actually end. <span style={{ color: "#fff" }}>It's almost never the work. It's the email that didn't get sent, the check-in that slipped a month, the quiet client nobody worried about.</span> I read your whole book every day, so the small thing has to get through me before it ever becomes the big one."
           </div>
+          <p style={{ fontSize: 16, lineHeight: 1.65, color: "#C8D2C9", marginTop: 36, maxWidth: 560 }}>The point was never to replace your judgment. It's to make sure nothing reaches it too late while there's still time to act. I watch every relationship with the same care you'd watch your most important one 24/7.</p>
         </div>
       </section>
 
-      {/* Seats vs Workers distinction */}
-      <section className="ret-section r-full-bleed" style={{ background: C.bg, paddingTop: 0 }}>
-        <div className="ret-section-inner">
-          <div className="ret-section-head">
-            <div className="ret-eyebrow">Seats vs. Workers</div>
-            <h2 className="ret-h2">Two different kinds of people.</h2>
-            <p className="ret-sub" style={{ maxWidth: 700, marginTop: 12 }}>
-              Seats are people who use Retayned. Workers are people Retayned reaches.
-            </p>
-          </div>
-          <div className="ret-grid-2" style={{ maxWidth: 820, margin: "0 auto" }}>
-            <div className="ret-card">
-              <div style={{ fontSize: 11, fontWeight: 800, color: C.primary, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>Seats · Team plan</div>
-              <h3 className="ret-h3">People who think inside Retayned.</h3>
-              <p style={{ fontSize: 14.5, color: C.textSec, lineHeight: 1.6, margin: 0 }}>
-                Account managers with their own login, their own dashboard, and an assigned book of clients. They work in the tool every day.
-              </p>
-            </div>
-            <div className="ret-card">
-              <div style={{ fontSize: 11, fontWeight: 800, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>Workers · Every plan</div>
-              <h3 className="ret-h3">People Retayned sends work out to.</h3>
-              <p style={{ fontSize: 14.5, color: C.textSec, lineHeight: 1.6, margin: 0 }}>
-                Contractors, VAs, and freelance collaborators. No login, no dashboard — just a secure link to one task at a time. They're recipients of work, not users.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Reframe */}
-      <section className="ret-section r-full-bleed" style={{ background: C.bg, paddingTop: 0 }}>
-        <div className="ret-section-inner">
-          <div style={{ maxWidth: 720, margin: "0 auto", textAlign: "center" }}>
-            <h2 className="ret-h2" style={{ marginBottom: 14 }}>Delegation without surrender.</h2>
-            <p style={{ fontSize: 16, color: C.textSec, lineHeight: 1.75 }}>
-              Most tools force a choice: give someone full access, or do it yourself. Neither is right when you're a high-agency operator running your own book.
-              <br /><br />
-              <strong style={{ color: C.text }}>Workers lets the work flow outward while the relationship stays with you.</strong> You're still the one who knows the client, holds the context, and owns the outcome. The contractor just does the task.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <RetCurve from={C.bg} to="#F2EEE8" variant="default" />
-
-      <section className="ret-section ret-bg-cream r-full-bleed">
+      <RetCurve from={C.sidebar} to="#F2EEE8" variant="leftRise" />
+      <section className="ret-section ret-bg-cream r-full-bleed" style={{ paddingBottom: 24 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">Related features</div>
@@ -6572,8 +6665,8 @@ function FeatureWorkers({ setPage }) {
       </section>
 
       <RetFinalCTA
-        h2="Hand off the task. Hold onto the relationship."
-        sub="Start free. Send your first Worker a task in under a minute."
+        h2="Scale the work. Keep the relationships."
+        sub="Start free. Hand off your first task in minutes."
         setPage={setPage}
       />
       <Footer setPage={setPage} />
@@ -6581,37 +6674,8 @@ function FeatureWorkers({ setPage }) {
   );
 }
 
-// ═══ MAIN APP ═══
-
-// Map between page state and URL paths. Pages not listed here have no URL.
-const PAGE_TO_PATH = {
-  home: "/",
-  pricing: "/pricing",
-  about: "/about",
-  blog: "/blog",
-  freelancers: "/freelancers",
-  agencies: "/agencies",
-  enterprise: "/enterprise",
-  faq: "/faq",
-  "feature-today": "/features/today",
-  "feature-scoring": "/features/clients",
-  "feature-health": "/features/health",
-  "feature-rolodex": "/features/rolodex",
-  "feature-referrals": "/features/referrals",
-  "feature-workers": "/features/workers",
-  "feature-rai": "/features/rai",
-  privacy: "/privacy",
-  terms: "/terms",
-  signup: "/signup",
-  login: "/login",
-  contact: "/contact",
-};
-const PATH_TO_PAGE = Object.fromEntries(Object.entries(PAGE_TO_PATH).map(([k, v]) => [v, k]));
-
-// Per-page SEO metadata. Title shows in the tab + search results; description
-// is the snippet under the result. Keep titles ~60 chars, descriptions ~155.
-const SITE_NAME = "Retayned";
 const DEFAULT_DESC = "Retayned tracks the health of relationships to predict churn before it happens — giving you precise, client-specific solutions to keep and grow the business you've earned.";
+
 const PAGE_META = {
   home: { title: "Retayned — Client Relationship Management", desc: DEFAULT_DESC },
   pricing: { title: "Pricing — Retayned", desc: "Flat, predictable pricing with every feature included. Solo $29/mo, Team $99/mo. No per-client fees, no feature gates. 14-day free trial." },
@@ -6620,9 +6684,10 @@ const PAGE_META = {
   freelancers: { title: "Retayned for Freelancers", desc: "For freelancers and consultants: track every client relationship, catch churn early, and keep the business you worked to win. $29/mo flat." },
   agencies: { title: "Retayned for Agencies", desc: "For agencies and human teams: shared client visibility, handoff briefs, and per-AM coverage so knowledge stays when people move. $99/mo." },
   enterprise: { title: "Retayned Enterprise", desc: "Relationship intelligence at scale — for autonomous agents and books of business managing thousands of accounts. Managed Rai, API, and SSO." },
+  platform: { title: "Platform — Retayned", desc: "One brain for your entire book: retention scoring, health checks, and advanced AI built on frontier models. Every feature, every plan." },
   faq: { title: "FAQ — Retayned", desc: "Answers on pricing, features, data, and how Retayned predicts and prevents client churn." },
   "feature-today": { title: "Today — Retayned", desc: "Your daily operating view: Rai suggests and ranks the work that matters most, so the few relationships that need you surface before they become problems." },
-  "feature-scoring": { title: "Clients — Retayned", desc: "Your client list, scored and sorted by what matters. A dynamic twelve-dimension Retention Score on every relationship, so you see where you stand before the client tells you." },
+  "feature-scoring": { title: "Clients — Retayned", desc: "Your client list, scored and sorted by what matters. A twelve-dimension Retention Score on every relationship, so you see where you stand before the client tells you." },
   "feature-health": { title: "Health — Retayned", desc: "Structured relationship check-ins that surface what you already sense. The twelve dimensions assess health directly, so keeping a profile current keeps its score honest." },
   "feature-rolodex": { title: "Rolodex — Retayned", desc: "Every contact, relationship, and piece of history in one place — so nothing about a client lives only in your head." },
   "feature-referrals": { title: "Referrals — Retayned", desc: "Track and grow the referrals your best relationships generate, instead of leaving them to chance." },
@@ -6634,6 +6699,32 @@ const PAGE_META = {
   login: { title: "Log in — Retayned", desc: "Log in to your Retayned account." },
   contact: { title: "Contact — Retayned", desc: "Get in touch with the Retayned team." },
 };
+
+// Map between page state and URL paths. Pages not listed here have no URL.
+const PAGE_TO_PATH = {
+  home: "/",
+  pricing: "/pricing",
+  about: "/about",
+  blog: "/blog",
+  freelancers: "/freelancers",
+  agencies: "/agencies",
+  enterprise: "/enterprise",
+  platform: "/platform",
+  faq: "/faq",
+  "feature-today": "/features/today",
+  "feature-scoring": "/features/retention-score",
+  "feature-health": "/features/health-checks",
+  "feature-rai": "/features/talk-to-rai",
+  "feature-rolodex": "/features/rolodex",
+  "feature-referrals": "/features/referrals",
+  "feature-workers": "/features/workers",
+  privacy: "/privacy",
+  terms: "/terms",
+  signup: "/signup",
+  login: "/login",
+  contact: "/contact",
+};
+const PATH_TO_PAGE = Object.fromEntries(Object.entries(PAGE_TO_PATH).map(([k, v]) => [v, k]));
 
 function pageFromPath(pathname) {
   // Trim trailing slash (except root), then lookup. Fallback to "home".
