@@ -3885,6 +3885,8 @@ function RetPageStyles() {
       .trd-chip-muted { color: ${C.textMuted}; }
       .trd-chip-on { background: ${C.primary}; border-color: ${C.primary}; color: #fff; }
       .trd-chip-on:hover { background: ${C.primaryDark}; border-color: ${C.primaryDark}; color: #fff; }
+      .rai-send { display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; font-weight: 700; color: ${C.primary}; padding: 7px 14px; border: 1px solid ${C.primary}55; border-radius: 100px; }
+      @media (min-width: 768px) { .rai-send { margin-left: auto; } }
       .sdemo-range { -webkit-appearance: none; appearance: none; height: 6px; border-radius: 100px; background: ${C.borderLight}; outline: none; }
       .sdemo-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 20px; height: 20px; border-radius: 50%; background: ${C.primary}; cursor: pointer; border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.18); }
       .sdemo-range::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: ${C.primary}; cursor: pointer; border: 3px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.18); }
@@ -5751,7 +5753,7 @@ function FeatureToday({ setPage }) {
               { h: "Surface the big one", p: "You open Retayned in the morning and see the move that matters most. Not fifty tasks. The one that will save or grow the most revenue today." },
             ].map((s, i) => (
               <div key={i} className="ret-card">
-                <div style={{ fontSize: 11, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>Step {i + 1}</div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: C.btn, textTransform: "uppercase", letterSpacing: "0.14em", marginBottom: 10 }}>0{i + 1}</div>
                 <h3 className="ret-h3">{s.h}</h3>
                 <p style={{ fontSize: 14.5, color: C.textSec, lineHeight: 1.6, margin: 0 }}>{s.p}</p>
               </div>
@@ -5957,7 +5959,7 @@ function HealthCheckDemo() {
       id: "compounder", chip: "The Quiet Compounder", accent: C.btn,
       eyebrow: "THE QUIET COMPOUNDER", headline: "Six years of steady work is a statement.",
       read: "Hartwell & Cole is sitting at a 90 with 15 logged activities in the last 30 days. Tasks completing, meetings landing, notes written. No fanfare, just work.",
-      stats: [["1", "CLIENTS"], ["90", "AVG SCORE"], ["15", "AVG ACTIVITY 30D"]],
+      stats: [["1", "CLIENTS"], ["90", "AVG SCORE"], ["15", "ACTIVITY 30D"]],
     },
     {
       id: "drift", chip: "Quiet Drift", accent: C.warning,
@@ -5973,7 +5975,7 @@ function HealthCheckDemo() {
     },
     {
       id: "fragile", chip: "Fragile High", accent: C.danger,
-      eyebrow: "FRAGILE HIGH", headline: "High score, thin foundation.",
+      eyebrow: "FRAGILE HIGH", headline: "High score, thin foundation, needs an eye.",
       read: "Broadleaf reads 76, but it's resting almost entirely on tenure — trust and grace are both soft underneath. The number looks fine. The structure under it is the story.",
       stats: [["1", "CLIENTS"], ["76", "AVG SCORE"], ["2", "SOFT DIMENSIONS"]],
     },
@@ -6067,7 +6069,7 @@ function RaiScriptDemo() {
           {tone !== "default" && (
             <button onClick={() => setTone("default")} className="trd-chip trd-chip-muted" style={{ fontSize: 12.5, padding: "7px 14px" }}>↺ Reset</button>
           )}
-          <span style={{ marginLeft: "auto", display: "inline-flex", alignItems: "center", gap: 8, fontSize: 12.5, fontWeight: 700, color: C.primary, padding: "7px 14px", border: "1px solid " + C.primary + "55", borderRadius: 100 }}>
+          <span className="rai-send">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
             Send as text or email
           </span>
@@ -6079,64 +6081,84 @@ function RaiScriptDemo() {
 }
 
 function RolodexDemo() {
-  const ROW_H = 68;
-  const base = [
-    { id: "d", n: "Devi Kapoor", m: "former client · quiet 14 months", tag: "cold", b: 20 },
-    { id: "m", n: "Marcus Hale", m: "referred you twice · quiet 8 mo", tag: "warm", b: 55 },
-    { id: "p", n: "Priya Nair", m: "left on great terms · 6 mo", tag: "warm", b: 60 },
-    { id: "j", n: "Jonah Reed", m: "price walk-away · 19 mo", tag: "cold", b: 18 },
+  const initial = [
+    { id: "d", n: "Devi Kapoor", sub: "former client", warmth: "cold", due: -13, queued: true },
+    { id: "m", n: "Marcus Hale", sub: "referred you twice", warmth: "cooling", due: 6, queued: true },
+    { id: "p", n: "Priya Nair", sub: "left on great terms", warmth: "warm", due: 21, queued: false },
+    { id: "j", n: "Jonah Reed", sub: "past project", warmth: "cold", due: null, queued: false },
   ];
-  const [rows, setRows] = useState(base);
-  const [rai, setRai] = useState("");
-  const tagColor = (t) => (t === "hot" ? C.btn : t === "warm" ? C.warning : C.textMuted);
-  const sorted = [...rows].sort((a, b) => b.b - a.b);
-  const pos = {}; sorted.forEach((t, i) => { pos[t.id] = i; });
+  const [people, setPeople] = useState(initial);
+  const [note, setNote] = useState("");
+  const warmthColor = (w) => (w === "warm" ? C.success : w === "cooling" ? C.warning : C.textMuted);
+  const counts = { warm: 0, cooling: 0, cold: 0 };
+  people.forEach(p => { counts[p.warmth]++; });
+  const queue = people.filter(p => p.queued).sort((a, b) => (a.due ?? 999) - (b.due ?? 999));
 
-  const fireDevi = () => {
-    setRows(rs => rs.map(t => t.id === "d" ? { ...t, tag: "hot", b: 99, m: "startup raised $4M · 2 days ago" } : t));
-    setRai("Devi's company just raised. She knew your work cold — this is the warmest she'll ever be. Reach out today, no pitch.");
+  const dueLabel = (d) => d === null ? "no check-in set" : d < 0 ? `${-d}d overdue` : d === 0 ? "due today" : `due in ${d}d`;
+  const dueColor = (d) => d !== null && d < 0 ? C.danger : C.textMuted;
+
+  const reachOut = (id) => {
+    setPeople(ps => ps.map(p => p.id === id ? { ...p, warmth: "warm", due: 30, queued: false } : p));
+    const who = people.find(p => p.id === id);
+    setNote(`You reached out to ${who.n.split(" ")[0]}. They're warm again, and the next check-in is already 30 days out.`);
   };
-  const fireMarcus = () => {
-    setRows(rs => rs.map(t => t.id === "m" ? { ...t, tag: "hot", b: 98, m: "new VP role · bigger budget" } : t));
-    setRai("Marcus just landed a VP role with real budget. He referred you twice before — congratulate him first. The opening will come.");
+  const schedule = () => {
+    setPeople(ps => ps.map(p => p.id === "p" ? { ...p, queued: true, due: 14 } : p));
+    setNote("Priya's on the calendar for a check-in in 14 days. You'll never have to remember it again.");
   };
-  const reset = () => { setRows(base); setRai(""); };
+  const addFormer = () => {
+    setPeople(ps => ps.some(p => p.id === "x") ? ps : [...ps, { id: "x", n: "Hartwell & Cole", sub: "wrapped a project · kept", warmth: "cooling", due: 7, queued: true }]);
+    setNote("Hartwell & Cole filed as a former client, not a closed account. The project ended; the relationship didn't.");
+  };
+  const reset = () => { setPeople(initial); setNote(""); };
+
+  const Avatar = ({ n, w }) => (
+    <div style={{ width: 32, height: 32, borderRadius: "50%", background: w === "warm" ? C.success : w === "cooling" ? "#FBF1DD" : "#EEF1ED", color: w === "warm" ? "#fff" : warmthColor(w), display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11.5, fontWeight: 800, flexShrink: 0 }}>{n.split(" ").map(x => x[0]).join("").slice(0, 2)}</div>
+  );
 
   return (
-    <div style={{ maxWidth: 540, margin: "0 auto" }}>
+    <div style={{ maxWidth: 700, margin: "0 auto" }}>
       <div style={{ display: "flex", justifyContent: "center", gap: 9, marginBottom: 20, flexWrap: "wrap" }}>
-        <button onClick={fireDevi} className="trd-chip">💰 Devi's startup raises</button>
-        <button onClick={fireMarcus} className="trd-chip">👔 Marcus changes jobs</button>
+        <button onClick={schedule} className="trd-chip">Schedule a check-in</button>
+        <button onClick={addFormer} className="trd-chip">Add a former client</button>
         <button onClick={reset} className="trd-chip trd-chip-muted">↺ Reset</button>
       </div>
-      <div style={{ background: C.card, border: "1px solid " + C.borderLight, borderRadius: 18, padding: 8, boxShadow: "0 18px 50px rgba(0,0,0,0.06)" }}>
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 14px 10px" }}>
-          <span style={{ fontFamily: "Georgia, serif", fontStyle: "italic", fontSize: 15, color: C.text }}>rolodex · dormant</span>
-          <span style={{ fontSize: 11, color: C.btn, fontWeight: 800, letterSpacing: "0.04em" }}>✦ TRIGGER WATCH</span>
+      <div style={{ background: C.card, border: "1px solid " + C.borderLight, borderRadius: 18, boxShadow: "0 18px 50px rgba(0,0,0,0.05)", overflow: "hidden" }}>
+        {/* Header strip: warmth tiers inline + label */}
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 14, padding: "16px 20px", borderBottom: "1px solid " + C.borderLight, background: C.primaryGhost, flexWrap: "wrap" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 18, flexWrap: "wrap" }}>
+            {[["warm", "Warm"], ["cooling", "Cooling"], ["cold", "Cold"]].map(([k, label]) => (
+              <span key={k} style={{ display: "flex", alignItems: "center", gap: 7, fontSize: 13, color: C.textSec }}>
+                <span style={{ width: 8, height: 8, borderRadius: "50%", background: warmthColor(k) }} />
+                {label}<b style={{ color: C.text, marginLeft: 1, transition: "all 0.3s" }}>{counts[k]}</b>
+              </span>
+            ))}
+          </div>
+          <span style={{ fontSize: 10.5, fontWeight: 800, letterSpacing: ".1em", textTransform: "uppercase", color: C.textMuted }}>Check-in queue</span>
         </div>
-        <div style={{ position: "relative", height: rows.length * ROW_H }}>
-          {rows.map(t => {
-            const i = pos[t.id];
-            const hot = t.tag === "hot";
-            return (
-              <div key={t.id} style={{ position: "absolute", left: 0, right: 0, transform: `translateY(${i * ROW_H}px)`, transition: "transform 0.6s cubic-bezier(.4,0,.2,1), background 0.4s", display: "flex", alignItems: "center", gap: 13, padding: "14px", borderRadius: 11, background: hot ? "#EFE9FB" : "transparent" }}>
-                <div style={{ width: 34, height: 34, borderRadius: "50%", background: hot ? C.btn : "#EEF1ED", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, fontWeight: 800, color: hot ? "#fff" : C.textMuted, flexShrink: 0 }}>{t.n.split(" ").map(w => w[0]).join("")}</div>
-                <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 14.5, fontWeight: 700, color: C.text }}>{t.n}</div>
-                  <div style={{ fontSize: 11.5, color: C.textMuted, marginTop: 2 }}>{t.m}</div>
-                </div>
-                <span style={{ fontSize: 10, fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.1em", color: tagColor(t.tag), background: tagColor(t.tag) + "18", padding: "4px 9px", borderRadius: 100, flexShrink: 0, transition: "all 0.4s" }}>{t.tag}</span>
+        {/* Queue rows */}
+        <div style={{ padding: 8 }}>
+          {queue.length === 0 && <div style={{ padding: "16px 12px", fontSize: 13, color: C.textMuted, fontStyle: "italic" }}>All caught up. Schedule the next one whenever you like.</div>}
+          {queue.map(p => (
+            <div key={p.id} style={{ display: "flex", alignItems: "center", gap: 11, padding: "11px 12px", borderRadius: 10, transition: "background 0.3s" }}>
+              <Avatar n={p.n} w={p.warmth} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 13.5, fontWeight: 700, color: C.text }}>{p.n}</div>
+                <div style={{ fontSize: 11, color: dueColor(p.due), marginTop: 1 }}>{p.sub} · {dueLabel(p.due)}</div>
               </div>
-            );
-          })}
+              <button onClick={() => reachOut(p.id)} className="trd-chip" style={{ fontSize: 11.5, padding: "6px 12px", flexShrink: 0 }}>Reach out →</button>
+            </div>
+          ))}
         </div>
+        {/* Footer note */}
+        <div style={{ padding: "11px 20px", borderTop: "1px solid " + C.borderLight, fontSize: 11.5, color: C.textMuted }}>Nothing leaves the book — people just move between tiers.</div>
       </div>
-      {rai && (
+      {note && (
         <div style={{ marginTop: 14, padding: "13px 16px", background: "#EFE9FB", borderRadius: 12, fontSize: 13, color: "#3e2f72", lineHeight: 1.55, display: "flex", gap: 10, alignItems: "flex-start" }}>
-          <span style={{ color: C.btn, fontSize: 15, flexShrink: 0 }}>✦</span><span>{rai}</span>
+          <span style={{ color: C.btn, fontSize: 15, flexShrink: 0 }}>✦</span><span>{note}</span>
         </div>
       )}
-      <div style={{ textAlign: "center", fontSize: 12.5, color: C.textMuted, marginTop: 14, fontStyle: "italic" }}>A trigger fires — a dormant client rises, warm and ready.</div>
+      <div style={{ textAlign: "center", fontSize: 12.5, color: C.textMuted, marginTop: 14, fontStyle: "italic" }}>Work the queue, schedule the next touch, and keep every past client in reach.</div>
     </div>
   );
 }
@@ -6419,8 +6441,8 @@ function FeatureRolodex({ setPage }) {
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">See it work</div>
-            <h2 className="ret-h2">A signal fires. A cold name turns warm.</h2>
-            <p className="ret-sub" style={{ margin: "0 auto" }}>The Rolodex watches former clients for the moments worth a reconnect. Trigger one and watch a dormant name rise to the top.</p>
+            <h2 className="ret-h2">Keep every past client in reach.</h2>
+            <p className="ret-sub" style={{ margin: "0 auto" }}>A check-in queue tells you who's due, scheduling keeps the cadence, and former clients stay filed as relationships. Work the queue and watch the book stay warm.</p>
           </div>
           <RolodexDemo />
         </div>
