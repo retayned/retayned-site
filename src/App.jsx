@@ -5725,7 +5725,7 @@ function FeatureToday({ setPage }) {
 
       {/* INTERACTIVE — PRODUCT IN MOTION */}
       <RetCurve from="#F2EEE8" to={C.bg} variant="dome" />
-      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 64 }}>
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 56 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">See it work</div>
@@ -5737,7 +5737,7 @@ function FeatureToday({ setPage }) {
       </section>
 
       {/* HOW IT WORKS — three moves (connected to interactive above, same bg) */}
-      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 24 }}>
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
@@ -5871,7 +5871,7 @@ function FeatureScoring({ setPage }) {
 
       {/* DEMO + connected explanation (same bg) */}
       <RetCurve from="#F2EEE8" to={C.bg} variant="dome" />
-      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 40 }}>
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 56 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">See it work</div>
@@ -5883,7 +5883,7 @@ function FeatureScoring({ setPage }) {
       </section>
 
       {/* How the score is built — connected tiles */}
-      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 24 }}>
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
@@ -6233,7 +6233,7 @@ function FeatureHealth({ setPage }) {
       />
 
       <RetCurve from="#F2EEE8" to={C.bg} variant="dome" />
-      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 40 }}>
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 56 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">See it work</div>
@@ -6244,7 +6244,7 @@ function FeatureHealth({ setPage }) {
         </div>
       </section>
 
-      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 24 }}>
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
@@ -6324,7 +6324,7 @@ function FeatureRai({ setPage }) {
       />
 
       <RetCurve from="#F2EEE8" to={C.bg} variant="dome" />
-      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 40 }}>
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 56 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">See it work</div>
@@ -6335,7 +6335,7 @@ function FeatureRai({ setPage }) {
         </div>
       </section>
 
-      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 24 }}>
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
@@ -6415,7 +6415,7 @@ function FeatureRolodex({ setPage }) {
       />
 
       <RetCurve from="#F2EEE8" to={C.bg} variant="dome" />
-      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 40 }}>
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 56 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">See it work</div>
@@ -6426,7 +6426,7 @@ function FeatureRolodex({ setPage }) {
         </div>
       </section>
 
-      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 24 }}>
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
@@ -6506,7 +6506,7 @@ function FeatureReferrals({ setPage }) {
       />
 
       <RetCurve from="#F2EEE8" to={C.bg} variant="dome" />
-      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 40 }}>
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 56 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">See it work</div>
@@ -6517,7 +6517,7 @@ function FeatureReferrals({ setPage }) {
         </div>
       </section>
 
-      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 24 }}>
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
@@ -6597,7 +6597,7 @@ function FeatureWorkers({ setPage }) {
       />
 
       <RetCurve from="#F2EEE8" to={C.bg} variant="dome" />
-      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 40 }}>
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56, paddingBottom: 56 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">See it work</div>
@@ -6608,7 +6608,7 @@ function FeatureWorkers({ setPage }) {
         </div>
       </section>
 
-      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 24 }}>
+      <section className="ret-section ret-bg-light r-full-bleed" style={{ paddingTop: 56 }}>
         <div className="ret-section-inner">
           <div className="ret-section-head">
             <div className="ret-eyebrow">How it works</div>
