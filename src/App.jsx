@@ -2341,6 +2341,235 @@ Once a week, before the inbox sets your agenda, look at your best clients specif
 *Retayned watches your whole book at once, including the quiet accounts you'd otherwise forget, so the clients keeping your business alive never go a quarter without your attention.*`,
   },
   {
+    slug: "how-to-stop-losing-clients",
+    tag: "RETENTION",
+    read: "6 min read",
+    kind: "article",
+    featured: false,
+    title: "How to stop losing the clients you worked to win",
+    excerpt: "You can do everything right and still lose a client six months later without knowing why. The quiet signals that predict it — and the habits that catch it in time.",
+    body: `# How to Stop Losing the Clients You Worked So Hard to Win
+
+You can do everything right to win a client — the pitch, the onboarding, the first great deliverable — and still lose them six months later without ever knowing why. No blowup. No complaint. Just a relationship that slowly went cold until one day the work stopped coming and a quiet "we're going in a different direction" email landed in your inbox.
+
+Losing a client you fought to win is one of the most demoralizing things in freelancing, and one of the most expensive. It costs roughly five times more to land a new client than to keep an existing one, which means every avoidable departure sends you back to the most exhausting, lowest-paid part of the job: chasing strangers. This is a guide to the other path — keeping the clients you already have, by understanding why they leave and building the habits that stop it.
+
+## Start here: it's almost never the work
+
+When freelancers lose a client, the first place they look is the work. Was the last project not good enough? Usually that's not it. Talent is what got you hired. What keeps you hired is everything *around* the work — and that's the part most freelancers stop maintaining the moment they get busy.
+
+The real reasons clients leave are quieter:
+
+- **They drifted.** The project ended, nobody initiated the next step, and inertia did the rest. The client didn't decide to leave so much as fail to decide to stay.
+- **The relationship thinned.** You were close once; the regular rhythm faded; you became a vendor instead of a partner. Vendors are replaceable.
+- **Their champion left.** The person who hired you and defended your budget moved on. Whoever inherited the relationship never chose you.
+- **A small frustration compounded.** A little less patience, a slightly slower reply, a scope disagreement nobody addressed — individually trivial, together corrosive.
+
+None of those is "the work was bad." All of them are catchable, if you're paying attention.
+
+## The early-warning signs of a client about to leave
+
+Departures leave a trail. Here are the signals, roughly in the order they appear:
+
+**Communication cools.** The earliest and most reliable sign. Replies that came in an hour now take three days. Messages get shorter and more formal. The warmth drains out before anything is ever said. If you're suddenly the one doing most of the reaching out, pay attention.
+
+**The post-delivery silence.** Counterintuitively, the riskiest stretch is right after you deliver something great. The project wraps, everyone's happy, and then nothing. A finished win with no follow-up is where repeat work quietly dies.
+
+**Payment rhythm shifts.** Invoices that cleared in ten days now take thirty. Budget questions come up more. Requests to move from retainer to one-off work. Money is a lagging signal, but an unambiguous one.
+
+**The quiet, steady client you've stopped thinking about.** The one who never causes trouble, sits at the top of your book, and hasn't heard from you in two months — because they never demanded attention. The clients who leave quietly are almost always the ones who never gave you any trouble. They're the easiest to take for granted and the most expensive to lose.
+
+## Why these signals are so easy to miss
+
+If the signs are this knowable, why does anyone get blindsided? Because no single signal trips an alarm. One slow reply is a busy week. One late invoice is accounting. One skipped check-in is the season. Each piece looks like nothing on its own, and connecting them across your *entire* book, every week, is a real job — one you don't have time for because you're busy doing the actual work.
+
+This is the core bind of running a book of business solo. You can hold maybe 15 relationships in your head through sheer attention. Past that, memory and instinct stop scaling, and the quiet ones slip through exactly because they're quiet.
+
+## The habits that actually stop client loss
+
+You don't need to care more — you already care. You need to make the signals visible without relying on memory. These work even with nothing but a calendar and a spreadsheet:
+
+1. **Keep a simple health read on every client.** Warm, cooling, cold. Update it when something shifts. Naming it is the first catch.
+2. **Run a real check-in cadence.** Not "when I remember" — a schedule. A recurring reminder to reach out to your top relationships beats waiting for them to go quiet.
+3. **Watch the quiet ones on purpose.** Your at-risk list isn't the clients complaining; it's the steady ones who've gone silent. Build a habit of checking who you *haven't* talked to.
+4. **Never let a win go cold.** Put a follow-up on the calendar for a week after every project wraps, while they still feel the value.
+5. **Catch friction early.** The small frustration you address this week is the cancellation you avoid next quarter.
+
+The thread through all of it: retention is attention paid consistently, and the moment you get busy is the exact moment that attention slips.
+
+## Where Retayned fits
+
+This is the whole reason Retayned exists. It watches the health of every client relationship the way you would if you had the time — scoring each one, flagging the quiet client who's drifting, surfacing the win you never followed up on, and telling you who needs you this week before "drifting" becomes "gone."
+
+It won't do the relationship for you. It makes sure nothing reaches you too late to act on while there's still time. If you've ever lost a client and thought *I should have seen that coming* — that's the gap this closes, and it's a far cheaper way to grow than starting over with a stranger every time one slips away.`,
+  },
+  {
+    slug: "how-to-get-more-freelance-clients",
+    tag: "GROWTH",
+    read: "5 min read",
+    kind: "article",
+    featured: false,
+    title: "How to get more freelance clients (start with the ones you have)",
+    excerpt: "Everyone points you toward strangers. The cheapest, highest-converting clients are the ones already in your orbit — here's how to work the warm sources first.",
+    body: `# How to Get More Freelance Clients (Start With the Ones You Already Have)
+
+Search "how to get more freelance clients" and you'll drown in the same advice: optimize your profile, post on LinkedIn, cold pitch, bid on job boards, niche down, network harder. It's not wrong. But it all points in one direction — *out*, toward strangers — and it skips the cheapest, highest-converting source of new work you have: the clients and former clients already in your orbit.
+
+This isn't a "don't market yourself" argument. New leads matter. But if you're only ever hunting cold, you're working the hardest, slowest, lowest-paid version of growth and ignoring the warm one sitting right next to it. Here's how to get more clients by starting with the people who already know you're good.
+
+## Why warm beats cold, every time
+
+A cold prospect has to be found, convinced you're competent, and talked past their hesitation — that's hours of unpaid effort with low odds. Someone who's already worked with you needs none of that. They've seen your work, they trust you, and the friction of saying yes again is almost zero. Repeat and referred clients convert at a far higher rate, pay better, and stick around longer, because the relationship does the selling.
+
+So before you spend another evening cold-pitching, work these three warmer sources.
+
+## 1. Turn one-off clients into repeat clients
+
+Most freelancers treat a finished project as an ending. It's not — it's the warmest moment you'll ever have with that client. They just experienced your work; the trust is at its peak.
+
+- **Propose the next thing while you're still top of mind.** A week after delivery, not six months later: "Here's what I'd tackle next if I were you." Project-to-retainer conversions are dramatically higher when proposed right after a win than when pitched cold later.
+- **Make staying easy.** Offer a retainer or a maintenance package. Recurring work is the single best antidote to the feast-or-famine cycle, and clients often prefer it too — it means they don't have to go re-hire someone.
+
+## 2. Reactivate past clients
+
+The clients you finished with months ago haven't forgotten you — they've just gotten busy. A finished project is a relationship on pause, not a closed account. A simple, no-pressure reconnect ("thinking of you, saw this and it made me think of your work, how's everything going?") reopens doors more often than you'd guess. No pitch required; just presence at the right moment.
+
+The catch: this only works if you actually remember to do it, and remember *who*. Most freelancers mean to stay in touch with past clients and never do, because there's no system holding those names.
+
+## 3. Ask for referrals — at the right moment
+
+Your happy clients know other people who need what you do. Most freelancers never ask, or ask awkwardly at the wrong time. The move is to ask when the relationship is warmest — right after you've delivered something they're thrilled with — and to make it easy and low-pressure: "If you know anyone wrestling with the same thing, I'd love an introduction." A warm referral is the highest-converting lead there is, because it arrives pre-trusted.
+
+## Then, yes — go get cold leads too
+
+With the warm sources working, your cold outreach gets easier, because you're not desperate. Network, post, pitch, niche down — all of it works better when you're not scrambling to fill a famine. The freelancers who look effortless at getting clients usually aren't better at cold outreach; they just have a warm base that keeps producing, so the cold stuff is a bonus rather than a lifeline.
+
+## The system underneath all of this
+
+Every warm source above depends on one thing: actually keeping track of your relationships — who you've worked with, who's gone quiet, who's due for a check-in, who just had a win worth following up on. Do that in your head and it works until about 15 clients, then the names start slipping and the warm opportunities go cold from neglect.
+
+That's what Retayned does: it keeps every client and former client in one place, tracks the health of each relationship, and tells you who's worth reaching out to and when — so "get more clients" stops meaning "find more strangers" and starts meaning "stop leaving warm business on the table." The cheapest new client is the one you already earned.`,
+  },
+  {
+    slug: "how-to-fire-a-client",
+    tag: "BOUNDARIES",
+    read: "5 min read",
+    kind: "article",
+    featured: false,
+    title: "How to fire a client without burning the bridge",
+    excerpt: "Some clients cost more than they pay. How to know when it's time, end it cleanly, and keep the door open for the referral or return down the line.",
+    body: `# How to Fire a Client (Without Burning the Bridge)
+
+Some clients cost more than they pay. The 11pm "quick question" texts. The scope that keeps creeping. The invoices you have to chase every single month. The knot in your stomach when their name shows up in your inbox. At some point the math stops working: this one client is quietly eating the time, energy, and goodwill you need for the clients who actually deserve it.
+
+Firing a client is one of the hardest things to do as a freelancer, because it goes against every instinct that got you here. You fought to land clients. Letting one go feels like moving backward. But keeping the wrong one is what's actually moving you backward — it just doesn't show up on an invoice.
+
+This guide walks through how to know when it's time, how to do it cleanly, and how to end the relationship in a way that protects your reputation, your income, and your peace of mind.
+
+## First: are you sure it's a firing, not a fixing?
+
+Before you end anything, be honest about whether the problem is the client or the setup. A lot of "bad clients" are really bad boundaries or a vague agreement. Run through this first:
+
+- **Is the scope actually defined?** Scope creep usually means the original agreement was loose. That's fixable with a clear statement of work, not a breakup.
+- **Have you raised the issue directly?** Many clients don't know they're being difficult. The late-night texts, the constant revisions — sometimes one calm conversation ("I want to make sure I'm giving you my best work, so let's set how we communicate") solves it.
+- **Is it a money problem or a respect problem?** An underpaying client can be repriced. A disrespectful one usually can't be repaired.
+
+If you've genuinely tried to fix it and the relationship still drains more than it gives, it's a firing. The clients worth keeping respond to a boundary. The ones worth firing ignore it.
+
+## The signs it's actually time
+
+You're past fixing when:
+
+- They cost you more in stress and hours than they pay, and repricing won't close the gap.
+- Every interaction leaves you depleted, and it's affecting your work for *other* clients.
+- They've crossed a line on respect — talking down to you, ignoring agreements, disputing fair invoices in bad faith.
+- You're avoiding their emails. That avoidance is information.
+
+## How to fire a client cleanly
+
+The goal is a clean, professional exit that leaves no smoke behind you. Freelancing is a small world; today's fired client knows people you'll want as clients later.
+
+**1. Finish or formally close the current obligation.** Don't abandon work mid-deliverable — that's the one move that genuinely damages your reputation. Complete what's contracted, or define a clear, fair stopping point.
+
+**2. Keep the reason simple and non-personal.** You don't owe a detailed indictment. "It's not the right fit" or "my focus is shifting and I won't be able to give your work the attention it deserves" is enough. Make it about fit, not fault. The "it's me, not you" framing isn't a cliché here — it's the professional move.
+
+**3. Give reasonable notice.** Enough for them to find a replacement. Two to four weeks is standard for ongoing work. This single courtesy is what turns a firing into a "we parted on good terms."
+
+**4. Put it in writing, warmly.** A short email confirming the end date, what you'll deliver before then, and a genuine well-wish. Calm, brief, kind.
+
+**5. Offer a soft landing if you can.** Recommending another freelancer who'd be a better fit is the move that makes a fired client *thank* you. It costs you nothing and it's the difference between a resentful ex-client and one who still refers you.
+
+## A template you can adapt
+
+> Hi [Name], I've been thinking about our work together and I want to be straight with you. I don't think I'm the right fit for what you need going forward, and you deserve someone who can give it their full attention. I'll wrap up [current deliverable] by [date] so you're not left in a tough spot. If it's helpful, I'm happy to recommend a couple of people who'd be a great match. It's been good working with you, and I wish you the best with it.
+
+No drama, no blame, no door slammed.
+
+## The part most freelancers miss: a fired client is still a relationship
+
+Here's what separates freelancers who run a stable business from ones stuck on the hamster wheel: they understand that ending a *project* doesn't have to mean ending a *relationship*. The client you let go of gracefully today is someone who might refer you, or come back under better terms, or vouch for you in a room you're not in.
+
+That only works if you keep the bridge intact — and if you actually remember them later. Most freelancers fire a client, feel the relief, and forget the name. The ones who play the long game file that person away, note that you parted well, and stay loosely in touch.
+
+This is exactly the kind of thing Retayned is built to hold for you. When you part with a client on good terms, they don't vanish — they stay in your book as a former client you left the door open with, so a graceful exit today can quietly become a referral or a return down the line. Firing a client is sometimes the right call. Forgetting them afterward rarely is.`,
+  },
+  {
+    slug: "how-to-deal-with-difficult-clients",
+    tag: "BOUNDARIES",
+    read: "4 min read",
+    kind: "article",
+    featured: false,
+    title: "How to deal with difficult clients",
+    excerpt: "The micromanager, the scope-creeper, the slow payer. Most difficult clients aren't bad people — they're a boundaries problem. Type by type, what actually works.",
+    body: `# How to Deal With Difficult Clients
+
+Every freelancer has one. The client who needs five revisions on a logo. The one who texts at 11pm expecting an answer by 11:05. The one who questions every line of every invoice. A single difficult client can sour your whole week and bleed into the work you do for everyone else.
+
+Here's the reframe that actually helps: most difficult clients aren't bad people. They're usually anxious, unclear, or operating without the structure that would make them easy to work with. The good news is that a lot of "difficult" is fixable with better boundaries and clearer agreements — and the part that *isn't* fixable, you can spot early and exit cleanly. Let's go type by type.
+
+## The micromanager
+
+They check in constantly, want to approve every step, and seem to have hired you only to watch you work. Usually this isn't distrust of *you* — it's anxiety about letting go of something with their name on it.
+
+**What works:** give them structure that scratches the control itch without handing them the wheel. A scheduled weekly update, a shared progress doc, a clear "here's what I'll send and when." When someone knows exactly when the next update lands, the impulse to poke at you mid-task fades. You're replacing their anxiety with a system.
+
+## The scope-creeper
+
+It starts with "just one small thing" and ends with you doing double the work for the original fee. Scope creep is rarely malice; it's usually a vague agreement and a client who doesn't realize each "small thing" adds up.
+
+**What works:** a clear statement of work you can point back to, and a calm, repeatable line for out-of-scope asks: "Happy to do that — it's outside our current scope, so I'll send a quick quote for it." Said warmly and consistently, it trains the relationship without friction. You're not refusing; you're pricing.
+
+## The slow payer
+
+Invoices that clear in ten days start taking thirty. Sometimes it's cash-flow trouble on their end; sometimes it's just disorganization. Either way it's your income on the line.
+
+**What works:** clear payment terms up front (due dates on every invoice, a deposit for larger work), and friendly, prompt follow-up the moment something runs late — not three weeks after. Most late payment is fixed by a polite nudge, not a confrontation. If it's chronic and the conversation goes nowhere, that's a signal about the relationship, not just the invoice.
+
+## The one who doesn't value your expertise
+
+They argue with your recommendations, want it done their way, and seem to think they could've done it themselves. Draining, because it makes you doubt yourself.
+
+**What works:** don't take it personally, and don't get defensive. Step back, understand what they're actually worried about, and explain your reasoning once, clearly. Often the disagreement is a misunderstanding about goals. If you explain your thinking and they still want to override your expertise on everything — that's a fit problem, and fit problems usually don't get better.
+
+## The throughline: structure prevents most "difficult"
+
+Notice the pattern. Almost every difficult-client situation traces back to one of two things: a fuzzy agreement, or weak communication cadence. Tighten those two and most "difficult" never materializes:
+
+- **Set expectations before you start** — scope, communication channels, response times, payment terms, in writing.
+- **Communicate proactively** — the freelancer who sends the update first is rarely the one getting anxious 11pm texts.
+- **Address problems early and calmly** — small course-corrections beat big confrontations.
+
+## When it's not fixable
+
+Some relationships can't be saved, and that's okay. If you've set clear boundaries, communicated in good faith, and the client still disrespects your time, your work, or your rates — it may be time to part ways. Knowing how to end it cleanly is its own skill, and protecting your energy for the clients who *do* value you is not a failure. It's good business.
+
+## Where this connects to keeping the right clients
+
+The flip side of managing difficult clients well is that it makes the good relationships obvious — and worth protecting. The same habits that defuse a micromanager (proactive updates, a clear cadence, catching friction early) are exactly what keeps your *best* clients from quietly drifting away.
+
+That's the thinking behind Retayned: a clear read on every client relationship and a nudge when one needs attention, so the difficult ones get handled before they blow up and the good ones don't get neglected while you're busy putting out fires. Managing clients well isn't just damage control. It's how the relationships worth keeping stay kept.`,
+  },
+  {
     slug: "the-compounding-edge",
     tag: "FRAMEWORK",
     read: "5 min read",
