@@ -6925,30 +6925,30 @@ function FeatureWorkers({ setPage }) {
   );
 }
 
-const DEFAULT_DESC = "Retayned tracks the health of relationships to predict churn before it happens — giving you precise, client-specific solutions to keep and grow the business you've earned.";
+const DEFAULT_DESC = "Retayned is the client CRM that predicts and prevents churn. Track relationship health, catch at-risk clients early, and keep the business you've already earned.";
 
 const PAGE_META = {
-  home: { title: "Retayned — Client Relationship Management", desc: DEFAULT_DESC },
-  pricing: { title: "Pricing — Retayned", desc: "Flat, predictable pricing with every feature included. Solo $29/mo, Team $99/mo. No per-client fees, no feature gates. 14-day free trial." },
-  about: { title: "About — Retayned", desc: "Built by a performance marketer who spent ten years keeping the clients other people lost. Retayned is the system that came out of it." },
-  blog: { title: "Blog — Retayned", desc: "Field notes on client retention, relationship health, and running a book of business that compounds instead of churns." },
-  freelancers: { title: "Retayned for Freelancers", desc: "For freelancers and consultants: track every client relationship, catch churn early, and keep the business you worked to win. $29/mo flat." },
-  agencies: { title: "Retayned for Agencies", desc: "For agencies and human teams: shared client visibility, handoff briefs, and per-AM coverage so knowledge stays when people move. $99/mo." },
-  enterprise: { title: "Retayned Enterprise", desc: "Relationship intelligence at scale — for autonomous agents and books of business managing thousands of accounts. Managed Rai, API, and SSO." },
-  platform: { title: "Platform — Retayned", desc: "One brain for your entire book: retention scoring, health checks, and advanced AI built on frontier models. Every feature, every plan." },
-  faq: { title: "FAQ — Retayned", desc: "Answers on pricing, features, data, and how Retayned predicts and prevents client churn." },
-  "feature-today": { title: "Today — Retayned", desc: "Your daily operating view: Rai suggests and ranks the work that matters most, so the few relationships that need you surface before they become problems." },
-  "feature-scoring": { title: "Clients — Retayned", desc: "Your client list, scored and sorted by what matters. A twelve-dimension Retention Score on every relationship, so you see where you stand before the client tells you." },
-  "feature-health": { title: "Health — Retayned", desc: "Structured relationship check-ins that surface what you already sense. The twelve dimensions assess health directly, so keeping a profile current keeps its score honest." },
-  "feature-rolodex": { title: "Rolodex — Retayned", desc: "Every contact, relationship, and piece of history in one place — so nothing about a client lives only in your head." },
-  "feature-referrals": { title: "Referrals — Retayned", desc: "Track and grow the referrals your best relationships generate, instead of leaving them to chance." },
-  "feature-workers": { title: "Workers — Retayned", desc: "Hand a single task to a contractor or VA with one secure link — no account, no login, no access to the rest of your book. You stay the hub; the work flows outward." },
-  "feature-rai": { title: "Rai — Retayned", desc: "Rai is your senior advisor for every account: ranked priorities, the exact words for a hard conversation, and context that carries across sessions." },
-  privacy: { title: "Privacy Policy — Retayned", desc: "How Retayned collects, uses, and protects your data." },
-  terms: { title: "Terms of Service — Retayned", desc: "The terms governing your use of Retayned." },
-  signup: { title: "Start your free trial — Retayned", desc: "Start a 14-day free trial of Retayned. Every feature included." },
-  login: { title: "Log in — Retayned", desc: "Log in to your Retayned account." },
-  contact: { title: "Contact — Retayned", desc: "Get in touch with the Retayned team." },
+  home: { title: "Retayned | CRM for Freelancers & Agencies", desc: "Retayned is the client CRM that predicts and prevents churn. Track relationship health, catch at-risk clients early, and keep the business you've already earned." },
+  pricing: { title: "Pricing | Retayned", desc: "Flat, predictable pricing with every feature included. Solo $29/mo, Team $99/mo. No per-client fees, no feature gates. 14-day free trial." },
+  about: { title: "Why We Built Retayned", desc: "Built by a performance marketer who spent ten years keeping the clients other people lost. Retayned is the system that came out of it." },
+  blog: { title: "Client Retention Playbook | Retayned", desc: "Field notes on client retention, relationship health, and running a book of business that compounds instead of churns." },
+  freelancers: { title: "Client CRM for Freelancers & Consultants | Retayned", desc: "Track every client relationship, catch churn early, and keep the business you worked to win. Built for solo operators. $29/mo flat." },
+  agencies: { title: "Client Retention Software for Agencies | Retayned", desc: "Shared client visibility, handoff briefs, and per-account-manager coverage so client knowledge stays when people move. $99/mo for 5 seats." },
+  enterprise: { title: "Retention Intelligence at Scale | Retayned Enterprise", desc: "Relationship intelligence for autonomous agents and books of business managing thousands of accounts. Managed Rai, API, and SSO." },
+  platform: { title: "How Retayned Works | The Retention Platform", desc: "One brain for your entire book: retention scoring, health checks, and advanced AI built on frontier models. Every feature, every plan." },
+  faq: { title: "Retayned FAQ | Pricing, Features & Data", desc: "Answers on pricing, features, data, and how Retayned predicts and prevents client churn." },
+  "feature-today": { title: "Daily Client Priorities | Retayned Today", desc: "Your daily operating view. Rai suggests and ranks the work that matters most, so the few relationships that need you surface before they become problems." },
+  "feature-scoring": { title: "Client Retention Scoring | Retayned", desc: "Your client list, scored and sorted by what matters. A twelve-dimension Retention Score on every relationship, so you see where you stand before the client tells you." },
+  "feature-health": { title: "Client Health Checks | Retayned", desc: "Weekly reads on your whole book. Rai surfaces the patterns you'd never have time to find, so a quiet client gets caught before they churn." },
+  "feature-rolodex": { title: "Keep Past Clients Warm | Retayned Rolodex", desc: "Every contact, relationship, and piece of history in one place, so nothing about a client lives only in your head and no past client goes cold." },
+  "feature-referrals": { title: "Track Client Referrals | Retayned", desc: "Track and grow the referrals your best relationships generate, instead of leaving them to chance." },
+  "feature-workers": { title: "Delegate Client Work Securely | Retayned Workers", desc: "Hand a single task to a contractor or VA with one secure link. No account, no login, no access to the rest of your book. You stay the hub." },
+  "feature-rai": { title: "Meet Rai, Your AI Client Advisor | Retayned", desc: "Rai is your senior advisor for every account: ranked priorities, the exact words for a hard conversation, and context that carries across sessions." },
+  privacy: { title: "Privacy Policy | Retayned", desc: "How Retayned collects, uses, and protects your data." },
+  terms: { title: "Terms of Service | Retayned", desc: "The terms governing your use of Retayned." },
+  signup: { title: "Start Your Free Trial | Retayned", desc: "Start a 14-day free trial of Retayned. Every feature included." },
+  login: { title: "Log In | Retayned", desc: "Log in to your Retayned account." },
+  contact: { title: "Contact Retayned", desc: "Get in touch with the Retayned team." },
 };
 
 // Map between page state and URL paths. Pages not listed here have no URL.
