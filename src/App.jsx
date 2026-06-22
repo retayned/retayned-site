@@ -1187,7 +1187,7 @@ function HomeV2({ setPage }) {
 
   const audiencePanels = {
     freelancers: {
-      h: "An operating system for high-agency solos.",
+      h: "A team of one, finally backed up.",
       p: "You're a team of one. You can't be laser-focused on every Slack thread and hint of drift. Retayned watches the whole book while you do the work.",
       cta: "See Platform",
       ctaTarget: "freelancers",
