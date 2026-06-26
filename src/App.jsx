@@ -19,7 +19,7 @@ const C = {
   cardShadow: "0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04)",
   raiGrad: "linear-gradient(145deg, #1E261F 0%, #33543E 55%, #558B68 100%)",
 };
- 
+
 // Spacing tokens (on an 8px-ish grid). Single source of truth for repeated gaps.
 const EYEBROW_GAP = 24; // gap between an eyebrow pill and the headline beneath it
 const HERO_TOP = 56; // gap from the top of the page content to the hero eyebrow
@@ -580,12 +580,12 @@ function Footer({ setPage }) {
         <div className="v2-footer-col">
           <h5>Product</h5>
           <a href="/features/today" onClick={(e) => { e.preventDefault(); setPage("feature-today"); }}>Today</a>
-          <a href="/features/clients" onClick={(e) => { e.preventDefault(); setPage("feature-scoring"); }}>Clients</a>
-          <a href="/features/health" onClick={(e) => { e.preventDefault(); setPage("feature-health"); }}>Health</a>
+          <a href="/features/retention-score" onClick={(e) => { e.preventDefault(); setPage("feature-scoring"); }}>Clients</a>
+          <a href="/features/health-checks" onClick={(e) => { e.preventDefault(); setPage("feature-health"); }}>Health</a>
           <a href="/features/rolodex" onClick={(e) => { e.preventDefault(); setPage("feature-rolodex"); }}>Rolodex</a>
           <a href="/features/referrals" onClick={(e) => { e.preventDefault(); setPage("feature-referrals"); }}>Referrals</a>
           <a href="/features/workers" onClick={(e) => { e.preventDefault(); setPage("feature-workers"); }}>Workers</a>
-          <a href="/features/rai" onClick={(e) => { e.preventDefault(); setPage("feature-rai"); }}>Rai</a>
+          <a href="/features/talk-to-rai" onClick={(e) => { e.preventDefault(); setPage("feature-rai"); }}>Rai</a>
         </div>
         <div className="v2-footer-col">
           <h5>Who it's for</h5>
