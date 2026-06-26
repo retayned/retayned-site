@@ -19,7 +19,7 @@ const C = {
   cardShadow: "0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04)",
   raiGrad: "linear-gradient(145deg, #1E261F 0%, #33543E 55%, #558B68 100%)",
 };
-
+ 
 // Spacing tokens (on an 8px-ish grid). Single source of truth for repeated gaps.
 const EYEBROW_GAP = 24; // gap between an eyebrow pill and the headline beneath it
 const HERO_TOP = 56; // gap from the top of the page content to the hero eyebrow
