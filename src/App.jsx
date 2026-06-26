@@ -6995,10 +6995,24 @@ function pathForPage(p) {
   return PAGE_TO_PATH[p] || "/";
 }
 
-export default function RetaynedSite() {
+// Every URL the site serves — used by the build-time prerenderer to snapshot each page.
+// Excludes auth/util routes (signup, login) that shouldn't be indexed.
+export function getAllRoutes() {
+  const skip = new Set(["signup", "login"]);
+  const staticPaths = Object.entries(PAGE_TO_PATH)
+    .filter(([page]) => !skip.has(page))
+    .map(([, path]) => path);
+  const postPaths = RESOURCES_CONTENT.map(
+    (r) => (r.kind === "guide" ? "/guides/" : "/blog/") + r.slug
+  );
+  return [...staticPaths, ...postPaths];
+}
+
+export default function RetaynedSite({ initialPath } = {}) {
   const [page, setPageState] = useState(() => {
-    // Initialize from URL on first render (browser only; SSR falls back to home)
+    // Browser: read the real URL. Build-time prerender: use the path passed in.
     if (typeof window !== "undefined") return pageFromPath(window.location.pathname);
+    if (initialPath) return pageFromPath(initialPath);
     return "home";
   });
 
