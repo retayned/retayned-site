@@ -7060,6 +7060,15 @@ export default function RetaynedSite({ initialPath } = {}) {
     setMeta('meta[property="og:url"]', "content", "https://www.retayned.com" + (path === "/" ? "/" : path));
     let canonical = document.querySelector('link[rel="canonical"]');
     if (canonical) canonical.setAttribute("href", "https://www.retayned.com" + (path === "/" ? "/" : path));
+
+    // Meta Pixel: fire a Lead event when the signup page is reached (once per page view).
+    if (page === "signup" && typeof window !== "undefined" && typeof window.fbq === "function" && !window.__retSignupLead) {
+      window.__retSignupLead = true;
+      window.fbq("track", "Lead");
+    }
+    if (page !== "signup" && typeof window !== "undefined") {
+      window.__retSignupLead = false;
+    }
   }, [page]);
 
   return (
