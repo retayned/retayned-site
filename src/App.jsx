@@ -1217,14 +1217,14 @@ function HomeV2({ setPage }) {
             For freelancers, consultants, and agencies.
           </div>
           <h1 className="v2-hero-h1">
-            The CRM that{" "}
+            The AI Native CRM that{" "}
             <span className="v2-strike-wrap">
               <span className="v2-strike">predicts</span>
               <span className="v2-caveat">prevents</span>
             </span>{" "}churn.
           </h1>
           <p className="v2-hero-sub">Stop losing clients you should have kept.</p>
-          <p className="v2-hero-desc">Replace the spreadsheets, docs, notes, and reminders with one system to help you keep and grow the business you've earned.</p>
+          <p className="v2-hero-desc">Replace the spreadsheets, docs, and notes with an AI agent that manages your entire client book.</p>
           <div className="v2-hero-cta-row">
             <button className="v2-btn-primary-lg cta-btn" onClick={() => setPage("signup")}>Start Free Trial</button>
           </div>
