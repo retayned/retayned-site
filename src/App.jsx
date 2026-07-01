@@ -1217,7 +1217,7 @@ function HomeV2({ setPage }) {
             For freelancers, consultants, and agencies.
           </div>
           <h1 className="v2-hero-h1">
-            The AI Native CRM that{" "}
+            The AI-native CRM that{" "}
             <span className="v2-strike-wrap">
               <span className="v2-strike">predicts</span>
               <span className="v2-caveat">prevents</span>
@@ -7324,7 +7324,7 @@ export default function RetaynedSite({ initialPath } = {}) {
           box-shadow: 0 4px 16px rgba(0,0,0,0.04);
           font-size: 14.5px; font-weight: 600;
           color: ${C.text};
-          margin-bottom: clamp(8px, 0.5vw, 10px);
+          margin-bottom: clamp(20px, 1.5vw, 28px);
           animation: subtleBob 4s ease-in-out infinite;
           max-width: 100%; white-space: nowrap;
         }
@@ -7337,7 +7337,7 @@ export default function RetaynedSite({ initialPath } = {}) {
           color: ${C.text};
         }
         @media (min-width: 768px) {
-          .v2-hero-h1 { margin-top: -16px; }
+          .v2-hero-h1 { margin-top: 0; }
         }
         .v2-strike-wrap { position: relative; display: inline-block; margin: 0 0.15em; padding-top: 0.5em; }
         .v2-strike { color: ${C.textMuted}; position: relative; }
@@ -7970,6 +7970,8 @@ export default function RetaynedSite({ initialPath } = {}) {
         }
         @media (max-width: 640px) {
           .v2-hero { padding: 40px 20px 40px; }
+          .v2-hero-h1 { font-size: clamp(30px, 8vw, 38px); }
+          .v2-hero-h1 { font-size: clamp(30px, 8.7vw, 38px); line-height: 1.04; }
           .v2-hero-device { padding: 16px 12px 16px; margin-top: 32px; border-radius: 18px; }
           .v2-section-rai, .v2-section-platform, .v2-section-audience, .v2-section-combos { padding: 64px 20px; }
           .v2-section-enterprise, .v2-section-final { padding: 64px 20px; }
